@@ -37,7 +37,7 @@ const items = [
 ];
 function Home() {
     return (
-        <div className="container-fluid">
+        <>
             <NavBar />
             <CarouseL items={items} />
 
@@ -215,7 +215,7 @@ function Home() {
                 </div>
             </div >
             <Footer />
-        </div >
+        </ >
     )
 }
 

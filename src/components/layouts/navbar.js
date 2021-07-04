@@ -36,14 +36,20 @@ const NavBar = (props) => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        var top = document.getElementById('top')
+        top.scrollIntoView({ behavior: 'auto' })
+    }, [])
+
     const displaySearch = () => setSearch(!search)
     return (
-        <Navbar color='dark' light expand="md" style={{ height: windowDimensions.width > 680 ? '15vh' : '' }} >
+        <Navbar color='dark' expand="md" style={{ height: windowDimensions.width > 680 ? '15vh' : '' }} id='top' >
 
             <NavbarBrand >
                 {windowDimensions.width > 680 ?
-                    <img src={logo} alt="" /> :
-                    <img src={logo} alt="" style={{ backgroundColor: '#f1f4f8', border: 'none', width: '33vh' }} />
+                    <img src={logo} alt="" style={{ width: 343 }} /> :
+                    <img src={logo} alt="" style={{ width: '33vh' }} />
                 }
             </NavbarBrand>
 
