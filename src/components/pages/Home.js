@@ -1,25 +1,28 @@
 import React from 'react'
 import CarouseL from '../layouts/carousel';
 import NavBar from '../layouts/navbar'
-import Lalibela from '../../images/lalibela.jpg'
+import Ertale from '../../images/erta ale the smoking mountain of afar.png'
 import Gonder from '../../images/Gonder.png'
 import BlueNile from '../../images/Blue-Nile.jpg'
-import Monkey from '../../images/monkey.jpg'
+import Monkey from '../../images/semine mountain national park.png'
 import Danakil from '../../images/Danakil.jpg'
+import Meskel from '../../images/meskel celebration.png'
 import '../../styles/home.css'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTag } from '@fortawesome/free-solid-svg-icons'
+import Footer from '../layouts/Footer';
+import Axum from '../../images/axum obelisks.png'
 const items = [
     {
-        src: Lalibela,
-        altText: 'Lalibela',
-        caption: 'Rock-cut monolithic churches'
+        src: Ertale,
+        altText: 'Eritale',
+        caption: 'Active magma'
     },
     {
-        src: Danakil,
-        altText: 'Danakil',
-        caption: 'The deepest place in the world'
+        src: Meskel,
+        altText: 'Meskel',
+        caption: 'Christian celebration'
     },
     {
         src: BlueNile,
@@ -36,85 +39,63 @@ function Home() {
     return (
         <div className="container-fluid">
             <NavBar />
-            <div className="cotainer" >
-                <CarouseL items={items} />
-            </div>
+            <CarouseL items={items} />
+
             <div className="container">
                 <div className="row">
                     {/**sites */}
                     <div className="col-lg-12">
-                        <h1 className="text-center text-dark my-3">Attraction sites</h1>
-                        <div class="ml">
-                            <div class="ml-pnl ml-flp--md ml-flp">
-                                <div class="ml-pnl__cntnt ml-flp__cntnt"><img class="ml-flp__pnl ml-flp__pnl--frnt" src="img/photo-1.jpg" />
-                                    <div class="ml-flp__pnl ml-flp__pnl--bck bg--green">
-                                        <p>Here is a flpped image...</p>
+                        <h1 className="text-center text-white my-3">Attraction sites</h1>
+                        <div className="ml">
+                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
+                                <div className="ml-pnl__cntnt ml-flp__cntnt">
+                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Gonder} alt='' />
+                                    <div className="ml-flp__pnl ml-flp__pnl--bck text-raise">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="ml-pnl">
-                                <div class="ml-pnl__cntnt tx--white bg--green">
-                                    <h1>Here is a masonry layout.</h1>
-                                </div>
-                            </div>
-                            <div class="ml-pnl ml-clstr ml-clstr--hrz">
-                                <div class="ml-clstr__sgmnt ml-clstr__sgmnt--rw">
-                                    <div class="ml-pnl ml-clstr__sgmnt">
-                                        <img class="ml-pnl__cntnt ml-pnl__cntnt--img" src={Gonder} alt='' /></div>
-                                </div>
-                                <div class="ml-clstr__sgmnt ml-clstr__sgmnt--rw">
-                                    <div class="ml-pnl ml-clstr__sgmnt ml-clstr__sgmnt--hlf"><img class="ml-pnl__cntnt ml-pnl__cntnt--img" src="img/photo-1.jpg" /></div>
-                                    <div class="ml-pnl ml-clstr__sgmnt">
-                                        <div class="ml-pnl__cntnt bg--red tx--white">
-                                            <p>Some cool pics.</p>
-                                        </div>
+                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
+                                <div className="ml-pnl__cntnt ml-flp__cntnt">
+                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Monkey} alt='' />
+                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
+                                        <h3>Lorem, ipsum dolor.</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="ml-pnl">
-                                <div class="ml-pnl__cntnt tx--white bg--purple">
-                                    <h3>That's pretty cool, thanks for showing me.</h3>
-                                </div>
-                            </div>
-                            <div class="ml-pnl ml-clstr ml-clstr--vrt">
-                                <div class="ml-clstr__sgmnt ml-clstr__sgmnt--clmn ml-clstr__sgmnt--hlf">
-                                    <div class="ml-pnl ml-clstr__sgmnt"><img class="ml-pnl__cntnt ml-pnl__cntnt--img" src="img/photo-2.jpg" /></div>
-                                </div>
-                                <div class="ml-clstr__sgmnt ml-clstr__sgmnt--clmn">
-                                    <div class="ml-pnl ml-clstr__sgmnt">
-                                        <div class="ml-pnl__cntnt bg--blue tx--white">
-                                            <p>This is an image, it's quite nice.</p>
-                                        </div>
-                                    </div>
-                                    <div class="ml-pnl ml-clstr__sgmnt">
-                                        <div class="ml-pnl__cntnt bg--blue tx--white"><a>Click here to find out more.</a></div>
+                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
+                                <div className="ml-pnl__cntnt ml-flp__cntnt">
+                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Axum} alt='' />
+                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="ml-pnl ml-pnl--fcs">
-                                <div class="ml-pnl__cntnt tx--white bg--green">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu justo ex. Praesent mollis augue sagittis eros pharetra feugiat. Phasellus dignissim est lacus. Sed nec imperdiet dolor, sit amet mattis ex.</p>
+                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
+                                <div className="ml-pnl__cntnt ml-flp__cntnt">
+                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Danakil} alt='' />
+                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="ml-pnl">
-                                <div class="ml-pnl__cntnt tx--white bg--red">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu justo ex. Praesent mollis augue sagittis eros pharetra feugiat. Phasellus dignissim est lacus. Sed nec imperdiet dolor, sit amet mattis ex. Sed sed augue eu neque tristique commodo. Mauris aliquet tortor sollicitudin nibh molestie, id egestas nisl sollicitudin. Aliquam erat volutpat. Donec quis ultrices ligula. Cras sed purus risus. Curabitur quis eros eu tortor semper eleifend. Pellentesque lorem elit, dignissim interdum massa id, malesuada rutrum ligula. Suspendisse tempor quis mauris eu facilisis. Phasellus non volutpat diam, non dapibus ligula. Ut non molestie ex, nec sagittis mi. Curabitur suscipit tellus id dolor pretium blandit. Cras tristique tristique pharetra.</p>
+                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
+                                <div className="ml-pnl__cntnt ml-flp__cntnt">
+                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Danakil} alt='' />
+                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="ml-pnl">
-                                <div class="ml-pnl__cntnt tx--white bg--green">
-                                    <h2>Some post about something</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu justo ex. Praesent mollis augue sagittis eros pharetra feugiat. Phasellus dignissim est lacus. Sed nec imperdiet dolor, sit amet mattis ex. Sed sed augue eu neque tristique commodo. Mauris aliquet tortor sollicitudin nibh molestie, id egestas nisl sollicitudin. Aliquam erat volutpat. Donec quis ultrices ligula. Cras sed purus risus. Curabitur quis eros eu tortor semper eleifend.</p>
+                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
+                                <div className="ml-pnl__cntnt ml-flp__cntnt">
+                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Danakil} alt='' />
+                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="ml-pnl"><img class="ml-pnl__cntnt ml-pnl__cntnt--img" src="img/photo-1.jpg" /></div>
-                            <div class="ml-pnl ml-pnl--fcs">
-                                <div class="ml-pnl__cntnt tx--white bg--blue">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu justo ex. Praesent mollis augue sagittis eros pharetra feugiat. Phasellus dignissim est lacus. Sed nec imperdiet dolor, sit amet mattis ex.</p>
-                                </div>
-                            </div>
-                            <div class="ml-pnl ml-pnl--pls"><img class="ml-pnl__cntnt ml-pnl__cntnt--img" src="img/photo-1.jpg" /></div>
-                            <div class="ml__fcs-crtn"></div>
                         </div>
                     </div>
 
@@ -125,7 +106,7 @@ function Home() {
                                 <div className="h1 text-center" id="pageHeaderTitle">News</div>
                                 <article className="postcard dark blue">
                                     <Link to="#" className="postcard__img_link" >
-                                        <img className="postcard__img" src={Lalibela} alt='' />
+                                        <img className="postcard__img" src={Ertale} alt='' />
                                     </Link>
                                     <div className="postcard__text">
                                         <h1 className="postcard__title blue">
@@ -218,9 +199,22 @@ function Home() {
                             </main>
                         </div>
                     </div>
-
+                    {/* some importnt links */}
+                    <div className="col-lg-12">
+                        <div className="buttons">
+                            <h1 className='text-center'>Some important  <code>links</code></h1>
+                            <button className="fill">Link 1</button>
+                            <button className="pulse">link 2</button>
+                            <button className="close">Link 2</button>
+                            <button className="raise">Link 3</button>
+                            <button className="up">Link 4</button>
+                            <button className="slide">Link 5</button>
+                            <button className="offset">Link 6</button>
+                        </div>
+                    </div>
                 </div>
             </div >
+            <Footer />
         </div >
     )
 }
