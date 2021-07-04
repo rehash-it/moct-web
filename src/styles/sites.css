@@ -1,0 +1,309 @@
+/** === === GOOGLE FONTS === === */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+@import url(https://fonts.googleapis.com/css?family=Dosis:400,500,600,700);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+
+/** === === RESETS === === */
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+sec {
+  display: block;
+}
+
+audio[controls],
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+a.no-action-link {
+  cursor: default;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+strong,
+b {
+  font-weight: bold;
+  line-height: inherit;
+}
+
+small {
+  font-size: 60%;
+  line-height: inherit;
+}
+
+code {
+  font-weight: bold;
+  background: #ffff99;
+}
+
+ul,
+ol {
+  margin-bottom: 17px;
+  list-style-position: inside;
+}
+
+.cont {
+  width: 96%;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+  height: 300px;
+}
+
+sec {
+  position: relative;
+  float: left;
+  height: 100%;
+}
+
+sec img {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  padding: 0;
+  height: 100%;
+}
+
+sec a {
+  position: absolute;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.6) none;
+  display: block;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+sec a:hover {
+  background: rgba(0, 0, 0, 0.85);
+  text-decoration: none;
+}
+
+h2 {
+  font-family: "Dosis", sans-serif;
+  font-size: 0.875em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 1.25em;
+  font-weight: 300;
+  line-height: 1.2em;
+  width: 90%;
+}
+
+p {
+  font-size: 0.875em;
+}
+
+ul {
+  display: none;
+}
+
+div.content {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+div.content h3 {
+  margin: 5px 0 20px 0;
+}
+
+@media screen and (min-width: 40.5em) {
+  p {
+    display: none;
+  }
+
+  sec.programs {
+    width: 33.33%;
+    float: left;
+    border-left: 1px solid #000;
+  }
+
+  div.content {
+    padding-top: 80px;
+  }
+
+  div.content h3 {
+    margin: 5px 0 100px 0;
+  }
+}
+
+@media screen and (min-width: 62em) {
+  .cont {
+    width: 75%;
+    height: 400px;
+    margin: 0 auto;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  p {
+    display: block;
+    font-weight: 300;
+    line-height: 1.4em;
+    font-size: 0.875em;
+  }
+
+  div.content {
+    padding-top: 50px;
+    padding-top: 130px;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+  }
+
+  div.content h3 {
+    margin-bottom: 10px;
+  }
+
+  div.content p {
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0);
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+  }
+
+  div.content h3 {
+    margin-bottom: 10px;
+    font-size: 1.4em;
+    line-height: 1.3em;
+  }
+
+  div.content ul {
+    margin-top: 10px;
+    display: block;
+    padding-left: 5px;
+    color: rgba(0, 0, 0, 0);
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+  }
+
+  div.content ul li {
+    list-style: none;
+    font-size: 0.875em;
+    margin-bottom: 5px;
+  }
+
+  div.content ul li span {
+    margin-left: 5px;
+  }
+
+  sec a:hover div.content p {
+    margin-top: 0;
+    color: #ffffff;
+  }
+
+  sec a:hover div.content ul {
+    margin-top: 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  sec a:hover div.content {
+    padding-top: 50px;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 100em) and (min-height: 50em) {
+  sec.programs div.content {
+    padding-top: 220px;
+  }
+
+  sec.programs div.content h3 {
+    margin-bottom: 15px;
+  }
+
+  sec.programs div.content ul {
+    margin-top: 15px;
+    display: block;
+  }
+
+  sec.programs div.content ul li {
+    font-size: 0.875em;
+  }
+
+  sec.programs asec a:hover div.content {
+    padding-top: 60px;
+  }
+
+  sec.programs asec a:hover div.content p {
+    margin-top: 0;
+    color: #ffffff;
+  }
+}

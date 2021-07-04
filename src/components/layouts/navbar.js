@@ -45,14 +45,14 @@ const NavBar = (props) => {
     const displaySearch = () => setSearch(!search)
     return (
         <Navbar color='dark' expand="md" style={{ height: windowDimensions.width > 680 ? '15vh' : '' }} id='top' >
-
-            <NavbarBrand >
-                {windowDimensions.width > 680 ?
-                    <img src={logo} alt="" style={{ width: 343 }} /> :
-                    <img src={logo} alt="" style={{ width: '33vh' }} />
-                }
-            </NavbarBrand>
-
+            <Link to='/'>
+                <NavbarBrand >
+                    {windowDimensions.width > 680 ?
+                        <img src={logo} alt="" style={{ width: 343 }} /> :
+                        <img src={logo} alt="" style={{ width: '33vh' }} />
+                    }
+                </NavbarBrand>
+            </Link>
             <Collapse isOpen={isOpen} navbar className="pl-5"
                 style={{ marginLeft: windowDimensions.width < 500 ? 100 : 40 }}>
                 <Nav navbar>
@@ -86,23 +86,14 @@ const NavBar = (props) => {
                             </NavLink>
                         </NavItem>
                     </Link>
-                    <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav caret className='text-raise'>
-                            <h5 className="text-raise">Sites</h5>
-                        </DropdownToggle>
-                        <DropdownMenu righ className='text-raise'>
-                            <DropdownItem>
-                                Religional
-                            </DropdownItem>
-                            <DropdownItem className='text-raise'>
-                                Nature
-                            </DropdownItem>
-                            <DropdownItem divider className='text-raise' />
-                            <DropdownItem>
-                                others
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </UncontrolledDropdown>
+                    <Link to='/sites'>
+                        <NavItem>
+                            <NavLink>
+                                <h5 className='text-raise'>Sites</h5>
+                            </NavLink>
+                        </NavItem>
+                    </Link>
+
                     <UncontrolledDropdown nav inNavbar>
                         <h5>
                             <DropdownToggle nav caret className='text-raise'>
