@@ -116,50 +116,6 @@ function About() {
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="about-data">
-                                    <div class="row no-gutters pt-5 border-top">
-                                        <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3">
-                                            <div class="media">
-                                                <i class="fas fa-mug-hot icon-18 mr-2"></i>
-                                                <div class="media-body">
-                                                    <p class="data-number m-0 font-weight-bold">10,950</p>
-                                                    <p class="m-0 text-uppercase">Cups of coffee</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-4 mb-md-0 pl-sm-3 p-md-0 col-sm-6 col-md-3">
-                                            <div class="media">
-                                                <i class="fas fa-code icon-18 mr-2"></i>
-                                                <div class="media-body">
-                                                    <p class="data-number m-0 font-weight-bold">8,475,000</p>
-                                                    <p class="m-0 text-uppercase">Lines of code</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3">
-                                            <div class="media">
-                                                <i class="fas fa-bus icon-18 mr-2"></i>
-                                                <div class="media-body">
-                                                    <p class="data-number m-0 font-weight-bold">8,214</p>
-                                                    <p class="m-0 text-uppercase">Buses taken</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-4 mb-md-0 pl-sm-3 p-md-0 col-sm-6 col-md-3">
-                                            <div class="media">
-                                                <i class="far fa-smile-wink icon-18 mr-2"></i>
-                                                <div class="media-body">
-                                                    <p class="data-number m-0 font-weight-bold">3,165</p>
-                                                    <p class="m-0 text-uppercase">Awkward winks</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

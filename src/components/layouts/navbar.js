@@ -71,14 +71,6 @@ const NavBar = (props) => {
                             </NavLink>
                         </NavItem>
                     </Link>
-                    <Link to='/vacancy'>
-                        <NavItem>
-                            <NavLink>
-                                <h5 className='text-raise'>Vacancy and bids</h5>
-                            </NavLink>
-                        </NavItem>
-                    </Link>
-
                     <Link to='/about'>
                         <NavItem>
                             <NavLink>
@@ -86,10 +78,17 @@ const NavBar = (props) => {
                             </NavLink>
                         </NavItem>
                     </Link>
+                    <Link to='/vacancy'>
+                        <NavItem>
+                            <NavLink>
+                                <h5 className='text-raise'>Vacancy and bids</h5>
+                            </NavLink>
+                        </NavItem>
+                    </Link> 
                     <Link to='/sites'>
                         <NavItem>
                             <NavLink>
-                                <h5 className='text-raise'>Sites</h5>
+                                <h5 className='text-raise'>Research and Documents</h5>
                             </NavLink>
                         </NavItem>
                     </Link>
@@ -97,7 +96,7 @@ const NavBar = (props) => {
                     <UncontrolledDropdown nav inNavbar>
                         <h5>
                             <DropdownToggle nav caret className='text-raise'>
-                                <h5 className="text-raise">Translate</h5>
+                                <h5 className="text-raise">Language</h5>
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem className='text-raise'>
@@ -124,7 +123,7 @@ const NavBar = (props) => {
                 >
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
-                <NavItem>
+                {/* <NavItem>
                     <NavLink href='www.fb.com'>
                         <FontAwesomeIcon icon={faFacebook} className='fa-2x text-raise' />
                     </NavLink>
@@ -132,7 +131,7 @@ const NavBar = (props) => {
                         <FontAwesomeIcon icon={faTwitter} className='fa-2x text-raise' />
                     </NavLink>
 
-                </NavItem>
+                </NavItem> */}
 
             </Collapse>
 
