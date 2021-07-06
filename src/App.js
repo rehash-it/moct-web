@@ -6,6 +6,7 @@ import News from './components/pages/News'
 import History from './components/pages/History'
 import MessageMoct from './components/pages/MessageMoct'
 import Sites from './components/pages/Sites'
+import VacancyBids from './components/pages/VacancyBids'
 export default function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ export default function App() {
         <Route path='/history'><History /></Route>
         <Route path='/studies'><Sites /></Route>
         <Route path='/messageOfMoct'><MessageMoct /></Route>
+        <Route path='/vacancy'><VacancyBids /></Route>
       </Switch>
     </BrowserRouter>
   )
