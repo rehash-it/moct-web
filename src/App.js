@@ -14,7 +14,7 @@ export default function App() {
         <Route path='/news'><News /></Route>
         <Route path='/about'><About /></Route>
         <Route path='/history'><History /></Route>
-        <Route path='/sites'><Sites /></Route>
+        <Route path='/studies'><Sites /></Route>
         <Route path='/messageOfMoct'><MessageMoct /></Route>
       </Switch>
     </BrowserRouter>

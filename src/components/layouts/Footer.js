@@ -6,6 +6,7 @@ import ReactRoundedImage from "react-rounded-image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 function Footer() {
     return (
         <div className="container-fluiD pb-0 mb-0 justify-content-center text-light ">
@@ -25,13 +26,16 @@ function Footer() {
                                 <img src={Logo} alt="" style={{ border: 'none' }} />
                             </div>
                             <div className="col-xl-2 col-md-4 col-sm-4 col-12">
-                                <h6 className="mb-3 mb-lg-4 bold-text "><b>MENU</b></h6>
-                                <ul className="list-unstyled">
-                                    <li>Home</li>
-                                    <li>News</li>
-                                    <li>Blog</li>
-                                    <li>Research and studies</li>
-                                </ul>
+                                <h4 className="mb-3 mb-lg-4 bold-text "><b>MENU</b></h4>
+                                <Link to='/'>
+                                    <h6>Home</h6>
+                                </Link>
+                                <Link to='/about'>
+                                    <h6>About</h6>
+                                </Link>
+                                <Link to='/studies'>
+                                    <h6>Research and studies</h6>
+                                </Link>
                             </div>
                             <div className="col-xl-2 col-md-4 col-sm-4 col-12">
                                 <h6 className="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>ADDRESS</b></h6>

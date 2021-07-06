@@ -86,18 +86,18 @@ const NavBar = (props) => {
                             </NavLink>
                         </NavItem>
                     </Link>
-                    <Link to='/sites'>
+                    <Link to='/studies'>
                         <NavItem>
                             <NavLink>
-                                <h5 className='text-raise'>Sites</h5>
+                                <h5 className='text-raise'>Research and studies</h5>
                             </NavLink>
                         </NavItem>
                     </Link>
 
                     <UncontrolledDropdown nav inNavbar>
                         <h5>
-                            <DropdownToggle nav caret className='text-raise'>
-                                <h5 className="text-raise">Translate</h5>
+                            <DropdownToggle nav caret className='text-raise h5'>
+                                Translate
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem className='text-raise'>
@@ -124,15 +124,7 @@ const NavBar = (props) => {
                 >
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
-                <NavItem>
-                    <NavLink href='www.fb.com'>
-                        <FontAwesomeIcon icon={faFacebook} className='fa-2x text-raise' />
-                    </NavLink>
-                    <NavLink href='www.fb.com'>
-                        <FontAwesomeIcon icon={faTwitter} className='fa-2x text-raise' />
-                    </NavLink>
 
-                </NavItem>
 
             </Collapse>
 
