@@ -71,14 +71,6 @@ const NavBar = (props) => {
                             </NavLink>
                         </NavItem>
                     </Link>
-                    <Link to='/vacancy'>
-                        <NavItem>
-                            <NavLink>
-                                <h5 className='text-raise'>Vacancy and bids</h5>
-                            </NavLink>
-                        </NavItem>
-                    </Link>
-
                     <Link to='/about'>
                         <NavItem>
                             <NavLink>
@@ -86,18 +78,38 @@ const NavBar = (props) => {
                             </NavLink>
                         </NavItem>
                     </Link>
+                    <Link to='/vacancy'>
+                        <NavItem>
+                            <NavLink>
+                                <h5 className='text-raise'>Vacancy and bids</h5>
+                            </NavLink>
+                        </NavItem>
+<<<<<<< HEAD
+                    </Link>
                     <Link to='/studies'>
                         <NavItem>
                             <NavLink>
                                 <h5 className='text-raise'>Research and studies</h5>
+=======
+                    </Link> 
+                    <Link to='/sites'>
+                        <NavItem>
+                            <NavLink>
+                                <h5 className='text-raise'>Research and Documents</h5>
+>>>>>>> refs/remotes/origin/main
                             </NavLink>
                         </NavItem>
                     </Link>
 
                     <UncontrolledDropdown nav inNavbar>
                         <h5>
+<<<<<<< HEAD
                             <DropdownToggle nav caret className='text-raise h5'>
                                 Translate
+=======
+                            <DropdownToggle nav caret className='text-raise'>
+                                <h5 className="text-raise">Language</h5>
+>>>>>>> refs/remotes/origin/main
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem className='text-raise'>
@@ -124,7 +136,19 @@ const NavBar = (props) => {
                 >
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
+<<<<<<< HEAD
 
+=======
+                {/* <NavItem>
+                    <NavLink href='www.fb.com'>
+                        <FontAwesomeIcon icon={faFacebook} className='fa-2x text-raise' />
+                    </NavLink>
+                    <NavLink href='www.fb.com'>
+                        <FontAwesomeIcon icon={faTwitter} className='fa-2x text-raise' />
+                    </NavLink>
+
+                </NavItem> */}
+>>>>>>> refs/remotes/origin/main
 
             </Collapse>
 

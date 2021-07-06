@@ -121,12 +121,10 @@ function Home() {
                                         <ul className="postcard__tagbox">
                                             <li className="tag__item">
                                                 <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
-                                                Read more
+                                                 <span> Read more</span>
                                             </li>
                                             <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
-                                            <li className="tag__item play blue">
-                                                <a href="#"><i className="fas fa-play mr-2"></i>Play Episode</a>
-                                            </li>
+                                         
                                         </ul>
                                     </div>
                                 </article>
@@ -144,11 +142,12 @@ function Home() {
                                         <div className="postcard__bar"></div>
                                         <div className="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
                                         <ul className="postcard__tagbox">
-                                            <li className="tag__item"><i className="fas fa-tag mr-2"></i>Podcast</li>
-                                            <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
-                                            <li className="tag__item play red">
-                                                <a href="#"><i className="fas fa-play mr-2"></i>Play Episode</a>
+                                        <li className="tag__item">
+                                                <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
+                                                 <span> Read more</span>
                                             </li>
+                                            <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
+                                        
                                         </ul>
                                     </div>
                                 </article>
@@ -166,11 +165,12 @@ function Home() {
                                         <div className="postcard__bar"></div>
                                         <div className="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
                                         <ul className="postcard__tagbox">
-                                            <li className="tag__item"><i className="fas fa-tag mr-2"></i>Podcast</li>
-                                            <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
-                                            <li className="tag__item play green">
-                                                <a href="#"><i className="fas fa-play mr-2"></i>Play Episode</a>
+                                        <li className="tag__item">
+                                                <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
+                                                 <span> Read more</span>
                                             </li>
+                                            <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
+                                         
                                         </ul>
                                     </div>
                                 </article>
@@ -188,11 +188,11 @@ function Home() {
                                         <div className="postcard__bar"></div>
                                         <div className="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
                                         <ul className="postcard__tagbox">
-                                            <li className="tag__item"><i className="fas fa-tag mr-2"></i>Podcast</li>
-                                            <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
-                                            <li className="tag__item play yellow">
-                                                <a href="#"><i className="fas fa-play mr-2"></i>Play Episode</a>
+                                        <li className="tag__item">
+                                                <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
+                                                 <span> Read more</span>
                                             </li>
+                                            <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
                                         </ul>
                                     </div>
                                 </article>
@@ -202,14 +202,13 @@ function Home() {
                     {/* some importnt links */}
                     <div className="col-lg-12">
                         <div className="buttons">
-                            <h1 className='text-center'>Some important  <code>links</code></h1>
-                            <button className="fill">Link 1</button>
-                            <button className="pulse">link 2</button>
-                            <button className="close">Link 2</button>
-                            <button className="raise">Link 3</button>
-                            <button className="up">Link 4</button>
-                            <button className="slide">Link 5</button>
-                            <button className="offset">Link 6</button>
+                            <h1 className='text-center'> important links</h1>
+                            <button className="fill">www.moctgaller.gov.et</button>
+                            <button className="pulse">www.moctgaller.gov.et</button>
+                            <button className="raise">www.moctgaller.gov.et</button>
+                            <button className="up">www.moctgaller.gov.et</button>
+                            <button className="slide">www.moctgaller.gov.et</button>
+                            <button className="fill">www.moctgaller.gov.et</button>
                         </div>
                     </div>
                 </div>
