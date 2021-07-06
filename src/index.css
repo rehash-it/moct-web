@@ -29,3 +29,13 @@ a {
 a:hover {
   text-decoration: underline !important;
 }
+.btn-raise {
+  background-color: #ffa260;
+  color: #fff;
+}
+.bg-raise {
+  background-color: #ffa260;
+}
+.indent {
+  text-indent: 30px;
+}

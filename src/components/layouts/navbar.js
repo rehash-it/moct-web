@@ -21,7 +21,7 @@ import logo from '../../images/ET-emblem.png'
 import logo2 from '../../images/moct-logo-2.png'
 import { getWindowDimensions } from '../utility/screen';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faGoogle, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
 const NavBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +59,7 @@ const NavBar = (props) => {
                     <Link to='/'>
                         <NavItem>
                             <NavLink>
-                                <h5 className='text-raise'>Home</h5>
+                                <h6 className='text-raise'>Home</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
@@ -67,49 +67,59 @@ const NavBar = (props) => {
                     <Link to='/news'>
                         <NavItem>
                             <NavLink>
-                                <h5 className='text-raise'>News</h5>
+                                <h6 className='text-raise'>News</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
                     <Link to='/about'>
                         <NavItem>
                             <NavLink>
-                                <h5 className='text-raise'>About</h5>
+                                <h6 className='text-raise'>About</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
                     <Link to='/vacancy'>
                         <NavItem>
                             <NavLink>
-                                <h5 className='text-raise'>Vacancy and bids</h5>
+                                <h6 className='text-raise'>Vacancy and bids</h6>
                             </NavLink>
                         </NavItem>
-<<<<<<< HEAD
                     </Link>
                     <Link to='/studies'>
                         <NavItem>
                             <NavLink>
-                                <h5 className='text-raise'>Research and studies</h5>
-=======
-                    </Link> 
-                    <Link to='/sites'>
-                        <NavItem>
-                            <NavLink>
-                                <h5 className='text-raise'>Research and Documents</h5>
->>>>>>> refs/remotes/origin/main
+                                <h6 className='text-raise'>Research</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
-
                     <UncontrolledDropdown nav inNavbar>
-                        <h5>
-<<<<<<< HEAD
-                            <DropdownToggle nav caret className='text-raise h5'>
-                                Translate
-=======
-                            <DropdownToggle nav caret className='text-raise'>
-                                <h5 className="text-raise">Language</h5>
->>>>>>> refs/remotes/origin/main
+                        <h6>
+                            <DropdownToggle nav caret className='text-raise h6'>
+                                About
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <Link to='/about'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Vision
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/history'>
+                                    <DropdownItem className='text-raise h6'>
+                                        History and background
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/messageOfMoct'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Message from the organizarion
+                                    </DropdownItem>
+                                </Link>
+                            </DropdownMenu>
+                        </h6>
+                    </UncontrolledDropdown>
+                    <UncontrolledDropdown nav inNavbar>
+                        <h6 className='text-raise'>
+                            <DropdownToggle nav caret className='text-raise h6'>
+                                Language
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem className='text-raise'>
@@ -120,7 +130,7 @@ const NavBar = (props) => {
                                 </DropdownItem>
 
                             </DropdownMenu>
-                        </h5>
+                        </h6>
                     </UncontrolledDropdown>
                 </Nav>
 
@@ -136,9 +146,6 @@ const NavBar = (props) => {
                 >
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
-<<<<<<< HEAD
-
-=======
                 {/* <NavItem>
                     <NavLink href='www.fb.com'>
                         <FontAwesomeIcon icon={faFacebook} className='fa-2x text-raise' />
@@ -148,11 +155,12 @@ const NavBar = (props) => {
                     </NavLink>
 
                 </NavItem> */}
->>>>>>> refs/remotes/origin/main
 
             </Collapse>
 
-            <NavbarToggler onClick={toggle} className='btn btn-primary text-white' />
+            <NavbarToggler onClick={toggle} className='btn btn-raise text-white' >
+                <FontAwesomeIcon icon={faBars} />
+            </NavbarToggler>
 
         </Navbar>
     );
