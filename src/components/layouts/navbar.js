@@ -16,7 +16,7 @@ import {
     Na
 } from 'reactstrap';
 import ReactRoundedImage from "react-rounded-image";
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import logo from '../../images/ET-emblem.png'
 import logo2 from '../../images/moct-logo-2.png'
 import { getWindowDimensions } from '../utility/screen';
@@ -166,4 +166,4 @@ const NavBar = (props) => {
     );
 }
 
-export default NavBar;
+export default withRouter(NavBar);

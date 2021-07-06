@@ -49,7 +49,8 @@ function Home() {
                         <div className="ml">
                             <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
                                 <div className="ml-pnl__cntnt ml-flp__cntnt">
-                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Gonder} alt='' />
+                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Gonder} alt=''
+                                        style={{ objectFit: 'cover' }} />
                                     <div className="ml-flp__pnl ml-flp__pnl--bck text-raise">
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
                                     </div>
@@ -104,30 +105,31 @@ function Home() {
                         <div className="dark">
                             <main className="container">
                                 <div className="h1 text-center" id="pageHeaderTitle">News</div>
-                                <article className="postcard dark blue">
-                                    <Link to="#" className="postcard__img_link" >
+                                <Link to='/news/123'>
+                                    <article className="postcard dark blue">
                                         <img className="postcard__img" src={Ertale} alt='' />
-                                    </Link>
-                                    <div className="postcard__text">
-                                        <h1 className="postcard__title blue">
-                                            <a href="#">Lalibela</a></h1>
-                                        <div className="postcard__subtitle small">
-                                            Wello lalibela
+                                        <div className="postcard__text">
+                                            <h1 className="postcard__title blue">
+                                                Lalibela
+                                            </h1>
+                                            <div className="postcard__subtitle">
+                                                Wello lalibela
+                                            </div>
+                                            <div className="postcard__bar"></div>
+                                            <div className="postcard__preview-txt" style={{ fontSize: 14 }}>
+                                                s a town in Lasta district of North Wollo Zone in Amhara Region, Ethiopia. It is famous for rock-cut monolithic churches. The whole of Lalibela is a large and important site for the antiquity, medieval and post-medieval civilization of Ethiopia.[1] To Christians, Lalibela is one of Ethiopia's holiest cities, second only to Axum, and a center of pilgrimage. Unlike Axum, the population of Lalibela is almost completely Ethiopian Orthodox Christian.
+                                            </div>
+                                            <ul className="postcard__tagbox">
+                                                <li className="tag__item">
+                                                    <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
+                                                    <span> Read more</span>
+                                                </li>
+                                                <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
+
+                                            </ul>
                                         </div>
-                                        <div className="postcard__bar"></div>
-                                        <div className="postcard__preview-txt">
-                                            s a town in Lasta district of North Wollo Zone in Amhara Region, Ethiopia. It is famous for rock-cut monolithic churches. The whole of Lalibela is a large and important site for the antiquity, medieval and post-medieval civilization of Ethiopia.[1] To Christians, Lalibela is one of Ethiopia's holiest cities, second only to Axum, and a center of pilgrimage. Unlike Axum, the population of Lalibela is almost completely Ethiopian Orthodox Christian.
-                                        </div>
-                                        <ul className="postcard__tagbox">
-                                            <li className="tag__item">
-                                                <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
-                                                 <span> Read more</span>
-                                            </li>
-                                            <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
-                                         
-                                        </ul>
-                                    </div>
-                                </article>
+                                    </article>
+                                </Link>
                                 <article className="postcard dark red">
                                     <a className="postcard__img_link" href="#">
                                         <img className="postcard__img" src="https://picsum.photos/501/500" alt="Image Title" />
@@ -142,12 +144,12 @@ function Home() {
                                         <div className="postcard__bar"></div>
                                         <div className="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
                                         <ul className="postcard__tagbox">
-                                        <li className="tag__item">
+                                            <li className="tag__item">
                                                 <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
-                                                 <span> Read more</span>
+                                                <span> Read more</span>
                                             </li>
                                             <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
-                                        
+
                                         </ul>
                                     </div>
                                 </article>
@@ -165,12 +167,12 @@ function Home() {
                                         <div className="postcard__bar"></div>
                                         <div className="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
                                         <ul className="postcard__tagbox">
-                                        <li className="tag__item">
+                                            <li className="tag__item">
                                                 <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
-                                                 <span> Read more</span>
+                                                <span> Read more</span>
                                             </li>
                                             <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
-                                         
+
                                         </ul>
                                     </div>
                                 </article>
@@ -188,9 +190,9 @@ function Home() {
                                         <div className="postcard__bar"></div>
                                         <div className="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
                                         <ul className="postcard__tagbox">
-                                        <li className="tag__item">
+                                            <li className="tag__item">
                                                 <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
-                                                 <span> Read more</span>
+                                                <span> Read more</span>
                                             </li>
                                             <li className="tag__item"><i className="fas fa-clock mr-2"></i>55 mins.</li>
                                         </ul>
