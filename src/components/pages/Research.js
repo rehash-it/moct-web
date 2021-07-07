@@ -5,7 +5,7 @@ import Classes from '../../styles/sites.css'
 import monkey from '../../images/semine mountain national park.png'
 import stones from '../../images/tiya stones.png'
 import eritale from '../../images/erta ale the smoking mountain of afar.png'
-function Sites() {
+function Research() {
     return (
         <>
             <NavBar />
@@ -135,4 +135,4 @@ function Sites() {
     )
 }
 
-export default Sites
+export default Research

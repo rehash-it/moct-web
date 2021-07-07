@@ -5,9 +5,10 @@ import Home from './components/pages/Home'
 import News from './components/pages/News'
 import History from './components/pages/History'
 import MessageMoct from './components/pages/MessageMoct'
-import Sites from './components/pages/Sites'
+import Research from './components/pages/Research'
 import VacancyBids from './components/pages/VacancyBids'
 import NewDetail from './components/pages/NewDetail'
+import ResearchDetails from './components/pages/ResearchDetails'
 export default function App() {
   return (
     <BrowserRouter>
@@ -17,7 +18,8 @@ export default function App() {
         <Route path='/news'><News /></Route>
         <Route path='/about'><About /></Route>
         <Route path='/history'><History /></Route>
-        <Route path='/studies'><Sites /></Route>
+        <Route path='/studies/:id'><ResearchDetails /></Route>
+        <Route path='/studies'><Research /></Route>
         <Route path='/messageOfMoct'><MessageMoct /></Route>
         <Route path='/vacancy'><VacancyBids /></Route>
       </Switch>
