@@ -71,13 +71,7 @@ const NavBar = (props) => {
                             </NavLink>
                         </NavItem>
                     </Link>
-                    <Link to='/about'>
-                        <NavItem>
-                            <NavLink>
-                                <h6 className='text-raise'>About</h6>
-                            </NavLink>
-                        </NavItem>
-                    </Link>
+
                     <Link to='/vacancy'>
                         <NavItem>
                             <NavLink>
