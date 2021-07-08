@@ -3,7 +3,7 @@ import Footer from '../layouts/Footer'
 import NavBar from '../layouts/navbar'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRight, faForward } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 const VacancyBids = () => {
     return (
         <>
