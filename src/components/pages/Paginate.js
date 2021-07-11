@@ -5,7 +5,6 @@ function Paginate({ page, link }) {
     let P = []
     for (var i = 0; i < page; i++)
         P.push(i + 1)
-    console.log(P)
 
     return (
         <Pagination aria-label="Page navigation example">

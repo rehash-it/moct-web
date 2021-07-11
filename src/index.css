@@ -39,3 +39,6 @@ a:hover {
 .indent {
   text-indent: 30px;
 }
+p {
+  white-space: pre-line;
+}

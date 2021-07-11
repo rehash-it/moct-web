@@ -35,7 +35,6 @@ function News({ location }) {
     }, [Page])
     const { loading, state: newS, error } = News
     const [news, length] = newS
-    console.log(news)
     //paginationm
     const page = pageCalculate(8, length)
 

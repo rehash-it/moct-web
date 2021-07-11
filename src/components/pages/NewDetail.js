@@ -58,7 +58,7 @@ const NewDetail = ({ match }) => {
                                     <p className="small float-right my-2">
                                         <ReactTimeAgo date={news.createdAt} />
                                     </p>
-                                    <div className="float-lg-right float-sm-right mb-3" >
+                                    <div className="d-flex justify-content-center mb-3" >
                                         <FontAwesomeIcon icon={faFacebook} className="fa-1x mx-2 text-primary" />
                                         <FontAwesomeIcon icon={faTwitter} className="fa-1x text-primary" />
                                     </div>
@@ -87,7 +87,7 @@ const NewDetail = ({ match }) => {
                                                                     <h5 className='text-dark'>
                                                                         {n.title}
                                                                     </h5>
-                                                                    <span class="date">
+                                                                    <span class="date h6">
                                                                         {new Date(n.createdAt).toUTCString().slice(0, 17)}
                                                                     </span>
                                                                 </div>

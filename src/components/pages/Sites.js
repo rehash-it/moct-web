@@ -1,11 +1,14 @@
 import React from 'react'
 import Footer from '../layouts/Footer'
 import NavBar from '../layouts/navbar'
-import Classes from '../../styles/sites.css'
 import monkey from '../../images/semine mountain national park.png'
 import stones from '../../images/tiya stones.png'
 import eritale from '../../images/erta ale the smoking mountain of afar.png'
-function Research() {
+import { withRouter } from 'react-router-dom'
+
+import '../../styles/sites.css'
+function Sites({ location }) {
+
     return (
         <>
             <NavBar />
@@ -135,4 +138,4 @@ function Research() {
     )
 }
 
-export default Research
+export default withRouter(Sites)

@@ -5,12 +5,13 @@ import Home from './components/pages/Home'
 import News from './components/pages/News'
 import History from './components/pages/History'
 import MessageMoct from './components/pages/MessageMoct'
-import Research from './components/pages/Research'
+import Sites from './components/pages/Sites'
 import VacancyBids from './components/pages/VacancyBids'
 import NewDetail from './components/pages/NewDetail'
 import ResearchDetails from './components/pages/ResearchDetails'
 import { StoreContext } from './context/context'
 import { newsReducer, newsState } from './store/Reducers/newReducer'
+import Docs from './components/pages/Docs'
 export default function App() {
   const [news, dispatchNews] = useReducer(newsReducer, newsState)
   return (
@@ -22,8 +23,9 @@ export default function App() {
           <Route path='/news'><News /></Route>
           <Route path='/about'><About /></Route>
           <Route path='/history'><History /></Route>
-          <Route path='/studies/:id'><ResearchDetails /></Route>
-          <Route path='/studies'><Research /></Route>
+          <Route path='/docs/:id'><ResearchDetails /></Route>
+          <Route path='/sites'><Sites /></Route>
+          <Route path='/docs'><Docs /></Route>
           <Route path='/messageOfMoct'><MessageMoct /></Route>
           <Route path='/vacancy'><VacancyBids /></Route>
         </Switch>

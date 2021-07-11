@@ -79,13 +79,38 @@ const NavBar = (props) => {
                             </NavLink>
                         </NavItem>
                     </Link>
-                    <Link to='/studies'>
+                    <Link to='/docs'>
                         <NavItem>
                             <NavLink>
                                 <h6 className='text-raise'>Research</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
+
+                    <UncontrolledDropdown nav inNavbar>
+                        <h6>
+                            <DropdownToggle nav caret className='text-raise h6'>
+                                Attraction sites
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <Link to='/sites?type=cultural'>
+                                    <DropdownItem className='text-raise h6'>
+                                        cultural
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/sites?type=religional'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Religional
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/sites?type=nature'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Nature
+                                    </DropdownItem>
+                                </Link>
+                            </DropdownMenu>
+                        </h6>
+                    </UncontrolledDropdown>
                     <UncontrolledDropdown nav inNavbar>
                         <h6>
                             <DropdownToggle nav caret className='text-raise h6'>
@@ -136,7 +161,7 @@ const NavBar = (props) => {
 
                 </form>
                 <button type='button' className='btn text-raise' onClick={displaySearch}
-                    style={{ marginLeft: windowDimensions.width > 680 && !search ? 250 : 0 }}
+                    style={{ marginLeft: windowDimensions.width > 680 && !search ? 150 : 0 }}
                 >
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
