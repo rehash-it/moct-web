@@ -3,13 +3,14 @@ import Footer from '../layouts/Footer'
 import Navbar from '../layouts/navbar'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faThermometerEmpty } from '@fortawesome/free-solid-svg-icons'
+import { faThermometerEmpty } from '@fortawesome/free-solid-svg-icons'
 import { withRouter } from 'react-router-dom'
 import { pageCalculate } from '../utility/general'
 import { datasDispatch } from '../../store/Actions/dataActions'
 import { tellDate } from '../utility/Date'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
+import Paginate from './Paginate'
 function Bids({ location }) {
     const [state, setState] = useState({
         loading: true,
@@ -71,6 +72,9 @@ function Bids({ location }) {
 
                                     </MDBTableBody>
                                 </MDBTable>
+                            </div>
+                            <div className="col-lg-12 d-flex justify-content-center mt-5">
+                                <Paginate link='' page={page} />
                             </div>
                         </div>
             }
