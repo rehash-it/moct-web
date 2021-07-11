@@ -8,3 +8,4 @@ export const tellDay = (DATE) => {
         year: day.getFullYear()
     }
 }
+export const tellDate = DATE => new Date(DATE).toUTCString().slice(0, 17)

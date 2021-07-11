@@ -75,7 +75,14 @@ const NavBar = (props) => {
                     <Link to='/vacancy'>
                         <NavItem>
                             <NavLink>
-                                <h6 className='text-raise'>Vacancy and bids</h6>
+                                <h6 className='text-raise'>Vacancy</h6>
+                            </NavLink>
+                        </NavItem>
+                    </Link>
+                    <Link to='/bids'>
+                        <NavItem>
+                            <NavLink>
+                                <h6 className='text-raise'>Bids</h6>
                             </NavLink>
                         </NavItem>
                     </Link>

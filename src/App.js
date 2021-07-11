@@ -6,12 +6,13 @@ import News from './components/pages/News'
 import History from './components/pages/History'
 import MessageMoct from './components/pages/MessageMoct'
 import Sites from './components/pages/Sites'
-import VacancyBids from './components/pages/VacancyBids'
+import Vacancy from './components/pages/Vacancy'
 import NewDetail from './components/pages/NewDetail'
 import ResearchDetails from './components/pages/ResearchDetails'
 import { StoreContext } from './context/context'
 import { newsReducer, newsState } from './store/Reducers/newReducer'
 import Docs from './components/pages/Docs'
+import Bids from './components/pages/Bids'
 export default function App() {
   const [news, dispatchNews] = useReducer(newsReducer, newsState)
   return (
@@ -27,7 +28,8 @@ export default function App() {
           <Route path='/sites'><Sites /></Route>
           <Route path='/docs'><Docs /></Route>
           <Route path='/messageOfMoct'><MessageMoct /></Route>
-          <Route path='/vacancy'><VacancyBids /></Route>
+          <Route path='/vacancy'><Vacancy /></Route>
+          <Route path='/bids'><Bids /></Route>
         </Switch>
       </BrowserRouter>
     </StoreContext.Provider>
