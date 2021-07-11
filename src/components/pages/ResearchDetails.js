@@ -36,7 +36,7 @@ const ResearchDetails = ({ match }) => {
                                 </div>
                                 <div className="col-lg-2 text-center">
                                     <FontAwesomeIcon icon={faFile} className='text-white fa-4x' />
-                                    <h5>Document tile</h5>
+                                    <h5>{data.file.split('/')[2]}</h5>
                                     <a href={file + data.file} download={true} target="_blank" rel="noreferrer">
 
                                         <button className="btn btn-primary">
