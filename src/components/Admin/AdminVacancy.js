@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faForward } from '@fortawesome/free-solid-svg-icons'
-import { pageCalculate, Scroll } from '../utility/general'
 import { datasDispatch } from '../../store/Actions/dataActions'
-import Paginate from './Paginate';
-import { Link, withRouter } from 'react-router-dom'
-import { getPage } from '../../utility/route'
-import DataLoading from '../layouts/DataLoading'
-import ErrorLoading from '../layouts/ErrorLoading'
-import { tellDate } from '../utility/Date'
-import { FaThermometerEmpty } from 'react-icons/fa'
-const Vacancy = ({ location }) => {
+import ErrorLoading from '../layouts/ErrorLoading';
+import { pageCalculate, Scroll } from '../utility/general'
+import DataLoading from './../layouts/DataLoading';
+import { MDBTableHead, MDBTable, MDBTableBody } from 'mdbreact';
+import { tellDate } from '../utility/Date';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FaThermometerEmpty } from 'react-icons/fa';
+import ModalLayout from '../layouts/Modal';
+import AddVacancy from './vacancy/AddVacancy';
+import AdminPaginate from './AdminPaginate';
+import EditVacancy from './vacancy/EditVacancy';
+import DeleteVacancy from './vacancy/DeleteVacancy';
+function AdminVacancy() {
     const [state, setState] = useState({
         loading: true,
         data: [],
@@ -21,16 +21,17 @@ const Vacancy = ({ location }) => {
         length: 0
     })
     const { loading, data, error, length } = state
-    let Page = getPage(location.search)
+    const [Page, setPage] = useState(1)
     const page = pageCalculate(10, length)
+
+    const fetchDispath = () => datasDispatch(setState, { page: Page, limit: 10, url: '/Vacancy' })
 
     useEffect(() => {
         Scroll('top')
-        datasDispatch(setState, { page: Page, limit: 10, url: 'vacancy' })
+        fetchDispath()
     }, [Page])
     return (
         <>
-            <NavBar />
             {
                 loading ?
                     <DataLoading /> :
@@ -39,6 +40,16 @@ const Vacancy = ({ location }) => {
                         <div className="container my-4 ml-4" >
                             <div className="row">
 
+                                <div className="col-sm-6 col-md-4 col-lg-6  my-auto">
+                                    <AddVacancy fetch={fetchDispath} />
+
+                                </div>
+
+                                <div className="col-sm-6 col-md-4 col-lg-6 my-auto">
+                                    <div className="card bg-primary btn">
+                                        <h2 className='text-white'>Totall registered {length}</h2>
+                                    </div>
+                                </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
                                         <MDBTableHead textWhite>
@@ -68,12 +79,8 @@ const Vacancy = ({ location }) => {
                                                                 <td>{v.quantity}</td>
                                                                 <td>{tellDate(v.endDate)}</td>
                                                                 <td>
-                                                                    <Link to={'/apply/' + v._id}>
-                                                                        <button className="btn btn-primary">
-                                                                            <FontAwesomeIcon icon={faForward} />
-                                                                            Apply
-                                                                        </button>
-                                                                    </Link>
+                                                                    <EditVacancy fetch={fetchDispath} vacancy={v} />
+                                                                    <DeleteVacancy vacancy={v} fetch={fetchDispath} />
                                                                 </td>
                                                             </tr>
 
@@ -92,14 +99,13 @@ const Vacancy = ({ location }) => {
                                     </MDBTable>
                                 </div>
                                 <div className="col-lg-12 d-flex justify-content-center mt-5">
-                                    <Paginate link='vacancy' page={page} />
+                                    <AdminPaginate setPage={setPage} page={page} />
                                 </div>
                             </div>
                         </div>
             }
-            <Footer />
         </>
     )
 }
 
-export default withRouter(Vacancy)
+export default AdminVacancy

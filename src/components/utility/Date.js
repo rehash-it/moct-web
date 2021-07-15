@@ -9,3 +9,7 @@ export const tellDay = (DATE) => {
     }
 }
 export const tellDate = DATE => new Date(DATE).toUTCString().slice(0, 17)
+export const dateFormat = (DATE) => {
+    let day = new Date(DATE)
+    return day.getFullYear() + '-' + (day.getMonth() <= 10 ? '0' + day.getMonth() : day.getMonth()) + '-' + (day.getDay() <= 10 ? '0' + day.getDay() : day.getDay())
+}

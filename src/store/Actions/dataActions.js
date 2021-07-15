@@ -26,7 +26,7 @@ export const datasDispatch = async (setData, { page, limit, url }) => {
     try {
         setData(s => ({ ...s, loading: true }))
         const Data = await fetchDatas(page, limit, url)
-        setData({ data: Data[0], loading: false, error: false, length: Data[1] })
+        setData(s => ({ ...s, data: Data[0], loading: false, error: false, length: Data[1] }))
     }
     catch (err) {
         console.log(err)
@@ -37,7 +37,7 @@ export const dataDispatch = async (setData, { page, id }) => {
     try {
         setData(s => ({ ...s, loading: true }))
         const data = await fetchData(page, id)
-        setData(s => ({ data, loading: false, error: false }))
+        setData(s => ({ ...s, data, loading: false, error: false }))
     }
     catch (err) {
         console.log(err)

@@ -5,3 +5,13 @@ export const Scroll = (view) => {
     var top = document.getElementById(view)
     top.scrollIntoView({ behavior: 'auto' })
 }
+/**
+ * 
+ * @param {*} data 
+ */
+export const Disperse = (data) => {
+    let value = {}
+    for (var i in data) {
+
+    }
+}

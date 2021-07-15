@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-function Paginate({ page, link }) {
+function AdminPaginate({ page, setPage }) {
     let P = []
     if (page !== 1) {
         for (var i = 0; i < page; i++)
@@ -12,13 +12,13 @@ function Paginate({ page, link }) {
         <Pagination aria-label="Page navigation example">
             {
                 P.map(p =>
-                    <Link to={'/' + link + '?' + p}>
+                    <div onClick={() => setPage(p)}>
                         <PaginationItem>
                             <PaginationLink>
                                 <h5>{p}</h5>
                             </PaginationLink>
                         </PaginationItem>
-                    </Link>
+                    </div>
                 )
             }
 
@@ -26,4 +26,4 @@ function Paginate({ page, link }) {
     )
 }
 
-export default Paginate
+export default AdminPaginate

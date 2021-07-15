@@ -12,17 +12,12 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
-    NavbarText,
-    Na
 } from 'reactstrap';
-import ReactRoundedImage from "react-rounded-image";
 import { Link, withRouter } from 'react-router-dom';
 import logo from '../../images/ET-emblem.png'
-import logo2 from '../../images/moct-logo-2.png'
 import { getWindowDimensions } from '../utility/screen';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { faFacebook, faGoogle, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
 const NavBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState(false)
