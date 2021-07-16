@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faForward } from '@fortawesome/free-solid-svg-icons'
-import { pageCalculate, Scroll } from '../utility/general'
+import React, { useState, useEffect } from 'react'
 import { datasDispatch } from '../../store/Actions/dataActions'
-import Paginate from './Paginate';
-import { Link, withRouter } from 'react-router-dom'
-import { getPage } from '../../utility/route'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
+import { pageCalculate, Scroll } from '../utility/general'
+import AddBids from './Bids/AddBids'
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import EditBids from './Bids/EditBids'
+import DeleteBids from './Bids/DeleteBids'
 import { tellDate } from '../utility/Date'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
+import { file } from '../../config/config'
 import { FaThermometerEmpty } from 'react-icons/fa'
-const Vacancy = ({ location }) => {
+import AdminPaginate from './AdminPaginate'
+
+function AdminBids() {
     const [state, setState] = useState({
         loading: true,
         data: [],
@@ -21,16 +22,17 @@ const Vacancy = ({ location }) => {
         length: 0
     })
     const { loading, data, error, length } = state
-    let Page = getPage(location.search)
+    const [Page, setPage] = useState(1)
     const page = pageCalculate(10, length)
+
+    const fetchDispath = () => datasDispatch(setState, { page: Page, limit: 10, url: 'bid' })
 
     useEffect(() => {
         Scroll('top')
-        datasDispatch(setState, { page: Page, limit: 10, url: 'vacancy' })
+        fetchDispath()
     }, [Page])
     return (
         <>
-            <NavBar />
             {
                 loading ?
                     <DataLoading /> :
@@ -38,46 +40,55 @@ const Vacancy = ({ location }) => {
 
                         <div className="container my-4 ml-4" >
                             <div className="row">
-                                <div className="col-lg-12">
-                                    <h1 className="text-center ">
-                                        Our company will like to hire the following employees with thier sepicified fields
-                                    </h1>
+
+                                <div className="col-sm-6 col-md-4 col-lg-6  my-auto">
+                                    <AddBids fetch={fetchDispath} />
+
+                                </div>
+
+                                <div className="col-sm-6 col-md-4 col-lg-6 my-auto">
+                                    <div className="card bg-primary btn">
+                                        <h2 className='text-white'>Totall registered {length}</h2>
+                                    </div>
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
                                         <MDBTableHead textWhite>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Job title</th>
-                                                <th>Job description</th>
-                                                <th>Skills</th>
-                                                <th>Work experience</th>
-                                                <th>Required in quantity</th>
+                                                <th>Title</th>
+                                                <th>Instruction</th>
+                                                <th>File</th>
                                                 <th>Dead line</th>
-                                                <th>Options</th>
+                                                <th>options</th>
                                             </tr>
+
                                         </MDBTableHead>
-                                        <MDBTableBody >
+                                        <MDBTableBody textWhite>
                                             {
                                                 length ?
-                                                    data.map((v, i = 0) => {
+                                                    data.map((b, i = 0) => {
                                                         i++
                                                         return (
-                                                            <tr key={v._id} className='text-white'>
+                                                            <tr key={b._id}>
                                                                 <td>{i}</td>
-                                                                <td>{v.title}</td>
-                                                                <td>{v.description}</td>
-                                                                <td>{v.skills}</td>
-                                                                <td>{v.experience}</td>
-                                                                <td>{v.quantity}</td>
-                                                                <td>{tellDate(v.endDate)}</td>
+                                                                <td>{b.title}</td>
+                                                                <td>{b.instruction}</td>
                                                                 <td>
-                                                                    <Link to={'/apply/' + v._id}>
+                                                                    <a href={file + b.file} download={true} target="_blank" rel="noreferrer">
+
                                                                         <button className="btn btn-primary">
-                                                                            <FontAwesomeIcon icon={faForward} />
-                                                                            Apply
+                                                                            <FontAwesomeIcon icon={faDownload} />
+                                                                            Download
                                                                         </button>
-                                                                    </Link>
+                                                                    </a>
+
+                                                                </td>
+                                                                <td>{tellDate(b.endDate)}</td>
+
+                                                                <td>
+                                                                    <EditBids fetch={fetchDispath} bid={b} />
+                                                                    <DeleteBids bid={b} fetch={fetchDispath} />
                                                                 </td>
                                                             </tr>
 
@@ -87,7 +98,7 @@ const Vacancy = ({ location }) => {
                                                         <td colSpan={7}>
                                                             <h3 className='text-white text-center'>
                                                                 <FontAwesomeIcon icon={FaThermometerEmpty} className='text-white' />
-                                                                No Vacanices registered yet
+                                                                No Bids registered yet
                                                             </h3>
                                                         </td>
                                                     </tr>
@@ -96,14 +107,13 @@ const Vacancy = ({ location }) => {
                                     </MDBTable>
                                 </div>
                                 <div className="col-lg-12 d-flex justify-content-center mt-5">
-                                    <Paginate link='vacancy' page={page} />
+                                    <AdminPaginate setPage={setPage} page={page} />
                                 </div>
                             </div>
                         </div>
             }
-            <Footer />
         </>
     )
 }
 
-export default withRouter(Vacancy)
+export default AdminBids

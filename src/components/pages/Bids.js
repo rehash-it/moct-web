@@ -3,7 +3,7 @@ import Footer from '../layouts/Footer'
 import Navbar from '../layouts/navbar'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThermometerEmpty } from '@fortawesome/free-solid-svg-icons'
+import { faDownload, faThermometerEmpty } from '@fortawesome/free-solid-svg-icons'
 import { withRouter } from 'react-router-dom'
 import { pageCalculate } from '../utility/general'
 import { datasDispatch } from '../../store/Actions/dataActions'
@@ -11,6 +11,7 @@ import { tellDate } from '../utility/Date'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
 import Paginate from './Paginate'
+import { file } from '../../config/config'
 function Bids({ location }) {
     const [state, setState] = useState({
         loading: true,
@@ -38,9 +39,8 @@ function Bids({ location }) {
                                             <th>#</th>
                                             <th>Title</th>
                                             <th>Instruction</th>
-                                            <th>File</th>
-                                            <th>Started date</th>
-                                            <th>End Date</th>
+                                            <th>File and explanation</th>
+                                            <th>Dead line</th>
 
                                         </tr>
                                     </MDBTableHead>
@@ -54,8 +54,14 @@ function Bids({ location }) {
                                                             <td>{i}</td>
                                                             <td>{b.title}</td>
                                                             <td>{b.instruction}</td>
-                                                            <td>{b.file}</td>
-                                                            <td>{tellDate(b.startDate)}</td>
+                                                            <td>
+                                                                <a href={file + b.file} download={true} target="_blank" rel="noreferrer">
+
+                                                                    <button className="btn btn-primary">
+                                                                        <FontAwesomeIcon icon={faDownload} />
+                                                                        Download
+                                                                    </button>
+                                                                </a></td>
                                                             <td>{tellDate(b.endDate)}</td>
                                                         </tr>)
                                                 }) :

@@ -6,6 +6,7 @@ import { getWindowDimensions } from '../utility/screen';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import AdminVacancy from './AdminVacancy';
+import AdminBids from './AdminBids';
 
 function Dashboard() {
     const [toggle, setToggle] = useState(false)
@@ -46,7 +47,9 @@ function Dashboard() {
             {
                 tabs === 'Vacancy' ?
                     <AdminVacancy /> :
-                    <p></p>
+                    tabs === 'Bids' ?
+                        <AdminBids /> :
+                        <p></p>
             }
         </div>
     );
