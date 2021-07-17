@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import AdminVacancy from './AdminVacancy';
 import AdminBids from './AdminBids';
+import AdminNews from './AdminNews';
 
 function Dashboard() {
     const [toggle, setToggle] = useState(false)
@@ -49,7 +50,9 @@ function Dashboard() {
                     <AdminVacancy /> :
                     tabs === 'Bids' ?
                         <AdminBids /> :
-                        <p></p>
+                        tabs === 'News' ?
+                            <AdminNews /> :
+                            <p></p>
             }
         </div>
     );

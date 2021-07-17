@@ -6,7 +6,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from './../../layouts/Loading';
-function DeleteBids({ bid, fetch }) {
+function DeleteNews({ fetch, news }) {
     const [modal, setModal] = useState(false);
     const [save, setSave] = useState({
         process: '',
@@ -18,7 +18,7 @@ function DeleteBids({ bid, fetch }) {
     const deleteVacancy = async () => {
         try {
             setSave({ process: 'Deleting...', error: '', success: '' })
-            const del = await axios.delete(host + 'bid/' + bid._id, getHeaders())
+            const del = await axios.delete(host + 'news/' + news._id, getHeaders())
             if (del.status === 200) {
                 setSave({ process: '', error: '', success: 'Deleted successfully' })
                 setTimeout(() => fetch(), 1000)
@@ -43,12 +43,12 @@ function DeleteBids({ bid, fetch }) {
             </button>
             <Modal isOpen={modal} toggle={toggle} size='md' style={{ paddingTop: 200 }}>
                 <ModalHeader toggle={toggle} className='text-dark'>
-                    Delete Bid
+                    Delete this news
                 </ModalHeader>
                 <ModalBody>
                     <p className="text-dark">
 
-                        Are you sure to delete this bid
+                        Are you sure to delete this news
                     </p>
                     {save.process ?
                         <div className="d-flex justify-content-center">
@@ -68,7 +68,7 @@ function DeleteBids({ bid, fetch }) {
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={deleteVacancy}>
-                        Delete bid
+                        Delete news
                     </Button>{' '}
                 </ModalFooter>
             </Modal>
@@ -76,4 +76,4 @@ function DeleteBids({ bid, fetch }) {
     );
 }
 
-export default DeleteBids
+export default DeleteNews

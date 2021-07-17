@@ -24,7 +24,8 @@ export function blobCreationFromURL(inputURI) {
     }
 
     return new Blob([blobArray], {
-        type: inputMIME
+        type: inputMIME,
+        fileName: inputURI.split('/')[4]
     });
 }
 export const getFileName = (data) => data.split('/')[2]

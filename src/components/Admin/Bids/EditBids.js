@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
-import { host } from '../../../config/config';
+import { file, host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { dateFormat } from '../../utility/Date';
@@ -24,9 +24,9 @@ const EditBids = ({ fetch, bid }) => {
         success: ''
     })
     //blob creation from afile
-    let file = blobCreationFromURL(bid.file)
+    let fil = blobCreationFromURL(file + bid.file)
     useEffect(() => {
-        setState({ ...Disperse(bid), file: { value: file, active: false } })
+        setState({ ...Disperse(bid), file: { value: fil, active: false } })
     }, [bid])
     const [loaded, setLoaded] = useState(0)
     const handleChange = e => {
@@ -47,7 +47,7 @@ const EditBids = ({ fetch, bid }) => {
         e.preventDefault()
         try {
             var data = new FormData()
-            data.append('file', state.file.value, state.file.active ? state.file.value.name : getFileName(bid.file))
+            data.append('file', state.file.value, state.file.value.name)
             data.append('title', state.title.value)
             data.append('instruction', state.instruction.value)
             data.append('endDate', state.endDate.value)

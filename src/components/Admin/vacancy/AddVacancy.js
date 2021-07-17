@@ -137,7 +137,6 @@ function AddVacancy({ fetch }) {
                                                 onChange={handleChange}
                                                 required={true}
                                                 minLength={10}
-                                                maxLength={255}
                                                 className="form-control">
                                             </textarea>
                                         </div>

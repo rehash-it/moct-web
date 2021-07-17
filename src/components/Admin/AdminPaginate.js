@@ -12,7 +12,7 @@ function AdminPaginate({ page, setPage }) {
         <Pagination aria-label="Page navigation example">
             {
                 P.map(p =>
-                    <div onClick={() => setPage(p)}>
+                    <div onClick={() => setPage(p)} key={p}>
                         <PaginationItem>
                             <PaginationLink>
                                 <h5>{p}</h5>
