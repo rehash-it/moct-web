@@ -1,139 +1,104 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from '../layouts/Footer'
 import NavBar from '../layouts/navbar'
-import monkey from '../../images/semine mountain national park.png'
-import stones from '../../images/tiya stones.png'
-import eritale from '../../images/erta ale the smoking mountain of afar.png'
-import { withRouter } from 'react-router-dom'
-
+import { Link, withRouter } from 'react-router-dom'
 import '../../styles/sites.css'
+import { sitesDispatch } from '../../store/Actions/fetchSites'
+import { pageCalculate, Scroll } from '../utility/general'
+import DataLoading from '../layouts/DataLoading'
+import ErrorLoading from '../layouts/ErrorLoading'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { file } from '../../config/config'
+import PaginateSites from './PaginateSites';
 function Sites({ location }) {
-
+    const [state, setState] = useState({
+        loading: true,
+        error: false,
+        data: [],
+        length: 0
+    })
+    let split = location.search.split('=')
+    let region = split[1].split('&')[0]
+    let Page = location.search.split('p=')[1]
+    console.log(region, Page)
+    const { loading, error, data, length: Length } = state
+    const length = region === 'All' ? Length : data.length
+    let page = pageCalculate(15, length)
+    useEffect(() => {
+        Scroll('top')
+        sitesDispatch(setState, { region, page: Page ? Page : 1, limit: 12 })
+    }, [Page, region])
     return (
         <>
             <NavBar />
-            <h1 className='text-center mt-3'> Know The Land of Origins </h1>
-            <div class="cont">
+            {
+                loading ? <DataLoading /> :
+                    error ? <ErrorLoading /> :
 
-                <sec class="programs">
-                    <a href="#">
-                        <div class="content">
-                            <h2 >Semen mountain</h2>
-                            <h3>Vista Grande Helicopter Tour</h3>
-                            <p>Imagine San Francisco as you've never seen it before! On a San Francisco Vista Grande Helicopter Tour you'll see all the famous sites.</p>
-                            <ul>
-                                <li ><i class="fa fa-clock-o"></i><span>Duration: 25 - 30 minutes</span></li>
-                                <li ><i class="fa fa-globe"></i><span>Type: Helicopter Tours</span></li>
-                            </ul>
-                        </div>
-                    </a>
-                    <img src={monkey} alt='' />
-                </sec>
+                        <div className="container-fluid">
+                            <div className="row my-3">
 
-                <sec class="programs">
-                    <a href="#">
-                        <div class="content">
-                            <h2 >Tiya stones</h2>
-                            <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus alias fugiat laudantium laboriosam consequuntur. Impedit consequuntur quibusdam provident mollitia cupiditate!</h3>
-                            <p>Start your comprehensive tour of the Statue of Liberty National Monument off right with priority boarding on a ferry from Manhattan.</p>
-                            <ul>
-                                <li ><i class="fa fa-clock-o"></i><span>Duration: 7 hours</span></li>
-                                <li ><i class="fa fa-globe"></i><span>Type: Exclusive Tours</span></li>
-                            </ul>
-                        </div>
-                    </a>
-                    <img src={stones} alt='' />
-                </sec>
+                                <h1 className="text-center text-white">
+                                    Know about land of origins
+                                </h1>
+                            </div>
+                            <div class="cont my-3">
+                                {length ?
+                                    data.slice(0, 6).map(s =>
+                                        <sec class="programs" key={s._id}>
+                                            <Link to={'site/' + s._id}>
+                                                <div class="content">
+                                                    <h2 >{region === 'All' ? (s.region + ' region') : ''}</h2>
+                                                    <h3>{s.title}</h3>
+                                                    <p>{s.description.slice(0, 300) + '...'}</p>
+                                                    <ul>
+                                                        <li >
+                                                            <FontAwesomeIcon icon={faLocationArrow} />
+                                                            <span>Location={s.location}</span></li>
+                                                    </ul>
+                                                </div>
+                                            </Link>
+                                            <img src={file + s.images[0]} alt='' style={{ objectFit: 'cover' }} />
+                                        </sec>
+                                    ) :
+                                    <div className="col-lg-12 text-center">
+                                        <h4 className="text-danger">
+                                            sorry...   No Attraction site registered yet
+                                        </h4>
+                                    </div>
+                                }
 
-                <sec class="programs">
-                    <a href="#">
-                        <div class="content">
-                            <h2 >US Virgin Islands / St. John</h2>
-                            <h3>Beach Day Pass at Honeymoon Beach in St John</h3>
-                            <p>Delight in the breathtaking beauty of St John with a full-day beach pass to Honeymoon Beach. You'll have access to a variety of fun.</p>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i><span>Duration: 8 hours</span></li>
-                                <li><i class="fa fa-globe"></i><span>Type: Scuba & Snorkelling</span></li>
-                            </ul>
-                        </div>
-                    </a>
-                    <img src={eritale} alt='' />
-                </sec >
-            </div >
-            <div class="cont">
+                            </div >
+                            <div className="ml">
+                                {data.slice(6, 12).map(s =>
+                                    <Link to={'site/' + s._id} key={s._id}>
+                                        <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
+                                            <div className="ml-pnl__cntnt ml-flp__cntnt">
+                                                <img className="ml-flp__pnl ml-flp__pnl--frnt" src={file + s.images[0]} alt='' style={{ objectFit: 'cover' }} />
+                                                <div className="ml-flp__pnl ml-flp__pnl--bck text-raise">
+                                                    <h3 className="text-center">
+                                                        {s.title}
+                                                    </h3>
+                                                    <p>
+                                                        {s.description.slice(0, 401) + '...'}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                )}
 
-                <sec class="programs">
-                    <a href="#">
-                        <div class="content">
-                            <h2 >Semen mountain</h2>
-                            <h3>Vista Grande Helicopter Tour</h3>
-                            <p>Imagine San Francisco as you've never seen it before! On a San Francisco Vista Grande Helicopter Tour you'll see all the famous sites.</p>
-                            <ul>
-                                <li ><i class="fa fa-clock-o"></i><span>Duration: 25 - 30 minutes</span></li>
-                                <li ><i class="fa fa-globe"></i><span>Type: Helicopter Tours</span></li>
-                            </ul>
-                        </div>
-                    </a>
-                    <img src={monkey} alt='' />
-                </sec>
 
-                <sec class="programs">
-                    <a href="#">
-                        <div class="content">
-                            <h2 >Tiya stones</h2>
-                            <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus alias fugiat laudantium laboriosam consequuntur. Impedit consequuntur quibusdam provident mollitia cupiditate!</h3>
-                            <p>Start your comprehensive tour of the Statue of Liberty National Monument off right with priority boarding on a ferry from Manhattan.</p>
-                            <ul>
-                                <li ><i class="fa fa-clock-o"></i><span>Duration: 7 hours</span></li>
-                                <li ><i class="fa fa-globe"></i><span>Type: Exclusive Tours</span></li>
-                            </ul>
-                        </div>
-                    </a>
-                    <img src={stones} alt='' />
-                </sec>
 
-                <sec class="programs">
-                    <a href="#">
-                        <div class="content">
-                            <h2 >US Virgin Islands / St. John</h2>
-                            <h3>Beach Day Pass at Honeymoon Beach in St John</h3>
-                            <p>Delight in the breathtaking beauty of St John with a full-day beach pass to Honeymoon Beach. You'll have access to a variety of fun.</p>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i><span>Duration: 8 hours</span></li>
-                                <li><i class="fa fa-globe"></i><span>Type: Scuba & Snorkelling</span></li>
-                            </ul>
+                            </div>
+                            <div className="col-lg-12 d-flex justify-content-center mt-5">
+                                <PaginateSites region={region} page={page} />
+                            </div>
                         </div>
-                    </a>
-                    <img src={eritale} alt='' />
-                </sec >
-            </div >
-            <div className="ml">
-                <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
-                    <div className="ml-pnl__cntnt ml-flp__cntnt">
-                        <img className="ml-flp__pnl ml-flp__pnl--frnt" src={monkey} alt='' />
-                        <div className="ml-flp__pnl ml-flp__pnl--bck text-raise">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
-                    <div className="ml-pnl__cntnt ml-flp__cntnt">
-                        <img className="ml-flp__pnl ml-flp__pnl--frnt" src={monkey} alt='' />
-                        <div className="ml-flp__pnl ml-flp__pnl--bck text-raise">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
-                    <div className="ml-pnl__cntnt ml-flp__cntnt">
-                        <img className="ml-flp__pnl ml-flp__pnl--frnt" src={monkey} alt='' />
-                        <div className="ml-flp__pnl ml-flp__pnl--bck text-raise">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
             <Footer />
+
         </>
     )
 }

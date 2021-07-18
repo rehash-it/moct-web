@@ -95,6 +95,11 @@ const NavBar = (props) => {
                                 Attraction sites
                             </DropdownToggle>
                             <DropdownMenu right>
+                                <Link to='/sites?region=All'>
+                                    <DropdownItem className='text-raise h6'>
+                                        All
+                                    </DropdownItem >
+                                </Link>
                                 <Link to='/sites?region=Oromia'>
                                     <DropdownItem className='text-raise h6'>
                                         Oromia region
@@ -120,7 +125,7 @@ const NavBar = (props) => {
                                         Afar region
                                     </DropdownItem>
                                 </Link>
-                                <Link to='/sites?region=sidama'>
+                                <Link to='/sites?region=Sidama'>
                                     <DropdownItem className='text-raise h6'>
                                         Siadama region
                                     </DropdownItem>
@@ -132,10 +137,10 @@ const NavBar = (props) => {
                                 </Link>
                                 <Link to='/sites?region=Gambela'>
                                     <DropdownItem className='text-raise h6'>
-                                        Diredewa region
+                                        Gambela
                                     </DropdownItem >
                                 </Link>
-                                <Link to='/sites?region=Somali'>
+                                <Link to='/sites?region=Somalia'>
                                     <DropdownItem className='text-raise h6'>
                                         Somali region
                                     </DropdownItem >
@@ -145,7 +150,7 @@ const NavBar = (props) => {
                                         Addis Ababa city
                                     </DropdownItem >
                                 </Link>
-                                <Link to='/sites?region=tigrai'>
+                                <Link to='/sites?region=Tigrai'>
                                     <DropdownItem className='text-raise h6'>
                                         Tigrai region
                                     </DropdownItem >
