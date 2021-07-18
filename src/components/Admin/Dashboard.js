@@ -8,6 +8,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import AdminVacancy from './AdminVacancy';
 import AdminBids from './AdminBids';
 import AdminNews from './AdminNews';
+import AdminSite from './AdminSites';
 
 function Dashboard() {
     const [toggle, setToggle] = useState(false)
@@ -52,7 +53,9 @@ function Dashboard() {
                         <AdminBids /> :
                         tabs === 'News' ?
                             <AdminNews /> :
-                            <p></p>
+                            tabs === 'Sites' ?
+                                <AdminSite /> :
+                                <p></p>
             }
         </div>
     );

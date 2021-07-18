@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import { host } from '../../../config/config';
 import { getHeaders } from './../../../config/headers';
-import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { DotLoading } from '../../layouts/Loading';
 import { faCalendar, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 

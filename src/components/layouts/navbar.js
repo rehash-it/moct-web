@@ -95,20 +95,60 @@ const NavBar = (props) => {
                                 Attraction sites
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <Link to='/sites?type=cultural'>
+                                <Link to='/sites?region=Oromia'>
                                     <DropdownItem className='text-raise h6'>
-                                        cultural
+                                        Oromia region
                                     </DropdownItem >
                                 </Link>
-                                <Link to='/sites?type=religional'>
+                                <Link to='/sites?region=Amhara'>
                                     <DropdownItem className='text-raise h6'>
-                                        Religional
+                                        Amhara region
                                     </DropdownItem >
                                 </Link>
-                                <Link to='/sites?type=nature'>
+                                <Link to='/sites?region=Harari'>
                                     <DropdownItem className='text-raise h6'>
-                                        Nature
+                                        Harari region
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/sites?region=Snppr'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Snppr region
                                     </DropdownItem>
+                                </Link>
+                                <Link to='/sites?region=Afar'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Afar region
+                                    </DropdownItem>
+                                </Link>
+                                <Link to='/sites?region=sidama'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Siadama region
+                                    </DropdownItem>
+                                </Link>
+                                <Link to='/sites?region=Diredewa'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Diredewa region
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/sites?region=Gambela'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Diredewa region
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/sites?region=Somali'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Somali region
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/sites?region=A.A'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Addis Ababa city
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/sites?region=tigrai'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Tigrai region
+                                    </DropdownItem >
                                 </Link>
                             </DropdownMenu>
                         </h6>
