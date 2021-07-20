@@ -14,6 +14,7 @@ import { newsReducer, newsState } from './store/Reducers/newReducer'
 import Docs from './components/pages/Docs'
 import Bids from './components/pages/Bids'
 import Dashboard from './components/Admin/Dashboard'
+import Login from './components/Admin/Auth/Login';
 export default function App() {
   const [news, dispatchNews] = useReducer(newsReducer, newsState)
   return (
@@ -32,6 +33,7 @@ export default function App() {
           <Route path='/vacancy'><Vacancy /></Route>
           <Route path='/admin'><Dashboard /></Route>
           <Route path='/bids'><Bids /></Route>
+          <Route path='/login'><Login /></Route>
         </Switch>
       </BrowserRouter>
     </StoreContext.Provider>

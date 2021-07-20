@@ -9,15 +9,21 @@ import AdminVacancy from './AdminVacancy';
 import AdminBids from './AdminBids';
 import AdminNews from './AdminNews';
 import AdminSite from './AdminSites';
+import AdminResearch from './AdminResearch';
+import { withRouter } from 'react-router-dom';
+import { checkAdmin } from './Auth/ChechAdmin';
 
-function Dashboard() {
+function Dashboard(props) {
     const [toggle, setToggle] = useState(false)
     const [dimesion, setWindowDimensions] = useState(getWindowDimensions());
     //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(false)
     const [tabs, setTabs] = useState('main')
     const menuIconClick = () => menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
+    useEffect(() => {
 
+        checkAdmin(props.history.push)
+    }, [])
     useEffect(() => {
         function handleResize() {
             setWindowDimensions(getWindowDimensions());
@@ -27,7 +33,6 @@ function Dashboard() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
     const handleToggle = () => toggle ? setToggle(false) : setToggle(true)
-    const offToggle = () => setToggle(false)
     return (
         <div>
             <NavBar />
@@ -55,10 +60,12 @@ function Dashboard() {
                             <AdminNews /> :
                             tabs === 'Sites' ?
                                 <AdminSite /> :
-                                <p></p>
+                                tabs === 'Studies' ?
+                                    <AdminResearch /> :
+                                    <p></p>
             }
         </div>
     );
 }
 
-export default Dashboard
+export default withRouter(Dashboard)

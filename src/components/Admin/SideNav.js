@@ -12,11 +12,15 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft, faArrowCircleRight, faPeopleArrows, faSitemap, faUserTimes, faFile } from '@fortawesome/free-solid-svg-icons';
 import { getWindowDimensions } from '../utility/screen';
+import { withRouter } from 'react-router-dom';
+import { Logout } from './Auth/Logout';
 function SideNav({ handleToggle,
     toggle,
     menuCollapse,
     menuIconClick,
-    setTabs, tabs }) {
+    setTabs, tabs,
+    history
+}) {
     const [dimesion, setWindowDimensions] = useState(getWindowDimensions());
     useEffect(() => {
         function handleResize() {
@@ -95,14 +99,14 @@ function SideNav({ handleToggle,
                         </MenuItem>
                         {
                             dimesion.width >= 768 ? <p></p> :
-                                <Menu iconShape="square">
+                                <Menu iconShape="square" onClick={() => Logout(history.push)}>
                                     <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
                                 </Menu>
                         }
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter >
-                    <Menu iconShape="square">
+                    <Menu iconShape="square" onClick={() => Logout(history.push)}>
                         <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
                     </Menu>
                 </SidebarFooter>
@@ -111,4 +115,4 @@ function SideNav({ handleToggle,
     )
 }
 
-export default SideNav
+export default withRouter(SideNav)

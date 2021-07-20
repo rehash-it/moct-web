@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { datasDispatch } from '../../store/Actions/dataActions'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
 import { pageCalculate, Scroll } from '../utility/general'
-import AddNews from './News/AddNews'
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact';
-import { file } from '../../config/config'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendar, faThermometerEmpty } from '@fortawesome/free-solid-svg-icons'
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import { tellDate } from '../utility/Date'
-import EditNews from './News/EditNews';
-import DeleteNews from './News/DeleteNews'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
+import { file } from '../../config/config'
+import { FaThermometerEmpty } from 'react-icons/fa'
 import AdminPaginate from './AdminPaginate'
-import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
-function AdminNews() {
+import AddDocs from './Docs/AddDocs'
+import EditDocs from './Docs/EditDocs'
+import DeleteDocs from './Docs/DeleteDocs'
+import { getFileName } from '../utility/file'
+function AdminResearch() {
     const [state, setState] = useState({
         loading: true,
         data: [],
@@ -22,9 +23,9 @@ function AdminNews() {
     })
     const { loading, data, error, length } = state
     const [Page, setPage] = useState(1)
-    const page = pageCalculate(8, length)
+    const page = pageCalculate(10, length)
 
-    const fetchDispath = () => datasDispatch(setState, { page: Page, limit: 8, url: 'news' })
+    const fetchDispath = () => datasDispatch(setState, { page: Page, limit: 10, url: 'docs' })
 
     useEffect(() => {
         Scroll('top')
@@ -41,7 +42,7 @@ function AdminNews() {
                             <div className="row">
 
                                 <div className="col-sm-6 col-md-4 col-lg-6  my-auto">
-                                    <AddNews fetch={fetchDispath} />
+                                    <AddDocs fetch={fetchDispath} />
 
                                 </div>
 
@@ -56,47 +57,53 @@ function AdminNews() {
                                             <tr>
                                                 <th>#</th>
                                                 <th>Title</th>
-                                                <th>content</th>
-                                                <th>image</th>
-                                                <th>Options</th>
+                                                <th>Description</th>
+                                                <th>File</th>
+                                                <th>options</th>
                                             </tr>
+
                                         </MDBTableHead>
                                         <MDBTableBody textWhite>
                                             {
                                                 length ?
-                                                    data.map((n, i = 0) => {
+                                                    data.map((d, i = 0) => {
                                                         i++
                                                         return (
-                                                            <tr key={n._id}>
+                                                            <tr key={d._id}>
                                                                 <td>{i}</td>
-                                                                <td>{n.title}</td>
+                                                                <td>{d.title}</td>
                                                                 <td>
-                                                                    <p className='indent'>{n.content}</p>
-
-                                                                    <div className="d-flex justify-content-end italic">
-                                                                        created At:{tellDate(n.createdAt)} <br />
-                                                                        enddate :{tellDate(n.endDate)}
+                                                                    <p className="indent">
+                                                                        {d.description}
+                                                                    </p>
+                                                                    <div className="col-lg-12 d-flex justify-content-center mt-5">
+                                                                        <p>{tellDate(d.createdAt)}</p>
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <a href={file + n.image} download={true} target="_blank" rel="noreferrer">
-                                                                        <img src={file + n.image} alt="" className="img-fluid" />
+                                                                    <a href={file + d.file} download={true} target="_blank" rel="noreferrer">
+                                                                        {getFileName(d.file)}
+                                                                        <button className="btn btn-primary">
+                                                                            <FontAwesomeIcon icon={faDownload} />
+                                                                            Download
+                                                                        </button>
                                                                     </a>
+
                                                                 </td>
 
                                                                 <td>
-                                                                    <EditNews fetch={fetchDispath} news={n} />
-                                                                    <DeleteNews news={n} fetch={fetchDispath} />
+                                                                    <EditDocs fetch={fetchDispath} docs={d} />
+                                                                    <DeleteDocs docs={d} fetch={fetchDispath} />
                                                                 </td>
                                                             </tr>
 
                                                         )
                                                     }) :
                                                     <tr>
-                                                        <td colSpan={9}>
+                                                        <td colSpan={5}>
                                                             <h3 className='text-white text-center'>
-                                                                <FontAwesomeIcon icon={faThermometerEmpty} className='text-white' />
-                                                                No News registered yet
+                                                                <FontAwesomeIcon icon={FaThermometerEmpty} className='text-white' />
+                                                                No Document  registered yet
                                                             </h3>
                                                         </td>
                                                     </tr>
@@ -114,4 +121,4 @@ function AdminNews() {
     )
 }
 
-export default AdminNews
+export default AdminResearch

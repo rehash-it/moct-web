@@ -85,13 +85,13 @@ function AdminSite() {
                                                                             s.images.map(im =>
 
                                                                                 <div className="mb-3 pics animation all 2 bg-dark" key={im.id}>
-
-                                                                                    <img className="img-fluid"
-                                                                                        role="dialog"
-                                                                                        aria-labelledby="myModalLabel"
-                                                                                        aria-hidden="true" tabindex="-1"
-                                                                                        src={file + im} alt="" />
-
+                                                                                    <a href={file + im} download={true} target="_blank" rel="noreferrer">
+                                                                                        <img className="img-fluid"
+                                                                                            role="dialog"
+                                                                                            aria-labelledby="myModalLabel"
+                                                                                            aria-hidden="true" tabindex="-1"
+                                                                                            src={file + im} alt="" />
+                                                                                    </a>
 
                                                                                 </div>
                                                                             )}

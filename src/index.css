@@ -46,12 +46,12 @@ p {
 #float-label {
   display: flex;
   flex-direction: column;
-  min-width: 350px;
+  min-width: auto;
   position: relative;
 }
 
 #float-label input {
-  width: 80%;
+  width: auto;
   height: 60px;
   padding: 14px 16px 0 10px;
   outline: 0;
@@ -113,4 +113,15 @@ p {
     padding-left: 1.1rem;
     padding-right: 1.1rem;
   }
+}
+/**login css*/
+.login {
+  background: url("./images/meskel\ celebration.png") no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+  background-color: black;
 }
