@@ -12,7 +12,6 @@ import { tellDate } from '../utility/Date'
 import EditNews from './News/EditNews';
 import DeleteNews from './News/DeleteNews'
 import AdminPaginate from './AdminPaginate'
-import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 function AdminNews() {
     const [state, setState] = useState({
         loading: true,

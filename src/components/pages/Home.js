@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CarouseL from '../layouts/carousel';
 import NavBar from '../layouts/navbar'
 import Ertale from '../../images/erta ale the smoking mountain of afar.png'
@@ -19,6 +19,8 @@ import { DotLoading } from '../layouts/Loading';
 import ErrorLoading from '../layouts/ErrorLoading';
 import { file } from '../../config/config';
 import ReactTimeAgo from 'react-time-ago'
+import { fetchSites, sitesDispatch } from '../../store/Actions/fetchSites';
+import DataLoading from '../layouts/DataLoading';
 const items = [
     {
         src: Ertale,
@@ -44,9 +46,13 @@ const items = [
 function Home() {
     const { news: News, dispatchNews } = useContext(StoreContext)
     const { state: NewS, loading: loadingNews, error } = News
+    const [sites, setSite] = useState({
+        data: [], loading: true, error: false, length: 0
+    })
     useEffect(() => {
         //es-lint
         newsDispatch(dispatchNews, 1)
+        sitesDispatch(setSite, { region: 'All', page: 1, limit: 6 })
     }, [])
     const [news] = NewS
 
@@ -60,58 +66,31 @@ function Home() {
                     {/**sites */}
                     <div className="col-lg-12">
                         <h1 className="text-center text-white my-3">Attraction sites</h1>
-                        <div className="ml">
-                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
-                                <div className="ml-pnl__cntnt ml-flp__cntnt">
-                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Gonder} alt=''
-                                        style={{ objectFit: 'cover' }} />
-                                    <div className="ml-flp__pnl ml-flp__pnl--bck text-raise">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
+                        {
+                            sites.loading ? <DataLoading /> :
+                                sites.error ? <ErrorLoading /> :
+
+                                    <div className="ml">
+                                        {
+                                            sites.data.slice(0, 6).map(s =>
+                                                <Link to={'/site/' + s._id} key={s._id}>
+                                                    <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz" >
+
+                                                        <div className="ml-pnl__cntnt ml-flp__cntnt">
+                                                            <img className="ml-flp__pnl ml-flp__pnl--frnt" src={file + s.images[0]} alt=''
+                                                                style={{ objectFit: 'cover' }} />
+                                                            <div className="ml-flp__pnl ml-flp__pnl--bck text-raise">
+                                                                <h4 className="text-raise text-center">{s.title}</h4>
+                                                                <p className="text-white h6">
+                                                                    {s.description.slice(0, 300) + '...'}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            )}
                                     </div>
-                                </div>
-                            </div>
-                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
-                                <div className="ml-pnl__cntnt ml-flp__cntnt">
-                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Monkey} alt='' />
-                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
-                                        <h3>Lorem, ipsum dolor.</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
-                                <div className="ml-pnl__cntnt ml-flp__cntnt">
-                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Axum} alt='' />
-                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
-                                <div className="ml-pnl__cntnt ml-flp__cntnt">
-                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Danakil} alt='' />
-                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
-                                <div className="ml-pnl__cntnt ml-flp__cntnt">
-                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Danakil} alt='' />
-                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="ml-pnl ml-flp--md ml-flp ml-clstr--hrz">
-                                <div className="ml-pnl__cntnt ml-flp__cntnt">
-                                    <img className="ml-flp__pnl ml-flp__pnl--frnt" src={Danakil} alt='' />
-                                    <div className="ml-flp__pnl ml-flp__pnl--bck bg--white">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit maiores reiciendis? Sit ullam ipsa consectetur ratione obcaecati architecto! Cupiditate?</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
 
                     {/** */}
