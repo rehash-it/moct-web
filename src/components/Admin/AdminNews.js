@@ -23,7 +23,7 @@ function AdminNews() {
     const [Page, setPage] = useState(1)
     const page = pageCalculate(8, length)
 
-    const fetchDispath = () => datasDispatch(setState, { page: Page, limit: 8, url: 'news' })
+    const fetchDispath = () => datasDispatch(setState, { page: Page, limit: 8, url: 'news', admin: true })
 
     useEffect(() => {
         Scroll('top')

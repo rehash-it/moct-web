@@ -37,7 +37,8 @@ function Login({ history }) {
             setSave(s => ({ ...s, process: 'login please wait...', error: '' }))
             const log = await axios.post(host + 'auth', getData(state))
             if (log.status === 200) {
-                sessionStorage.setItem('x-auth-token', log.data)
+                sessionStorage.setItem('x-auth-token', log.data.token)
+                sessionStorage.setItem('id', log.data.id)
                 setSave(s => ({ ...s, error: '', process: '', success: 'Welcome' }))
                 setTimeout(() => history.push('/admin'), 1000)
             }

@@ -1,8 +1,9 @@
-export const getHeaders = () => {
+export const getHeaders = (admin) => {
     const headers = sessionStorage.getItem('x-auth-token')
     return {
         headers: {
-            'x-auth-token': headers
+            'x-auth-token': headers,
+            admin
         }
     }
 }

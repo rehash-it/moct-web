@@ -38,7 +38,7 @@ function News({ location }) {
     const { loading, state: newS, error } = News
     const [news, length] = newS
     //paginationm
-    const page = pageCalculate(8, length)
+    const page = pageCalculate(8, news ? news.length : 0)
 
     return (
         <>
@@ -124,12 +124,14 @@ function News({ location }) {
                                 </div>
 
                             </div> :
-                            <div className="container">
-                                <div className="col-lg-12">
-                                    <h2 className="text-center">
-                                        <FontAwesomeIcon icon={faNewspaper} className='mx-2' />
-                                        No news yet
-                                    </h2>
+                            <div className="container mt-4">
+                                <div className="row">
+                                    <div className="col-lg-12">
+                                        <h4 className="text-center">
+                                            <FontAwesomeIcon icon={faNewspaper} className='mx-2' />
+                                            No news yet
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
             }

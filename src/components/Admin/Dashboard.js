@@ -12,6 +12,7 @@ import AdminSite from './AdminSites';
 import AdminResearch from './AdminResearch';
 import { withRouter } from 'react-router-dom';
 import { checkAdmin } from './Auth/ChechAdmin';
+import AdminUser from './AdminUser';
 
 function Dashboard(props) {
     const [toggle, setToggle] = useState(false)
@@ -62,7 +63,9 @@ function Dashboard(props) {
                                 <AdminSite /> :
                                 tabs === 'Studies' ?
                                     <AdminResearch /> :
-                                    <p></p>
+                                    tabs === 'Users' ?
+                                        <AdminUser /> :
+                                        <p></p>
             }
         </div>
     );

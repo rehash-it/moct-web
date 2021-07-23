@@ -6,6 +6,7 @@ import { host } from '../../../config/config';
 import { getHeaders } from './../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { faCalendar, faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { dateFormat } from './../../utility/Date';
 
 function AddNews({ fetch }) {
 
@@ -121,6 +122,7 @@ function AddNews({ fetch }) {
                                                 className='form-control'
                                                 id='endDate'
                                                 required={true}
+                                                min={dateFormat(Date.now())}
                                                 onChange={handleChange} />
                                         </div>
                                     </div>

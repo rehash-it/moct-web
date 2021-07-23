@@ -2,24 +2,21 @@ import React, { useContext, useEffect, useState } from 'react'
 import CarouseL from '../layouts/carousel';
 import NavBar from '../layouts/navbar'
 import Ertale from '../../images/erta ale the smoking mountain of afar.png'
-import Gonder from '../../images/Gonder.png'
 import BlueNile from '../../images/Blue-Nile.jpg'
 import Monkey from '../../images/semine mountain national park.png'
-import Danakil from '../../images/Danakil.jpg'
 import Meskel from '../../images/meskel celebration.png'
 import '../../styles/home.css'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt, faClock, faTag } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../layouts/Footer';
-import Axum from '../../images/axum obelisks.png'
 import { StoreContext } from '../../context/context';
 import { newsDispatch } from '../../store/Actions/newsActions';
 import { DotLoading } from '../layouts/Loading';
 import ErrorLoading from '../layouts/ErrorLoading';
 import { file } from '../../config/config';
 import ReactTimeAgo from 'react-time-ago'
-import { fetchSites, sitesDispatch } from '../../store/Actions/fetchSites';
+import { sitesDispatch } from '../../store/Actions/fetchSites';
 import DataLoading from '../layouts/DataLoading';
 const items = [
     {
@@ -53,6 +50,7 @@ function Home() {
         //es-lint
         newsDispatch(dispatchNews, 1)
         sitesDispatch(setSite, { region: 'All', page: 1, limit: 6 })
+
     }, [])
     const [news] = NewS
 
