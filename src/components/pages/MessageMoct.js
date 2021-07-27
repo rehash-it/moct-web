@@ -71,6 +71,19 @@ function MessageMoct() {
                                                     <div class="media">
                                                         <i class="fab fa-js-square icon-18 mr-3"></i>
                                                         <div class="media-body">
+                                                            <Link to='/history'>
+                                                                <h4 class="m-0 text-white">History</h4>
+                                                            </Link>
+                                                            <p class="m-0">
+                                                                Know About history and formulation of this organization
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-4 mb-sm-0 pr-sm-3 col-sm-6">
+                                                    <div class="media">
+                                                        <i class="fab fa-js-square icon-18 mr-3"></i>
+                                                        <div class="media-body">
                                                             <Link to='/about'>
                                                                 <h4 class="m-0 text-white">Vision </h4>
                                                             </Link>
@@ -84,15 +97,16 @@ function MessageMoct() {
                                                     <div class="media">
                                                         <i class="fab fa-react icon-18 mr-3"></i>
                                                         <div class="media-body">
-                                                            <Link to='/messageOfMoct'>
-                                                                <h4 class="m-0 text-white">Message of Moct</h4>
+                                                            <Link to='/chart'>
+                                                                <h4 class="m-0 text-white">Organization chart</h4>
                                                             </Link>
                                                             <p class="m-0">
-                                                                Read about our concerns and ideas
+                                                                see about our organization structure
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
 
                                             <div class="row no-gutters mb-0 mb-sm-4">
@@ -103,29 +117,6 @@ function MessageMoct() {
 
                                                         </div>
 
-                                                        <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3">
-                                                            <div class="media">
-                                                                <i class="fas fa-mug-hot icon-18 mr-2"></i>
-                                                                <div class="media-body">
-                                                                    <p class="data-number m-0 font-weight-bold">Country</p>
-                                                                    <p class="m-0 text-uppercase">
-                                                                        Ethiopia
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3">
-                                                            <div class="media">
-                                                                <i class="fas fa-mug-hot icon-18 mr-2"></i>
-                                                                <div class="media-body">
-                                                                    <p class="data-number m-0 font-weight-bold">City</p>
-                                                                    <p class="m-0 text-uppercase">
-                                                                        Addis Ababa@605
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
                                                     </div>
                                                 </div>

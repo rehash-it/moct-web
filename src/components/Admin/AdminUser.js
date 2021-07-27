@@ -70,7 +70,7 @@ function AdminUser() {
 
                     <div className="container my-4 ml-4" >
                         <div className="row">
-
+                            <div className="col-lg-1"></div>
                             <div className="col-sm-4 col-md-4 col-lg-4  my-auto">
                                 <AddUser fetch={fetchDispath} />
 
@@ -85,8 +85,8 @@ function AdminUser() {
 
                             </div>
                             <div className="col-sm-3 col-md-3 col-lg-3 my-auto">
-                                <div className="card bg-primary btn">
-                                    <h2 className='text-white'>Totall registered {length}</h2>
+                                <div className="card bg-dark">
+                                    <h2 className='text-center'>Totall registered {length}</h2>
                                 </div>
                             </div>
                             <div className="col-lg-12 mt-3">

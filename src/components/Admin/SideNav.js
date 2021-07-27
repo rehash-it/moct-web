@@ -19,7 +19,8 @@ function SideNav({ handleToggle,
     menuCollapse,
     menuIconClick,
     setTabs, tabs,
-    history
+    history,
+    collapse
 }) {
     const [dimesion, setWindowDimensions] = useState(getWindowDimensions());
     useEffect(() => {
@@ -33,7 +34,7 @@ function SideNav({ handleToggle,
 
 
     return (
-        <div id="header" >
+        <div id="header"  >
             {/* collapsed props to change menu size using menucollapse state */}
             <ProSidebar collapsed={dimesion.width >= 768 ? menuCollapse : false}
                 breakPoint='md'
@@ -58,42 +59,42 @@ function SideNav({ handleToggle,
                     <Menu iconShape="square">
                         <MenuItem active={tabs === 'Main'}
                             icon={<FiHome />}
-                            onClick={() => setTabs('Main')}>
+                            onClick={() => { setTabs('Main'); collapse() }}>
                             Dashboard
                         </MenuItem>
                         <MenuItem
                             active={tabs === 'News'}
-                            onClick={() => setTabs('News')}
+                            onClick={() => { setTabs('News'); collapse() }}
                             icon={<FaNewspaper />}>
                             News
                         </MenuItem>
                         <MenuItem
-                            onClick={() => setTabs('Vacancy')}
+                            onClick={() => { setTabs('Vacancy'); collapse() }}
                             active={tabs === 'Vacancy'}
                             icon={<FaPeopleCarry />}>
                             Vacancy
                         </MenuItem>
                         <MenuItem
                             active={tabs === 'Bids'}
-                            onClick={() => setTabs('Bids')}
+                            onClick={() => { setTabs('Bids'); collapse() }}
                             icon={<FontAwesomeIcon icon={faUserTimes} />}>
                             Bids
                         </MenuItem>
                         <MenuItem
                             active={tabs === 'Sites'}
-                            onClick={() => setTabs('Sites')}
+                            onClick={() => { setTabs('Sites'); collapse() }}
                             icon={<FontAwesomeIcon icon={faSitemap} />}>
                             Attraction sites
                         </MenuItem>
                         <MenuItem
                             active={tabs === 'Studies'}
-                            onClick={() => setTabs('Studies')}
+                            onClick={() => { setTabs('Studies'); collapse() }}
                             icon={<FontAwesomeIcon icon={faFile} />}>
                             Research and studies
                         </MenuItem>
                         <MenuItem
                             active={tabs === 'Users'}
-                            onClick={() => setTabs('Users')}
+                            onClick={() => { setTabs('Users'); collapse() }}
                             icon={<BiUser />}>
                             Users
                         </MenuItem>

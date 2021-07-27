@@ -130,7 +130,7 @@ function EditNews({ fetch, news }) {
                                                 className='form-control'
                                                 id='endDate'
                                                 required={true}
-                                                min={dateFormat(Date.now())}
+                                                min={new Date().toISOString().split("T")[0]}
                                                 value={dateFormat(state.endDate.value)}
                                                 onChange={handleChange} />
                                         </div>

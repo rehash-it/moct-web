@@ -1,10 +1,12 @@
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
-import { file, host } from '../../../config/config';
-import { getData, getHeaders } from '../../../config/headers';
+import { host } from '../../../config/config';
+import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
-import { removeItem } from '../Controller';
+import { dateFormat } from './../../utility/Date';
 
 
 const AddBids = ({ fetch }) => {
@@ -63,10 +65,11 @@ const AddBids = ({ fetch }) => {
     }
     const toggle = () => setModal(!modal);
     return (
-        <div>
-            <Button color='primary' onClick={toggle}>
-                Add new Bids
-            </Button>
+        <>
+            <button className="btn btn-primary mx-2" onClick={toggle}>
+                <FontAwesomeIcon icon={faPlus} className='mx-2' />
+                Add new bids
+            </button>
             <Modal isOpen={modal} toggle={toggle} className='' size='lg'>
 
                 <ModalHeader toggle={toggle} className='text-dark'>
@@ -101,6 +104,7 @@ const AddBids = ({ fetch }) => {
                                                 className='form-control'
                                                 id='endDate'
                                                 required={true}
+                                                min={new Date().toISOString().split("T")[0]}
                                                 onChange={handleChange} />
                                         </div>
                                     </div>
@@ -158,7 +162,7 @@ const AddBids = ({ fetch }) => {
                     </ModalFooter>
                 </form>
             </Modal>
-        </div>
+        </>
 
     )
 }

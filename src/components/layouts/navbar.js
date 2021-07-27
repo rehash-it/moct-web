@@ -179,6 +179,11 @@ const NavBar = (props) => {
                                         Message from the organizarion
                                     </DropdownItem>
                                 </Link>
+                                <Link to='/chart'>
+                                    <DropdownItem className='text-raise h6'>
+                                        Organization Chart
+                                    </DropdownItem>
+                                </Link>
                             </DropdownMenu>
                         </h6>
                     </UncontrolledDropdown>
@@ -202,25 +207,17 @@ const NavBar = (props) => {
 
                 <form  >
                     {
-                        search ? <input type='text' className='form-control'
+                        search ? <input type='text' className='form-control' autoFocus
                             style={{ marginLeft: windowDimensions.width > 680 ? 0 : 0, transition: 3 }} /> : ''
                     }
 
                 </form>
-                <button type='button' className='btn text-raise' onClick={displaySearch}
+                <button type='button' className='btn btn-primary' onClick={displaySearch}
                     style={{ marginLeft: windowDimensions.width > 680 && !search ? 150 : 0 }}
                 >
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
-                {/* <NavItem>
-                    <NavLink href='www.fb.com'>
-                        <FontAwesomeIcon icon={faFacebook} className='fa-2x text-raise' />
-                    </NavLink>
-                    <NavLink href='www.fb.com'>
-                        <FontAwesomeIcon icon={faTwitter} className='fa-2x text-raise' />
-                    </NavLink>
 
-                </NavItem> */}
 
             </Collapse>
 

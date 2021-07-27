@@ -29,7 +29,7 @@ const History = () => {
                                     </div>
                                     <div class="col-md-8">
                                         <div class="about__text mb-5 mb-sm-4 mb-md-4">
-                                            <h1>Ministry of Culture and Tourism- Historical Background</h1>
+                                            <h1>Historical Background</h1>
                                             <p class="my-2 h6 indent text-white justify-content">
                                                 <p className="text-indent my-2 h6 text-white">
                                                     Beginning from the dawn of the 19th century, ‘modern European civilization gradually started taking momentum and grip in Ethiopia under the circumstances where power centralization of the central government was dominantly rampant in the country’, in which case modern management of culture has been addressed through the indirect management or administration of various Ministries and any other government agencies during the pre-and post-Fascist Italian Occupation, particularly in the post-independence/victory period.
@@ -90,7 +90,7 @@ const History = () => {
                                                         <i class="fab fa-react icon-18 mr-3"></i>
                                                         <div class="media-body">
                                                             <Link to='/messageOfMoct'>
-                                                                <h4 class="m-0 text-white">Message fro the minister</h4>
+                                                                <h4 class="m-0 text-white">Message of Moct</h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 Read about our concerns and ideas
@@ -98,6 +98,20 @@ const History = () => {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="mb-4 mb-sm-0 pl-sm-3 col-sm-6 ">
+                                                    <div class="media">
+                                                        <i class="fab fa-react icon-18 mr-3"></i>
+                                                        <div class="media-body">
+                                                            <Link to='/chart'>
+                                                                <h4 class="m-0 text-white">Organization chart</h4>
+                                                            </Link>
+                                                            <p class="m-0">
+                                                                see about our organization structure
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
 
                                             <div class="row no-gutters mb-0 mb-sm-4">
@@ -108,29 +122,6 @@ const History = () => {
 
                                                         </div>
 
-                                                        <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3">
-                                                            <div class="media">
-                                                                <i class="fas fa-mug-hot icon-18 mr-2"></i>
-                                                                <div class="media-body">
-                                                                    <p class="data-number m-0 font-weight-bold">Country</p>
-                                                                    <p class="m-0 text-uppercase">
-                                                                        Ethiopia
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3">
-                                                            <div class="media">
-                                                                <i class="fas fa-mug-hot icon-18 mr-2"></i>
-                                                                <div class="media-body">
-                                                                    <p class="data-number m-0 font-weight-bold">City</p>
-                                                                    <p class="m-0 text-uppercase">
-                                                                        Addis Ababa@605
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
                                                     </div>
                                                 </div>

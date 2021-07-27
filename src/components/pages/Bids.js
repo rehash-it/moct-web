@@ -22,7 +22,7 @@ function Bids({ location }) {
     let Page = location.search
     const { loading, error, data, length } = state
     let page = pageCalculate(15, length)
-    useEffect(() => datasDispatch(setState, { page, limit: 15, url: 'bid' }), [page])
+    useEffect(() => datasDispatch(setState, { page, limit: 15, url: 'bid', admin: false }), [page])
     return (
         <>
             <Navbar />
@@ -68,8 +68,8 @@ function Bids({ location }) {
                                                 <tr>
                                                     <td colSpan={6} className="td text-center">
                                                         <h3>
-                                                            <FontAwesomeIcon icon={faThermometerEmpty} className='fa-3x mx-2' />
-                                                            oops....No bids yet
+                                                            <FontAwesomeIcon icon={faThermometerEmpty} className='fa-2x mx-2' />
+                                                            No bids registered  yet
 
                                                         </h3>
                                                     </td>

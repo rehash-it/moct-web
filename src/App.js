@@ -16,6 +16,8 @@ import Bids from './components/pages/Bids'
 import Dashboard from './components/Admin/Dashboard'
 import Login from './components/Admin/Auth/Login';
 import SiteDetails from './components/pages/SiteDetails'
+import NotFound from './components/pages/NotFound';
+import OrganizationChart from './components/pages/OrganizationChart'
 export default function App() {
   const [news, dispatchNews] = useReducer(newsReducer, newsState)
   return (
@@ -36,6 +38,8 @@ export default function App() {
           <Route path='/bids'><Bids /></Route>
           <Route path='/login'><Login /></Route>
           <Route path='/site/:id'><SiteDetails /></Route>
+          <Route path='/chart'><OrganizationChart /></Route>
+          <Route><NotFound /></Route>
         </Switch>
       </BrowserRouter>
     </StoreContext.Provider>

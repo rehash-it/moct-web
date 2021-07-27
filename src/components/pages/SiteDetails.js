@@ -68,7 +68,7 @@ function SiteDetails({ match }) {
                                 <div className="col-lg-12 mt-3">
                                     <div className="gallery my-2" id="gallery" >
                                         {
-                                            site.data.images.map(im =>
+                                            site.data.images.slice(1, site.data.images.length).map(im =>
 
                                                 <div className="mb-3 pics animation all 2 bg-dark" key={im.id}>
                                                     <a href={file + im} download={true} target="_blank" rel="noreferrer">

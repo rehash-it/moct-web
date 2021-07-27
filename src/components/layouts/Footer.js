@@ -11,7 +11,7 @@ function Footer() {
     return (
         <div className="container-fluiD pb-0 mb-0 justify-content-center text-light ">
             <footer>
-                <div className="row my-3 justify-content-center py-5">
+                <div className="row mb-3 justify-content-center py-5">
                     <div className="col-11">
                         <div className="row ">
                             <div className="col-xl-8 col-md-4 col-sm-4 col-12 my-auto mx-auto a">
@@ -25,7 +25,7 @@ function Footer() {
                                 <Link to='/about'>
                                     <h6>About</h6>
                                 </Link>
-                                <Link to='/studies'>
+                                <Link to='/docs'>
                                     <h6>Research and studies</h6>
                                 </Link>
                             </div>
@@ -38,13 +38,16 @@ function Footer() {
                         <div className="row ">
                             <div className="col-xl-8 col-md-4 col-sm-4 col-auto my-md-0 mt-5 order-sm-1 order-3 align-self-end">
                                 <p className="social text-muted mb-0 pb-0 bold-text">
-                                    <span className="mx-2">
-                                        <FontAwesomeIcon icon={faFacebook} className='text-raise' />
-                                    </span>
-                                    <span className="mx-2">
-                                        <FontAwesomeIcon icon={faTwitter} className='text-raise' />
-                                    </span> <span className="mx-2"><i className="fa fa-twitter" aria-hidden="true"></i></span> <span className="mx-2"><i className="fa fa-instagram" aria-hidden="true"></i></span> </p><small className="rights"><span>&#174;
-                                    </span> Moct All Rights Reserved.</small>
+                                    <a href="https://www.facebook.com/tuorismcultureethiopia" target="_blank" rel="noreferrer" >
+                                        <FontAwesomeIcon icon={faFacebook} className='fa-2x text-raise mx-2' />
+                                    </a>
+                                    <a href="https://www.facebook.com/tuorismcultureethiopia" target="_blank" rel="noreferrer" >
+                                        <FontAwesomeIcon icon={faTwitter} className='fa-2x text-raise' />
+                                    </a>
+                                </p>
+
+                                <small className="rights"><span>&#174;
+                                </span> Moct All Rights Reserved.</small>
                             </div>
                             <div className="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end ">
                                 <h6 className="mt-55 mt-2 text-muted bold-text"><b>Moct Admin</b></h6><small> <span><i className="fa fa-envelope" aria-hidden="true"></i></span> admin@moct.com</small>

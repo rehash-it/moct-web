@@ -63,8 +63,10 @@ function Home() {
                 <div className="row">
                     {/**sites */}
                     <div className="col-lg-12">
-                        <h1 className="text-center text-white my-3">Attraction sites</h1>
-                        {
+                        {sites.data.slice(0, 6).length ?
+                            <h1 className="text-center text-white my-3">Attraction sites</h1> :
+                            <p></p>
+                        } {
                             sites.loading ? <DataLoading /> :
                                 sites.error ? <ErrorLoading /> :
 
@@ -100,50 +102,52 @@ function Home() {
                                 <div className="col-lg-12">
                                     <div className="dark">
                                         <main className="container">
-                                            <div className="h1 text-center" id="pageHeaderTitle">News</div>
-                                            {
-                                                news.slice(0, 4).map(n => {
-                                                    return (
-                                                        <article className="postcard dark yellow" key={n._id}>
-                                                            <Link to={'/news/' + n._id} className="postcard__img_link" >
-                                                                <img className="postcard__img"
-                                                                    src={file + n.image} alt='error in loading' />
-                                                            </Link>
-                                                            <div className="postcard__text">
-                                                                <Link to={'/news/' + n._id}>
-                                                                    <h1 className="postcard__title yellow">
+                                            {news.slice(0, 4).length ?
+                                                <div className="h1 text-center" id="pageHeaderTitle">News</div> :
+                                                <p></p>
+                                            }{
+                                                news.slice(0, 4).map(n =>
 
-                                                                        {n.title}
-                                                                    </h1>
-                                                                </Link>
-                                                                <div className="postcard__subtitle small">
-                                                                    <time datetime="2020-05-25 12:00:00">
-                                                                        <FontAwesomeIcon icon={faCalendarAlt} className='fas mr-2' />
-                                                                        {new Date(n.createdAt).toUTCString().slice(0, 17)}
-                                                                    </time>
-                                                                </div>
-                                                                <div className="postcard__bar"></div>
-                                                                <div className="postcard__preview-txt">
-                                                                    {n.content.slice(0, 240)}
-                                                                </div>
-                                                                <ul className="postcard__tagbox">
-                                                                    <li className="tag__item">
-                                                                        <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
-                                                                        <span>
-                                                                            <Link to={'/news/' + n._id}>
-                                                                                Read more
-                                                                            </Link>
-                                                                        </span>
-                                                                    </li>
-                                                                    <li className="tag__item">
-                                                                        <FontAwesomeIcon icon={faClock} className='fas mr-2' />
-                                                                        <ReactTimeAgo date={n.createdAt} />
-                                                                    </li>
-                                                                </ul>
+                                                    <article className="postcard dark yellow" key={n._id}>
+                                                        <Link to={'/news/' + n._id} className="postcard__img_link" >
+                                                            <img className="postcard__img"
+                                                                src={file + n.image} alt='error in loading' />
+                                                        </Link>
+                                                        <div className="postcard__text">
+                                                            <Link to={'/news/' + n._id}>
+                                                                <h1 className="postcard__title yellow">
+
+                                                                    {n.title}
+                                                                </h1>
+                                                            </Link>
+                                                            <div className="postcard__subtitle small">
+                                                                <time datetime="2020-05-25 12:00:00">
+                                                                    <FontAwesomeIcon icon={faCalendarAlt} className='fas mr-2' />
+                                                                    {new Date(n.createdAt).toUTCString().slice(0, 17)}
+                                                                </time>
                                                             </div>
-                                                        </article>
-                                                    )
-                                                })
+                                                            <div className="postcard__bar"></div>
+                                                            <div className="postcard__preview-txt">
+                                                                {n.content.slice(0, 240)}
+                                                            </div>
+                                                            <ul className="postcard__tagbox">
+                                                                <li className="tag__item">
+                                                                    <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
+                                                                    <span>
+                                                                        <Link to={'/news/' + n._id}>
+                                                                            Read more
+                                                                        </Link>
+                                                                    </span>
+                                                                </li>
+                                                                <li className="tag__item">
+                                                                    <FontAwesomeIcon icon={faClock} className='fas mr-2' />
+                                                                    <ReactTimeAgo date={n.createdAt} />
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </article>
+
+                                                )
                                             }
 
 
@@ -154,15 +158,25 @@ function Home() {
                                 </div>
                     }
                     {/* some importnt links */}
-                    <div className="col-lg-12">
-                        <div className="buttons">
-                            <h1 className='text-center'> important links</h1>
-                            <button className="fill">www.moctgaller.gov.et</button>
-                            <button className="pulse">www.moctgaller.gov.et</button>
-                            <button className="raise">www.moctgaller.gov.et</button>
-                            <button className="up">www.moctgaller.gov.et</button>
-                            <button className="slide">www.moctgaller.gov.et</button>
-                            <button className="fill">www.moctgaller.gov.et</button>
+                    <div className="col-lg-12 ">
+                        <div className="buttons text-center">
+                            <h1 className='text-center my-2'> important links</h1>
+                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
+                                <button className="fill h6">www.moctgaller.gov.et</button>
+                            </a>
+                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
+                                <button className="pulse h6">www.moctgaller.gov.et</button>
+                            </a>
+                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
+                                <button className="raise h6">www.moctgaller.gov.et</button>
+                            </a>
+                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
+                                <button className="up h6">www.moctgaller.gov.et</button>
+                            </a>
+                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
+                                <button className="slider h6">www.moctgaller.gov.et</button>
+                            </a>
+
                         </div>
                     </div>
                 </div>

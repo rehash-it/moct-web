@@ -122,7 +122,8 @@ function AddNews({ fetch }) {
                                                 className='form-control'
                                                 id='endDate'
                                                 required={true}
-                                                min={dateFormat(Date.now())}
+
+                                                min={new Date().toISOString().split("T")[0]}
                                                 onChange={handleChange} />
                                         </div>
                                     </div>
@@ -135,6 +136,7 @@ function AddNews({ fetch }) {
                                                 className='form-control'
                                                 id='image'
                                                 onChange={handleFile}
+                                                required={true}
                                             />
                                         </div>
                                         <div className="card">

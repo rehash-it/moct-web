@@ -40,7 +40,7 @@ const Vacancy = ({ location }) => {
                             <div className="row">
                                 <div className="col-lg-12">
                                     <h1 className="text-center ">
-                                        Our company will like to hire the following employees with thier sepicified fields
+                                        Vacancies
                                     </h1>
                                 </div>
                                 <div className="col-lg-12 mt-3">
@@ -54,7 +54,6 @@ const Vacancy = ({ location }) => {
                                                 <th>Work experience</th>
                                                 <th>Required in quantity</th>
                                                 <th>Dead line</th>
-                                                <th>Options</th>
                                             </tr>
                                         </MDBTableHead>
                                         <MDBTableBody >
@@ -71,14 +70,7 @@ const Vacancy = ({ location }) => {
                                                                 <td>{v.experience}</td>
                                                                 <td>{v.quantity}</td>
                                                                 <td>{tellDate(v.endDate)}</td>
-                                                                <td>
-                                                                    <Link to={'/apply/' + v._id}>
-                                                                        <button className="btn btn-primary">
-                                                                            <FontAwesomeIcon icon={faForward} />
-                                                                            Apply
-                                                                        </button>
-                                                                    </Link>
-                                                                </td>
+
                                                             </tr>
 
                                                         )

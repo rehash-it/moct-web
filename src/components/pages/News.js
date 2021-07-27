@@ -54,26 +54,26 @@ function News({ location }) {
                                         dimesion.width > 680 ?
 
                                             <div className="col-lg-12">
-                                                <div class="news-container">
-                                                    <div class="wrapper">
+                                                <div className="news-container">
+                                                    <div className="wrapper">
                                                         {/**display news */}
                                                         {
                                                             news.slice(0, 2).map(n => {
                                                                 return (
                                                                     <Link to={'/news/' + n._id} key={n._id}>
-                                                                        <div class="news-list">
-                                                                            <div class="news-item">
-                                                                                <div class="news-image">
+                                                                        <div className="news-list">
+                                                                            <div className="news-item">
+                                                                                <div className="news-image">
                                                                                     <img src={file + n.image} alt="sample66" width={dimesion.width > 680 ? 750 : 700}
                                                                                         style={{ height: 260, objectFit: 'cover' }} />
                                                                                 </div>
-                                                                                <div class="news-content">
-                                                                                    <h3 class="news-title">{n.title}</h3>
-                                                                                    <p class="news-description h6">
+                                                                                <div className="news-content">
+                                                                                    <h3 className="news-title">{n.title}</h3>
+                                                                                    <p className="news-description h6">
                                                                                         {n.content.slice(0, 50) + '...'}
                                                                                     </p>
 
-                                                                                    <a class="news-button text-dark h6">
+                                                                                    <a className="news-button text-dark h6">
                                                                                         Read more
                                                                                     </a>
                                                                                 </div>
@@ -97,14 +97,14 @@ function News({ location }) {
                                             <div className="col-lg-4">
                                                 <Link to={'/news/' + n._id} key={n._id}>
 
-                                                    <figure class="snip1208">
+                                                    <figure className="snip1208">
                                                         <img src={file + n.image} alt="sample66" />
-                                                        <div class="date">
-                                                            <span class="day">
+                                                        <div className="date">
+                                                            <span className="day">
                                                                 {tellDay(n.createdAt).date}
-                                                            </span><span class="month">{
+                                                            </span><span className="month">{
                                                                 tellDay(n.createdAt).month
-                                                            }</span></div><i class="ion-film-marker"></i>
+                                                            }</span></div><i className="ion-film-marker"></i>
                                                         <figcaption>
                                                             <h5>{n.title}</h5>
                                                             <p>
@@ -124,13 +124,14 @@ function News({ location }) {
                                 </div>
 
                             </div> :
-                            <div className="container mt-4">
+                            <div className="container mt-4" style={{ minHeight: '100vh' }}>
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <h4 className="text-center">
+                                        <h1 className="text-center">
                                             <FontAwesomeIcon icon={faNewspaper} className='mx-2' />
-                                            No news yet
-                                        </h4>
+
+                                            No news  registered yet
+                                        </h1>
                                     </div>
                                 </div>
                             </div>

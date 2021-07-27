@@ -39,24 +39,7 @@ const CarouseL = ({ items }) => {
         setActiveIndex(newIndex);
     }
 
-    const slides = items.map((item) => {
-        return (
-            <CarouselItem
-                onExiting={() => setAnimating(true)}
-                onExited={() => setAnimating(false)}
-                key={item.src}
-            >
-                {
-                    windowDimensions.width > 680 ? <img src={item.src} alt={item.altText} style={{
-                        minHeight: '85vh', objectFit: 'cover', width: '100%'
-                    }} /> :
-                        <img src={item.src} alt={item.altText} />
-                }
 
-                <CarouselCaption captionText={item.caption} captionHeader={item.altText} />
-            </CarouselItem>
-        );
-    });
 
     return (
         <Carousel
@@ -65,7 +48,30 @@ const CarouseL = ({ items }) => {
             previous={previous}
         >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-            {slides}
+            {
+                items.map((item) => {
+                    return (
+                        <CarouselItem
+                            onExiting={() => setAnimating(true)}
+                            onExited={() => setAnimating(false)}
+                            key={item.src}
+                        >
+                            {
+                                windowDimensions.width > 680 ? <img src={item.src} alt={item.altText} style={{
+                                    minHeight: '85vh', objectFit: 'cover', width: '100%', backgroundColor: '#17181c', opacity: 0.6
+                                }} /> :
+                                    <img src={item.src} alt={item.altText}
+                                        style={{
+                                            minHeight: '60vh', objectFit: 'cover', backgroundColor: '#17181c'
+                                        }}
+                                    />
+                            }
+
+                            <CarouselCaption captionText={item.caption} captionHeader={item.altText} />
+                        </CarouselItem>
+                    );
+                })
+            }
             <CarouselControl direction="prev" directionText="" onClickHandler={previous} />
             <CarouselControl direction="next" directionText="" onClickHandler={next} />
         </Carousel>

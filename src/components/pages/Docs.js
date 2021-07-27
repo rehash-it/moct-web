@@ -8,8 +8,10 @@ import Footer from '../layouts/Footer'
 import Navbar from '../layouts/navbar'
 import { pageCalculate, Scroll } from '../utility/general'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faFile, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import Paginate from './Paginate'
+import { CSSTransition } from 'react-transition-group';
+
 function Docs({ location }) {
     const [collapse, setCollapse] = useState([])
     const [research, setResearch] = useState({
@@ -23,14 +25,14 @@ function Docs({ location }) {
     const page = pageCalculate(9, length)
     useEffect(() => {
         Scroll('top')
-        datasDispatch(setResearch, { page: Page, limit: 9, url: 'docs' })
+        datasDispatch(setResearch, { page: Page, limit: 9, url: 'docs', admin: false })
     }, [Page])
     const isCollapsed = id => collapse.find(c => c === id) ? false : true
 
     const Collapse = id => isCollapsed(id) ?
         setCollapse(s => ([...s, id])) :
         setCollapse(s => s.filter(d => d !== id))
-
+    const [inProp, setInProp] = useState(false);
 
     return (
         <>
@@ -40,57 +42,72 @@ function Docs({ location }) {
                     <DataLoading /> :
                     error ?
                         <ErrorLoading /> :
-                        <div className="container my-3">
-                            <h1 className="text-center">
-                                Here are some research and studies about Ethiopia
-                            </h1>
-                            <div className="col-lg-12 my-3">
-                                {
-                                    data.map(d =>
-                                        <div className="card bg-dark" key={d._id}>
-                                            <div className="card-header text-white">
+                        data.length ?
+                            <div className="container my-3">
+                                <h1 className="text-center">
+                                    Research and studies
+                                </h1>
+                                <div className="col-lg-12 my-3">
+                                    {
+                                        data.map(d =>
+                                            <div className="card bg-dark" key={d._id}>
+                                                <div className="card-header text-white">
 
-                                                <button className="btn btn-primary" onClick={() => Collapse(d._id)}>
-                                                    {isCollapsed(d._id) ?
-                                                        <FontAwesomeIcon icon={faPlus} />
-                                                        : <FontAwesomeIcon icon={faMinus} />
+                                                    <button className="btn btn-primary" onClick={() => Collapse(d._id)}>
+                                                        {isCollapsed(d._id) ?
+                                                            <FontAwesomeIcon icon={faPlus} />
+                                                            : <FontAwesomeIcon icon={faMinus} />
 
-                                                    }
-                                                </button>
-                                                {d.title}
+                                                        }
+                                                    </button>
+                                                    {d.title}
 
+                                                </div>
+
+                                                {
+                                                    isCollapsed(d._id) ? <p></p> :
+
+                                                        <CSSTransition in={inProp} timeout={300} classNames="my-node">
+                                                            <>
+                                                                <div className="card-body">
+                                                                    {d.description.slice(0, 380) + '...'}
+                                                                </div>
+                                                                <div className="card-footer d-flex justify-content-end">
+                                                                    <Link to={'/docs/' + d._id}>
+                                                                        <button className="btn btn-primary float-right">
+                                                                            Find out more
+                                                                        </button>
+                                                                    </Link>
+                                                                    <button className="btn btn-primary" onClick={() => Collapse(d._id)}>
+                                                                        <FontAwesomeIcon icon={faMinus} />
+                                                                    </button>
+                                                                </div>
+                                                            </>
+                                                        </CSSTransition>
+                                                }
                                             </div>
 
-                                            {
-                                                isCollapsed(d._id) ? <p></p> :
+                                        )
+                                    }
 
-                                                    <>
-                                                        <div className="card-body">
-                                                            {d.description.slice(0, 380) + '...'}
-                                                        </div>
-                                                        <div className="card-footer d-flex justify-content-end">
-                                                            <Link to={'/docs/' + d._id}>
-                                                                <button className="btn btn-primary float-right">
-                                                                    Find out more
-                                                                </button>
-                                                            </Link>
-                                                            <button className="btn btn-primary" onClick={() => Collapse(d._id)}>
-                                                                <FontAwesomeIcon icon={faMinus} />
-                                                            </button>
-                                                        </div>
-                                                    </>
-                                            }
-                                        </div>
+                                </div>
+                                <div className="col-lg-12 d-flex justify-content-center mt-5">
+                                    <Paginate link='docs' page={page} />
+                                </div>
+                            </div> :
+                            <div className="container mt-4" style={{ minHeight: '100vh' }}>
+                                <div className="row">
+                                    <div className="col-lg-12">
+                                        <h1 className="text-center">
+                                            <FontAwesomeIcon icon={faFile} className='mx-2' />
 
-                                    )
-                                }
-
+                                            No news  Studies and research registered yet
+                                        </h1>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
             }
-            <div className="col-lg-12 d-flex justify-content-center mt-5">
-                <Paginate link='docs' page={page} />
-            </div>
+
             <Footer />
         </>
     )

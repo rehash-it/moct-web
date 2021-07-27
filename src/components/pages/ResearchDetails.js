@@ -6,8 +6,10 @@ import { faDownload, faFile } from '@fortawesome/free-solid-svg-icons'
 import { dataDispatch } from '../../store/Actions/dataActions'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { file } from '../../config/config'
+import { CSSTransition } from 'react-transition-group';
+
 const ResearchDetails = ({ match }) => {
     const { id } = match.params
     const [state, setState] = useState({

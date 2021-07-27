@@ -36,6 +36,7 @@ function Dashboard(props) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
     const handleToggle = () => toggle ? setToggle(false) : setToggle(true)
+    const collapse = () => setMenuCollapse(true)
     return (
         token ?
             <div>
@@ -48,6 +49,7 @@ function Dashboard(props) {
                     menuIconClick={menuIconClick}
                     tabs={tabs}
                     setTabs={setTabs}
+                    collapse={collapse}
                 />
                 {
                     dimesion.width >= 768 ? <p></p> :

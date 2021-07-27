@@ -25,7 +25,7 @@ function AdminBids() {
     const [Page, setPage] = useState(1)
     const page = pageCalculate(10, length)
 
-    const fetchDispath = () => datasDispatch(setState, { page: Page, limit: 10, url: 'bid' })
+    const fetchDispath = () => datasDispatch(setState, { page: Page, limit: 10, url: 'bid', admin: true })
 
     useEffect(() => {
         Scroll('top')
@@ -40,15 +40,15 @@ function AdminBids() {
 
                         <div className="container my-4 ml-4" >
                             <div className="row">
-
-                                <div className="col-sm-6 col-md-4 col-lg-6  my-auto">
+                                <div className="col-lg-1"></div>
+                                <div className="col-lg-5  my-auto">
                                     <AddBids fetch={fetchDispath} />
 
                                 </div>
 
-                                <div className="col-sm-6 col-md-4 col-lg-6 my-auto">
-                                    <div className="card bg-primary btn">
-                                        <h2 className='text-white'>Totall registered {length}</h2>
+                                <div className="col-sm-6 col-md-4 col-lg-5 my-auto">
+                                    <div className="card bg-dark">
+                                        <h2 className='text-white text-center'>Totall registered {length}</h2>
                                     </div>
                                 </div>
                                 <div className="col-lg-12 mt-3">
