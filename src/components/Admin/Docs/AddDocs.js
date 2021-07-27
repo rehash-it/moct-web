@@ -97,6 +97,7 @@ function AddDocs({ fetch }) {
                                             <input type='file'
                                                 className='form-control'
                                                 id='file'
+
                                                 onChange={handleFile} />
                                         </div>
                                     </div>

@@ -49,7 +49,11 @@ function EditUser({ fetch, user }) {
 
                 if (req.status === 200) {
                     setSave({ process: '', error: '', success: 'saved successfully' })
-                    setTimeout(() => fetch(), 1000)
+                    setTimeout(() => {
+                        fetch()
+                        toggle()
+                    }, 1000)
+
                 }
                 else {
                     setSave({ process: '', error: 'username or password error please check your old password', success: '' })

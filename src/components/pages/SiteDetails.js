@@ -13,6 +13,7 @@ import { Scroll } from '../utility/general'
 import Carousel from 'react-multi-carousel'
 import { responsive } from '../layouts/carousel'
 import "react-multi-carousel/lib/styles.css";
+import Map from '../layouts/Map'
 function SiteDetails({ match }) {
     const { id } = match.params
     const [sites, setSites] = useState({
@@ -84,15 +85,12 @@ function SiteDetails({ match }) {
 
                                 </div>
                                 <div className="col-lg-12 d-flex justify-content-center mt-5">
-                                    {site.data.location ?
-                                        <a href={site.data.location} target="_blank" rel="noreferrer">
-                                            <h4>
-                                                <FontAwesomeIcon icon={faMapMarker} className='mx-2' />
-
-                                                Get the location on Google maps
-                                            </h4>
-
-                                        </a> :
+                                    {site.data.lat && site.data.lng ?
+                                        <>
+                                            <h1 className="text-center">See on google map</h1>
+                                            <Map center={{ lat: site.data.lat, lng: site.data.lng }} />
+                                        </>
+                                        :
                                         <p></p>
                                     }
                                 </div>

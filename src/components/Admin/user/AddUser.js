@@ -39,7 +39,10 @@ function AddUser({ fetch }) {
                 const req = await axios.post(host + 'user', removeItem(getData(state), 'cpassword'), getHeaders())
                 if (req.status === 200) {
                     setSave({ process: '', error: '', success: 'saved successfully' })
-                    setTimeout(() => { fetch(); toggle() }, 1000)
+                    setTimeout(() => { 
+                        fetch(); 
+                        toggle() 
+                        }, 1000)
                 }
                 else {
                     setSave({ process: '', error: 'can not save data internal server error', success: '' })

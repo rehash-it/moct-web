@@ -11,20 +11,22 @@ import AdminNews from './AdminNews';
 import AdminSite from './AdminSites';
 import AdminResearch from './AdminResearch';
 import { withRouter } from 'react-router-dom';
-import { checkAdmin } from './Auth/ChechAdmin';
+import { checkAdmin, checkToken } from './Auth/ChechAdmin';
 import AdminUser from './AdminUser';
+import Login from './Auth/Login';
 
 function Dashboard(props) {
     const [toggle, setToggle] = useState(false)
+
+    const [token, setToken] = useState(false)
     const [dimesion, setWindowDimensions] = useState(getWindowDimensions());
     //create initial menuCollapse state using useState hook
-    const [menuCollapse, setMenuCollapse] = useState(false)
+    const [menuCollapse, setMenuCollapse] = useState(true)
     const [tabs, setTabs] = useState('main')
     const menuIconClick = () => menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     useEffect(() => {
-
-        checkAdmin(props.history.push)
-    }, [])
+        checkToken(setToken)
+    }, [setToken])
     useEffect(() => {
         function handleResize() {
             setWindowDimensions(getWindowDimensions());
@@ -35,39 +37,41 @@ function Dashboard(props) {
     }, []);
     const handleToggle = () => toggle ? setToggle(false) : setToggle(true)
     return (
-        <div>
-            <NavBar />
+        token ?
+            <div>
+                <NavBar />
 
-            <SideNav
-                handleToggle={handleToggle}
-                toggle={toggle}
-                menuCollapse={menuCollapse}
-                menuIconClick={menuIconClick}
-                tabs={tabs}
-                setTabs={setTabs}
-            />
-            {
-                dimesion.width >= 768 ? <p></p> :
-                    <button className="btn btn-primary" onClick={handleToggle}>
-                        <FontAwesomeIcon icon={faBars} />
-                    </button>
-            }
-            {
-                tabs === 'Vacancy' ?
-                    <AdminVacancy /> :
-                    tabs === 'Bids' ?
-                        <AdminBids /> :
-                        tabs === 'News' ?
-                            <AdminNews /> :
-                            tabs === 'Sites' ?
-                                <AdminSite /> :
-                                tabs === 'Studies' ?
-                                    <AdminResearch /> :
-                                    tabs === 'Users' ?
-                                        <AdminUser /> :
-                                        <p></p>
-            }
-        </div>
+                <SideNav
+                    handleToggle={handleToggle}
+                    toggle={toggle}
+                    menuCollapse={menuCollapse}
+                    menuIconClick={menuIconClick}
+                    tabs={tabs}
+                    setTabs={setTabs}
+                />
+                {
+                    dimesion.width >= 768 ? <p></p> :
+                        <button className="btn btn-primary" onClick={handleToggle}>
+                            <FontAwesomeIcon icon={faBars} />
+                        </button>
+                }
+                {
+                    tabs === 'Vacancy' ?
+                        <AdminVacancy /> :
+                        tabs === 'Bids' ?
+                            <AdminBids /> :
+                            tabs === 'News' ?
+                                <AdminNews /> :
+                                tabs === 'Sites' ?
+                                    <AdminSite /> :
+                                    tabs === 'Studies' ?
+                                        <AdminResearch /> :
+                                        tabs === 'Users' ?
+                                            <AdminUser /> :
+                                            <p></p>
+                }
+            </div> :
+            <Login setToken={setToken} />
     );
 }
 

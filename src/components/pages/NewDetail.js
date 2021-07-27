@@ -13,6 +13,9 @@ import ErrorLoading from '../layouts/ErrorLoading'
 import { StoreContext } from '../../context/context'
 import { newsDispatch } from '../../store/Actions/newsActions'
 import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo'
+import { FacebookShareCount, FacebookShareButton, TwitterShareButton, TwitterShareCount } from "react-share";
+import { faShare } from '@fortawesome/free-solid-svg-icons'
+
 const NewDetail = ({ match }) => {
     const id = match.params.id
     const { news: NewS, dispatchNews } = useContext(StoreContext)
@@ -21,6 +24,7 @@ const NewDetail = ({ match }) => {
     const [news, setNews] = useState({})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+    const url = window.location.href
     useEffect(() => {
         try {
             Scroll('top')
@@ -59,8 +63,19 @@ const NewDetail = ({ match }) => {
                                         <ReactTimeAgo date={news.createdAt} />
                                     </p>
                                     <div className="d-flex justify-content-center mb-3" >
-                                        <FontAwesomeIcon icon={faFacebook} className="fa-1x mx-2 text-primary" />
-                                        <FontAwesomeIcon icon={faTwitter} className="fa-1x text-primary" />
+                                        <FontAwesomeIcon icon={faShare} className="fa-1x mx-2 text-primary my-auto" />
+                                        <FacebookShareButton url={url} className='my-auto'>
+                                            <FontAwesomeIcon icon={faFacebook} className="fa-2x mx-2 text-primary" />
+                                            <FacebookShareCount url={url}>
+                                                {shareCount => <span className="myShareCountWrapper">{shareCount}</span>}
+                                            </FacebookShareCount>
+                                        </FacebookShareButton>
+                                        {/* twitter */}
+                                        <TwitterShareButton url={url} className='my-auto'>
+                                            <FontAwesomeIcon icon={faTwitter} className="fa-2x mx-2 text-primary" />
+
+                                        </TwitterShareButton>
+
                                     </div>
 
                                 </div>

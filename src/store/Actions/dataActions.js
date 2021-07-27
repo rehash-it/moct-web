@@ -25,7 +25,6 @@ export const fetchData = async (page, id) => {
  */
 export const datasDispatch = async (setData, { page, limit, url, admin }) => {
     try {
-        console.log(admin)
         setData(s => ({ ...s, loading: true }))
         const Data = await fetchDatas(page, limit, url, admin)
         setData(s => ({

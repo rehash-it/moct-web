@@ -8,7 +8,7 @@ import axios from 'axios';
 import { host } from '../../../config/config';
 import { getData } from '../../../config/headers';
 import { withRouter } from 'react-router-dom';
-function Login({ history }) {
+function Login({ history, setToken }) {
 
     const [state, setState] = useState({
         username: { value: '', active: 'Active' },
@@ -40,7 +40,10 @@ function Login({ history }) {
                 sessionStorage.setItem('x-auth-token', log.data.token)
                 sessionStorage.setItem('id', log.data.id)
                 setSave(s => ({ ...s, error: '', process: '', success: 'Welcome' }))
-                setTimeout(() => history.push('/admin'), 1000)
+                setTimeout(() =>
+                    setToken ? setToken(true) :
+                        history.push('/admin')
+                    , 1000)
             }
             else {
                 setSave({ process: '', error: 'username or password error please enter your name or password carefully', success: '' })

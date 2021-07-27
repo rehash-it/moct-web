@@ -70,11 +70,12 @@ function AdminSite() {
                                                                 <td>{i}</td>
                                                                 <td>{s.title}</td>
                                                                 <td>
-                                                                    <p className='indent'>{s.content}</p>
+                                                                    <p className='indent'>{s.description}</p>
 
                                                                     <div className="d-flex justify-content-end font-italic">
                                                                         region:{s.region} <br />
-                                                                        location:{s.location} <br />
+                                                                        latitude:{s.lat} <br />
+                                                                        longtiude:{s.lng} <br />
                                                                         created At:{tellDate(s.createdAt)} <br />
 
                                                                     </div>

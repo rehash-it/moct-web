@@ -15,7 +15,8 @@ function EditSites({ fetch, site }) {
         title: { value: '', active: false },
         description: { value: '', active: false },
         images: [],
-        location: { value: '', active: false },
+        lat: { value: '', active: false },
+        lng: { value: '', active: false },
         region: { value: '', active: false }
     })
     useEffect(() => {
@@ -74,7 +75,8 @@ function EditSites({ fetch, site }) {
                 data.append('title', state.title.value)
                 data.append('description', state.description.value)
                 data.append('region', state.region.value)
-                data.append('location', state.location.value)
+                data.append('lat', state.lat.value)
+                data.append('lng', state.lng.value)
                 state.images.forEach(i => data.append('images', i.image, i.name))
 
                 setSave(s => ({ ...s, process: 'saving...', error: '', success: '' }))
@@ -159,13 +161,23 @@ function EditSites({ fetch, site }) {
                                     </div>
                                     <div className="my-3">
                                         <div id="float-label">
-                                            <label htmlFor="title" className={state.location.active}>
+                                            <label htmlFor="title" className={state.lat.active}>
                                                 <FontAwesomeIcon icon={faMap} className='mx-2' />
-                                                Google map location(enter link)
+                                                Google map location latitude
                                             </label>
-                                            <input type="text" className='form-control' id='location'
-                                                onChange={handleChange}
-                                                value={state.location.value}
+                                            <input type="text" className='form-control' id='lat'
+                                                onChange={handleChange} value={state.lat.value}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="my-3">
+                                        <div id="float-label">
+                                            <label htmlFor="title" className={state.lng.active}>
+                                                <FontAwesomeIcon icon={faMap} className='mx-2' />
+                                                Google map location longtiude
+                                            </label>
+                                            <input type="text" className='form-control' id='lng'
+                                                onChange={handleChange} value={state.lng.value}
                                             />
                                         </div>
                                     </div>
