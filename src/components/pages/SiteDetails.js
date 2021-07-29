@@ -1,6 +1,4 @@
-import { faMapMarker } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { file } from '../../config/config'
 import { dataDispatch } from '../../store/Actions/dataActions'
@@ -10,10 +8,9 @@ import ErrorLoading from '../layouts/ErrorLoading'
 import Footer from '../layouts/Footer'
 import NavBar from '../layouts/navbar'
 import { Scroll } from '../utility/general'
-import Carousel from 'react-multi-carousel'
-import { responsive } from '../layouts/carousel'
 import "react-multi-carousel/lib/styles.css";
 import Map from '../layouts/Map'
+import { LanguageContext } from '../../context/context'
 function SiteDetails({ match }) {
     const { id } = match.params
     const [sites, setSites] = useState({
@@ -33,7 +30,7 @@ function SiteDetails({ match }) {
         sitesDispatch(setSites, { region: 'All', page: 1, limit: 6 })
         dataDispatch(setSite, { id, page: 'site' })
     }, [id])
-
+    const { t } = useContext(LanguageContext)
     return (
         <>
             <NavBar />
@@ -87,7 +84,7 @@ function SiteDetails({ match }) {
                                 <div className="col-lg-12 d-flex justify-content-center mt-5">
                                     {site.data.lat && site.data.lng ?
                                         <>
-                                            <h1 className="text-center">See on google map</h1>
+                                            <h1 className="text-center">{t('See on google map')}</h1>
                                             <Map center={{ lat: site.data.lat, lng: site.data.lng }} />
                                         </>
                                         :
@@ -95,9 +92,9 @@ function SiteDetails({ match }) {
                                     }
                                 </div>
                                 {sites.data.filter(s => s._id !== id).length >= 2 ?
-                                    <div className="col-lg-12">
+                                    <div className="col-lg-12 mt-3">
                                         <h3 className="text-center">
-                                            Other attraction sites
+                                            {t('Other attraction sites')}
                                         </h3>
                                         <div class="blog-posts">
                                             {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
     Carousel,
     CarouselItem,
@@ -6,6 +6,7 @@ import {
     CarouselIndicators,
     CarouselCaption
 } from 'reactstrap';
+import { LanguageContext } from '../../context/context';
 import { getWindowDimensions } from '../utility/screen';
 
 
@@ -39,7 +40,7 @@ const CarouseL = ({ items }) => {
         setActiveIndex(newIndex);
     }
 
-
+    const { t } = useContext(LanguageContext)
 
     return (
         <Carousel
@@ -67,7 +68,7 @@ const CarouseL = ({ items }) => {
                                     />
                             }
 
-                            <CarouselCaption captionText={item.caption} captionHeader={item.altText} />
+                            <CarouselCaption captionText={t(item.caption)} captionHeader={t(item.altText)} />
                         </CarouselItem>
                     );
                 })

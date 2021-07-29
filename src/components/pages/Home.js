@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt, faClock, faTag } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../layouts/Footer';
-import { StoreContext } from '../../context/context';
+import { LanguageContext, StoreContext } from '../../context/context';
 import { newsDispatch } from '../../store/Actions/newsActions';
 import { DotLoading } from '../layouts/Loading';
 import ErrorLoading from '../layouts/ErrorLoading';
@@ -18,6 +18,7 @@ import { file } from '../../config/config';
 import ReactTimeAgo from 'react-time-ago'
 import { sitesDispatch } from '../../store/Actions/fetchSites';
 import DataLoading from '../layouts/DataLoading';
+import { tellDate } from '../utility/Date';
 const items = [
     {
         src: Ertale,
@@ -53,7 +54,7 @@ function Home() {
 
     }, [])
     const [news] = NewS
-
+    const { t } = useContext(LanguageContext)
     return (
         <>
             <NavBar />
@@ -64,7 +65,7 @@ function Home() {
                     {/**sites */}
                     <div className="col-lg-12">
                         {sites.data.slice(0, 6).length ?
-                            <h1 className="text-center text-white my-3">Attraction sites</h1> :
+                            <h1 className="text-center text-white my-3">{t('Attraction sites')}</h1> :
                             <p></p>
                         } {
                             sites.loading ? <DataLoading /> :
@@ -103,7 +104,7 @@ function Home() {
                                     <div className="dark">
                                         <main className="container">
                                             {news.slice(0, 4).length ?
-                                                <div className="h1 text-center" id="pageHeaderTitle">News</div> :
+                                                <div className="h1 text-center" id="pageHeaderTitle">{t('News')}</div> :
                                                 <p></p>
                                             }{
                                                 news.slice(0, 4).map(n =>
@@ -122,8 +123,8 @@ function Home() {
                                                             </Link>
                                                             <div className="postcard__subtitle small">
                                                                 <time datetime="2020-05-25 12:00:00">
-                                                                    <FontAwesomeIcon icon={faCalendarAlt} className='fas mr-2' />
-                                                                    {new Date(n.createdAt).toUTCString().slice(0, 17)}
+                                                                    <FontAwesomeIcon icon={faCalendarAlt} className='fas mx-2' />
+                                                                    {tellDate(n.createdAt)}
                                                                 </time>
                                                             </div>
                                                             <div className="postcard__bar"></div>
@@ -135,7 +136,7 @@ function Home() {
                                                                     <FontAwesomeIcon icon={faTag} className="fas fa-calendar-alt mr-2" />
                                                                     <span>
                                                                         <Link to={'/news/' + n._id}>
-                                                                            Read more
+                                                                            {t('Read more')}
                                                                         </Link>
                                                                     </span>
                                                                 </li>
@@ -160,7 +161,7 @@ function Home() {
                     {/* some importnt links */}
                     <div className="col-lg-12 ">
                         <div className="buttons text-center">
-                            <h1 className='text-center my-2'> important links</h1>
+                            <h1 className='text-center my-2'>{t('important links')} </h1>
                             <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
                                 <button className="fill h6">www.moctgaller.gov.et</button>
                             </a>

@@ -5,11 +5,11 @@ import { getWindowDimensions } from '../utility/screen'
 import Footer from '../layouts/Footer'
 import { Link, withRouter } from 'react-router-dom'
 import { getPage } from '../../utility/route'
-import { StoreContext } from '../../context/context'
+import { LanguageContext, StoreContext } from '../../context/context'
 import { newsDispatch } from '../../store/Actions/newsActions'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
-import { file } from '../../config/config'
+import { file, mapApi } from '../../config/config'
 import { tellDay } from '../utility/Date'
 import { pageCalculate, Scroll } from '../utility/general'
 import Paginate from './Paginate'
@@ -39,6 +39,7 @@ function News({ location }) {
     const [news, length] = newS
     //paginationm
     const page = pageCalculate(8, news ? news.length : 0)
+    const { t } = useContext(LanguageContext)
 
     return (
         <>
@@ -63,10 +64,15 @@ function News({ location }) {
                                                                     <Link to={'/news/' + n._id} key={n._id}>
                                                                         <div className="news-list">
                                                                             <div className="news-item">
-                                                                                <div className="news-image">
-                                                                                    <img src={file + n.image} alt="sample66" width={dimesion.width > 680 ? 750 : 700}
-                                                                                        style={{ height: 260, objectFit: 'cover' }} />
-                                                                                </div>
+                                                                                {
+                                                                                    n.image ?
+
+                                                                                        <div className="news-image">
+
+                                                                                            <img src={file + n.image} alt="sample66" width={dimesion.width > 680 ? 750 : 700}
+                                                                                                style={{ height: 260, objectFit: 'cover' }} />
+                                                                                        </div> : ''
+                                                                                }
                                                                                 <div className="news-content">
                                                                                     <h3 className="news-title">{n.title}</h3>
                                                                                     <p className="news-description h6">
@@ -74,7 +80,7 @@ function News({ location }) {
                                                                                     </p>
 
                                                                                     <a className="news-button text-dark h6">
-                                                                                        Read more
+                                                                                        {t('Read more')}
                                                                                     </a>
                                                                                 </div>
 
@@ -98,19 +104,23 @@ function News({ location }) {
                                                 <Link to={'/news/' + n._id} key={n._id}>
 
                                                     <figure className="snip1208">
-                                                        <img src={file + n.image} alt="sample66" />
-                                                        <div className="date">
-                                                            <span className="day">
-                                                                {tellDay(n.createdAt).date}
-                                                            </span><span className="month">{
-                                                                tellDay(n.createdAt).month
-                                                            }</span></div><i className="ion-film-marker"></i>
+                                                        {n.image ? <img src={file + n.image} alt="sample66" /> : ''}
+                                                        {n.image ?
+                                                            <div className="date">
+                                                                <span className="day">
+                                                                    {tellDay(n.createdAt).date}
+                                                                </span><span className="month">{
+                                                                    tellDay(n.createdAt).month
+                                                                }</span>
+                                                            </div> : ''
+                                                        }
+                                                        <i className="ion-film-marker"></i>
                                                         <figcaption>
                                                             <h5>{n.title}</h5>
                                                             <p>
                                                                 {n.content.slice(0, 50) + '...'}
                                                             </p>
-                                                            <button>Read More</button>
+                                                            <button> {t('Read more')}</button>
                                                         </figcaption>
                                                     </figure>
                                                 </Link>
@@ -130,7 +140,7 @@ function News({ location }) {
                                         <h1 className="text-center">
                                             <FontAwesomeIcon icon={faNewspaper} className='mx-2' />
 
-                                            No news  registered yet
+                                            {t('No news  registered yet')}
                                         </h1>
                                     </div>
                                 </div>

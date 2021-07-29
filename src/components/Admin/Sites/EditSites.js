@@ -156,6 +156,7 @@ function EditSites({ fetch, site }) {
                                                 <option value="Somalia">Somalia</option>
                                                 <option value="A.A">Addis Ababa</option>
                                                 <option value="Tigrai">Tigrai</option>
+                                                <option value="gumuz">Bensahangul gumuz</option>
                                             </select>
                                         </div>
                                     </div>

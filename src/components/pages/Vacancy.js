@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Footer from '../layouts/Footer'
 import NavBar from '../layouts/navbar'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
@@ -13,6 +13,7 @@ import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
 import { tellDate } from '../utility/Date'
 import { FaThermometerEmpty } from 'react-icons/fa'
+import { LanguageContext } from '../../context/context'
 const Vacancy = ({ location }) => {
     const [state, setState] = useState({
         loading: true,
@@ -28,6 +29,7 @@ const Vacancy = ({ location }) => {
         Scroll('top')
         datasDispatch(setState, { page: Page, limit: 10, url: 'vacancy' })
     }, [Page])
+    const { t } = useContext(LanguageContext)
     return (
         <>
             <NavBar />
@@ -40,7 +42,7 @@ const Vacancy = ({ location }) => {
                             <div className="row">
                                 <div className="col-lg-12">
                                     <h1 className="text-center ">
-                                        Vacancies
+                                        {t('Vacancies')}
                                     </h1>
                                 </div>
                                 <div className="col-lg-12 mt-3">
@@ -48,10 +50,10 @@ const Vacancy = ({ location }) => {
                                         <MDBTableHead textWhite>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Job title</th>
-                                                <th>Job description</th>
-                                                <th>Skills</th>
-                                                <th>Work experience</th>
+                                                <th>{t('Job title')}</th>
+                                                <th>{t('Job description')}</th>
+                                                <th>{t('Skills')}</th>
+                                                <th>{t('Work experience')}</th>
                                                 <th>Required in quantity</th>
                                                 <th>Dead line</th>
                                             </tr>
@@ -79,7 +81,7 @@ const Vacancy = ({ location }) => {
                                                         <td colSpan={7}>
                                                             <h3 className='text-white text-center'>
                                                                 <FontAwesomeIcon icon={FaThermometerEmpty} className='text-white' />
-                                                                No Vacanices registered yet
+                                                                {t('No Vacanices registered yet')}
                                                             </h3>
                                                         </td>
                                                     </tr>

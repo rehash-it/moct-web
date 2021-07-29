@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Footer from '../layouts/Footer'
 import Navbar from '../layouts/navbar'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
@@ -12,6 +12,7 @@ import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
 import Paginate from './Paginate'
 import { file } from '../../config/config'
+import { LanguageContext } from '../../context/context'
 function Bids({ location }) {
     const [state, setState] = useState({
         loading: true,
@@ -23,6 +24,7 @@ function Bids({ location }) {
     const { loading, error, data, length } = state
     let page = pageCalculate(15, length)
     useEffect(() => datasDispatch(setState, { page, limit: 15, url: 'bid', admin: false }), [page])
+    const { t } = useContext(LanguageContext)
     return (
         <>
             <Navbar />
@@ -32,15 +34,15 @@ function Bids({ location }) {
 
                         <div className="container my-3">
                             <div className="col-lg-12">
-                                <h1>Bids</h1>
+                                <h1>{t('Bids')}</h1>
                                 <MDBTable className='my-3' responsive={true} bordered={true} >
                                     <MDBTableHead className='text-center' textWhite>
                                         <tr>
                                             <th>#</th>
-                                            <th>Title</th>
-                                            <th>Instruction</th>
-                                            <th>File and explanation</th>
-                                            <th>Dead line</th>
+                                            <th>{t('Title')}</th>
+                                            <th>{t('Instruction')}</th>
+                                            <th>{t('File and explanation')}</th>
+                                            <th>{t('Dead line')}</th>
 
                                         </tr>
                                     </MDBTableHead>
@@ -69,7 +71,7 @@ function Bids({ location }) {
                                                     <td colSpan={6} className="td text-center">
                                                         <h3>
                                                             <FontAwesomeIcon icon={faThermometerEmpty} className='fa-2x mx-2' />
-                                                            No bids registered  yet
+                                                            {t('No bids registered  yet')}
 
                                                         </h3>
                                                     </td>

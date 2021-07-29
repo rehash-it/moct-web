@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
     Collapse,
@@ -18,9 +18,13 @@ import logo from '../../images/ET-emblem.png'
 import { getWindowDimensions } from '../utility/screen';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
-const NavBar = (props) => {
+import { LanguageContext } from '../../context/context';
+import { changeLanguage } from '../../translation/i18n';
+const NavBar = ({ match }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState(false)
+    const path = (match.path.split('/')[1])
+
     const toggle = () => setIsOpen(!isOpen);
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
     useEffect(() => {
@@ -38,6 +42,16 @@ const NavBar = (props) => {
     }, [])
 
     const displaySearch = () => setSearch(!search)
+    /**language */
+    const { t } = useContext(LanguageContext)
+    const lng = localStorage.getItem('lng')
+    /**about change */
+    const About = () => localStorage.getItem('about') &&
+        ((path === 'about') || (path === 'messageOfMoct') || (path === 'history') || (path === 'chart')) ? localStorage.getItem('about') : 'About'
+    const changeAbout = (about) => localStorage.setItem('about', about)
+    /**site change */
+    const site = () => localStorage.getItem('site') && (path === 'sites') ? localStorage.getItem('site') : 'Attraction sites'
+    const changeSite = (site) => localStorage.setItem('site', site)
     return (
         <Navbar color='dark' expand="md" style={{ height: windowDimensions.width > 680 ? '15vh' : '' }} id='top' >
             <Link to='/'>
@@ -54,7 +68,7 @@ const NavBar = (props) => {
                     <Link to='/'>
                         <NavItem>
                             <NavLink>
-                                <h6 className='text-raise'>Home</h6>
+                                <h6 className='text-raise'>{t('Home')}</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
@@ -62,7 +76,7 @@ const NavBar = (props) => {
                     <Link to='/news'>
                         <NavItem>
                             <NavLink>
-                                <h6 className='text-raise'>News</h6>
+                                <h6 className='text-raise'> {t('News')}</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
@@ -70,21 +84,21 @@ const NavBar = (props) => {
                     <Link to='/vacancy'>
                         <NavItem>
                             <NavLink>
-                                <h6 className='text-raise'>Vacancy</h6>
+                                <h6 className='text-raise'>{t('Vacancy')}</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
                     <Link to='/bids'>
                         <NavItem>
                             <NavLink>
-                                <h6 className='text-raise'>Bids</h6>
+                                <h6 className='text-raise'> {t('Bids')}</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
                     <Link to='/docs'>
                         <NavItem>
                             <NavLink>
-                                <h6 className='text-raise'>Research</h6>
+                                <h6 className='text-raise'>{t('Research')}</h6>
                             </NavLink>
                         </NavItem>
                     </Link>
@@ -92,67 +106,72 @@ const NavBar = (props) => {
                     <UncontrolledDropdown nav inNavbar>
                         <h6>
                             <DropdownToggle nav caret className='text-raise h6'>
-                                Attraction sites
+                                {t(site())}
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <Link to='/sites?region=All'>
-                                    <DropdownItem className='text-raise h6'>
-                                        All
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('All')}>
+                                        {t('All')}
                                     </DropdownItem >
                                 </Link>
                                 <Link to='/sites?region=Oromia'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Oromia region
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Oromia')}>
+                                        {t('Oromia')}  {t('region')}
                                     </DropdownItem >
                                 </Link>
                                 <Link to='/sites?region=Amhara'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Amhara region
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Amhara')}>
+                                        {t('Amhara')}  {t('region')}
                                     </DropdownItem >
                                 </Link>
                                 <Link to='/sites?region=Harari'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Harari region
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Harari')}>
+                                        {t('Harari')}  {t('region')}
                                     </DropdownItem >
                                 </Link>
-                                <Link to='/sites?region=Snppr'>
+                                <Link to='/sites?region=Snppr' onClick={() => changeSite('SNNPR')}>
                                     <DropdownItem className='text-raise h6'>
-                                        Snppr region
+                                        {t('SNNPR')}  {t('region')}
                                     </DropdownItem>
                                 </Link>
                                 <Link to='/sites?region=Afar'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Afar region
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Afar')}>
+                                        {t('Afar')}  {t('region')}
                                     </DropdownItem>
                                 </Link>
                                 <Link to='/sites?region=Sidama'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Siadama region
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Sidama')}>
+                                        {t('Sidama')} {t('region')}
                                     </DropdownItem>
                                 </Link>
                                 <Link to='/sites?region=Diredewa'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Diredewa region
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Diredewa')}>
+                                        {t('Diredewa')}  {t('region')}
                                     </DropdownItem >
                                 </Link>
                                 <Link to='/sites?region=Gambela'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Gambela
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Gambela')}>
+                                        {t('Gambela')}  {t('region')}
                                     </DropdownItem >
                                 </Link>
                                 <Link to='/sites?region=Somalia'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Somali region
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Somali')}>
+                                        {t('Somali')}  {t('region')}
                                     </DropdownItem >
                                 </Link>
                                 <Link to='/sites?region=A.A'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Addis Ababa city
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Addis Ababa city')}>
+                                        {t('Addis Ababa city')}
                                     </DropdownItem >
                                 </Link>
                                 <Link to='/sites?region=Tigrai'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Tigrai region
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Tigrai')}>
+                                        {t('Tigrai')}  {t('region')}
+                                    </DropdownItem >
+                                </Link>
+                                <Link to='/sites?region=gumuz'>
+                                    <DropdownItem className='text-raise h6' onClick={() => changeSite('Bensahangul gumuz')}>
+                                        {t('Bensahangul gumuz')}  {t('region')}
                                     </DropdownItem >
                                 </Link>
                             </DropdownMenu>
@@ -161,27 +180,27 @@ const NavBar = (props) => {
                     <UncontrolledDropdown nav inNavbar>
                         <h6>
                             <DropdownToggle nav caret className='text-raise h6'>
-                                About
+                                {t(About())}
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <Link to='/about'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Vision
+                                    <DropdownItem className='text-raise h6' onClick={() => changeAbout('Vision')}>
+                                        {t('Vision')}
                                     </DropdownItem >
                                 </Link>
                                 <Link to='/history'>
-                                    <DropdownItem className='text-raise h6'>
-                                        History and background
+                                    <DropdownItem className='text-raise h6' onClick={() => changeAbout('Historical Background')}>
+                                        {t('Historical Background')}
                                     </DropdownItem >
                                 </Link>
                                 <Link to='/messageOfMoct'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Message from the organizarion
+                                    <DropdownItem className='text-raise h6' onClick={() => changeAbout('Message of Moct')}>
+                                        {t('Message of Moct')}
                                     </DropdownItem>
                                 </Link>
                                 <Link to='/chart'>
-                                    <DropdownItem className='text-raise h6'>
-                                        Organization Chart
+                                    <DropdownItem className='text-raise h6' onClick={() => changeAbout('Organization Chart')}>
+                                        {t('Organization Chart')}
                                     </DropdownItem>
                                 </Link>
                             </DropdownMenu>
@@ -190,16 +209,15 @@ const NavBar = (props) => {
                     <UncontrolledDropdown nav inNavbar>
                         <h6 className='text-raise'>
                             <DropdownToggle nav caret className='text-raise h6'>
-                                Language
+                                {t(lng === 'amh' ? 'Amharic' : 'English')}
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem className='text-raise'>
-                                    Amharic
+                                <DropdownItem className='text-raise' onClick={() => changeLanguage('amh')}>
+                                    {t('Amharic')}
                                 </DropdownItem >
-                                <DropdownItem className='text-raise'>
-                                    oromifa
-                                </DropdownItem>
-
+                                <DropdownItem className='text-raise' onClick={() => changeLanguage('eng')}>
+                                    {t('English')}
+                                </DropdownItem >
                             </DropdownMenu>
                         </h6>
                     </UncontrolledDropdown>

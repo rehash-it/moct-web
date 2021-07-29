@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../../styles/footer.css'
-import logo from '../../images/moct-logo-2.png'
 import Logo from '../../images/ET-emblem.png'
-import ReactRoundedImage from "react-rounded-image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
+import { LanguageContext } from '../../context/context';
 function Footer() {
+    const { t } = useContext(LanguageContext)
     return (
         <div className="container-fluiD pb-0 mb-0 justify-content-center text-light ">
             <footer>
@@ -18,21 +18,21 @@ function Footer() {
                                 <img src={Logo} alt="" style={{ border: 'none' }} />
                             </div>
                             <div className="col-xl-2 col-md-4 col-sm-4 col-12">
-                                <h4 className="mb-3 mb-lg-4 bold-text "><b>MENU</b></h4>
+                                <h4 className="mb-3 mb-lg-4 bold-text "><b>{t('MENU')}</b></h4>
                                 <Link to='/'>
-                                    <h6>Home</h6>
+                                    <h6>{t('Home')}</h6>
                                 </Link>
                                 <Link to='/about'>
-                                    <h6>About</h6>
+                                    <h6>{t('About')}</h6>
                                 </Link>
                                 <Link to='/docs'>
-                                    <h6>Research and studies</h6>
+                                    <h6>{t('Research and studies')}</h6>
                                 </Link>
                             </div>
                             <div className="col-xl-2 col-md-4 col-sm-4 col-12">
-                                <h6 className="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>ADDRESS</b></h6>
-                                <p className="mb-1">605, Addis Ababa</p>
-                                <p>Ethiopia</p>
+                                <h6 className="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>{t('ADDRESS')}</b></h6>
+                                <p className="mb-1">605, {t('Addis Ababa')}</p>
+                                <p>{t('Ethiopia')}</p>
                             </div>
                         </div>
                         <div className="row ">
@@ -47,7 +47,7 @@ function Footer() {
                                 </p>
 
                                 <small className="rights"><span>&#174;
-                                </span> Moct All Rights Reserved.</small>
+                                </span> {t('Moct All Rights Reserved')}.</small>
                             </div>
                             <div className="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end ">
                                 <h6 className="mt-55 mt-2 text-muted bold-text"><b>Moct Admin</b></h6><small> <span><i className="fa fa-envelope" aria-hidden="true"></i></span> admin@moct.com</small>

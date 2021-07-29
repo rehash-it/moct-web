@@ -5,7 +5,7 @@ import App from './App';
 import en from 'javascript-time-ago/locale/en'
 import ru from 'javascript-time-ago/locale/ru'
 import TimeAgo from 'javascript-time-ago'
-
+import './translation/i18n'
 TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
 ReactDOM.render(

@@ -10,11 +10,12 @@ import axios from 'axios'
 import { file, host } from '../../config/config'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
-import { StoreContext } from '../../context/context'
+import { LanguageContext, StoreContext } from '../../context/context'
 import { newsDispatch } from '../../store/Actions/newsActions'
 import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo'
 import { FacebookShareCount, FacebookShareButton, TwitterShareButton, TwitterShareCount } from "react-share";
 import { faShare } from '@fortawesome/free-solid-svg-icons'
+import { tellDate } from '../utility/Date'
 
 const NewDetail = ({ match }) => {
     const id = match.params.id
@@ -43,6 +44,7 @@ const NewDetail = ({ match }) => {
             setError(true)
         }
     }, [id])
+    const { t } = useContext(LanguageContext)
     return (
         <>
             <NavBar />
@@ -57,36 +59,61 @@ const NewDetail = ({ match }) => {
                                 <div className="col-lg-12 my-2">
                                     <h1>{news.title}</h1>
                                 </div>
-                                <div className="col-lg-7 justify-content-end">
-                                    <img src={file + news.image} width={600} alt="" className="img-fluid" style={{ objectFit: 'cover' }} />
-                                    <p className="small float-right my-2">
-                                        <ReactTimeAgo date={news.createdAt} />
-                                    </p>
-                                    <div className="d-flex justify-content-center mb-3" >
-                                        <FontAwesomeIcon icon={faShare} className="fa-1x mx-2 text-primary my-auto" />
-                                        <FacebookShareButton url={url} className='my-auto'>
-                                            <FontAwesomeIcon icon={faFacebook} className="fa-2x mx-2 text-primary" />
-                                            <FacebookShareCount url={url}>
-                                                {shareCount => <span className="myShareCountWrapper">{shareCount}</span>}
-                                            </FacebookShareCount>
-                                        </FacebookShareButton>
-                                        {/* twitter */}
-                                        <TwitterShareButton url={url} className='my-auto'>
-                                            <FontAwesomeIcon icon={faTwitter} className="fa-2x mx-2 text-primary" />
+                                {news.image ?
+                                    <div className="col-lg-7 justify-content-end">
+                                        <img src={file + news.image} width={600} alt="" className="img-fluid" style={{ objectFit: 'cover' }} />
+                                        <p className="small float-right my-2">
+                                            <ReactTimeAgo date={news.createdAt} />
+                                        </p>
+                                        <div className="d-flex justify-content-center mb-3" >
+                                            <FontAwesomeIcon icon={faShare} className="fa-1x mx-2 text-primary my-auto" />
+                                            <FacebookShareButton url={url} className='my-auto'>
+                                                <FontAwesomeIcon icon={faFacebook} className="fa-2x mx-2 text-primary" />
+                                                <FacebookShareCount url={url}>
+                                                    {shareCount => <span className="myShareCountWrapper">{shareCount}</span>}
+                                                </FacebookShareCount>
+                                            </FacebookShareButton>
+                                            {/* twitter */}
+                                            <TwitterShareButton url={url} className='my-auto'>
+                                                <FontAwesomeIcon icon={faTwitter} className="fa-2x mx-2 text-primary" />
 
-                                        </TwitterShareButton>
+                                            </TwitterShareButton>
 
-                                    </div>
+                                        </div>
 
-                                </div>
-                                <div className="col-lg-5">
-                                    <p className="indent text-white h5" style={{ textAlign: 'justify' }}>
-                                        {news.content}
-                                    </p>
-                                </div>
+                                    </div> : ''
+                                }
+                                {
+                                    news.image ?
 
+                                        <div className="col-lg-5">
+                                            <p className="indent text-white h5" style={{ textAlign: 'justify' }}>
+                                                {news.content}
+                                            </p>
+                                        </div> :
+                                        <div className="col-lg-12">
+                                            <p className="indent text-white h5" style={{ textAlign: 'justify' }}>
+                                                {news.content}
+                                            </p>
+                                            <div className="d-flex justify-content-center mb-3" >
+                                                <FontAwesomeIcon icon={faShare} className="fa-1x mx-2 text-primary my-auto" />
+                                                <FacebookShareButton url={url} className='my-auto'>
+                                                    <FontAwesomeIcon icon={faFacebook} className="fa-2x mx-2 text-primary" />
+                                                    <FacebookShareCount url={url}>
+                                                        {shareCount => <span className="myShareCountWrapper">{shareCount}</span>}
+                                                    </FacebookShareCount>
+                                                </FacebookShareButton>
+                                                {/* twitter */}
+                                                <TwitterShareButton url={url} className='my-auto'>
+                                                    <FontAwesomeIcon icon={faTwitter} className="fa-2x mx-2 text-primary" />
+
+                                                </TwitterShareButton>
+
+                                            </div>
+                                        </div>
+                                }
                                 <div className="col-lg-12 my-2">
-                                    <h1 className="text-center my-3">Other news</h1>
+                                    <h1 className="text-center my-3">{t('Other news')} </h1>
                                     <div class="blog-posts">
                                         {
                                             newsLoading ?
@@ -96,14 +123,18 @@ const NewDetail = ({ match }) => {
                                                     : News.filter(n => n._id !== id).slice(0, 6).map(n =>
                                                         <div class="post" key={n._id}>
                                                             <Link to={'/news/' + n._id}>
-                                                                <img src={file + n.image} alt=""
-                                                                    class="post-img" height={300} style={{ objectFit: 'cover' }} />
+                                                                {
+                                                                    n.image ?
+                                                                        <img src={file + n.image} alt=""
+                                                                            class="post-img" height={300} style={{ objectFit: 'cover' }} /> :
+                                                                        <p className="post-img">{n.content.slice(0, 700)}</p>
+                                                                }
                                                                 <div class="post-content">
                                                                     <h5 className='text-dark'>
                                                                         {n.title}
                                                                     </h5>
                                                                     <span class="date h6">
-                                                                        {new Date(n.createdAt).toUTCString().slice(0, 17)}
+                                                                        {tellDate(n.createdAt)}
                                                                     </span>
                                                                 </div>
                                                             </Link>

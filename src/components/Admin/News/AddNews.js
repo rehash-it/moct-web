@@ -136,7 +136,6 @@ function AddNews({ fetch }) {
                                                 className='form-control'
                                                 id='image'
                                                 onChange={handleFile}
-                                                required={true}
                                             />
                                         </div>
                                         <div className="card">

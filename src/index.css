@@ -41,6 +41,7 @@ a:hover {
 }
 p {
   white-space: pre-line;
+  text-indent: 10px;
 }
 /**input css*/
 #float-label {

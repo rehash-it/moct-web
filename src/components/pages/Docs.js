@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import Paginate from './Paginate'
 import { CSSTransition } from 'react-transition-group';
+import { useContext } from 'react'
+import { LanguageContext } from '../../context/context'
 
 function Docs({ location }) {
     const [collapse, setCollapse] = useState([])
@@ -33,7 +35,7 @@ function Docs({ location }) {
         setCollapse(s => ([...s, id])) :
         setCollapse(s => s.filter(d => d !== id))
     const [inProp, setInProp] = useState(false);
-
+    const { t } = useContext(LanguageContext)
     return (
         <>
             <Navbar />
@@ -45,7 +47,7 @@ function Docs({ location }) {
                         data.length ?
                             <div className="container my-3">
                                 <h1 className="text-center">
-                                    Research and studies
+                                    {t('Research and studies')}
                                 </h1>
                                 <div className="col-lg-12 my-3">
                                     {
@@ -75,7 +77,7 @@ function Docs({ location }) {
                                                                 <div className="card-footer d-flex justify-content-end">
                                                                     <Link to={'/docs/' + d._id}>
                                                                         <button className="btn btn-primary float-right">
-                                                                            Find out more
+                                                                            {t('Find out more')}
                                                                         </button>
                                                                     </Link>
                                                                     <button className="btn btn-primary" onClick={() => Collapse(d._id)}>

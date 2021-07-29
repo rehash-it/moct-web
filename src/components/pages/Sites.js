@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import { file } from '../../config/config'
 import PaginateSites from './PaginateSites';
+import { useContext } from 'react'
+import { LanguageContext } from '../../context/context'
 function Sites({ location }) {
     const [state, setState] = useState({
         loading: true,
@@ -28,7 +30,7 @@ function Sites({ location }) {
         Scroll('top')
         sitesDispatch(setState, { region, page: Page ? Page : 1, limit: 12 })
     }, [Page, region])
-    console.log(data.slice(0, 6))
+    const { t } = useContext(LanguageContext)
     return (
         <>
             <NavBar />
@@ -40,7 +42,7 @@ function Sites({ location }) {
                                 <div className="row my-3">
 
                                     <h1 className="text-center text-white">
-                                        Know about land of origins
+                                        {t('Know about land of origins')}
                                     </h1>
                                 </div>
                                 <div class="cont mt-3">
@@ -75,7 +77,7 @@ function Sites({ location }) {
                                                     <ul>
                                                         <li >
                                                             <FontAwesomeIcon icon={faLocationArrow} />
-                                                            <span>Location={s.location}</span></li>
+                                                            <span>Location = {'lng: ' + s.lng + '  lat: ' + s.lat}</span></li>
                                                     </ul>
                                                 </div>
                                             </Link>
@@ -112,9 +114,9 @@ function Sites({ location }) {
                                 </div>
                             </div>
                             :
-                            <div className="col-lg-12 text-center">
+                            <div className="col-lg-12 text-center mt-4" style={{ minHeight: '100vh' }}>
                                 <h1 className="text-danger">
-                                    No Attraction site registered yet
+                                    {t('No Attraction site registered yet')}
                                 </h1>
                             </div>
             }
