@@ -54,8 +54,8 @@ const Vacancy = ({ location }) => {
                                                 <th>{t('Job description')}</th>
                                                 <th>{t('Skills')}</th>
                                                 <th>{t('Work experience')}</th>
-                                                <th>Required in quantity</th>
-                                                <th>Dead line</th>
+                                                <th>{t('Required in quantity')}</th>
+                                                <th>{t('Dead line')}</th>
                                             </tr>
                                         </MDBTableHead>
                                         <MDBTableBody >

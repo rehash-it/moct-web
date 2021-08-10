@@ -20,11 +20,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { LanguageContext } from '../../context/context';
 import { changeLanguage } from '../../translation/i18n';
-const NavBar = ({ match }) => {
+const NavBar = ({ match, history }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState(false)
     const path = (match.path.split('/')[1])
-
+    const [index, setIndex] = useState('')
+    const handleSearch = e => {
+        e.preventDefault()
+        localStorage.setItem('index', index)
+        history.push('/search/' + index + '?p=1')
+    }
+    let Index = localStorage.getItem('index')
+    useEffect(() => {
+        if (path === 'search') {
+            if (Index ? true : false) {
+                setSearch(true)
+                setIndex(Index)
+            }
+        }
+    }, [path, Index])
     const toggle = () => setIsOpen(!isOpen);
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
     useEffect(() => {
@@ -223,19 +237,21 @@ const NavBar = ({ match }) => {
                     </UncontrolledDropdown>
                 </Nav>
 
-                <form  >
+                <form onSubmit={handleSearch} >
                     {
                         search ? <input type='text' className='form-control' autoFocus
+                            placeholder="typ and hit enter" onChange={e => setIndex(e.target.value)}
+                            value={index}
                             style={{ marginLeft: windowDimensions.width > 680 ? 0 : 0, transition: 3 }} /> : ''
                     }
 
+
                 </form>
-                <button type='button' className='btn btn-primary' onClick={displaySearch}
+                <button type='button' className='btn btn-primary' onClick={index ? handleSearch : displaySearch}
                     style={{ marginLeft: windowDimensions.width > 680 && !search ? 150 : 0 }}
                 >
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
-
 
             </Collapse>
 

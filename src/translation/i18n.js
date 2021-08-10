@@ -76,7 +76,9 @@ const resources = {
             "Ethiopia": "ኢትዮጵያ",
             "Moct All Rights Reserved": "ኢ.ባ.ቱ.ሚ ሁሉንም መብቶች የተጠበቁ ናቸው",
             "Other attraction sites": "ሌሎች የጉብኝት ቦታዎች",
-            "See on google map": "በ google ካርታ ላይ ይመልከቱ"
+            "See on google map": "በ google ካርታ ላይ ይመልከቱ",
+            "search results": "ጠቅላላ የፍለጋ ውጤቶች",
+            "sorry ... No search result is found": "ይቅርታ ... ምንም የፍለጋ ውጤት አልተገኘም",
         }
     }
 };

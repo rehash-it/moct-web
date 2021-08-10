@@ -19,6 +19,7 @@ import SiteDetails from './components/pages/SiteDetails'
 import NotFound from './components/pages/NotFound';
 import OrganizationChart from './components/pages/OrganizationChart'
 import { useTranslation } from 'react-i18next';
+import Search from './components/pages/Search'
 export default function App() {
   const { t, i18n } = useTranslation();
   const [news, dispatchNews] = useReducer(newsReducer, newsState)
@@ -41,7 +42,9 @@ export default function App() {
             <Route path='/bids'><Bids /></Route>
             <Route path='/login'><Login /></Route>
             <Route path='/site/:id'><SiteDetails /></Route>
+            <Route path='/search/:index'><Search /> </Route>
             <Route path='/chart'><OrganizationChart /></Route>
+
             <Route><NotFound /></Route>
           </Switch>
         </BrowserRouter>

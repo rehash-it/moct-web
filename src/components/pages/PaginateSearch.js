@@ -1,18 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-function Paginate({ page, link }) {
+import { Link } from 'react-router-dom';
+
+function PaginateSearch({ page, index }) {
     let P = []
-    if (page > 1) {
+    if (page !== 1) {
         for (var i = 0; i < page; i++)
             P.push(i + 1)
     }
-
     return (
         <Pagination aria-label="Page navigation example">
             {
                 P.map(p =>
-                    <Link to={'/' + link + '?' + p}>
+                    <Link to={'/search/' + index + '?p=' + p} key={p}>
                         <PaginationItem>
                             <PaginationLink>
                                 <h5>{p}</h5>
@@ -26,4 +26,4 @@ function Paginate({ page, link }) {
     )
 }
 
-export default Paginate
+export default PaginateSearch
