@@ -30,3 +30,11 @@ export const dateFormat = (DATE) => {
     let day = new Date(DATE)
     return day.getFullYear() + '-' + (day.getMonth() <= 10 ? '0' + day.getMonth() : day.getMonth()) + '-' + (day.getDay() <= 10 ? '0' + day.getDay() : day.getDay())
 }
+/**returns a string of local time formatted like this (11:00 am)  */
+export const localTime = DATE => {
+    const date = new Date(DATE)
+    const time = date.toLocaleTimeString()
+    const t = time.split(':')
+    const local = t[2].split(' ')
+    return t[0] + ':' + t[1] + ' ' + (local[1] ? local[1] : '')
+}

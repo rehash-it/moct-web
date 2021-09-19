@@ -79,6 +79,11 @@ const resources = {
             "See on google map": "በ google ካርታ ላይ ይመልከቱ",
             "search results": "ጠቅላላ የፍለጋ ውጤቶች",
             "sorry ... No search result is found": "ይቅርታ ... ምንም የፍለጋ ውጤት አልተገኘም",
+            "Need help?": "እርዳታ ይፈልጋሉ?",
+            "type and hit enter": "ይተይቡ እና አስገባን ይምቱ",
+            "what can i help you?": "ምን ልረዳዎት?",
+            "Hello, I am a  Moct chat bot": "ሰላም ፣ እኔ የ ኢ.ባ.ቱ.ሚ ቻት ቦት ነኝ",
+            "can tell me your name": "ስምዎን ሊነግሩኝ ይችላሉ"
         }
     }
 };

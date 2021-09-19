@@ -240,14 +240,14 @@ const NavBar = ({ match, history }) => {
                 <form onSubmit={handleSearch} >
                     {
                         search ? <input type='text' className='form-control' autoFocus
-                            placeholder="typ and hit enter" onChange={e => setIndex(e.target.value)}
+                            placeholder={t("type and hit enter")} onChange={e => setIndex(e.target.value)}
                             value={index}
                             style={{ marginLeft: windowDimensions.width > 680 ? 0 : 0, transition: 3 }} /> : ''
                     }
 
 
                 </form>
-                <button type='button' className='btn btn-primary' onClick={index ? handleSearch : displaySearch}
+                <button type='button' className='btn btn-raise' onClick={index ? handleSearch : displaySearch}
                     style={{ marginLeft: windowDimensions.width > 680 && !search ? 150 : 0 }}
                 >
                     <FontAwesomeIcon icon={faSearch} />

@@ -14,6 +14,8 @@ import { withRouter } from 'react-router-dom';
 import { checkAdmin, checkToken } from './Auth/ChechAdmin';
 import AdminUser from './AdminUser';
 import Login from './Auth/Login';
+import AdminChat from './AdminChat';
+import ChatNotification from './ChatNotification';
 
 function Dashboard(props) {
     const [toggle, setToggle] = useState(false)
@@ -23,6 +25,13 @@ function Dashboard(props) {
     //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(true)
     const [tabs, setTabs] = useState('main')
+    /** */
+    const [user, setUser] = useState({
+        userid: '',
+        username: '',
+        admin_id: '',
+        admin_name: ''
+    })
     const menuIconClick = () => menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     useEffect(() => {
         checkToken(setToken)
@@ -70,8 +79,12 @@ function Dashboard(props) {
                                         <AdminResearch /> :
                                         tabs === 'Users' ?
                                             <AdminUser /> :
-                                            <p></p>
+                                            tabs === 'chat' ?
+                                                <AdminChat user={user} setUser={setUser} /> :
+                                                <p></p>
                 }
+                <ChatNotification tabs={tabs} setTabs={setTabs} setUser={setUser} user={user} />
+
             </div> :
             <Login setToken={setToken} />
     );

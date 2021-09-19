@@ -30,8 +30,8 @@ a:hover {
   text-decoration: underline !important;
 }
 .btn-raise {
-  background-color: #ffa260;
-  color: #fff;
+  background-color: #ffa260 !important;
+  color: #fff !important;
 }
 .bg-raise {
   background-color: #ffa260;
