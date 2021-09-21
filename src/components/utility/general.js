@@ -5,4 +5,4 @@ export const Scroll = (view) => {
     var top = document.getElementById(view)
     top.scrollIntoView({ behavior: 'auto' })
 }
-export const randomID = () => Math.round(Math.random(0, 100000000) * 100000000)
+export const randomID = () => Math.round(Math.random(0, 10000000000) * 10000000000)

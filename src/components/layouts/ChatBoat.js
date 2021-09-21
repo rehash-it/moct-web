@@ -9,10 +9,10 @@ import { randomID } from '../utility/general';
 import { localTime } from '../utility/Date';
 import { connectUserName, createMessage } from '../../message/message';
 import { withRouter } from 'react-router-dom';
+import { messageClass } from '../../message/messageClass';
 const id = randomID() + Date.now()
+
 function ChatBoat({ location }) {
-    const chatbutton = $("#chat-bot .icon")
-    const chatBot = ("#chat-bot .messenger")
     useEffect(() => {
         $("#chat-bot .icon").on('click', () => {
             $("#chat-bot .icon").toggleClass("expanded");
@@ -21,7 +21,7 @@ function ChatBoat({ location }) {
             }, 100);
         })
         setSocket(webSocket)
-    }, [chatbutton, chatBot])
+    }, [$("#chat-bot .icon")])
 
     const { t } = useContext(LanguageContext)
     /**socket io */
@@ -34,8 +34,13 @@ function ChatBoat({ location }) {
         inputField: true,
         show: false
     })
+    const [user, setUser] = useState({
+        user_id: '',
+        admin_id: ''
+    })
     const Donothing = () => { }
     const [message, setMessage] = useState([])
+    const Message = new messageClass(message, id, user.admin_id)
     const name = localStorage.getItem('chatname')
 
     useEffect(() => {
@@ -43,28 +48,65 @@ function ChatBoat({ location }) {
             ...s,
             chatname: name,
             loading: false,
+            connected: false,
             show: (location.pathname !== '/login' && location.pathname !== '/admin')
         }))
     }, [name, location])
+    useEffect(() => {
+        socket ? socket.on("onConnect", data => {
+            const show = data.username ? data.admin_id ? true : false : false
+            setState(s => ({ ...s, inputField: show, connected: true }))
+            setUser({ admin_id: data.admin_id, user_id: data.user_id })
+        }) : Donothing()
+        socket ? socket.on('getChat', data => data.user_id === id ? socket.emit('chat', message) : Donothing()) : Donothing()
+        socket ? socket.on('chat', data => setMessage(data.message)) : Donothing()
+    }, [socket])
+    useEffect(() => {
+        try {
+            let mid = Message.lastMessage_id()
+            let lastPoint = document.getElementById(mid)
+            lastPoint.scrollIntoView({ behavior: 'auto' })
+        }
+        catch (err) {
 
+        }
+    }, [message])
     const setName = chatname => {
-        setState({ chatname, loading: false, inputField: false })
-        setMessage(s => (
-            [...s,
-            createMessage(chatname, 'user', 'admin'),
-            createMessage('connecting to an admin, please wait...', 'admin', 'user')
-            ]))
+        setState(s => ({ ...s, chatname, loading: false, inputField: false }))
+        setMessage(s => ([...s, createMessage(chatname, 'user', 'admin', user.admin_id, id),
+        createMessage('connecting to an admin, please wait...', 'admin', 'user', user.admin_id, id)
+        ]))
         localStorage.setItem('chatname', chatname)
-        socket ? socket.emit('onConnect', connectUserName(id, chatname)) : Donothing()
     }
+    const reConnect = () => socket ? socket.emit('onConnect', connectUserName(id, state.chatname)) : Donothing()
+
 
     const handleSubmit = e => {
-        e.preventDefault();
-        state.message && state.chatname ? setMessage(s => (
-            [...s, createMessage(state.message, 'user', 'reciever')])) : setName(state.message)
-
+        e.preventDefault()
+        /** */
+        state.chatname ? state.connected ? setMessage(s => ([...s,
+        createMessage(state.message, 'user', 'admin', user.admin_id, id)])) :
+            setMessage(s => ([
+                ...s,
+                createMessage(state.message, 'user', 'admin', user.admin_id, id),
+                createMessage('connecting to an admin, please wait...', 'admin', 'user', user.admin_id, id)
+            ])) :
+            setName(state.message)
+        /** */
+        !state.connected ? socket ? socket.emit('onConnect', connectUserName(id, state.chatname)) : Donothing() : Donothing()
+        /** */
+        socket ? state.connected ? socket.emit('chat', [...message,
+        createMessage(state.message, 'user', 'admin', user.admin_id, id)
+        ]) :
+            socket.emit('chat', [...message,
+            createMessage(state.message, 'user', 'admin', user.admin_id, id),
+            createMessage('connecting to an admin, please wait...', 'admin', 'user', user.admin_id, id)
+            ]) :
+            Donothing()
+        /** */
+        setState(s => ({ ...s, message: '' }))
     }
-    console.log(message, state.inputField)
+
     return (
         state.show ?
             <div id="chat-bot">
@@ -91,15 +133,15 @@ function ChatBoat({ location }) {
                                 </div>
                         }
                         {
-                            message.map(m => m.sender === 'admin' ?
-                                <div className="msg msg-left">
+                            Message.userMessage().map(m => m.sender === 'admin' ?
+                                <div className="msg msg-left" key={m.id} id={m.id}>
                                     <div className="bubble">
                                         <h6 className="name">{t('Moct')}</h6>
                                         {m.message}
                                     </div>
                                 </div> :
-                                m.reciever === 'user' ?
-                                    <div className="msg msg-right">
+                                m.reciever === 'admin' ?
+                                    <div className="msg msg-right" key={m.id} id={m.id}>
                                         <div className="bubble">
                                             <h6 className="name">{state.chatname}</h6>
                                             {m.message}
@@ -117,6 +159,8 @@ function ChatBoat({ location }) {
                                     <input type="text"
                                         className="typing"
                                         placeholder={t("type and hit enter")}
+                                        value={state.message}
+                                        required={true}
                                         onChange={e => setState(s => ({ ...s, message: e.target.value }))}
                                     /> : ''
                             }

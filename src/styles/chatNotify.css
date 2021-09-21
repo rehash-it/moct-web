@@ -1,31 +1,18 @@
-/* toast */
-.toast {
-    color: #000;
-    line-height: 1.5;
-    margin-bottom: 1em;
-    padding: 1.25em;
-    position: absolute;
-    right: -365px;
-    top: 1em;
-    transition: 0.15s ease-in-out;
-    width: 325px;
+.shake {
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(0px, 0, 0);
+    }
+    20%, 80% {
+      transform: translate3d(1px, 0, 0);
+    }
+    30%, 50%, 70% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    40%, 60% {
+      transform: translate3d(1px, 0, 0);
+    }
   }
-  
-  .toast.on {
-    transform: translateX(-365px);
-  }
-  
-  .close {
-    cursor: pointer;
-    float: right;
-    font-size: 1.25rem;
-    line-height: 1;
-    margin-left: 1em;
-    opacity: .8;
-  }
-  
-  .jam {
-    background-color: #99004d;
-    color: #fff;
-  }
-  
