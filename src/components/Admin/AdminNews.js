@@ -56,7 +56,7 @@ function AdminNews() {
                                                 <th>#</th>
                                                 <th>Title</th>
                                                 <th>content</th>
-                                                <th>image</th>
+                                                <th>uploaded images</th>
                                                 <th>Options</th>
                                             </tr>
                                         </MDBTableHead>
@@ -78,9 +78,22 @@ function AdminNews() {
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <a href={file + n.image} download={true} target="_blank" rel="noreferrer">
-                                                                        <img src={file + n.image} alt="" className="img-fluid" />
-                                                                    </a>
+                                                                    <div className="gallery my-2" id="gallery" >
+                                                                        {
+                                                                            n.images.map(im =>
+
+                                                                                <div className="mb-3 pics animation all 2 bg-dark" key={im.id}>
+                                                                                    <a href={file + im} download={true} target="_blank" rel="noreferrer">
+                                                                                        <img className="img-fluid"
+                                                                                            role="dialog"
+                                                                                            aria-labelledby="myModalLabel"
+                                                                                            aria-hidden="true" tabindex="-1"
+                                                                                            src={file + im} alt="" />
+                                                                                    </a>
+
+                                                                                </div>
+                                                                            )}
+                                                                    </div>
                                                                 </td>
 
                                                                 <td>

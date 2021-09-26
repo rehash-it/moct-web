@@ -4,6 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { host } from '../../../config/config';
 import { getData, getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
+import { DateNow } from '../../utility/Date';
 function AddVacancy({ fetch }) {
     const [state, setState] = useState({
         title: { value: '', active: false },
@@ -122,6 +123,7 @@ function AddVacancy({ fetch }) {
                                             <input type='date'
                                                 className='form-control'
                                                 id='endDate'
+                                                min={DateNow()}
                                                 required={true}
                                                 onChange={handleChange} />
                                         </div>

@@ -12,8 +12,8 @@ export const DotLoading = () => {
 export const SpinnerLoading = () => {
   return (
     <div className="col-lg-12 text-center">
-      <div className="spinner-border text-dark text-center" role="status">
-        <span className="sr-only text-center text-dark">Loading...</span>
+      <div className="spinner-border text-white text-center" role="status">
+        <span className="sr-only text-center text-white">Loading...</span>
       </div>
     </div>
   )

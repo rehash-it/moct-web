@@ -5,8 +5,9 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 're
 import { host } from '../../../config/config';
 import { getHeaders } from './../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
-import { faCalendar, faNewspaper } from '@fortawesome/free-solid-svg-icons';
-import { dateFormat } from './../../utility/Date';
+import { faCalendar, faNewspaper, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { dateFormat, DateNow } from './../../utility/Date';
+import { randomID } from '../../utility/general';
 
 function AddNews({ fetch }) {
 
@@ -15,7 +16,7 @@ function AddNews({ fetch }) {
         title: { value: '', active: false },
         content: { value: '', active: false },
         endDate: { value: '', active: false },
-        image: { value: '', active: false },
+        images: [],
         imageUrl: ''
     })
     const [save, setSave] = useState({
@@ -36,43 +37,40 @@ function AddNews({ fetch }) {
         setSave({ process: '', error: '', success: '' })
     }
     const handleFile = e => {
-        let image = e.target.files[0]
-        if (image.type === 'image/png' || image.type === 'image/jpeg' || image.type === 'image/jpg') {
-
-            setState(s => ({ ...s, image: { value: image, active: 'Active' }, imageUrl: URL.createObjectURL(image) }))
-            setSave({ process: '', error: '', success: '', imageError: '' })
-        }
-        else {
-            setState(s => ({ ...s, imageUrl: '', image: { value: '', active: true } }))
-            setSave({ process: '', error: '', success: '', imageError: 'Only jpeg,jpg and png image files are supported' })
-        }
+        let Images = [...e.target.files]
+        let image = Images.filter(f => f.type === 'image/png' || f.type === 'image/jpeg' || f.type === 'image/jpg')
+        image.forEach(i =>
+            setState(s => ({
+                ...s, images: [...s.images, { image: i, id: randomID(), URL: URL.createObjectURL(i) }]
+            }))
+        )
+        setSave({ process: '', error: '', success: '', imageError: '' })
     }
+    const Donothing = () => { }
     const handleSubmit = async e => {
         e.preventDefault()
         try {
-            if (state.image.value !== '') {
-                var data = new FormData()
-                data.append('image', state.image.value, state.image.value.name)
-                data.append('title', state.title.value)
-                data.append('content', state.content.value)
-                data.append('endDate', state.endDate.value)
-                setSave(s => ({ ...s, process: 'saving...', error: '', success: '' }))
-                const save = await axios.post(host + 'news', data, {
-                    ...getHeaders(),
-                    onUploadProgress: ProgressEvent =>
-                        setLoaded(ProgressEvent.loaded / ProgressEvent.total * 100)
-                })
-                if (save.status === 200) {
-                    setSave(s => ({ ...s, process: '', error: '', success: 'saved successfully' }))
-                    setTimeout(() => fetch(), 1000)
-                }
-                else {
-                    setSave(s => ({ ...s, process: '', error: 'can not save data internal server error', success: '' }))
-                }
+            var data = new FormData()
+            data.append('title', state.title.value)
+            data.append('content', state.content.value)
+            data.append('endDate', state.endDate.value)
+
+            state.images.length ? state.images.forEach(i => data.append('images', i.image, i.image.name)) : Donothing()
+
+            setSave(s => ({ ...s, process: 'saving...', error: '', success: '' }))
+            const save = await axios.post(host + 'news', data, {
+                ...getHeaders(),
+                onUploadProgress: ProgressEvent =>
+                    setLoaded(ProgressEvent.loaded / ProgressEvent.total * 100)
+            })
+            if (save.status === 200) {
+                setSave(s => ({ ...s, process: '', error: '', success: 'saved successfully' }))
+                setTimeout(() => fetch(), 1000)
             }
             else {
-                setSave(s => ({ ...s, process: '', error: 'please set the proper image file to save the news', success: '' }))
+                setSave(s => ({ ...s, process: '', error: 'can not save data internal server error', success: '' }))
             }
+
         }
         catch (err) {
             console.log(err)
@@ -80,7 +78,11 @@ function AddNews({ fetch }) {
         }
     }
     const toggle = () => setModal(!modal);
-
+    const removeImage = (id) => {
+        setState(s => ({ ...s, images: s.images.filter(i => i.id !== id) }))
+        setSave({ process: '', error: '', success: '', imageError: '' })
+    }
+    console.log(state)
     return (
         <div>
             <Button color='primary' onClick={toggle}>
@@ -122,8 +124,7 @@ function AddNews({ fetch }) {
                                                 className='form-control'
                                                 id='endDate'
                                                 required={true}
-
-                                                min={new Date().toISOString().split("T")[0]}
+                                                min={DateNow()}
                                                 onChange={handleChange} />
                                         </div>
                                     </div>
@@ -135,11 +136,30 @@ function AddNews({ fetch }) {
                                             <input type='file'
                                                 className='form-control'
                                                 id='image'
+                                                multiple={true}
                                                 onChange={handleFile}
                                             />
                                         </div>
-                                        <div className="card">
-                                            <img src={state.imageUrl} alt="" className="img-fluid" />
+                                        <div className="gallery my-2" id="gallery" >
+
+
+                                            {
+                                                state.images.map(im =>
+                                                    <div className="mb-3 pics animation all 2 bg-dark" key={im.id}>
+                                                        <button className="btn btn-danger" onClick={() => removeImage(im.id)}>
+                                                            <FontAwesomeIcon icon={faWindowClose} className='mx-2' />
+                                                            {im.image.name}
+                                                        </button>
+                                                        <img className="img-fluid"
+                                                            role="dialog"
+                                                            aria-labelledby="myModalLabel"
+                                                            aria-hidden="true" tabindex="-1"
+                                                            src={im.URL} alt="" />
+
+                                                    </div>
+
+                                                )
+                                            }
                                         </div>
                                         <p className="text-danger">
                                             {save.imageError}

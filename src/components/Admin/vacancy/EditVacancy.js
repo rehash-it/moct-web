@@ -7,7 +7,7 @@ import { DotLoading } from '../../layouts/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { Disperse, removeItem } from './../Controller';
-import { dateFormat } from '../../utility/Date';
+import { dateFormat, DateNow } from '../../utility/Date';
 
 function EditVacancy({ vacancy, fetch }) {
     const [state, setState] = useState({
@@ -19,7 +19,7 @@ function EditVacancy({ vacancy, fetch }) {
         experience: { value: '', active: false }
     })
     useEffect(() => {
-        setState(Disperse(vacancy))
+        setState(s => ({ ...Disperse(vacancy), endDate: { value: dateFormat(vacancy.endDate), active: "Active" } }))
     }, [vacancy])
     const [modal, setModal] = useState(false)
     const [save, setSave] = useState({
@@ -135,8 +135,9 @@ function EditVacancy({ vacancy, fetch }) {
                                             <input type='date'
                                                 className='form-control'
                                                 id='endDate'
+                                                min={DateNow()}
                                                 required={true}
-                                                value={dateFormat(state.endDate.value)}
+                                                value={state.endDate.value}
                                                 onChange={handleChange} />
                                         </div>
                                     </div>

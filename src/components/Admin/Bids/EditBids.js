@@ -6,7 +6,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 're
 import { file, host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
-import { dateFormat } from '../../utility/Date';
+import { dateFormat, DateNow } from '../../utility/Date';
 import { Disperse } from './../Controller';
 import { blobCreationFromURL, getFileName } from './../../utility/file';
 
@@ -26,7 +26,7 @@ const EditBids = ({ fetch, bid }) => {
     //blob creation from afile
     let fil = blobCreationFromURL(file + bid.file)
     useEffect(() => {
-        setState({ ...Disperse(bid), file: { value: fil, active: false } })
+        setState({ ...Disperse(bid), file: { value: fil, active: false }, endDate: { value: dateFormat(bid.endDate), active: 'Active' } })
     }, [bid])
     const [loaded, setLoaded] = useState(0)
     const handleChange = e => {
@@ -113,8 +113,8 @@ const EditBids = ({ fetch, bid }) => {
                                                 className='form-control'
                                                 id='endDate'
                                                 required={true}
-                                                min={new Date().toISOString().split("T")[0]}
-                                                value={dateFormat(state.endDate.value)}
+                                                min={DateNow()}
+                                                value={state.endDate.value}
                                                 onChange={handleChange} />
                                         </div>
                                     </div>

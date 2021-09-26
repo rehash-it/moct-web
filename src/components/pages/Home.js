@@ -112,7 +112,7 @@ function Home() {
                                                     <article className="postcard dark yellow" key={n._id}>
                                                         <Link to={'/news/' + n._id} className="postcard__img_link" >
                                                             <img className="postcard__img"
-                                                                src={file + n.image} alt='error in loading' />
+                                                                src={file + n.images[0]} alt='error in loading' />
                                                         </Link>
                                                         <div className="postcard__text">
                                                             <Link to={'/news/' + n._id}>

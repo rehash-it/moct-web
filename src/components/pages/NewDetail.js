@@ -16,7 +16,9 @@ import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo'
 import { FacebookShareCount, FacebookShareButton, TwitterShareButton, TwitterShareCount } from "react-share";
 import { faShare } from '@fortawesome/free-solid-svg-icons'
 import { tellDate } from '../utility/Date'
-
+import 'react-multi-carousel/lib/styles.css';
+import Carousel from 'react-multi-carousel'
+import { responsive } from '../layouts/carousel'
 const NewDetail = ({ match }) => {
     const id = match.params.id
     const { news: NewS, dispatchNews } = useContext(StoreContext)
@@ -45,6 +47,7 @@ const NewDetail = ({ match }) => {
         }
     }, [id])
     const { t } = useContext(LanguageContext)
+
     return (
         <>
             <NavBar />
@@ -59,9 +62,9 @@ const NewDetail = ({ match }) => {
                                 <div className="col-lg-12 my-2">
                                     <h1>{news.title}</h1>
                                 </div>
-                                {news.image ?
+                                {news.images.length ?
                                     <div className="col-lg-7 justify-content-end">
-                                        <img src={file + news.image} width={600} alt="" className="img-fluid" style={{ objectFit: 'cover' }} />
+                                        <img src={file + news.images[0]} width={600} alt="" className="img-fluid" style={{ objectFit: 'cover' }} />
                                         <p className="small float-right my-2">
                                             <ReactTimeAgo date={news.createdAt} />
                                         </p>
@@ -84,7 +87,7 @@ const NewDetail = ({ match }) => {
                                     </div> : ''
                                 }
                                 {
-                                    news.image ?
+                                    news.images.length ?
 
                                         <div className="col-lg-5">
                                             <p className="indent text-white h5" style={{ textAlign: 'justify' }}>
@@ -112,8 +115,25 @@ const NewDetail = ({ match }) => {
                                             </div>
                                         </div>
                                 }
+                                <Carousel responsive={responsive} infinite={true}>
+                                    {
+                                        news.images.slice(1, news.images.length).map(i =>
+                                            <div className="col-md-11 col-lg-11 col-sm-12" key={i} >
+                                                <div className="card">
+                                                    <img src={file + i} alt="" className="img-fluid" style={{ height: 400, objectFit: 'cover' }} />
+
+                                                </div>
+                                            </div>)
+                                    }
+
+                                </Carousel>
                                 <div className="col-lg-12 my-2">
-                                    <h1 className="text-center my-3">{t('Other news')} </h1>
+                                    {
+                                        !newsLoading ? !newsError ?
+                                            News.filter(n => n._id !== id).length ?
+                                                <h1 className="text-center my-3">{t('Other news')} </h1> : <p></p>
+                                            : '' : ''
+                                    }
                                     <div class="blog-posts">
                                         {
                                             newsLoading ?
@@ -124,8 +144,8 @@ const NewDetail = ({ match }) => {
                                                         <div class="post" key={n._id}>
                                                             <Link to={'/news/' + n._id}>
                                                                 {
-                                                                    n.image ?
-                                                                        <img src={file + n.image} alt=""
+                                                                    n.images.length ?
+                                                                        <img src={file + n.images[0]} alt=""
                                                                             class="post-img" height={300} style={{ objectFit: 'cover' }} /> :
                                                                         <p className="post-img">{n.content.slice(0, 700)}</p>
                                                                 }

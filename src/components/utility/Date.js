@@ -28,7 +28,7 @@ export const ToEthiopianDateSting = (DATE) => {
 }
 export const dateFormat = (DATE) => {
     let day = new Date(DATE)
-    return day.getFullYear() + '-' + (day.getMonth() <= 10 ? '0' + day.getMonth() : day.getMonth()) + '-' + (day.getDay() <= 10 ? '0' + day.getDay() : day.getDay())
+    return day.toISOString().split("T")[0]
 }
 /**returns a string of local time formatted like this (11:00 am)  */
 export const localTime = DATE => {
@@ -37,4 +37,10 @@ export const localTime = DATE => {
     const t = time.split(':')
     const local = t[2].split(' ')
     return t[0] + ':' + t[1] + ' ' + (local[1] ? local[1] : '')
+}
+export const DateNow = () => {
+    var currentdate = new Date();
+    var datetime = (currentdate.getMonth() + 1) + '-' + currentdate.getFullYear() + "-"
+        + currentdate.getDate()
+    return new Date().toISOString().split("T")[0]
 }
