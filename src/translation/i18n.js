@@ -82,7 +82,7 @@ const resources = {
             "Need help?": "እርዳታ ይፈልጋሉ?",
             "type and hit enter": "ይተይቡ እና አስገባን ይምቱ",
             "what can i help you?": "ምን ልረዳዎት?",
-            "Hello, I am a  Moct chat bot": "ሰላም ፣ እኔ የ ኢ.ባ.ቱ.ሚ ቻት ቦት ነኝ",
+            "Hello, I am a  Moct chatbot": "ሰላም ፣ እኔ የ ኢ.ባ.ቱ.ሚ ቻት ቦት ነኝ",
             "can tell me your name": "ስምዎን ሊነግሩኝ ይችላሉ"
         }
     }

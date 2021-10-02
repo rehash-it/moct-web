@@ -9,22 +9,29 @@ import { LanguageContext, StoreContext } from '../../context/context'
 import { newsDispatch } from '../../store/Actions/newsActions'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
-import { file, mapApi } from '../../config/config'
+import { file } from '../../config/config'
 import { tellDay } from '../utility/Date'
 import { pageCalculate, Scroll } from '../utility/general'
 import Paginate from './Paginate'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faNewspaper, faWindowClose } from '@fortawesome/free-solid-svg-icons';
-import { rssFeed } from './RssFeed'
+import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { fbRssFeed, twitterFeed } from './RssFeed'
 import Carousel from 'react-multi-carousel'
 import { responsive } from '../layouts/carousel'
 import { SpinnerLoading } from '../layouts/Loading'
 import 'react-multi-carousel/lib/styles.css';
 import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo'
+import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
 function News({ location }) {
     const [dimesion, setWindowDimensions] = useState(getWindowDimensions());
     const [rssButton, showRssButton] = useState(true)
     const [RssFeed, setRssFeed] = useState({
+        data: [],
+        error: false,
+        loading: true
+    })
+    const [tRssFeed, setTRssFeed] = useState({
         data: [],
         error: false,
         loading: true
@@ -52,12 +59,12 @@ function News({ location }) {
     const page = pageCalculate(8, news ? news.length : 0)
     const { t } = useContext(LanguageContext)
     const rss = () => {
-        rssFeed(setRssFeed)
+        fbRssFeed(setRssFeed)
+        twitterFeed(setTRssFeed)
         showRssButton(!rssButton)
     }
     const rssDismiss = () => showRssButton(true)
 
-    console.log(RssFeed)
     return (
         <>
             <NavBar />
@@ -91,27 +98,58 @@ function News({ location }) {
                                                             dismiss
                                                         </button>
                                                     </div> :
-                                                    <Carousel responsive={responsive} infinite={true}>
+                                                    <div className="row">
+                                                        <Carousel responsive={responsive} infinite={true}>
+                                                            {
+                                                                RssFeed.data.map(r =>
+                                                                    <div className="col-lg-11 col-md-11 col-sm-11" key={r.id}>
+                                                                        <a href={r.url} target="_blank" rel="noreferrer">
+                                                                            <div className="card" style={{ height: 500 }}>
+                                                                                <img src={r.enclosure.url}
+                                                                                    alt="" className="img-fluid"
+                                                                                    style={{ objectFit: 'cover', height: 400 }}
+                                                                                />
+                                                                                <h6 className="text-center my-2 text-dark">
+                                                                                    {r.title}
+                                                                                </h6>
+                                                                                <p className="d-flex justify-content-center text-dark">
+                                                                                    <FontAwesomeIcon icon={faFacebook} className='text-primary fa-2x mx-2' />
+                                                                                    facebook.com <ReactTimeAgo date={r.date} />
+                                                                                </p>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                )}
+                                                        </Carousel>
                                                         {
-                                                            RssFeed.data.map(r =>
-                                                                <div className="col-lg-11 col-md-11 col-sm-11" key={r.id}>
-                                                                    <a href={r.url} target="_blank" rel="noreferrer">
-                                                                        <div className="card">
-                                                                            <img src={r.enclosure.url}
-                                                                                alt="" className="img-fluid"
-                                                                                style={{ objectFit: 'cover', height: 400 }}
-                                                                            />
-                                                                            <h6 className="text-center my-2 text-dark">
-                                                                                {r.title}
-                                                                            </h6>
-                                                                            <p className="d-flex justify-content-center text-dark">
-                                                                                facebook.com <ReactTimeAgo date={r.date} />
-                                                                            </p>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                            )}
-                                                    </Carousel> : ''
+                                                            (!tRssFeed.loading && !tRssFeed.error) ?
+                                                                <Carousel responsive={responsive} infinite={true}>
+                                                                    {
+                                                                        tRssFeed.data.map(r =>
+                                                                            <div className="col-lg-11 col-md-11 col-sm-11 mt-3" key={r.id}>
+                                                                                <a href={r.url} target="_blank" rel="noreferrer">
+                                                                                    <div className="card" style={{ height: 500 }}>
+                                                                                        <img src={r.enclosure.url}
+                                                                                            alt="" className="img-fluid"
+                                                                                            style={{ objectFit: 'cover', height: 400 }}
+                                                                                        />
+                                                                                        <h6 className="text-center my-2 text-dark">
+                                                                                            {r.title}
+                                                                                        </h6>
+                                                                                        <p className="d-flex justify-content-center text-dark">
+                                                                                            <FontAwesomeIcon icon={faTwitter} className='text-primary fa-2x mx-2' />
+                                                                                            twitter.com <ReactTimeAgo date={r.date} />
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                </Carousel>
+                                                                : ''
+                                                        }
+                                                    </div>
+                                            : ''
                                     }
                                     {
                                         dimesion.width > 680 ?

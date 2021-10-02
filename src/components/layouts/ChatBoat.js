@@ -2,184 +2,229 @@ import React, { useContext, useEffect, useState } from 'react'
 import '../../styles/chatBoat.css'
 import $ from 'jquery'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { LanguageContext, SocketContext } from '../../context/context';
-import { webSocket } from '../../socket';
 import { randomID } from '../utility/general';
 import { localTime } from '../utility/Date';
-import { connectUserName, createMessage } from '../../message/message';
+import { createMessage } from '../../message/message';
 import { withRouter } from 'react-router-dom';
 import { messageClass } from '../../message/messageClass';
-const id = randomID() + Date.now()
 
-function ChatBoat({ location }) {
-    useEffect(() => {
-        $("#chat-bot .icon").on('click', () => {
-            $("#chat-bot .icon").toggleClass("expanded");
-            setTimeout(() => {
-                $("#chat-bot .messenger").toggleClass("expanded");
-            }, 100);
-        })
-        setSocket(webSocket)
-    }, [$("#chat-bot .icon")])
+const id = randomID() + 'moct' + Date.now()
+
+function ChatBoat() {
 
     const { t } = useContext(LanguageContext)
     /**socket io */
-    const { socket, setSocket } = useContext(SocketContext)
+    const { socket } = useContext(SocketContext)
     const [state, setState] = useState({
         chatname: '',
+        user_id: '',
         loading: true,
         connected: false,
         message: '',
-        inputField: true,
-        show: false
+        inputField: true
     })
-    const [user, setUser] = useState({
+    const [connection, setConnection] = useState({
+        user_name: '',
         user_id: '',
-        admin_id: ''
+        admin_id: '',
+        status: '',
+        connected_time: '',
+        disconnected_time: ''
     })
-    const Donothing = () => { }
     const [message, setMessage] = useState([])
-    const Message = new messageClass(message, id, user.admin_id)
-    const name = localStorage.getItem('chatname')
+    const Message = new messageClass(message, state.user_id, connection.admin_id)
+    let last_id = Message.lastMessage_id()
 
+    const Donothing = () => { }
+    const name = localStorage.getItem('chatname')
+    const userid = localStorage.getItem('user_id') ? localStorage.getItem('user_id') : id
     useEffect(() => {
+
         setState(s => ({
             ...s,
             chatname: name,
+            user_id: userid,
             loading: false,
-            connected: false,
-            show: (location.pathname !== '/login' && location.pathname !== '/admin')
         }))
-    }, [name, location])
+
+    }, [name])
+
+    /***for socket */
     useEffect(() => {
-        socket ? socket.on("onConnect", data => {
-            const show = data.username ? data.admin_id ? true : false : false
-            setState(s => ({ ...s, inputField: show, connected: true }))
-            setUser({ admin_id: data.admin_id, user_id: data.user_id })
+        socket ? socket.on('conn', data => {
+            let connected = data.user_id === state.user_id && data.user_name === state.chatname
+            if (connected) {
+                setConnection(s => ({ ...data }))
+                setState(s => ({ ...s, inputField: true }))
+            }
         }) : Donothing()
-        socket ? socket.on('getChat', data => data.user_id === id ? socket.emit('chat', message) : Donothing()) : Donothing()
-        socket ? socket.on('chat', data => setMessage(data.message)) : Donothing()
-    }, [socket])
+        socket ? socket.on('chat', data => {
+            let check = (data.admin_id === connection.admin_id) && (data.user_id === connection.user_id)
+            let Mess = []
+            data.message.forEach(d => {
+                let add = (d.admin_id === connection.admin_id) && (d.user_id === connection.user_id)
+                add ? Mess.push(d) : Donothing()
+            })
+            check ? setMessage(Mess) : Donothing()
+        }) : Donothing()
+
+        return (() => {
+            socket ? socket.emit('disMiss', connection.user_id, connection.admin_id) : Donothing()
+        })
+    }, [socket, state, connection])
+    /**for scroll */
     useEffect(() => {
         try {
-            let mid = Message.lastMessage_id()
-            let lastPoint = document.getElementById(mid)
+            let lastPoint = document.getElementById(last_id)
             lastPoint.scrollIntoView({ behavior: 'auto' })
         }
         catch (err) {
 
         }
-    }, [message])
+    }, [last_id])
+
+
     const setName = chatname => {
-        setState(s => ({ ...s, chatname, loading: false, inputField: false }))
-        setMessage(s => ([...s, createMessage(chatname, 'user', 'admin', user.admin_id, id),
-        createMessage('connecting to an admin, please wait...', 'admin', 'user', user.admin_id, id)
-        ]))
+        setState(s => ({ ...s, chatname }))
+        let nameMessage = createMessage(chatname, 'user', 'admin', '', state.user_id, connection.admin_id, chatname, true)
+
+        setMessage(s => ([...s, nameMessage]))
         localStorage.setItem('chatname', chatname)
+        localStorage.setItem('user_id', state.user_id)
     }
-    const reConnect = () => socket ? socket.emit('onConnect', connectUserName(id, state.chatname)) : Donothing()
 
 
     const handleSubmit = e => {
         e.preventDefault()
-        /** */
-        state.chatname ? state.connected ? setMessage(s => ([...s,
-        createMessage(state.message, 'user', 'admin', user.admin_id, id)])) :
+        !state.chatname ? setName(state.message) : Donothing()
+        if (connection.status !== 'connected') {
+            socket ? socket.emit('call', {
+                user_name: !state.chatname ? state.message : state.chatname,
+                user_id: state.user_id,
+                admin_id: '',
+                admin_name: '',
+                message: state.message
+            }) : Donothing()
             setMessage(s => ([
                 ...s,
-                createMessage(state.message, 'user', 'admin', user.admin_id, id),
-                createMessage('connecting to an admin, please wait...', 'admin', 'user', user.admin_id, id)
-            ])) :
-            setName(state.message)
-        /** */
-        !state.connected ? socket ? socket.emit('onConnect', connectUserName(id, state.chatname)) : Donothing() : Donothing()
-        /** */
-        socket ? state.connected ? socket.emit('chat', [...message,
-        createMessage(state.message, 'user', 'admin', user.admin_id, id)
-        ]) :
-            socket.emit('chat', [...message,
-            createMessage(state.message, 'user', 'admin', user.admin_id, id),
-            createMessage('connecting to an admin, please wait...', 'admin', 'user', user.admin_id, id)
-            ]) :
-            Donothing()
-        /** */
+                createMessage(
+                    state.message,
+                    'user',
+                    'admin',
+                    connection.admin_id,
+                    state.user_id,
+                    connection.admin_id,
+                    state.chatname,
+                    true),
+                createMessage(
+                    'connecting to admin please wait',
+                    'admin',
+                    'user',
+                    connection.admin_id,
+                    state.user_id,
+                    connection.admin_id,
+                    state.chatname,
+                    true)
+
+            ]))
+
+            setState(s => ({
+                ...s,
+                inputField: false
+            }))
+        }
+        else if (connection.status === 'connected') {
+            socket ? socket.emit('saveMessage', [createMessage(state.message,
+                'user', 'admin',
+                connection.admin_id,
+                connection.user_id,
+                connection.admin_name,
+                connection.user_name,
+                false)]) : Donothing()
+        }
         setState(s => ({ ...s, message: '' }))
     }
-
+    console.log(connection)
     return (
-        state.show ?
-            <div id="chat-bot">
-                <div className="messenger br10">
-                    <div className="timestamp">{localTime(Date.now())}</div>
-                    <div className="chatroom">
-                        {/* <!-- msgs  --> */}
-                        {
-                            !state.loading && !state.chatname ?
-
-                                <div className="msg msg-left">
-                                    <div className="bubble">
-                                        <h6 className="name">{t('Moct')}</h6>
-                                        {t('Hello, I am a  Moct chat bot')}, <br />
-                                        {t('can tell me your name')} ?
-                                    </div>
-                                </div> :
-                                <div className="msg msg-left">
-                                    <div className="bubble">
-                                        <h6 className="name">{t('Moct')}</h6>
-                                        {t('Hello, I am a  Moct chat bot')}, <br />
-                                        what can i help you {state.chatname} ?
-                                    </div>
-                                </div>
-                        }
-                        {
-                            Message.userMessage().map(m => m.sender === 'admin' ?
-                                <div className="msg msg-left" key={m.id} id={m.id}>
-                                    <div className="bubble">
-                                        <h6 className="name">{t('Moct')}</h6>
-                                        {m.message}
-                                    </div>
-                                </div> :
-                                m.reciever === 'admin' ?
-                                    <div className="msg msg-right" key={m.id} id={m.id}>
+        <div id="chat-bot">
+            <div className="messenger br10">
+                <div className="timestamp">{localTime(Date.now())}</div>
+                <div className="chatroom">
+                    {/* <div className="msg msg-right" key={m.id} id={m.id}>
                                         <div className="bubble">
                                             <h6 className="name">{state.chatname}</h6>
                                             {m.message}
                                         </div>
-                                    </div> :
-                                    <p></p>
-                            )
+                                    </div> */}
+                    {/* <!-- msgs  --> */}
+                    {
+                        !state.loading && !state.chatname ?
+
+                            <div className="msg msg-left">
+                                <div className="bubble">
+                                    <h6 className="name">{t('Moct')}</h6>
+                                    {t('Hello, I am a  Moct chatbot')}, <br />
+                                    {t('can tell me your name')} ?
+                                </div>
+                            </div> :
+                            <div className="msg msg-left">
+                                <div className="bubble">
+                                    <h6 className="name">{t('Moct')}</h6>
+                                    {t('Hello, I am a  Moct chat bot')}, <br />
+                                    what can i help you {state.chatname} ?
+                                </div>
+                            </div>
+                    }
+                    {
+                        Message.userMessage().map(m =>
+                            m.sender === 'user' ?
+                                <div className="msg msg-right" key={m._id ? m._id : m.id} id={m._id ? m._id : m.id}>
+                                    <div className="bubble">
+                                        <h6 className="name">{state.chatname}</h6>
+                                        {m.message}
+                                    </div>
+                                </div> :
+                                m.sender === 'admin' ?
+                                    <div className="msg msg-left" key={m._id ? m._id : m.id} id={m._id ? m._id : m.id}>
+                                        <div className="bubble">
+                                            <h6 className="name">{state.chatname}</h6>
+                                            {m.message}
+                                        </div>
+                                    </div> : ''
+
+                        )
+                    }
+                    {/* <!-- msgs  --> */}
+                </div>
+                <div className="type-area">
+                    <form onSubmit={handleSubmit}>
+                        {
+                            state.inputField ?
+                                <input type="text"
+                                    className="typing"
+                                    placeholder={t("type and hit enter")}
+                                    value={state.message}
+                                    required={true}
+                                    onChange={e => setState(s => ({ ...s, message: e.target.value }))}
+                                /> : ''
                         }
-                        {/* <!-- msgs  --> */}
-                    </div>
-                    <div className="type-area">
-                        <form onSubmit={handleSubmit}>
-                            {
-                                state.inputField ?
-                                    <input type="text"
-                                        className="typing"
-                                        placeholder={t("type and hit enter")}
-                                        value={state.message}
-                                        required={true}
-                                        onChange={e => setState(s => ({ ...s, message: e.target.value }))}
-                                    /> : ''
-                            }
-                        </form>
-                        <span className="send">
-                            <i className="bi bi-arrow-return-left"></i>
-                        </span>
-                    </div>
+                    </form>
+                    <span className="send">
+                        <i className="bi bi-arrow-return-left"></i>
+                    </span>
                 </div>
-                <div className="icon">
-                    <div className="user">
-                        <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
-                        {t('what can i help you?')}
-                    </div>
-                    <FontAwesomeIcon icon={faEnvelope} />
+            </div>
+            <div className="icon">
+                <div className="user">
+                    <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
+                    {t('what can i help you?')}
                 </div>
-            </div> :
-            <p></p>
+                <FontAwesomeIcon icon={faEnvelope} />
+            </div>
+        </div>
     )
 }
 
-export default withRouter(ChatBoat)
+export default ChatBoat

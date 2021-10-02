@@ -11,13 +11,13 @@ import AdminNews from './AdminNews';
 import AdminSite from './AdminSites';
 import AdminResearch from './AdminResearch';
 import { withRouter } from 'react-router-dom';
-import { checkAdmin, checkToken } from './Auth/ChechAdmin';
+import { checkToken } from './Auth/ChechAdmin';
 import AdminUser from './AdminUser';
 import Login from './Auth/Login';
-import AdminChat from './AdminChat';
-import ChatNotification from './ChatNotification';
+import ChatNotification from './chat/ChatNotification';
 import { SocketContext } from '../../context/context';
-import { createMessage } from '../../message/message';
+import ChatRoom from './chat/ChatRoom';
+import AdminChat from './AdminChat';
 
 function Dashboard(props) {
     const Donothing = () => { }
@@ -31,13 +31,23 @@ function Dashboard(props) {
     const [menuCollapse, setMenuCollapse] = useState(true)
     const [tabs, setTabs] = useState('main')
     /** */
-    const [user, setUser] = useState({
-        userid: '',
-        username: '',
+    const [connection, setConnection] = useState({
+        user_id: '',
         admin_id: '',
+        status: '',
+        connected_time: '',
+        disconnected_time: '',
+        user_name: '',
         admin_name: ''
     })
+    const [call, setCall] = useState({
+        user_name: '',
+        user_id: '',
+        status: '',
+        message: ''
+    })
     const menuIconClick = () => menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
+
     useEffect(() => {
         checkToken(setToken)
     }, [setToken])
@@ -49,24 +59,60 @@ function Dashboard(props) {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
     /**socket chat */
     useEffect(() => {
-        socket ? socket.on("onConnect", data => {
-            const show = data.username ? data.admin_id ? false : true : true
-            setUser(s => ({
+        socket ? socket.on("conn", data => {
+            let user_id = sessionStorage.getItem('user_id')
+            let admin_id = sessionStorage.getItem('id')
+            const notification = user_id === data.user_id ? admin_id === data.admin_id ? true : false : false
+            if (notification) {
+                setConnection(s => ({
+                    ...s,
+                    user_name: data.user_name,
+                    user_id: data.user_id,
+                    status: data.status,
+                    admin_id: data.admin_id,
+                    admin_name: data.admin_name,
+                    connected_time: data.connected_time,
+                    disconnected_time: data.disconnected_time
+                }))
+            }
+
+            showNotification(!notification)
+        }) : Donothing()
+        /** */
+        socket ? socket.on('calling', data => {
+            showNotification(true)
+            setCall(s => ({
                 ...s,
-                userid: data.userid,
-                username: data.username
-            }));
-            showNotification(show)
+                user_name: data.user_name,
+                user_id: data.user_id,
+                status: data.status,
+                message: data.message
+            }))
+        }) : Donothing()
+
+
+        socket ? socket.on('chat', data => {
+            let user_id = sessionStorage.getItem('user_id')
+            let admin_id = sessionStorage.getItem('id')
+            if ((data.admin_id === admin_id) && (data.user_id === user_id)) {
+                let Mess = []
+                data.message.forEach(d => {
+                    let add = (d.admin_id === admin_id) && (d.user_id === user_id)
+                    add ? Mess.push(d) : Donothing()
+                })
+
+                setMessage(Mess)
+            }
 
         }) : Donothing()
-        socket ? socket.on('chat', data => setMessage(data.message)) : Donothing()
     }, [socket])
-    /** */
-    console.log(message)
+
     const handleToggle = () => toggle ? setToggle(false) : setToggle(true)
     const collapse = () => setMenuCollapse(true)
+    console.log(connection)
     return (
         token ?
             <div>
@@ -86,10 +132,8 @@ function Dashboard(props) {
                     showNotification={showNotification}
                     socket={socket}
                     setTabs={setTabs}
-                    setUser={setUser}
-                    user={user}
-                    message={message}
-                    setMessage={setMessage}
+                    setConnection={setConnection}
+                    call={call}
                 />
 
                 {
@@ -111,15 +155,20 @@ function Dashboard(props) {
                                         <AdminResearch /> :
                                         tabs === 'Users' ?
                                             <AdminUser /> :
-                                            tabs === 'chat' ?
-                                                <AdminChat
-                                                    user={user}
-                                                    setUser={setUser}
+                                            tabs === 'chatRoom' ?
+                                                <ChatRoom
+                                                    connection={connection}
                                                     socket={socket}
                                                     message={message}
-                                                    setMessage={setMessage}
                                                 /> :
-                                                <p></p>
+                                                tabs === 'chats' ?
+                                                    <AdminChat
+                                                        connection={connection}
+                                                        setTabs={setTabs}
+                                                        setConnection={setConnection}
+                                                        socket={socket}
+                                                    />
+                                                    : <p></p>
                 }
 
             </div> :

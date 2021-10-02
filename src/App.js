@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react'
+import React, { useReducer, useState, useEffect } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import About from './components/pages/About'
 import Home from './components/pages/Home'
@@ -20,17 +20,21 @@ import NotFound from './components/pages/NotFound';
 import OrganizationChart from './components/pages/OrganizationChart'
 import { useTranslation } from 'react-i18next';
 import Search from './components/pages/Search'
-import ChatBoat from './components/layouts/ChatBoat'
+import { webSocket } from './socket'
+import Chat from './components/pages/Chat'
 export default function App() {
   const { t, i18n } = useTranslation();
   const [news, dispatchNews] = useReducer(newsReducer, newsState)
   const [socket, setSocket] = useState('')
+
+  /**set socket */
+  useEffect(() => setSocket(webSocket), [])
   return (
     <StoreContext.Provider value={{ news, dispatchNews }}>
       <LanguageContext.Provider value={{ t, i18n }}>
         <SocketContext.Provider value={{ socket, setSocket }}>
           <BrowserRouter>
-            <ChatBoat />
+            <Chat />
             <Switch>
               <Route exact path='/'><Home /></Route>
               <Route path='/news/:id'><NewDetail /></Route>

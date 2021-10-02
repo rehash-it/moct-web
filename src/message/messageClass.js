@@ -6,12 +6,13 @@ export class messageClass {
     }
     firstMessage = () => this.message[0]
     isFirstMessage = id => this.firstMessage() ? this.firstMessage().id === id : false
-    userMessage = () => this.message.filter(m => this.user_id === m.user_id && this.admin_id === m.admin_id)
+    userMessage = () => this.message.filter(m =>
+        (this.user_id === m.user_id && this.admin_id === m.admin_id) || (m.user_id === this.user_id && m.forced))
     adminMessage = () => this.message.filter(m => this.admin_id === m.admin_id && this.user_id === m.user_id)
     lastMessage = () => {
         let length = (this.message.length) - 1
         let mess = this.message[length]
         return mess
     }
-    lastMessage_id = () => this.lastMessage() ? this.lastMessage().id : ''
+    lastMessage_id = () => this.lastMessage() ? this.lastMessage()._id ? this.lastMessage()._id : this.lastMessage().id : ''
 }
