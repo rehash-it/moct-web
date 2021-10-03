@@ -21,7 +21,6 @@ function ChatRoom({ connection, socket, message }) {
         }
 
     }, [id])
-    console.log(connection)
     useEffect(() => {
         return () => socket ? socket.emit('disMiss', connection.user_id, connection.admin_id) : Donothing()
     })

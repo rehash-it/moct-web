@@ -61,25 +61,33 @@ function AdminChat({ socket, setTabs, connection }) {
                                         </MDBTableHead>
                                         <MDBTableBody textWhite>
                                             {
-                                                state.data.map((c, i) =>
-                                                    <tr key={c._id}>
-                                                        <th>{i + 1}</th>
-                                                        <th>{c.user_name}</th>
-                                                        <th>
-                                                            <ReactTimeAgo date={c.connection_time} />
-                                                            <p className="text-center">
-                                                                {tellDate(c.connection_time)}
-                                                            </p>
+                                                !state.data.length ?
+                                                    <tr>
+                                                        <th colSpan={4}>
+                                                            <h1 className="text-center">
+                                                                No user contacted yet!
+                                                            </h1>
                                                         </th>
+                                                    </tr> :
+                                                    state.data.map((c, i) =>
+                                                        <tr key={c._id}>
+                                                            <th>{i + 1}</th>
+                                                            <th>{c.user_name}</th>
+                                                            <th>
+                                                                <ReactTimeAgo date={c.connection_time} />
+                                                                <p className="text-center">
+                                                                    {tellDate(c.connection_time)}
+                                                                </p>
+                                                            </th>
 
-                                                        <th>
-                                                            <button className="text-center btn btn-raise" onClick={() => connect(c)}>
-                                                                Contact
-                                                            </button>
-                                                        </th>
-                                                    </tr>
+                                                            <th>
+                                                                <button className="text-center btn btn-raise" onClick={() => connect(c)}>
+                                                                    Contact
+                                                                </button>
+                                                            </th>
+                                                        </tr>
 
-                                                )
+                                                    )
                                             }
                                         </MDBTableBody>
                                     </MDBTable>

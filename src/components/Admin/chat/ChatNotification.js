@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { faPhone, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import $ from 'jquery'
 import { createMessage } from '../../../message/message';
-
+import '../../../styles/chatNotify.css'
 function ChatNotification({ call, notifcation, showNotification, setTabs, socket }) {
 
     const DoNothing = () => { }

@@ -64,7 +64,7 @@ function News({ location }) {
         showRssButton(!rssButton)
     }
     const rssDismiss = () => showRssButton(true)
-
+    console.log(RssFeed.data)
     return (
         <>
             <NavBar />
@@ -94,11 +94,12 @@ function News({ location }) {
                                                         <h4 className="text-center text-danger">
                                                             Can not fetch rss feed connection time out <br />
                                                         </h4>
-                                                        <button className="btn btn-danger" onClick={rssDismiss}>
+                                                        <button className="btn btn-danger text-center" onClick={rssDismiss}>
                                                             dismiss
                                                         </button>
                                                     </div> :
                                                     <div className="row">
+
                                                         <Carousel responsive={responsive} infinite={true}>
                                                             {
                                                                 RssFeed.data.map(r =>

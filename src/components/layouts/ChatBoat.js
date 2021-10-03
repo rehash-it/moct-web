@@ -38,16 +38,17 @@ function ChatBoat() {
     let last_id = Message.lastMessage_id()
 
     const Donothing = () => { }
-    const name = localStorage.getItem('chatname')
-    const userid = localStorage.getItem('user_id') ? localStorage.getItem('user_id') : id
-    useEffect(() => {
+    const name = sessionStorage.getItem('chatname')
 
-        setState(s => ({
-            ...s,
-            chatname: name,
-            user_id: userid,
-            loading: false,
-        }))
+    useEffect(() => {
+        let user_id = sessionStorage.getItem('user_id')
+        if (user_id ? true : false) {
+            setState(s => ({ ...s, chatname: name, user_id, loading: false, }))
+        }
+        else {
+            sessionStorage.setItem('user_id', id)
+            setState(s => ({ ...s, chatname: name, user_id: id, loading: false }))
+        }
 
     }, [name])
 
@@ -56,24 +57,28 @@ function ChatBoat() {
         socket ? socket.on('conn', data => {
             let connected = data.user_id === state.user_id && data.user_name === state.chatname
             if (connected) {
+                sessionStorage.removeItem('admin_id')
+                sessionStorage.setItem('admin_id', data.admin_id)
                 setConnection(s => ({ ...data }))
                 setState(s => ({ ...s, inputField: true }))
             }
         }) : Donothing()
         socket ? socket.on('chat', data => {
-            let check = (data.admin_id === connection.admin_id) && (data.user_id === connection.user_id)
+            let admin_id = sessionStorage.getItem('admin_id')
+            let check = (data.admin_id === admin_id) && (data.user_id === state.user_id)
             let Mess = []
             data.message.forEach(d => {
-                let add = (d.admin_id === connection.admin_id) && (d.user_id === connection.user_id)
+                let add = (d.admin_id === admin_id) && (d.user_id === state.user_id)
                 add ? Mess.push(d) : Donothing()
             })
             check ? setMessage(Mess) : Donothing()
         }) : Donothing()
 
         return (() => {
-            socket ? socket.emit('disMiss', connection.user_id, connection.admin_id) : Donothing()
+            let admin_id = sessionStorage.getItem('admin_id')
+            socket ? socket.emit('disMiss', state.user_id, admin_id) : Donothing()
         })
-    }, [socket, state, connection])
+    }, [socket, state])
     /**for scroll */
     useEffect(() => {
         try {
@@ -91,8 +96,8 @@ function ChatBoat() {
         let nameMessage = createMessage(chatname, 'user', 'admin', '', state.user_id, connection.admin_id, chatname, true)
 
         setMessage(s => ([...s, nameMessage]))
-        localStorage.setItem('chatname', chatname)
-        localStorage.setItem('user_id', state.user_id)
+        sessionStorage.setItem('chatname', chatname)
+        sessionStorage.setItem('user_id', state.user_id)
     }
 
 
@@ -146,7 +151,6 @@ function ChatBoat() {
         }
         setState(s => ({ ...s, message: '' }))
     }
-    console.log(connection)
     return (
         <div id="chat-bot">
             <div className="messenger br10">
