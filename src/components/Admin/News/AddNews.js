@@ -6,7 +6,7 @@ import { host } from '../../../config/config';
 import { getHeaders } from './../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { faCalendar, faNewspaper, faWindowClose } from '@fortawesome/free-solid-svg-icons';
-import { dateFormat, DateNow } from './../../utility/Date';
+import { DateNow } from './../../utility/Date';
 import { randomID } from '../../utility/general';
 
 function AddNews({ fetch }) {

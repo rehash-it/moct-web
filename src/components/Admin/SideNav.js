@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FaList, FaNewspaper, FaPeopleCarry, FaRegHeart } from "react-icons/fa";
 import { FiHome, FiLogOut } from "react-icons/fi";
 import { RiPencilLine } from "react-icons/ri";
-import { BiCog, BiMessage, BiUser } from "react-icons/bi";
+import { BiCog, BiMessage, BiUser, BiUserVoice } from "react-icons/bi";
 import '../../styles/admin.css'
 import {
     ProSidebar, Menu, MenuItem,
@@ -57,11 +57,6 @@ function SideNav({ handleToggle,
                 </SidebarHeader>
                 <SidebarContent >
                     <Menu iconShape="square">
-                        <MenuItem active={tabs === 'Main'}
-                            icon={<FiHome />}
-                            onClick={() => { setTabs('Main'); collapse() }}>
-                            Dashboard
-                        </MenuItem>
                         <MenuItem
                             active={tabs === 'News'}
                             onClick={() => { setTabs('News'); collapse() }}
@@ -99,10 +94,16 @@ function SideNav({ handleToggle,
                             Users
                         </MenuItem>
                         <MenuItem
+                            active={tabs === 'Forum'}
+                            onClick={() => { setTabs('Forum'); collapse() }}
+                            icon={<BiUserVoice />}>
+                            Forum
+                        </MenuItem>
+                        <MenuItem
                             active={tabs === 'chats'}
                             onClick={() => { setTabs('chats'); collapse() }}
                             icon={<BiMessage />}>
-                            Users
+                            Chats
                         </MenuItem>
                         {
                             dimesion.width >= 768 ? <p></p> :

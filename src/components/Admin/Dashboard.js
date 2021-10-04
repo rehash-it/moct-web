@@ -18,6 +18,9 @@ import ChatNotification from './chat/ChatNotification';
 import { SocketContext } from '../../context/context';
 import ChatRoom from './chat/ChatRoom';
 import AdminChat from './AdminChat';
+import { messageClass } from './../../message/messageClass';
+import OtherMessages from './chat/OtherMessages';
+import AdminForum from './AdminForum';
 
 function Dashboard(props) {
     const Donothing = () => { }
@@ -29,7 +32,7 @@ function Dashboard(props) {
     const [message, setMessage] = useState([])
     //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(true)
-    const [tabs, setTabs] = useState('main')
+    const [tabs, setTabs] = useState('News')
     /** */
     const [connection, setConnection] = useState({
         user_id: '',
@@ -46,6 +49,8 @@ function Dashboard(props) {
         status: '',
         message: ''
     })
+    const [otherMessageNotification, showOtherMessageNotification] = useState(false)
+    const [otherMessages, setOtherMessage] = useState({})
     const menuIconClick = () => menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
 
     useEffect(() => {
@@ -106,13 +111,19 @@ function Dashboard(props) {
 
                 setMessage(Mess)
             }
-
+            else if (data.admin_id === admin_id) {
+                let userid = data.message.length ? data.message[0].user_id : ''
+                let mess = new messageClass(data.message, userid, admin_id)
+                let last_message = mess.lastMessage()
+                let check = last_message ? last_message.sender === 'user' ? true : false : false
+                check ? setOtherMessage(last_message) : Donothing()
+                showOtherMessageNotification(check)
+            }
         }) : Donothing()
     }, [socket])
 
     const handleToggle = () => toggle ? setToggle(false) : setToggle(true)
     const collapse = () => setMenuCollapse(true)
-    console.log(connection)
     return (
         token ?
             <div>
@@ -135,7 +146,14 @@ function Dashboard(props) {
                     setConnection={setConnection}
                     call={call}
                 />
-
+                <OtherMessages
+                    setTabs={setTabs}
+                    message={otherMessages}
+                    visibility={otherMessageNotification}
+                    showVisibility={showOtherMessageNotification}
+                    socket={socket}
+                    connection={connection}
+                />
                 {
                     dimesion.width >= 768 ? <p></p> :
                         <button className="btn btn-primary" onClick={handleToggle}>
@@ -167,8 +185,10 @@ function Dashboard(props) {
                                                         setTabs={setTabs}
                                                         setConnection={setConnection}
                                                         socket={socket}
-                                                    />
-                                                    : <p></p>
+                                                    /> :
+                                                    tabs === 'Forum' ?
+                                                        <AdminForum socket={socket} />
+                                                        : <p></p>
                 }
 
             </div> :
