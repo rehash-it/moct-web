@@ -5,8 +5,6 @@ import ErrorLoading from '../layouts/ErrorLoading';
 import { fetchChats } from './chat/chat';
 import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo'
 import { tellDate } from '../utility/Date';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
 function AdminChat({ socket, setTabs, connection }) {
     const [state, setState] = useState({

@@ -1,19 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../../styles/chatBoat.css'
-import $ from 'jquery'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { LanguageContext, SocketContext } from '../../context/context';
 import { randomID } from '../utility/general';
 import { localTime } from '../utility/Date';
 import { createMessage } from '../../message/message';
-import { withRouter } from 'react-router-dom';
 import { messageClass } from '../../message/messageClass';
-
+import $ from 'jquery'
 const id = randomID() + 'moct' + Date.now()
 
-function ChatBoat() {
-
+function ChatBoat({ location }) {
+    let chat_bot = $("#chat-bot .icon")
+    let chat_bot_messenger = $("#chat-bot .messenger")
+    useEffect(() => {
+        $("#chat-bot .icon").on('click', () => {
+            $("#chat-bot .icon").toggleClass("expanded");
+            setTimeout(() => {
+                $("#chat-bot .messenger").toggleClass("expanded");
+            }, 100);
+        })
+    }, [chat_bot, location, chat_bot_messenger])
     const { t } = useContext(LanguageContext)
     /**socket io */
     const { socket } = useContext(SocketContext)
@@ -93,9 +100,6 @@ function ChatBoat() {
 
     const setName = chatname => {
         setState(s => ({ ...s, chatname }))
-        let nameMessage = createMessage(chatname, 'user', 'admin', '', state.user_id, connection.admin_id, chatname, true)
-
-        setMessage(s => ([...s, nameMessage]))
         sessionStorage.setItem('chatname', chatname)
         sessionStorage.setItem('user_id', state.user_id)
     }
@@ -193,7 +197,7 @@ function ChatBoat() {
                                 m.sender === 'admin' ?
                                     <div className="msg msg-left" key={m._id ? m._id : m.id} id={m._id ? m._id : m.id}>
                                         <div className="bubble">
-                                            <h6 className="name">{state.chatname}</h6>
+                                            <h6 className="name">Moct</h6>
                                             {m.message}
                                         </div>
                                     </div> : ''

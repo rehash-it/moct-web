@@ -109,6 +109,13 @@ const NavBar = ({ match, history }) => {
                             </NavLink>
                         </NavItem>
                     </Link>
+                    <Link to='/forums'>
+                        <NavItem>
+                            <NavLink>
+                                <h6 className='text-raise'> {t('Forums')}</h6>
+                            </NavLink>
+                        </NavItem>
+                    </Link>
                     <Link to='/docs'>
                         <NavItem>
                             <NavLink>

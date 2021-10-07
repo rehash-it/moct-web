@@ -71,7 +71,6 @@ function EditNews({ fetch, news }) {
         setSave({ process: '', error: '', success: '', imageError: '' })
     }
     const Donothing = () => { }
-    console.log(state, news)
     const handleSubmit = async e => {
         e.preventDefault()
         try {

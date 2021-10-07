@@ -51,8 +51,9 @@ function Dashboard(props) {
     })
     const [otherMessageNotification, showOtherMessageNotification] = useState(false)
     const [otherMessages, setOtherMessage] = useState({})
+    const [forum, setForum] = useState({})
     const menuIconClick = () => menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-
+    const [comments, setComments] = useState([])
     useEffect(() => {
         checkToken(setToken)
     }, [setToken])
@@ -120,10 +121,20 @@ function Dashboard(props) {
                 showOtherMessageNotification(check)
             }
         }) : Donothing()
+
+        socket ? socket.on('comments', data => {
+
+            let forum_id = sessionStorage.getItem('forum_id')
+            console.log(data, forum_id)
+            let comment = forum_id === data.forum_id
+            comment ? setComments(data.data) : Donothing()
+        }) : Donothing()
+
     }, [socket])
 
     const handleToggle = () => toggle ? setToggle(false) : setToggle(true)
     const collapse = () => setMenuCollapse(true)
+
     return (
         token ?
             <div>
@@ -187,7 +198,12 @@ function Dashboard(props) {
                                                         socket={socket}
                                                     /> :
                                                     tabs === 'Forum' ?
-                                                        <AdminForum socket={socket} />
+                                                        <AdminForum
+                                                            socket={socket}
+                                                            comments={comments}
+                                                            forum={forum}
+                                                            setForum={setForum}
+                                                        />
                                                         : <p></p>
                 }
 

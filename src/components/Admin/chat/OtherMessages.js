@@ -20,7 +20,6 @@ function OtherMessages({ connection, message, showVisibility, visibility, setTab
         setTabs('chatRoom')
         showVisibility(false)
     }
-    console.log(message)
     return (
         visibility ?
             <div id="chat-bot" >

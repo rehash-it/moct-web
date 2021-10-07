@@ -28,7 +28,6 @@ function ChatNotification({ call, notifcation, showNotification, setTabs, socket
         }) : DoNothing()
         socket ? socket.emit('saveMessage',
             [
-                createMessage('Hello, i am ' + admin_name + ' what can i help you?', 'admin', 'user', admin_id, call.user_id, admin_name, call.user_name, false),
                 createMessage(message, 'user', 'admin', admin_id, call.user_id, admin_name, call.user_name, false)
             ])
             : DoNothing()

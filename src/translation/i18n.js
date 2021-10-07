@@ -83,7 +83,8 @@ const resources = {
             "type and hit enter": "ይተይቡ እና አስገባን ይምቱ",
             "what can i help you?": "ምን ልረዳዎት?",
             "Hello, I am a  Moct chatbot": "ሰላም ፣ እኔ የ ኢ.ባ.ቱ.ሚ ቻት ቦት ነኝ",
-            "can tell me your name": "ስምዎን ሊነግሩኝ ይችላሉ"
+            "can tell me your name": "ስምዎን ሊነግሩኝ ይችላሉ",
+            "Forums": "መድረኮች"
         }
     }
 };

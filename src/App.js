@@ -22,6 +22,9 @@ import { useTranslation } from 'react-i18next';
 import Search from './components/pages/Search'
 import { webSocket } from './socket'
 import Chat from './components/pages/Chat'
+import Forums from './components/pages/Forums'
+import ClosedUserForum from './components/Forum/ClosedUserForum'
+import UserForum from './components/Forum/UserForum'
 export default function App() {
   const { t, i18n } = useTranslation();
   const [news, dispatchNews] = useReducer(newsReducer, newsState)
@@ -52,7 +55,9 @@ export default function App() {
               <Route path='/site/:id'><SiteDetails /></Route>
               <Route path='/search/:index'><Search /> </Route>
               <Route path='/chart'><OrganizationChart /></Route>
-
+              <Route path='/forum/:id'><UserForum /></Route>
+              <Route path='/forums'><Forums /> </Route>
+              <Route path='/closedForums'><ClosedUserForum /></Route>
               <Route><NotFound /></Route>
             </Switch>
           </BrowserRouter>

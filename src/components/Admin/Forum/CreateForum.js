@@ -4,10 +4,11 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import Switch from "react-switch";
 import { Button } from 'reactstrap';
+import { host } from '../../../config/config';
 import { getData, getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 
-function CreateForum({ setTab, setForum }) {
+function CreateForum({ setTab, setForum, socket, Forum }) {
     const [state, setState] = useState({
         title: { value: '', active: '' },
         description: { value: '', active: '' },
@@ -29,15 +30,19 @@ function CreateForum({ setTab, setForum }) {
         }))
         setSave({ process: '', error: '', success: '' })
     }
+    const Donothing = () => { }
     const handleSubmit = async e => {
         try {
             e.preventDefault()
             setSave(s => ({ ...s, process: 'saving...', error: '', success: '' }))
-            let forum = getData(state)
-            const req = await axios.post('forum', forum, getHeaders())
+            let creater = sessionStorage.getItem('id')
+            let forum = { ...getData(state), creater, status: state.need_comment.value ? 'live' : 'closed' }
+            const req = await axios.post(host + 'forum', forum, getHeaders())
             if (req.status === 200) {
                 setSave(s => ({ ...s, process: '', error: '', success: 'Saved successfully!' }))
+                sessionStorage.setItem('forum_id', req.data._id)
                 setForum(req.data)
+                socket ? socket.emit('getComment', req.data._id) : Donothing()
                 setTab('forum')
             }
         }
@@ -90,7 +95,7 @@ function CreateForum({ setTab, setForum }) {
                         {save.process ?
                             <div className="d-flex justify-content-center">
                                 <DotLoading />
-                                <p className='text-dark'>{save.process}</p>
+                                <p className='text-white'>{save.process}</p>
                             </div> :
                             <p></p>
                         }

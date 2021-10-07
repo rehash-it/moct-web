@@ -73,7 +73,11 @@ const NewDetail = ({ match }) => {
                                             <FacebookShareButton url={url} className='my-auto'>
                                                 <FontAwesomeIcon icon={faFacebook} className="fa-2x mx-2 text-primary" />
                                                 <FacebookShareCount url={url}>
-                                                    {shareCount => <span className="myShareCountWrapper">{shareCount}</span>}
+                                                    {shareCount =>
+                                                        <span className="myShareCountWrapper">
+                                                            {shareCount}
+                                                        </span>
+                                                    }
                                                 </FacebookShareCount>
                                             </FacebookShareButton>
                                             {/* twitter */}
