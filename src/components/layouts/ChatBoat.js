@@ -45,15 +45,15 @@ function ChatBoat({ location }) {
     let last_id = Message.lastMessage_id()
 
     const Donothing = () => { }
-    const name = sessionStorage.getItem('chatname')
+    const name = localStorage.getItem('chatname')
 
     useEffect(() => {
-        let user_id = sessionStorage.getItem('user_id')
+        let user_id = localStorage.getItem('user_id')
         if (user_id ? true : false) {
             setState(s => ({ ...s, chatname: name, user_id, loading: false, }))
         }
         else {
-            sessionStorage.setItem('user_id', id)
+            localStorage.setItem('user_id', id)
             setState(s => ({ ...s, chatname: name, user_id: id, loading: false }))
         }
 
@@ -64,14 +64,14 @@ function ChatBoat({ location }) {
         socket ? socket.on('conn', data => {
             let connected = data.user_id === state.user_id && data.user_name === state.chatname
             if (connected) {
-                sessionStorage.removeItem('admin_id')
-                sessionStorage.setItem('admin_id', data.admin_id)
+                localStorage.removeItem('admin_id')
+                localStorage.setItem('admin_id', data.admin_id)
                 setConnection(s => ({ ...data }))
                 setState(s => ({ ...s, inputField: true }))
             }
         }) : Donothing()
         socket ? socket.on('chat', data => {
-            let admin_id = sessionStorage.getItem('admin_id')
+            let admin_id = localStorage.getItem('admin_id')
             let check = (data.admin_id === admin_id) && (data.user_id === state.user_id)
             let Mess = []
             data.message.forEach(d => {
@@ -82,7 +82,7 @@ function ChatBoat({ location }) {
         }) : Donothing()
 
         return (() => {
-            let admin_id = sessionStorage.getItem('admin_id')
+            let admin_id = localStorage.getItem('admin_id')
             socket ? socket.emit('disMiss', state.user_id, admin_id) : Donothing()
         })
     }, [socket, state])
@@ -100,8 +100,8 @@ function ChatBoat({ location }) {
 
     const setName = chatname => {
         setState(s => ({ ...s, chatname }))
-        sessionStorage.setItem('chatname', chatname)
-        sessionStorage.setItem('user_id', state.user_id)
+        localStorage.setItem('chatname', chatname)
+        localStorage.setItem('user_id', state.user_id)
     }
 
 

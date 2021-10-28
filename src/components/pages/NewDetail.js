@@ -94,7 +94,7 @@ const NewDetail = ({ match }) => {
                                     news.images.length ?
 
                                         <div className="col-lg-5">
-                                            <p className="indent text-white h5" style={{ textAlign: 'justify' }}>
+                                            <p className="indent text-dark h5" style={{ textAlign: 'justify' }}>
                                                 {news.content}
                                             </p>
                                         </div> :
@@ -145,7 +145,7 @@ const NewDetail = ({ match }) => {
                                                 newsError ?
                                                     <ErrorLoading />
                                                     : News.filter(n => n._id !== id).slice(0, 6).map(n =>
-                                                        <div class="post" key={n._id}>
+                                                        <div class="post" key={n._id} >
                                                             <Link to={'/news/' + n._id}>
                                                                 {
                                                                     n.images.length ?

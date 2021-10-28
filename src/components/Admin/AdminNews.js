@@ -51,7 +51,7 @@ function AdminNews() {
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
-                                        <MDBTableHead textWhite>
+                                        <MDBTableHead >
                                             <tr>
                                                 <th>#</th>
                                                 <th>Title</th>
@@ -60,7 +60,7 @@ function AdminNews() {
                                                 <th>Options</th>
                                             </tr>
                                         </MDBTableHead>
-                                        <MDBTableBody textWhite>
+                                        <MDBTableBody>
                                             {
                                                 length ?
                                                     data.map((n, i = 0) => {
@@ -106,8 +106,8 @@ function AdminNews() {
                                                     }) :
                                                     <tr>
                                                         <td colSpan={9}>
-                                                            <h3 className='text-white text-center'>
-                                                                <FontAwesomeIcon icon={faThermometerEmpty} className='text-white' />
+                                                            <h3 className='text-dark text-center'>
+                                                                <FontAwesomeIcon icon={faThermometerEmpty} className='text-dark' />
                                                                 No News registered yet
                                                             </h3>
                                                         </td>

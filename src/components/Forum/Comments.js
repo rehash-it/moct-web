@@ -1,22 +1,31 @@
-import { faComment, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faEdit, faPencilAlt, faUpload, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useContext, useEffect, useState } from 'react'
-import { getData } from '../../config/headers'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { SocketContext } from '../../context/context'
-import { addComments, commentsClass, Donothing } from '../Admin/comments/action'
+import { addComments, commentsClass, Donothing, motion } from '../Admin/comments/action'
+import CommentReply from './CommentReply'
 import SetName from './SetName'
+import Tree from 'rc-tree';
+
 function Comments({ Forum }) {
     const { socket } = useContext(SocketContext)
     const [comments, setComments] = useState([])
-    let user_id = sessionStorage.getItem('user_id')
-    const name = sessionStorage.getItem('chatname')
+    let user_id = localStorage.getItem('user_id')
+    const name = localStorage.getItem('chatname')
     const [state, setState] = useState({
         comment: { value: '', active: '' },
         name: { value: '', active: '' },
         user_id: { value: '', active: '' }
     })
+    const fileBtn = useRef(null)
+    const treeRef = React.useRef();
+    //modal for sate name
     const [modal, setModal] = useState(false)
-
+    //modal for reply name
+    const [ReplyComment, setReplyComment] = useState({
+        modal: false,
+        comment: ''
+    })
     useEffect(() => setState(s => ({
         ...s,
         user_id: { value: user_id, active: '' },
@@ -62,66 +71,135 @@ function Comments({ Forum }) {
         e.preventDefault()
         let creater = state.user_id.value
         const user_name = state.name.value
-        console.log(user_name)
         let comment = {
             comment: state.comment.value,
-            creater, user_type: 'user', user_name, forum_id: Forum._id
+            creater,
+            user_type: 'user',
+            user_name,
+            forum_id: Forum._id,
+            reply: false
         }
         addComments(socket, comment)
         setState(s => ({ ...s, comment: { value: '', active: '' } }))
     }
-    console.log(state)
+    const replyComment = comment => {
+        if (name ? true : false) {
+            setReplyComment(s => ({ ...s, modal: true, comment }))
+        }
+        else {
+            setModal(true)
+        }
+    }
+    let CommentClass = new commentsClass(comments)
+    let Comments = CommentClass.comments()
+    console.log(Comments)
+    const handleFileUpload = file => {
+
+    }
     return (
         <div className="col-lg-12">
-            <div className="card bg-dark">
-                <div className="card-header bg-dark">
-                    <FontAwesomeIcon icon={faComment} className='mx-2' />
+            <div className="card">
+                <div className="card-header text-dark">
+                    <FontAwesomeIcon icon={faComment} className='mx-2 text-dark' />
                     {comments.length} comments
                     <hr />
                 </div>
-                <div className="card-body bg-dark" id='comment_box'
+                <div className="card-body" id='comment_box'
                     style={{ height: '60vh', overflow: 'scroll', msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
                     {
                         comments.length ?
-                            comments.map(c =>
-                                <div className="my-2" id={c._id} key={c._id}>
-                                    <p>
-                                        <FontAwesomeIcon icon={faUserCircle} className='mx-2' />
-                                        {c.user_name} <br />
-                                        {c.comment}
-                                    </p>
-                                    <hr />
-                                </div>
-                            ) :
+                            <Tree
+                                ref={treeRef}
+                                // defaultExpandAll={false}
+                                defaultExpandAll
+                                treeData={Comments}
+                                titleRender={props => {
+                                    let c = CommentClass.find_comment(props._id);
+                                    return (
+                                        c ?
+                                            <div className="row my-2" id={c._id} style={{ marginLeft: c.reply ? 40 : 0 }}>
+                                                <p className='my-auto'>
+                                                    <FontAwesomeIcon icon={faUserCircle} className='mx-2' />
+                                                    {c.user_name}
+                                                    {
+                                                        c.reply ?
+                                                            CommentClass.find_comment(c.reply_id) ?
+                                                                '       -Reply to comment - ' + CommentClass.find_comment(c.reply_id).comment
+                                                                : ""
+                                                            : ''
+                                                    }
+                                                </p>
+                                                <p className='indent text-dark my-auto ' style={{ display: 'inline-flex' }}>
+                                                    {c.comment}
+                                                    <button className="btn" onClick={() => replyComment(c)}>
+                                                        <FontAwesomeIcon icon={faPencilAlt} />
+                                                        Reply
+
+                                                    </button>
+
+                                                </p>
+                                                {!props.children.length ? <hr /> : ''}
+
+                                            </div>
+                                            : '')
+                                }}
+                            />
+                            :
                             <div className="my-2">
-                                <h4 className="tex-center">
+                                <h4 className="tex-center text-white">
                                     No comments yet!
                                 </h4>
                             </div>
                     }
                     <SetName setData={setState} setModal={setModal} modal={modal} />
+                    <CommentReply
+                        modal={ReplyComment.modal}
+                        comment={ReplyComment.comment}
+                        Forum={Forum}
+                        setModal={setReplyComment}
+                        socket={socket}
+                    />
                 </div>
                 {
                     Forum.status !== 'closed' ?
                         <div className="card-footer">
                             <form onSubmit={handleSubmit}>
-                                <div id="float-label">
-                                    <label htmlFor="title" className={state.comment.active}>
+                                <div id="float-labe">
+                                    <label htmlFor="title" >
                                         <FontAwesomeIcon icon={faComment} className='mx-2' />
                                         comment
                                     </label>
-                                    <input type="text" className='form-control' id='comment'
+                                    <textarea cols="30" rows="10" className='form-control' id='comment'
                                         required='true'
                                         onChange={handleChange}
-                                        value={state.comment.value}
-                                    />
+                                        value={state.comment.value}>
+                                    </textarea>
+
                                 </div>
+                                <div style={{ display: 'inline-flex', justifyContent: 'end' }}>
+                                    <button type='submit' className="d-flex align-items-end btn btn-raise float-right">
+                                        comment
+                                    </button>
+                                    <React.Fragment>
+                                        <input
+                                            ref={fileBtn}
+                                            onChange={handleFileUpload}
+                                            type="file"
+                                            style={{ display: "none" }}
+                                        // multiple={false}
+                                        />
+                                        <button type='btn btn-raise' onClick={() => fileBtn.current.click()}>
+                                            <FontAwesomeIcon icon={faUpload} />
+                                        </button>
+                                    </React.Fragment>
+                                </div>
+
                             </form>
                         </div> :
                         ''}
                 {/*  */}
             </div>
-        </div>
+        </div >
     )
 }
 

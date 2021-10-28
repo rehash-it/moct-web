@@ -47,7 +47,7 @@ const Vacancy = ({ location }) => {
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
-                                        <MDBTableHead textWhite>
+                                        <MDBTableHead >
                                             <tr>
                                                 <th>#</th>
                                                 <th>{t('Job title')}</th>
@@ -64,7 +64,7 @@ const Vacancy = ({ location }) => {
                                                     data.map((v, i = 0) => {
                                                         i++
                                                         return (
-                                                            <tr key={v._id} className='text-white'>
+                                                            <tr key={v._id} >
                                                                 <td>{i}</td>
                                                                 <td>{v.title}</td>
                                                                 <td>{v.description}</td>
@@ -79,7 +79,7 @@ const Vacancy = ({ location }) => {
                                                     }) :
                                                     <tr>
                                                         <td colSpan={7}>
-                                                            <h3 className='text-white text-center'>
+                                                            <h3 className='text-dark text-center'>
                                                                 <FontAwesomeIcon icon={FaThermometerEmpty} className='text-white' />
                                                                 {t('No Vacanices registered yet')}
                                                             </h3>

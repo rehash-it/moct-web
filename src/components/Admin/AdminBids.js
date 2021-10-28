@@ -53,7 +53,7 @@ function AdminBids() {
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
-                                        <MDBTableHead textWhite>
+                                        <MDBTableHead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Title</th>
@@ -64,7 +64,7 @@ function AdminBids() {
                                             </tr>
 
                                         </MDBTableHead>
-                                        <MDBTableBody textWhite>
+                                        <MDBTableBody>
                                             {
                                                 length ?
                                                     data.map((b, i = 0) => {
@@ -96,8 +96,8 @@ function AdminBids() {
                                                     }) :
                                                     <tr>
                                                         <td colSpan={7}>
-                                                            <h3 className='text-white text-center'>
-                                                                <FontAwesomeIcon icon={FaThermometerEmpty} className='text-white' />
+                                                            <h3 className='text-center'>
+                                                                <FontAwesomeIcon icon={FaThermometerEmpty} className='text-dark' />
                                                                 No Bids registered yet
                                                             </h3>
                                                         </td>

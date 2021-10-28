@@ -18,7 +18,7 @@ import { file } from '../../config/config';
 import ReactTimeAgo from 'react-time-ago'
 import { sitesDispatch } from '../../store/Actions/fetchSites';
 import DataLoading from '../layouts/DataLoading';
-import { tellDate } from '../utility/Date';
+import { tellDate } from '../utility/Date'
 const items = [
     {
         src: Ertale,
@@ -104,7 +104,7 @@ function Home() {
                                     <div className="dark">
                                         <main className="container">
                                             {news.slice(0, 4).length ?
-                                                <div className="h1 text-center" id="pageHeaderTitle">{t('News')}</div> :
+                                                <div className="h1 text-center text-white" id="pageHeaderTitle">{t('News')}</div> :
                                                 <p></p>
                                             }{
                                                 news.slice(0, 4).map(n =>
@@ -162,7 +162,8 @@ function Home() {
                     <div className="col-lg-12 ">
                         <div className="buttons text-center">
                             <h1 className='text-center my-2'>{t('important links')} </h1>
-                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
+                            <a href="https://www.moctgaller.gov.eimport { product } from './../Forum/tryclass';
+t" target="_blank" rel="noreferrer">
                                 <button className="fill h6">www.moctgaller.gov.et</button>
                             </a>
                             <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">

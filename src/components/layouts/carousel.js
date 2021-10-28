@@ -59,7 +59,7 @@ const CarouseL = ({ items }) => {
                         >
                             {
                                 windowDimensions.width > 680 ? <img src={item.src} alt={item.altText} style={{
-                                    minHeight: '85vh', objectFit: 'cover', width: '100%', backgroundColor: '#17181c', opacity: 0.6
+                                    minHeight: '85vh', objectFit: 'cover', width: '100%', backgroundColor: '#fff', opacity: 0.95
                                 }} /> :
                                     <img src={item.src} alt={item.altText}
                                         style={{

@@ -10,8 +10,9 @@ function Forums({ location, history }) {
         <>
             <Navbar />
             <div className="container">
+                <ForumUserMenu tab={location.pathname} push={history.push} />
+
                 <div className="row">
-                    <ForumUserMenu tab={location.pathname} push={history.push} />
                     <LiveUserForum push={history.push} />
                 </div>
 

@@ -35,7 +35,7 @@ function About() {
                                     <div class="col-md-8">
                                         <div class="about__text mb-5 mb-sm-4 mb-md-4">
                                             <h1>{t('Vision')}</h1>
-                                            <p class="my-2 h6 indent text-white justify-content">
+                                            <p class="my-2 h6 indent text-dark justify-content">
                                                 {Vision()}
                                             </p>
                                         </div>

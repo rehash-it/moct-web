@@ -170,7 +170,7 @@ function News({ location }) {
 
                                                                                         <div className="news-image">
 
-                                                                                            <img src={file + n.images[0]} alt="sample66" width={dimesion.width > 680 ? 750 : 700}
+                                                                                            <img src={file + n.images[0]} alt={n.title} width={dimesion.width > 680 ? 750 : 700}
                                                                                                 style={{ height: 260, objectFit: 'cover' }} />
                                                                                         </div> : ''
                                                                                 }

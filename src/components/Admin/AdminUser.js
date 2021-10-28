@@ -91,7 +91,7 @@ function AdminUser() {
                             </div>
                             <div className="col-lg-12 mt-3">
                                 <MDBTable responsive bordered>
-                                    <MDBTableHead textWhite>
+                                    <MDBTableHead>
                                         <tr>
                                             <th>#</th>
                                             <th>useranme</th>
@@ -100,7 +100,7 @@ function AdminUser() {
                                             <th>Options</th>
                                         </tr>
                                     </MDBTableHead>
-                                    <MDBTableBody textWhite>
+                                    <MDBTableBody>
                                         {
                                             length ?
                                                 data.map((u, i = 0) => {
@@ -151,7 +151,7 @@ function AdminUser() {
                                                 }) :
                                                 <tr>
                                                     <td colSpan={9}>
-                                                        <h3 className='text-white text-center'>
+                                                        <h3 className='text-center'>
                                                             <FontAwesomeIcon icon={faThermometerEmpty} className='text-white' />
                                                             No Users registere yet
                                                         </h3>

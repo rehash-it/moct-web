@@ -51,7 +51,7 @@ function AdminVacancy() {
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
-                                        <MDBTableHead textWhite>
+                                        <MDBTableHead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Job title</th>
@@ -69,7 +69,7 @@ function AdminVacancy() {
                                                     data.map((v, i = 0) => {
                                                         i++
                                                         return (
-                                                            <tr key={v._id} className='text-white'>
+                                                            <tr key={v._id} >
                                                                 <td>{i}</td>
                                                                 <td>{v.title}</td>
                                                                 <td>{v.description}</td>
@@ -86,9 +86,9 @@ function AdminVacancy() {
                                                         )
                                                     }) :
                                                     <tr>
-                                                        <td colSpan={7}>
-                                                            <h3 className='text-white text-center'>
-                                                                <FontAwesomeIcon icon={FaThermometerEmpty} className='text-white' />
+                                                        <td colSpan={8}>
+                                                            <h3 className='text-center'>
+                                                                <FontAwesomeIcon icon={FaThermometerEmpty} />
                                                                 No Vacanices registered yet
                                                             </h3>
                                                         </td>

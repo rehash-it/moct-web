@@ -1,4 +1,4 @@
-import { faComment, faTrash, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faPaperclip, faTrash, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useEffect } from 'react'
 import { getData } from '../../../config/headers'
@@ -31,14 +31,14 @@ function Comments({ comments, event_id, socket, Forum }) {
         e.preventDefault()
         let creater = sessionStorage.getItem('id')
         const user_name = sessionStorage.getItem('username')
-        let comment = { ...getData(state), creater, user_type: 'admin', user_name, forum_id: event_id }
+        let comment = { ...getData(state), creater, user_type: 'admin', user_name, forum_id: event_id, reply: false }
         addComments(socket, comment)
         setState(s => ({ ...s, comment: { value: '', active: '' } }))
     }
     return (
         <div className="col-lg-6">
             <div className="card bg-dark">
-                <div className="card-header bg-dark">
+                <div className="card-header bg-dark text-white">
                     <FontAwesomeIcon icon={faComment} className='mx-2' />
                     comments
                     <hr />
@@ -49,8 +49,8 @@ function Comments({ comments, event_id, socket, Forum }) {
                         comments.length ?
                             comments.map(c =>
                                 <div className="my-2" id={c._id} key={c._id}>
-                                    <p>
-                                        <FontAwesomeIcon icon={faUserCircle} className='mx-2' />
+                                    <p className='text-white'>
+                                        <FontAwesomeIcon icon={faUserCircle} className='mx-2 text-white' />
                                         {c.user_name} <br />
                                         {c.comment}
                                     </p>
@@ -65,7 +65,7 @@ function Comments({ comments, event_id, socket, Forum }) {
                                 </div>
                             ) :
                             <div className="my-2">
-                                <h4 className="tex-center">
+                                <h4 className="tex-center text-white">
                                     No comments yet!
                                 </h4>
                             </div>
@@ -91,6 +91,7 @@ function Comments({ comments, event_id, socket, Forum }) {
                         ''}
                 {/*  */}
             </div>
+
         </div>
     )
 }

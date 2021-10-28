@@ -36,7 +36,7 @@ function Bids({ location }) {
                             <div className="col-lg-12">
                                 <h1>{t('Bids')}</h1>
                                 <MDBTable className='my-3' responsive={true} bordered={true} >
-                                    <MDBTableHead className='text-center' textWhite>
+                                    <MDBTableHead className='text-center' >
                                         <tr>
                                             <th>#</th>
                                             <th>{t('Title')}</th>
@@ -46,7 +46,7 @@ function Bids({ location }) {
 
                                         </tr>
                                     </MDBTableHead>
-                                    <MDBTableBody textWhite={true}>
+                                    <MDBTableBody>
                                         {
                                             length ?
                                                 data.map((b, i = 0) => {

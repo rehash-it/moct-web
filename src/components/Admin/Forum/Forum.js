@@ -1,8 +1,9 @@
-import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCircle, faPaperclip } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { BiUserVoice } from 'react-icons/bi'
 import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo'
+import { file } from '../../../config/config'
 import { DotLoading } from '../../layouts/Loading'
 import { tellDate } from '../../utility/Date'
 import Comments from '../comments/comments'
@@ -16,6 +17,7 @@ function Forum({ socket, Forum, comments, setTab }) {
         success: '',
         imageError: ''
     })
+    console.log(Forum)
     const Closeforum = () => closeForum(setSave, Forum, setTab)
     return (
         <div className="row">
@@ -90,6 +92,44 @@ function Forum({ socket, Forum, comments, setTab }) {
                         </div>
                     </div>
             }
+            <div className="col-lg-6">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <h4 className="text-center">Files Attached</h4>
+                    </div>
+                    {
+                        Forum.files.length ?
+                            Forum.files.map(c =>
+                                <div className="col-lg-6" key={c._id}>
+                                    <div className="card">
+                                        <div className="card body">
+                                            <a href={file + c.url} target="_blank" rel="noreferrer">
+                                                {c.type === 'image/jpeg' || c.type === 'image/png' ?
+                                                    <img className="img-fluid"
+                                                        role="dialog"
+                                                        aria-labelledby="myModalLabel"
+                                                        aria-hidden="true" tabindex="-1"
+                                                        src={file + c.url} alt="" /> :
+                                                    <div className="img-fluid text-dark">
+                                                        <h5>
+                                                            <FontAwesomeIcon icon={faPaperclip} className='mx-2 text-dark' />
+                                                            {c.name}
+                                                        </h5>
+                                                    </div>
+                                                }
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>) :
+                            <div className="col lg-12">
+                                <h4 className="text-center text-danger">
+                                    <FontAwesomeIcon icon={faPaperclip} className='text-white' />
+                                    No files attachced
+                                </h4>
+                            </div>
+                    }
+                </div>
+            </div>
         </div >
     )
 }

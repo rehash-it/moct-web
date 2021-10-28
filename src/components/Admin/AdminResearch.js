@@ -53,7 +53,7 @@ function AdminResearch() {
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
-                                        <MDBTableHead textWhite>
+                                        <MDBTableHead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Title</th>
@@ -63,7 +63,7 @@ function AdminResearch() {
                                             </tr>
 
                                         </MDBTableHead>
-                                        <MDBTableBody textWhite>
+                                        <MDBTableBody>
                                             {
                                                 length ?
                                                     data.map((d, i = 0) => {
@@ -101,7 +101,7 @@ function AdminResearch() {
                                                     }) :
                                                     <tr>
                                                         <td colSpan={5}>
-                                                            <h3 className='text-white text-center'>
+                                                            <h3 className='text-center'>
                                                                 <FontAwesomeIcon icon={FaThermometerEmpty} className='text-white' />
                                                                 No Document  registered yet
                                                             </h3>

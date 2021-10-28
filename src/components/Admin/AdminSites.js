@@ -51,7 +51,7 @@ function AdminSite() {
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
-                                        <MDBTableHead textWhite>
+                                        <MDBTableHead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Title</th>
@@ -60,7 +60,7 @@ function AdminSite() {
                                                 <th>Options</th>
                                             </tr>
                                         </MDBTableHead>
-                                        <MDBTableBody textWhite>
+                                        <MDBTableBody>
                                             {
                                                 length ?
                                                     data.map((s, i = 0) => {
@@ -110,7 +110,7 @@ function AdminSite() {
                                                     }) :
                                                     <tr>
                                                         <td colSpan={9}>
-                                                            <h3 className='text-white text-center'>
+                                                            <h3 className='text-center'>
                                                                 <FontAwesomeIcon icon={faThermometerEmpty} className='text-white' />
                                                                 No Sites registered yet
                                                             </h3>

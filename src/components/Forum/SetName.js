@@ -22,8 +22,8 @@ function SetName({ modal, setModal, setData }) {
     }
     const handleSubmit = e => {
         e.preventDefault()
-        sessionStorage.setItem('chatname', state.name.value)
-        sessionStorage.setItem('user_id', id)
+        localStorage.setItem('chatname', state.name.value)
+        localStorage.setItem('user_id', id)
         setData(s => ({
             ...s,
             user_id: { value: id, active: '' },
