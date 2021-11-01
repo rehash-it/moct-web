@@ -119,7 +119,7 @@ function Comments({ Forum }) {
                             </form>
                         </div> :
                         ''}
-                {/*  */}
+                {/* end of content */}
             </div>
         </div>
     )
