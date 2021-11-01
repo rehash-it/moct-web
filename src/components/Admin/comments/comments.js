@@ -162,7 +162,7 @@ function Comments({ comments, event_id, socket, Forum }) {
                             </form>
                         </div> :
                         ''}
-                {/*  */}
+                {/*  end of file*/}
             </div>
 
         </div>
