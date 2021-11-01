@@ -1,4 +1,4 @@
-import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCircle, faDownload, faPaperclip } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { BiUserVoice } from 'react-icons/bi'
@@ -12,6 +12,7 @@ import { tellDate } from '../utility/Date'
 import { getForum } from './action'
 import Comments from './Comments'
 import ForumUserMenu from './ForumUserMenu'
+import { file } from '../../config/config'
 
 function UserForum({ location, history, match }) {
     const [state, setState] = useState({
@@ -57,6 +58,35 @@ function UserForum({ location, history, match }) {
                                         <p className="indent text-dark h5" style={{ textAlign: 'justify' }}>
                                             {Forum.description}
                                         </p>
+                                        <div className="row">
+                                            {
+                                                Forum.files ? Forum.files.map(f =>
+                                                    <div className="col-lg-4">
+                                                        <div className="card" style={{ height: 250 }}>
+                                                            <a href={file + f.url} target="_blank" rel="noreferrer">
+                                                                {f.type === 'image/jpeg' || f.type === 'image/png' ?
+                                                                    <img className="img-fluid"
+                                                                        role="dialog"
+                                                                        aria-labelledby="myModalLabel"
+                                                                        aria-hidden="true" tabindex="-1"
+                                                                        style={{ objectFit: 'cover', width: '100%', height: 250 }}
+                                                                        src={file + f.url} alt="" /> :
+                                                                    <div className="img-fluid text-dark">
+                                                                        <h4>
+                                                                            <FontAwesomeIcon icon={faPaperclip} className='mx-2 text-dark' />
+                                                                            {f.name}
+                                                                        </h4>
+                                                                        <h4 className="text-center">
+                                                                            <FontAwesomeIcon icon={faDownload} className='mx-2' />
+                                                                        </h4>
+                                                                    </div>
+                                                                }
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                ) : ''
+                                            }
+                                        </div>
 
                                     </div>
 

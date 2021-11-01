@@ -78,7 +78,6 @@ function CreateForum({ setTab, setForum, socket, Forum }) {
         )
         setSave({ process: '', error: '', success: '', imageError: '' })
     }
-    console.log(state)
     const removeFile = File => setState(s => ({ ...s, files: s.files.filter(f => f.id !== File.id) }))
     return (
         <div className="row">
@@ -173,7 +172,6 @@ function CreateForum({ setTab, setForum, socket, Forum }) {
             </div>
             <div className="col-lg-5">
                 <div className="row">
-
                     {
                         state.files.map(im =>
                             <div className="col-lg-5 my-2">

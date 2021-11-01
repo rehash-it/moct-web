@@ -52,8 +52,9 @@ function Login({ history, setToken }) {
             }
         }
         catch (err) {
-            console.log(err)
-            setSave({ process: '', error: 'username or password error please enter your name or password carefully', success: '' })
+            console.log(err.response)
+            const error = err.response ? err.response.data.message : 'Internal server error'
+            setSave({ process: '', error: error, success: '' })
         }
     }
     return (

@@ -700,7 +700,7 @@ button {
 button:hover,
 button:focus {
   border-color: var(--hover);
-  color: #fff;
+  color: #111;
 }
 body {
   background: #fff;

@@ -1,4 +1,4 @@
-import { faComment, faEdit, faPencilAlt, faUpload, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faDownload, faEdit, faPaperclip, faPencilAlt, faUpload, faUserCircle, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { SocketContext } from '../../context/context'
@@ -6,6 +6,11 @@ import { addComments, commentsClass, Donothing, motion } from '../Admin/comments
 import CommentReply from './CommentReply'
 import SetName from './SetName'
 import Tree from 'rc-tree';
+import { randomID } from '../utility/general'
+import axios from 'axios'
+import { file, host } from '../../config/config'
+import { Progress } from 'reactstrap'
+import { getHeaders } from '../../config/headers'
 
 function Comments({ Forum }) {
     const { socket } = useContext(SocketContext)
@@ -15,8 +20,10 @@ function Comments({ Forum }) {
     const [state, setState] = useState({
         comment: { value: '', active: '' },
         name: { value: '', active: '' },
-        user_id: { value: '', active: '' }
+        user_id: { value: '', active: '' },
+        files: []
     })
+    const [loaded, setLoaded] = useState(0)
     const fileBtn = useRef(null)
     const treeRef = React.useRef();
     //modal for sate name
@@ -67,20 +74,53 @@ function Comments({ Forum }) {
         }
 
     }
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
-        let creater = state.user_id.value
-        const user_name = state.name.value
-        let comment = {
-            comment: state.comment.value,
-            creater,
-            user_type: 'user',
-            user_name,
-            forum_id: Forum._id,
-            reply: false
+        try {
+            let data = new FormData()
+            let creater = state.user_id.value
+            const user_name = state.name.value
+            state.files.forEach(f => data.append('files', f.file, f.file.name))
+            const req = state.files.length ? await axios.post(host + 'fileupload', data, {
+                ...getHeaders(),
+                onUploadProgress: ProgressEvent => {
+                    setLoaded(ProgressEvent.loaded / ProgressEvent.total * 100)
+                }
+            }) : ''
+            console.log(req)
+            if (req ? true : false) {
+                let comment = {
+                    comment: state.comment.value,
+                    creater,
+                    user_type: 'user',
+                    user_name,
+                    forum_id: Forum._id,
+                    reply: false,
+                    files: req.data
+                }
+                saveComment(comment)
+            }
+            if (!req ? true : false) {
+                let comment = {
+                    comment: state.comment.value,
+                    creater,
+                    user_type: 'user',
+                    user_name,
+                    forum_id: Forum._id,
+                    reply: false
+                }
+                saveComment(comment)
+            }
         }
+        catch (err) {
+
+        }
+
+    }
+    const saveComment = (comment) => {
+
         addComments(socket, comment)
-        setState(s => ({ ...s, comment: { value: '', active: '' } }))
+        setState(s => ({ ...s, comment: { value: '', active: '' }, files: [] }))
     }
     const replyComment = comment => {
         if (name ? true : false) {
@@ -92,10 +132,16 @@ function Comments({ Forum }) {
     }
     let CommentClass = new commentsClass(comments)
     let Comments = CommentClass.comments()
-    console.log(Comments)
-    const handleFileUpload = file => {
-
+    const handleFile = e => {
+        let files = [...e.target.files]
+        files.forEach(f =>
+            setState(s => ({
+                ...s, files: [...s.files, { file: f, id: randomID(), URL: URL.createObjectURL(f) }]
+            }))
+        )
     }
+    const removeFile = File => setState(s => ({ ...s, files: s.files.filter(f => f.id !== File.id) }))
+
     return (
         <div className="col-lg-12">
             <div className="card">
@@ -110,8 +156,8 @@ function Comments({ Forum }) {
                         comments.length ?
                             <Tree
                                 ref={treeRef}
-                                // defaultExpandAll={false}
-                                defaultExpandAll
+
+                                defaultExpandAll={true}
                                 treeData={Comments}
                                 titleRender={props => {
                                     let c = CommentClass.find_comment(props._id);
@@ -138,6 +184,34 @@ function Comments({ Forum }) {
                                                     </button>
 
                                                 </p>
+                                                {
+                                                    c.files ? c.files.map(f =>
+                                                        <div className="col-lg-3 my-2">
+                                                            <div className="card" style={{ height: 200 }} onClick={() => window.open(file + f.url, '_blank')} >
+                                                                <a href={file + f.url} target="_blank" rel="noreferrer">
+                                                                    {f.type === 'image/jpeg' || f.type === 'image/png' ?
+                                                                        <img className="img-fluid"
+                                                                            role="dialog"
+                                                                            aria-labelledby="myModalLabel"
+                                                                            aria-hidden="true" tabindex="-1"
+                                                                            style={{ objectFit: 'cover', width: '100%', height: 200 }}
+                                                                            src={file + f.url} alt="" /> :
+                                                                        <div className="img-fluid text-dark">
+                                                                            <h6>
+                                                                                <FontAwesomeIcon icon={faPaperclip} className='mx-2 text-dark fa-2x' />
+                                                                                {f.name}
+                                                                            </h6>
+                                                                            <h6 className="text-center">
+                                                                                {f.type}
+                                                                                <FontAwesomeIcon icon={faDownload} className='mx-2' />
+                                                                            </h6>
+                                                                        </div>
+                                                                    }
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    ) : ''
+                                                }
                                                 {!props.children.length ? <hr /> : ''}
 
                                             </div>
@@ -176,6 +250,46 @@ function Comments({ Forum }) {
                                     </textarea>
 
                                 </div>
+                                <div className="row">
+                                    {
+                                        state.files.map(im =>
+                                            <div className="col-lg-3 my-2">
+                                                <div className="card">
+                                                    <div className="card-header">
+                                                        <button className="btn btn-danger float-right" type='button' onClick={() => removeFile(im)}>
+                                                            <FontAwesomeIcon icon={faWindowClose} className='text-white' />
+                                                        </button>
+                                                    </div>
+                                                    <div className="car-body">
+                                                        <a href={im.URL} target="_blank" rel="noreferrer">
+                                                            {im.file.type === 'image/jpeg' || im.file.type === 'image/png' ?
+                                                                <img className="img-fluid"
+                                                                    role="dialog"
+                                                                    aria-labelledby="myModalLabel"
+                                                                    aria-hidden="true" tabindex="-1"
+                                                                    src={im.URL} alt="" /> :
+                                                                <div className="img-fluid text-dark">
+                                                                    <h5>
+                                                                        <FontAwesomeIcon icon={faPaperclip} className='mx-2 text-dark' />
+                                                                        {im.file.name}
+                                                                    </h5>
+                                                                </div>
+                                                            }
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        )}
+                                    {
+                                        state.files.length ?
+                                            <div className="col-lg-12">
+                                                <Progress max="100" color="text-success" value={loaded} >
+                                                    {Math.round(loaded, 2)}%
+                                                </Progress>
+                                            </div> : ''
+                                    }
+                                </div>
                                 <div style={{ display: 'inline-flex', justifyContent: 'end' }}>
                                     <button type='submit' className="d-flex align-items-end btn btn-raise float-right">
                                         comment
@@ -183,13 +297,14 @@ function Comments({ Forum }) {
                                     <React.Fragment>
                                         <input
                                             ref={fileBtn}
-                                            onChange={handleFileUpload}
+                                            onChange={handleFile}
                                             type="file"
                                             style={{ display: "none" }}
-                                        // multiple={false}
+                                            multiple={true}
                                         />
-                                        <button type='btn btn-raise' onClick={() => fileBtn.current.click()}>
-                                            <FontAwesomeIcon icon={faUpload} />
+                                        <button type='button' className='btn btn-raise' onClick={() => fileBtn.current.click()}>
+                                            <FontAwesomeIcon icon={faPaperclip} />
+                                            Attach files on comment
                                         </button>
                                     </React.Fragment>
                                 </div>

@@ -37,7 +37,6 @@ export class commentsClass {
                 children: null
             }
         })
-        console.log(Comments)
         let map = {}, node, res = [], i;
         for (i = 0; i < Comments.length; i += 1) {
             map[Comments[i]._id] = i;

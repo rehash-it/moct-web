@@ -51,13 +51,13 @@ function AdminChat({ socket, setTabs, connection }) {
                                 </div>
                                 <div className="col-lg-12">
                                     <MDBTable responive bordered>
-                                        <MDBTableHead textWhite>
+                                        <MDBTableHead>
                                             <th>#</th>
                                             <th>username</th>
                                             <th>last contacted</th>
                                             <th>contact</th>
                                         </MDBTableHead>
-                                        <MDBTableBody textWhite>
+                                        <MDBTableBody>
                                             {
                                                 !state.data.length ?
                                                     <tr>

@@ -2,6 +2,7 @@ import { faBroadcastTower, faComment, faUsers } from '@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
+import { removeDuplicates } from '../../utility/array'
 import { getComments, getForums } from '../Admin/Forum/actions'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
@@ -46,6 +47,9 @@ function ClosedUserForum({ location, history }) {
         let find = comments.find(c => c.id === forum_id)
         return find ? find.comments : 0
     }
+    const catagory = removeDuplicates(state.data, 'type')
+    const chageCatagory = type => state.data.filter(d => d.type === type)
+    const handleCatagory = type => setState(s => ({ ...s, data: type === 'All' ? s.data : chageCatagory(type) }))
     return (
         <>
             <NavBar />
@@ -56,6 +60,20 @@ function ClosedUserForum({ location, history }) {
                     <div className="container" style={{ minHeight: '100vh' }}>
                         <ForumUserMenu tab={location.pathname} push={history.push} />
                         <div className="row" >
+
+                            {
+                                state.data.length ?
+                                    <div className="col-lg-7" style={{ display: 'inline-flex' }}>
+                                        catagory:
+                                        <select name="" id="" className='mx-3' onChange={e => handleCatagory(e.target.value)}>
+                                            <option value="All" className='mx-2'>All</option>
+                                            {catagory.map(c =>
+                                                <option value={c.type} className='mx-2'>{c.type}</option>
+                                            )}
+                                        </select>
+                                    </div> :
+                                    ''
+                            }
                             {
                                 state.data.length ?
                                     state.data.map(l =>

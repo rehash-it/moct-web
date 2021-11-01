@@ -7,7 +7,7 @@ import { randomID } from '../utility/general'
 
 const id = randomID() + 'moct' + Date.now()
 
-function CommentReply({ modal, setModal, Forum, comment, socket }) {
+function CommentReply({ modal, setModal, Forum, comment, socket, user_type }) {
     const toggle = () => setModal(s => ({ ...s, modal: false }));
     const [state, setState] = useState({
         comment: { active: '', value: '' }
@@ -28,7 +28,7 @@ function CommentReply({ modal, setModal, Forum, comment, socket }) {
         let Comment = {
             comment: state.comment.value,
             creater,
-            user_type: 'user',
+            user_type: user_type ? user_type : 'user',
             user_name,
             forum_id: Forum._id,
             reply: true,
@@ -43,7 +43,8 @@ function CommentReply({ modal, setModal, Forum, comment, socket }) {
                 <form onSubmit={handleSubmit}>
 
                     <ModalHeader toggle={toggle} className='text-dark'>
-                        <FontAwesomeIcon icon={faPen} className='mx-2' />
+                        <FontAwesomeIcon
+                            icon={faPen} className='mx-2' />
                         Reply to comment- {comment.comment}
                     </ModalHeader>
                     <ModalBody>
