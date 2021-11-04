@@ -30,7 +30,7 @@ const Search = ({ match, location }) => {
     }, [index, page])
     /**extract data */
     const { error, loading } = state
-    const { news, sites, bids, docs, vacancy } = state.data
+    const { news, sites, bids, docs, vacancy, archives } = state.data
     const { t } = useContext(LanguageContext)
     const paginateLength = () => {
         let pageNews = pageCalculate(6, news.length)
@@ -40,6 +40,7 @@ const Search = ({ match, location }) => {
         let pageSites = pageCalculate(6, sites.length)
         return Math.max(pageNews, pageVacancy, pageBids, pageDocs, pageSites)
     }
+
     return (
         <>
             <NavBar />
@@ -74,12 +75,13 @@ const Search = ({ match, location }) => {
                                         <div className="col-lg-12">
                                             <h2 className="text-center text-white">{t('News')} ({news.length})</h2>
                                         </div>
+
                                         {news.data.map(n =>
                                             <div class="post" key={n._id}>
                                                 <Link to={'/news/' + n._id}>
                                                     {
-                                                        n.image ?
-                                                            <img src={file + n.image} alt=""
+                                                        n.images.length ?
+                                                            <img src={file + n.images[0]} alt=""
                                                                 class="post-img" height={300} style={{ objectFit: 'cover' }} /> :
                                                             <p className="post-img">{n.content.slice(0, 700)}</p>
                                                     }
@@ -92,6 +94,36 @@ const Search = ({ match, location }) => {
                                                         </span>
                                                     </div>
                                                 </Link>
+                                            </div>
+                                        )}
+
+                                    </div> : ''
+                            }
+                            {
+                                archives.data.length ?
+                                    <div className="row">
+                                        <div className="col-lg-12">
+                                            <h2 className="text-center text-white">{t('Archives')} ({archives.length})</h2>
+                                        </div>
+
+                                        {archives.data.map(n =>
+                                            <div class="post" key={n._id}>
+                                                <a href={n.link} target='_blank' rel="noreferrer">
+                                                    {
+                                                        n.image ?
+                                                            <img src={file + n.image} alt=""
+                                                                class="post-img" height={300} style={{ objectFit: 'cover' }} /> :
+                                                            <p className="post-img">{n.title(0, 700)}</p>
+                                                    }
+                                                    <div class="post-content">
+                                                        <h5 className='text-dark'>
+                                                            {n.title}
+                                                        </h5>
+                                                        <span class="date h6">
+                                                            {tellDate(n.createdAt)}
+                                                        </span>
+                                                    </div>
+                                                </a>
                                             </div>
                                         )}
 

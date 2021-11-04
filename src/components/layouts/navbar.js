@@ -67,7 +67,7 @@ const NavBar = ({ match, history }) => {
     const site = () => localStorage.getItem('site') && (path === 'sites') ? localStorage.getItem('site') : 'Attraction sites'
     const changeSite = (site) => localStorage.setItem('site', site)
     return (
-        <Navbar color='dark' expand="md" style={{ height: windowDimensions.width > 680 ? '15vh' : '' }} id='top' >
+        <Navbar color='light' expand="md" style={{ height: windowDimensions.width > 680 ? '15vh' : '' }} id='top' >
             <Link to='/'>
                 <NavbarBrand >
                     {windowDimensions.width > 680 ?
@@ -81,45 +81,45 @@ const NavBar = ({ match, history }) => {
                 <Nav navbar>
                     <Link to='/'>
                         <NavItem>
-                            <NavLink>
-                                <h6 className='text-raise'>{t('Home')}</h6>
+                            <NavLink className='h6'>
+                                {t('Home')}
                             </NavLink>
                         </NavItem>
                     </Link>
 
                     <Link to='/news'>
                         <NavItem>
-                            <NavLink>
-                                <h6 className='text-raise'> {t('News')}</h6>
+                            <NavLink className='h6'>
+                                {t('News')}
                             </NavLink>
                         </NavItem>
                     </Link>
 
                     <Link to='/vacancy'>
                         <NavItem>
-                            <NavLink>
-                                <h6 className='text-raise'>{t('Vacancy')}</h6>
+                            <NavLink className='h6'>
+                                {t('Vacancy')}
                             </NavLink>
                         </NavItem>
                     </Link>
                     <Link to='/bids'>
                         <NavItem>
-                            <NavLink>
-                                <h6 className='text-raise'> {t('Bids')}</h6>
+                            <NavLink className='h6'>
+                                {t('Bids')}
                             </NavLink>
                         </NavItem>
                     </Link>
                     <Link to='/forums'>
                         <NavItem>
-                            <NavLink>
-                                <h6 className='text-raise'> {t('Forums')}</h6>
+                            <NavLink className='h6'>
+                                {t('Forums')}
                             </NavLink>
                         </NavItem>
                     </Link>
                     <Link to='/docs'>
                         <NavItem>
-                            <NavLink>
-                                <h6 className='text-raise'>{t('Research')}</h6>
+                            <NavLink className='h6'>
+                                {t('Research')}
                             </NavLink>
                         </NavItem>
                     </Link>

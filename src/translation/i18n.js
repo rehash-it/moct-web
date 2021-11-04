@@ -84,7 +84,9 @@ const resources = {
             "what can i help you?": "ምን ልረዳዎት?",
             "Hello, I am a  Moct chatbot": "ሰላም ፣ እኔ የ ኢ.ባ.ቱ.ሚ ቻት ቦት ነኝ",
             "can tell me your name": "ስምዎን ሊነግሩኝ ይችላሉ",
-            "Forums": "መድረኮች"
+            "Forums": "መድረኮች",
+            "Archives": "ማህደር",
+            'we are offline! ,you can come later on working hours': 'ለጊዜው ከመስመር ውጭ ነን! በኋላ በስራ ሰዓት መምጣት ትችላለህ'
         }
     }
 };

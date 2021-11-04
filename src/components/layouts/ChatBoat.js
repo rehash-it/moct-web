@@ -8,19 +8,40 @@ import { localTime } from '../utility/Date';
 import { createMessage } from '../../message/message';
 import { messageClass } from '../../message/messageClass';
 import $ from 'jquery'
+import { getTime } from './../../store/Actions/dataActions';
 const id = randomID() + 'moct' + Date.now()
 
 function ChatBoat({ location }) {
     let chat_bot = $("#chat-bot .icon")
+
     let chat_bot_messenger = $("#chat-bot .messenger")
     useEffect(() => {
+
         $("#chat-bot .icon").on('click', () => {
             $("#chat-bot .icon").toggleClass("expanded");
-            setTimeout(() => {
+            let t = setTimeout(() => {
                 $("#chat-bot .messenger").toggleClass("expanded");
             }, 100);
+            return () => clearTimeout(t)
         })
     }, [chat_bot, location, chat_bot_messenger])
+    const [servertime, GetTime] = useState({ loading: true, error: false, data: 0 })
+    const [time, setTime] = useState(0)
+    useEffect(() => {
+        getTime(GetTime)
+    }, [])
+    useEffect(() => {
+        let interval
+        if (servertime.data !== 0) {
+            let i = 0
+            interval = setInterval(() => {
+                let t = new Date(servertime.data.time)
+                setTime(t.setSeconds(t.getSeconds() + i))
+                i++
+            }, 1000)
+        }
+        return () => clearInterval(interval)
+    }, [servertime.data])
     const { t } = useContext(LanguageContext)
     /**socket io */
     const { socket } = useContext(SocketContext)
@@ -155,83 +176,99 @@ function ChatBoat({ location }) {
         }
         setState(s => ({ ...s, message: '' }))
     }
+    const checkHour = () => {
+        const hour = new Date(time).getHours()
+        return 17 > hour && 8 < hour
+    }
+    console.log(checkHour())
     return (
-        <div id="chat-bot">
-            <div className="messenger br10">
-                <div className="timestamp">{localTime(Date.now())}</div>
-                <div className="chatroom">
-                    {/* <div className="msg msg-right" key={m.id} id={m.id}>
+        checkHour() ?
+            <div id="chat-bot">
+
+                <div className="messenger br10">
+                    <div className="timestamp">{localTime(Date.now())}</div>
+                    <div className="chatroom">
+                        {/* <div className="msg msg-right" key={m.id} id={m.id}>
                                         <div className="bubble">
                                             <h6 className="name">{state.chatname}</h6>
                                             {m.message}
                                         </div>
                                     </div> */}
-                    {/* <!-- msgs  --> */}
-                    {
-                        !state.loading && !state.chatname ?
+                        {/* <!-- msgs  --> */}
+                        {
+                            !state.loading && !state.chatname ?
 
-                            <div className="msg msg-left">
-                                <div className="bubble">
-                                    <h6 className="name">{t('Moct')}</h6>
-                                    {t('Hello, I am a  Moct chatbot')}, <br />
-                                    {t('can tell me your name')} ?
-                                </div>
-                            </div> :
-                            <div className="msg msg-left">
-                                <div className="bubble">
-                                    <h6 className="name">{t('Moct')}</h6>
-                                    {t('Hello, I am a  Moct chat bot')}, <br />
-                                    what can i help you {state.chatname} ?
-                                </div>
-                            </div>
-                    }
-                    {
-                        Message.userMessage().map(m =>
-                            m.sender === 'user' ?
-                                <div className="msg msg-right" key={m._id ? m._id : m.id} id={m._id ? m._id : m.id}>
+                                <div className="msg msg-left">
                                     <div className="bubble">
-                                        <h6 className="name">{state.chatname}</h6>
-                                        {m.message}
+                                        <h6 className="name">{t('Moct')}</h6>
+                                        {t('Hello, I am a  Moct chatbot')}, <br />
+                                        {t('can tell me your name')} ?
                                     </div>
                                 </div> :
-                                m.sender === 'admin' ?
-                                    <div className="msg msg-left" key={m._id ? m._id : m.id} id={m._id ? m._id : m.id}>
+                                <div className="msg msg-left">
+                                    <div className="bubble">
+                                        <h6 className="name">{t('Moct')}</h6>
+                                        {t('Hello, I am a  Moct chat bot')}, <br />
+                                        what can i help you {state.chatname} ?
+                                    </div>
+                                </div>
+                        }
+                        {
+                            Message.userMessage().map(m =>
+                                m.sender === 'user' ?
+                                    <div className="msg msg-right" key={m._id ? m._id : m.id} id={m._id ? m._id : m.id}>
                                         <div className="bubble">
-                                            <h6 className="name">Moct</h6>
+                                            <h6 className="name">{state.chatname}</h6>
                                             {m.message}
                                         </div>
-                                    </div> : ''
+                                    </div> :
+                                    m.sender === 'admin' ?
+                                        <div className="msg msg-left" key={m._id ? m._id : m.id} id={m._id ? m._id : m.id}>
+                                            <div className="bubble">
+                                                <h6 className="name">Moct</h6>
+                                                {m.message}
+                                            </div>
+                                        </div> : ''
 
-                        )
-                    }
-                    {/* <!-- msgs  --> */}
-                </div>
-                <div className="type-area">
-                    <form onSubmit={handleSubmit}>
-                        {
-                            state.inputField ?
-                                <input type="text"
-                                    className="typing"
-                                    placeholder={t("type and hit enter")}
-                                    value={state.message}
-                                    required={true}
-                                    onChange={e => setState(s => ({ ...s, message: e.target.value }))}
-                                /> : ''
+                            )
                         }
-                    </form>
-                    <span className="send">
-                        <i className="bi bi-arrow-return-left"></i>
-                    </span>
+                        {/* <!-- msgs  --> */}
+                    </div>
+                    <div className="type-area">
+                        <form onSubmit={handleSubmit}>
+                            {
+                                state.inputField ?
+                                    <input type="text"
+                                        className="typing"
+                                        placeholder={t("type and hit enter")}
+                                        value={state.message}
+                                        required={true}
+                                        onChange={e => setState(s => ({ ...s, message: e.target.value }))}
+                                    /> : ''
+                            }
+                        </form>
+                        <span className="send">
+                            <i className="bi bi-arrow-return-left"></i>
+                        </span>
+                    </div>
+                </div>
+                <div className="icon">
+                    <div className="user">
+                        <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
+                        {t('what can i help you?')}
+                    </div>
+                    <FontAwesomeIcon icon={faEnvelope} />
+                </div>
+            </div> :
+            <div id="chat-bot" >
+                <div className="icon">
+                    <div className="user">
+                        <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
+                        {t('we are offline! ,you can come later on working hours')}
+                    </div>
+                    <FontAwesomeIcon icon={faEnvelope} />
                 </div>
             </div>
-            <div className="icon">
-                <div className="user">
-                    <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
-                    {t('what can i help you?')}
-                </div>
-                <FontAwesomeIcon icon={faEnvelope} />
-            </div>
-        </div>
     )
 }
 

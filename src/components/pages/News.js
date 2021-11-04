@@ -64,7 +64,6 @@ function News({ location }) {
         showRssButton(!rssButton)
     }
     const rssDismiss = () => showRssButton(true)
-    console.log(RssFeed.data)
     return (
         <>
             <NavBar />

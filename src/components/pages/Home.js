@@ -101,22 +101,22 @@ function Home() {
                                 <ErrorLoading /> :
 
                                 <div className="col-lg-12">
-                                    <div className="dark">
+                                    <div className="light">
                                         <main className="container">
                                             {news.slice(0, 4).length ?
-                                                <div className="h1 text-center text-white" id="pageHeaderTitle">{t('News')}</div> :
+                                                <div className="h1 text-center" id="pageHeaderTitle">{t('News')}</div> :
                                                 <p></p>
                                             }{
                                                 news.slice(0, 4).map(n =>
 
-                                                    <article className="postcard dark yellow" key={n._id}>
+                                                    <article className="postcard light yellow" key={n._id}>
                                                         <Link to={'/news/' + n._id} className="postcard__img_link" >
                                                             <img className="postcard__img"
                                                                 src={file + n.images[0]} alt='error in loading' />
                                                         </Link>
                                                         <div className="postcard__text">
                                                             <Link to={'/news/' + n._id}>
-                                                                <h1 className="postcard__title yellow">
+                                                                <h1 className="postcard__title yellow text-dark">
 
                                                                     {n.title}
                                                                 </h1>
@@ -128,7 +128,7 @@ function Home() {
                                                                 </time>
                                                             </div>
                                                             <div className="postcard__bar"></div>
-                                                            <div className="postcard__preview-txt">
+                                                            <div className="postcard__preview-txt text-dark">
                                                                 {n.content.slice(0, 240)}
                                                             </div>
                                                             <ul className="postcard__tagbox">

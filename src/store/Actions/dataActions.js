@@ -49,3 +49,16 @@ export const dataDispatch = async (setData, { page, id }) => {
         setData(s => ({ ...s, error: true, loading: false }))
     }
 }
+export const getTime = async (setData) => {
+    try {
+        setData(s => ({ ...s, loading: true }))
+        const req = await axios.get(host + 'getTime')
+        let data = req.data
+        setData(s => ({ ...s, data, loading: false, error: false }))
+
+    }
+    catch (err) {
+        console.log(err)
+        setData(s => ({ ...s, error: true, loading: false, data: { time: Date.now() } }))
+    }
+}
