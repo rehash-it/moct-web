@@ -260,11 +260,12 @@ function ChatBoat({ location }) {
                     <FontAwesomeIcon icon={faEnvelope} />
                 </div>
             </div> :
-            <div id="chat-bot" >
-                <div className="icon">
+            <div id="chat-bot">
+                <div className="icon"  >
                     <div className="user">
                         <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
                         {t('we are offline! ,you can come later on working hours')}
+                        <br />
                     </div>
                     <FontAwesomeIcon icon={faEnvelope} />
                 </div>
