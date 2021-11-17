@@ -46,7 +46,8 @@ function News({ location }) {
     }, []);
 
     //store context
-    const { news: News, dispatchNews } = useContext(StoreContext)
+    const { news: News
+        , dispatchNews } = useContext(StoreContext)
     let Page = getPage(location.search)
 
     useEffect(() => {
