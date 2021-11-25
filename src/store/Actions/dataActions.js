@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { host } from '../../config/config'
-import { getHeaders } from './../../config/headers';
+import { getHeaders } from '../../config/headers';
 /**
  * fetch data from the serverver 
  * @param {*} page- page 1 or 2 or 3

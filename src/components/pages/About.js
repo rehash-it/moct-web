@@ -5,7 +5,7 @@ import NavBar from '../layouts/navbar'
 import Logo from '../../images/Hirut.jpg'
 import { Link } from 'react-router-dom'
 import { LanguageContext } from '../../context/context'
-import { Vision } from './../../translation/aboutTranslate';
+import { Vision } from '../../translation/aboutTranslate';
 
 function About() {
     const { t } = useContext(LanguageContext)

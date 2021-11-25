@@ -8,7 +8,7 @@ import { localTime } from '../utility/Date';
 import { createMessage } from '../../message/message';
 import { messageClass } from '../../message/messageClass';
 import $ from 'jquery'
-import { getTime } from './../../store/Actions/dataActions';
+import { getTime } from '../../store/Actions/dataActions';
 const id = randomID() + 'moct' + Date.now()
 
 function ChatBoat({ location }) {

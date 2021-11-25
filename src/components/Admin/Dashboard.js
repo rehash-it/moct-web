@@ -18,7 +18,7 @@ import ChatNotification from './chat/ChatNotification';
 import { SocketContext } from '../../context/context';
 import ChatRoom from './chat/ChatRoom';
 import AdminChat from './AdminChat';
-import { messageClass } from './../../message/messageClass';
+import { messageClass } from '../../message/messageClass';
 import OtherMessages from './chat/OtherMessages';
 import AdminForum from './AdminForum';
 

@@ -6,13 +6,13 @@ import { getComments, getForums } from '../Admin/Forum/actions'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
 import { SpinnerLoading } from '../layouts/Loading'
-import { removeDuplicates } from './../../utility/array';
 
 function LiveUserForum({ push }) {
     const [state, setState] = useState({
         loading: true,
         error: false,
-        data: []
+        data: [],
+        catagory: []
     })
     const [comments, setComment] = useState([])
 
@@ -38,15 +38,14 @@ function LiveUserForum({ push }) {
         sessionStorage.setItem('forum_id', forum._id)
         push('/forum/' + forum._id)
     }
-
+    console.log(state.catagory)
     /**get comment length*/
     const getComment = forum_id => {
         let find = comments.find(c => c.id === forum_id)
         return find ? find.comments : 0
     }
-    const catagory = removeDuplicates(state.data, 'type')
-    const chageCatagory = type => state.data.filter(d => d.type === type)
-    const handleCatagory = type => setState(s => ({ ...s, data: type === 'All' ? s.data : chageCatagory(type) }))
+    const chageCatagory = type => state.catagory.filter(d => d.type === type)
+    const handleCatagory = type => setState(s => ({ ...s, data: type === 'All' ? s.catagory : chageCatagory(type) }))
     return (
         state.loading ?
             <DataLoading /> :
@@ -59,7 +58,7 @@ function LiveUserForum({ push }) {
                                 catagory:
                                 <select name="" id="" className='mx-3' onChange={e => handleCatagory(e.target.value)}>
                                     <option value="All" className='mx-2'>All</option>
-                                    {catagory.map(c =>
+                                    {state.catagory.map(c =>
                                         <option value={c.type} className='mx-2'>{c.type}</option>
                                     )}
                                 </select>

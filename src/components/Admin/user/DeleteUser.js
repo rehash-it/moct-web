@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
-import { DotLoading } from './../../layouts/Loading';
+import { DotLoading } from '../../layouts/Loading';
 function DeleteUser({ fetch, user }) {
     const [modal, setModal] = useState(false);
     const [save, setSave] = useState({
