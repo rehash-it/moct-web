@@ -21,6 +21,7 @@ import AdminChat from './AdminChat';
 import { messageClass } from '../../message/messageClass';
 import OtherMessages from './chat/OtherMessages';
 import AdminForum from './AdminForum';
+import Adminarchives from './AdminArchives';
 
 function Dashboard(props) {
     const Donothing = () => { }
@@ -203,8 +204,10 @@ function Dashboard(props) {
                                                             comments={comments}
                                                             forum={forum}
                                                             setForum={setForum}
-                                                        />
-                                                        : <p></p>
+                                                        /> :
+                                                        tabs === 'Archives' ?
+                                                            <Adminarchives />
+                                                            : <p></p>
                 }
 
             </div> :
