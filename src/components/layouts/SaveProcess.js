@@ -1,8 +1,12 @@
 import React from 'react'
+import { DotLoading } from './Loading'
 
 function SaveProcess({ Process }) {
     return (
         <div className="col-lg-12">
+            {
+                Process.process ? <DotLoading /> : ''
+            }
             {Process.process ?
                 <p className="text-center text-info">{Process.process}</p> : ''
             }

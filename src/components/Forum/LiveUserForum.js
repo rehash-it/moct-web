@@ -38,7 +38,6 @@ function LiveUserForum({ push }) {
         sessionStorage.setItem('forum_id', forum._id)
         push('/forum/' + forum._id)
     }
-    console.log(state.catagory)
     /**get comment length*/
     const getComment = forum_id => {
         let find = comments.find(c => c.id === forum_id)

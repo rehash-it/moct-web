@@ -2,15 +2,16 @@ import { faComment, faDownload, faEdit, faPaperclip, faPencilAlt, faUpload, faUs
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { SocketContext } from '../../context/context'
-import { addComments, commentsClass, Donothing, motion } from '../Admin/comments/action'
+import { addComments, commentsClass, Donothing } from '../Admin/comments/action'
 import CommentReply from './CommentReply'
-import SetName from './SetName'
 import Tree from 'rc-tree';
 import { randomID } from '../utility/general'
 import axios from 'axios'
 import { file, host } from '../../config/config'
 import { Progress } from 'reactstrap'
 import { getHeaders } from '../../config/headers'
+import ModalSignup from '../Admin/Auth/ModalSignUp'
+import ModalLogin from '../Admin/Auth/ModalLogin'
 
 function Comments({ Forum }) {
     const { socket } = useContext(SocketContext)
@@ -23,6 +24,8 @@ function Comments({ Forum }) {
         user_id: { value: '', active: '' },
         files: []
     })
+    const [signIn, setSignIn] = useState(false)
+    const [signUp, setSignUp] = useState(false)
     const [loaded, setLoaded] = useState(0)
     const fileBtn = useRef(null)
     const treeRef = React.useRef();
@@ -60,8 +63,8 @@ function Comments({ Forum }) {
     }, [socket, Forum])
 
     const handleChange = e => {
-        if (state.name.value ? state.user_id.value ? false : true : true) {
-            setModal(true)
+        if (user_id ? name ? false : true : true) {
+            setSignIn(true)
         }
         else {
             setState(s => ({
@@ -78,8 +81,8 @@ function Comments({ Forum }) {
         e.preventDefault()
         try {
             let data = new FormData()
-            let creater = state.user_id.value
-            const user_name = state.name.value
+            let creater = localStorage.getItem('user_id')
+            const user_name = localStorage.getItem('chatname')
             state.files.forEach(f => data.append('files', f.file, f.file.name))
             const req = state.files.length ? await axios.post(host + 'fileupload', data, {
                 ...getHeaders(),
@@ -113,7 +116,7 @@ function Comments({ Forum }) {
             }
         }
         catch (err) {
-
+            console.log(err)
         }
 
     }
@@ -141,7 +144,14 @@ function Comments({ Forum }) {
         )
     }
     const removeFile = File => setState(s => ({ ...s, files: s.files.filter(f => f.id !== File.id) }))
-
+    const SignIn = () => {
+        setSignUp(false)
+        setSignIn(true)
+    }
+    const SignUp = () => {
+        setSignIn(false)
+        setSignUp(true)
+    }
     return (
         <div className="col-lg-12">
             <div className="card">
@@ -156,7 +166,6 @@ function Comments({ Forum }) {
                         comments.length ?
                             <Tree
                                 ref={treeRef}
-
                                 defaultExpandAll={true}
                                 treeData={Comments}
                                 titleRender={props => {
@@ -225,14 +234,6 @@ function Comments({ Forum }) {
                                 </h4>
                             </div>
                     }
-                    <SetName setData={setState} setModal={setModal} modal={modal} />
-                    <CommentReply
-                        modal={ReplyComment.modal}
-                        comment={ReplyComment.comment}
-                        Forum={Forum}
-                        setModal={setReplyComment}
-                        socket={socket}
-                    />
                 </div>
                 {
                     Forum.status !== 'closed' ?
@@ -314,6 +315,15 @@ function Comments({ Forum }) {
                         ''}
                 {/* end of content */}
             </div>
+            <ModalSignup modal={signUp} setModal={setSignUp} signIn={SignIn} />
+            <ModalLogin modal={signIn} setModal={setSignIn} signUp={SignUp} />
+            <CommentReply
+                modal={ReplyComment.modal}
+                comment={ReplyComment.comment}
+                Forum={Forum}
+                setModal={setReplyComment}
+                socket={socket}
+            />
         </div >
     )
 }
