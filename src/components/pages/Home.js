@@ -162,21 +162,21 @@ function Home() {
                     <div className="col-lg-12 ">
                         <div className="buttons text-center">
                             <h1 className='text-center my-2'>{t('important links')} </h1>
-                            <a href="https://www.moctgaller.gov.eimport { product } from './../Forum/tryclass';
+                            <a href="https://www.gallery.gov.eimport { product } from './../Forum/tryclass';
 t" target="_blank" rel="noreferrer">
-                                <button className="fill h6">www.moctgaller.gov.et</button>
+                                <button className="fill h6">www.gallery.gov.et</button>
                             </a>
-                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
-                                <button className="pulse h6">www.moctgaller.gov.et</button>
+                            <a href="https://www.gallery.gov.et" target="_blank" rel="noreferrer">
+                                <button className="pulse h6">www.gallery.gov.et</button>
                             </a>
-                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
-                                <button className="raise h6">www.moctgaller.gov.et</button>
+                            <a href="https://www.gallery.gov.et" target="_blank" rel="noreferrer">
+                                <button className="raise h6">www.gallery.gov.et</button>
                             </a>
-                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
-                                <button className="up h6">www.moctgaller.gov.et</button>
+                            <a href="https://www.gallery.gov.et" target="_blank" rel="noreferrer">
+                                <button className="up h6">www.gallery.gov.et</button>
                             </a>
-                            <a href="https://www.moctgaller.gov.et" target="_blank" rel="noreferrer">
-                                <button className="slider h6">www.moctgaller.gov.et</button>
+                            <a href="https://www.gallery.gov.et" target="_blank" rel="noreferrer">
+                                <button className="slider h6">www.gallery.gov.et</button>
                             </a>
 
                         </div>
