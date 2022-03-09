@@ -36,6 +36,7 @@ function Login({ history, setToken }) {
         try {
             setSave(s => ({ ...s, process: 'login please wait...', error: '' }))
             const log = await axios.post(host + 'auth', getData(state))
+            
             if (log.status === 200) {
                 sessionStorage.setItem('x-auth-token', log.data.token)
                 sessionStorage.setItem('id', log.data.id)
@@ -52,7 +53,6 @@ function Login({ history, setToken }) {
             }
         }
         catch (err) {
-            console.log(err.response)
             const error = err.response ? err.response.data.message : 'Internal server error'
             setSave({ process: '', error: error, success: '' })
         }
