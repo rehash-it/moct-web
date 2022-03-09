@@ -188,7 +188,7 @@ function ChatBoat({ location }) {
     }
 
     return (
-        checkHour() ?
+        
             <div id="chat-bot">
 
                 <div className="messenger br10">
@@ -208,7 +208,7 @@ function ChatBoat({ location }) {
                                     <div className="bubble">
                                         <h6 className="name">{t('Moct')}</h6>
                                         {t('Hello, I am a  Moct Admin')}, <br />
-                                        {t('can tell me your name')} ?
+                                        {t('Please leave your name')} ?
                                     </div>
                                 </div> :
                                 checkHour() ?
@@ -260,9 +260,11 @@ function ChatBoat({ location }) {
                                         onChange={e => setState(s => ({ ...s, message: e.target.value }))}
                                     /> :
                                     !checkHour() ?
+                                    <div className="msg msg-left">
                                         <p className="text-center">
-                                            Message sent success!! we will back on working hours!
-                                        </p> : ""
+                                            Your Message has been sent!! we will back on working hours!
+                                        </p> 
+                                    </div>: ""
                             }
                         </form>
                         <span className="send">
@@ -277,17 +279,18 @@ function ChatBoat({ location }) {
                     </div>
                     <FontAwesomeIcon icon={faEnvelope} />
                 </div>
-            </div> :
-            <div id="chat-bot">
-                <div className="icon"  >
-                    <div className="user">
-                        <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
-                        {t('we are offline! ,you can come later on working hours')}
-                        <br />
-                    </div>
-                    <FontAwesomeIcon icon={faEnvelope} />
-                </div>
-            </div>
+            </div> 
+            // :
+            // <div id="chat-bot">
+            //     <div className="icon"  >
+            //         <div className="user">
+            //             <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
+            //             {t('we are offline! ,you can come later on working hours')}
+            //             <br />
+            //         </div>
+            //         <FontAwesomeIcon icon={faEnvelope} />
+            //     </div>
+            // </div>
     )
 }
 

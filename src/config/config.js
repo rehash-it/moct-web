@@ -1,6 +1,6 @@
 module.exports = {
-    server: 'http://192.168.0.103:9000',
-    host: 'http://192.168.0.103:9000/api/',
+    server: 'http://api.mocs.gov.et',
+    host: 'http://api.mocs.gov.et/api/',
     file: 'http://',
     mapApi: 'AIzaSyA9KpdQqHo-73vCPqEuGAMfdP38KM-7Eac',
     fb_Rss: 'https://rss.app/feeds/8wmepjtuzAugFZVs.json',

@@ -38,7 +38,7 @@ function SetName({ modal, setModal, setData }) {
                 <form onSubmit={handleSubmit}>
 
                     <ModalHeader toggle={toggle} className='text-dark'>
-                        please tell me your name and you can comment
+                        please leave your name and comment
                     </ModalHeader>
                     <ModalBody>
                         <div id="float-label">
