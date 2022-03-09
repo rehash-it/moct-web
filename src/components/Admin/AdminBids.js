@@ -38,7 +38,7 @@ function AdminBids() {
                     <DataLoading /> :
                     error ? <ErrorLoading /> :
 
-                        <div className="container my-4 ml-4" >
+                        <div className="container my-4 ml-5" >
                             <div className="row">
                                 <div className="col-lg-1"></div>
                                 <div className="col-lg-5  my-auto">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { datasDispatch } from '../../store/Actions/dataActions'
 import ErrorLoading from '../layouts/ErrorLoading';
 import { pageCalculate, Scroll } from '../utility/general'
-import DataLoading from './../layouts/DataLoading';
+import DataLoading from '../layouts/DataLoading';
 import { MDBTableHead, MDBTable, MDBTableBody } from 'mdbreact';
 import { tellDate } from '../utility/Date';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

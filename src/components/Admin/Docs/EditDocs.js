@@ -7,8 +7,8 @@ import { file, host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { dateFormat } from '../../utility/Date';
-import { Disperse, removeItem } from './../Controller';
-import { blobCreationFromURL, getFileName } from './../../utility/file';
+import { Disperse, removeItem } from '../Controller';
+import { blobCreationFromURL, getFileName } from '../../utility/file';
 function EditDocs({ fetch, docs }) {
     const [state, setState] = useState({
         title: { value: '', active: false },

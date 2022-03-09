@@ -15,7 +15,8 @@ function ClosedUserForum({ location, history }) {
     const [state, setState] = useState({
         loading: true,
         error: false,
-        data: []
+        data: [],
+        catagory: []
     })
     const [comments, setComment] = useState([])
 
@@ -47,8 +48,7 @@ function ClosedUserForum({ location, history }) {
         let find = comments.find(c => c.id === forum_id)
         return find ? find.comments : 0
     }
-    const catagory = removeDuplicates(state.data, 'type')
-    const chageCatagory = type => state.data.filter(d => d.type === type)
+    const chageCatagory = type => state.catagory.filter(d => d.type === type)
     const handleCatagory = type => setState(s => ({ ...s, data: type === 'All' ? s.data : chageCatagory(type) }))
     return (
         <>
@@ -67,7 +67,7 @@ function ClosedUserForum({ location, history }) {
                                         catagory:
                                         <select name="" id="" className='mx-3' onChange={e => handleCatagory(e.target.value)}>
                                             <option value="All" className='mx-2'>All</option>
-                                            {catagory.map(c =>
+                                            {state.catagory.map(c =>
                                                 <option value={c.type} className='mx-2'>{c.type}</option>
                                             )}
                                         </select>

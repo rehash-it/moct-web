@@ -6,7 +6,7 @@ import { getData, getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { Disperse, removeItem } from './../Controller';
+import { Disperse, removeItem } from '../Controller';
 import { dateFormat, DateNow } from '../../utility/Date';
 
 function EditVacancy({ vacancy, fetch }) {

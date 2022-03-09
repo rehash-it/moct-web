@@ -7,8 +7,8 @@ import { file, host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { dateFormat, DateNow } from '../../utility/Date';
-import { Disperse } from './../Controller';
-import { blobCreationFromURL, getFileName } from './../../utility/file';
+import { Disperse } from '../Controller';
+import { blobCreationFromURL, getFileName } from '../../utility/file';
 
 const EditBids = ({ fetch, bid }) => {
     const [state, setState] = useState({

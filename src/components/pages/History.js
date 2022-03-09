@@ -4,7 +4,7 @@ import Footer from '../layouts/Footer'
 import Logo from '../../images/moct-logo-2.png'
 import { Link } from 'react-router-dom'
 import { LanguageContext } from '../../context/context'
-import { aboutHistory } from './../../translation/aboutTranslate';
+import { aboutHistory } from '../../translation/aboutTranslate';
 const History = () => {
     const { t } = useContext(LanguageContext)
     return (

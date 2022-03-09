@@ -3,12 +3,13 @@ import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { randomID } from '../utility/general'
+import { randomID } from '../../utility/general'
 import GoogleLogin from 'react-google-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { GoogleClientId, FacebookClientId } from '../../../config/config';
 import { FbLogin, GoogleSignin, loginUser, onFailure } from './social';
 import { DotLoading } from '../../layouts/Loading';
+import SaveProcess from '../../layouts/SaveProcess';
 
 const id = randomID() + 'moct' + Date.now()
 
@@ -19,10 +20,9 @@ function ModalLogin({ modal, setModal, setData, signUp }) {
         password: { active: '', value: '' }
     })
     const [save, setProcess] = useState({
-        process: false,
+        process: '',
         success: '',
-        error: '',
-        message: ''
+        error: ''
     })
     const handleChange = e => {
         setState(s => ({
@@ -41,13 +41,13 @@ function ModalLogin({ modal, setModal, setData, signUp }) {
             isAdmin: false,
             isActive: true,
             account_type: 'locall'
-        }, setProcess, 'login', setTimeout(() => toggle(), 1000))
+        }, setProcess, 'login', toggle)
     }
     const googleResponse = res => {
         let user = GoogleSignin(res)
-        loginUser(user, setProcess, 'login', setTimeout(() => toggle(), 1000))
+        loginUser(user, setProcess, 'login', toggle)
     }
-    const signInwithFb = res => loginUser(FbLogin(res), setProcess, 'fb', 'login', setTimeout(() => toggle(), 1000))
+    const signInwithFb = res => loginUser(FbLogin(res), setProcess, 'login', toggle)
     const googleoOnFailure = (fail) => onFailure(setProcess, 'google')
     const signInFbFailure = fail => onFailure(setProcess, 'fb')
     const setUserAnonymous = () => {
@@ -62,13 +62,13 @@ function ModalLogin({ modal, setModal, setData, signUp }) {
                     <ModalHeader toggle={toggle} className='text-dark'>
                         Please signin or you can be anonymous
                     </ModalHeader>
-                    <button type='button'
-                        className="btn btn-dark my-2 text-whte"
-                        onClick={() => setUserAnonymous()}>
-                        <FontAwesomeIcon icon={faUserSecret} className='mx-2 text-white' />
-                        Anonymous
-                    </button>
                     <ModalBody>
+                        <button type='button'
+                            className="btn btn-dark my-2 text-whte form-control"
+                            onClick={() => setUserAnonymous()}>
+                            <FontAwesomeIcon icon={faUserSecret} className='mx-2 text-white' />
+                            Anonymous
+                        </button>
                         <GoogleLogin
                             clientId={GoogleClientId}
                             onSuccess={googleResponse}
@@ -114,33 +114,21 @@ function ModalLogin({ modal, setModal, setData, signUp }) {
                                     <FontAwesomeIcon icon={faLock} className='mx-2' />
                                     password
                                 </label>
-                                <input type="text" className='form-control' id='password'
+                                <input type="password" className='form-control' id='password'
                                     required={true}
                                     onChange={handleChange}
                                     value={state.password.value}
                                 />
                             </div>
                         </div>
-                    </ModalBody>
-                    <ModalFooter>
-                        {save.process ?
-                            <div className="d-flex justify-content-center">
-                                <DotLoading />
-                                <p className='text-dark'>{save.process}</p>
-                            </div> :
-                            <p></p>
-                        }
-                        <p className="text-center text-success">
-                            {save.success}
-                        </p>
-                        <p className="text-center text-danger">
-                            {save.error}
-                        </p>
-                        <div className="" style={{ display: 'inline-flex' }}>
-                            <p className="text-center" onClick={signUp}>
+                        <SaveProcess Process={save} />
+                        <div onClick={signUp}>
+                            <p className="text-center text-dark">
                                 New to moct please <b>signup</b>
                             </p>
                         </div>
+                    </ModalBody>
+                    <ModalFooter>
                         <button type='submit' className="btn btn-raise">
                             signin
                         </button>

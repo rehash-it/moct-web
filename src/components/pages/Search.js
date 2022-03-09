@@ -13,7 +13,7 @@ import { faFile, faLocationArrow, faThermometerEmpty, faDownload } from '@fortaw
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact';
 import { Scroll } from '../utility/general';
 import PaginateSearch from './PaginateSearch';
-import { pageCalculate } from './../utility/general';
+import { pageCalculate } from '../utility/general';
 
 const Search = ({ match, location }) => {
     const { index } = match.params

@@ -7,7 +7,7 @@ export const GoogleSignin = response => {
     return { username: email, account_type: 'google', isAdmin: false, isActive: true }
 }
 export const FbLogin = response => {
-    const { email, accessToken: token } = response
+    const { email, accessToken } = response
     return { username: email, account_type: 'fb', isAdmin: false, isActive: true }
 }
 export const onFailure = (setProcess, media) => setProcess(s =>
@@ -17,10 +17,11 @@ export const onFailure = (setProcess, media) => setProcess(s =>
  * @param {*} user =object contain username,email,password
  * @param {*} setProcess 
  */
-export const loginUser = async (user, setProcess, type) => {
+export const loginUser = async (user, setProcess, type, toggle) => {
     try {
         setProcess(s => ({ ...s, process: 'logging in...' }))
-        const req = await axios.post(host + type ? type : 'login', user, { ...getHeaders() })
+        console.log(host + ((type) ? (type) : ('login')))
+        const req = await axios.post(host + ((type) ? (type) : ('login')), user, { ...getHeaders() })
         if (req.status === 200) {
             const res = req.data
             sessionStorage.setItem('x-auth-token', res.token)
@@ -29,11 +30,13 @@ export const loginUser = async (user, setProcess, type) => {
             localStorage.setItem('chatname', res.username)
             localStorage.setItem('user_id', res.id)
             setProcess(s => ({ ...s, process: '', error: '', success: 'Welocme' }))
+            setTimeout(() => toggle(), 1000)
         }
     }
     catch (e) {
-        console.log(err)
+        console.log(e)
         const error = e.response ? e.response.data.message : 'internal server error'
+        console.log(error)
         setProcess(s => ({ ...s, process: '', error, success: '' }))
     }
 }

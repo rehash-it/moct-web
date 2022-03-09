@@ -3,10 +3,10 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import { file, host } from '../../../config/config';
-import { getHeaders } from './../../../config/headers';
+import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { faCalendar, faNewspaper, faWindowClose } from '@fortawesome/free-solid-svg-icons';
-import { blobCreationFromURL, getFileName } from './../../utility/file';
+import { blobCreationFromURL, getFileName } from '../../utility/file';
 import { Disperse } from '../Controller';
 import { dateFormat, DateNow } from '../../utility/Date';
 import { randomID } from '../../utility/general';

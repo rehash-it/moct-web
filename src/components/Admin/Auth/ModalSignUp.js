@@ -1,21 +1,25 @@
-import { faEnvelope, faLock, faUser, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { randomID } from '../utility/general'
 import GoogleLogin from 'react-google-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { GoogleClientId, FacebookClientId } from '../../../config/config';
 import { FbLogin, GoogleSignin, loginUser, onFailure } from './social';
+import { DotLoading } from '../../layouts/Loading';
+import { randomID } from '../../utility/general';
+import SaveProcess from '../../layouts/SaveProcess';
 
 const id = randomID() + 'moct' + Date.now()
 
-function ModalSignup({ modal, setModal, setData, signIn }) {
+function ModalSignup({ modal, setModal, signIn }) {
     const toggle = () => setModal(!modal);
     const [state, setState] = useState({
         username: { active: '', value: '' },
-        password: { active: '', value: '' }
+        password: { active: '', value: '' },
+        cpassword: { active: '', value: '' }
+
     })
     const [save, setProcess] = useState({
         process: '',
@@ -34,24 +38,27 @@ function ModalSignup({ modal, setModal, setData, signIn }) {
     }
     const handleSubmit = e => {
         e.preventDefault()
-        loginUser({
-            username: state.username.value,
-            password: state.password.value,
-            isAdmin: false,
-            isActive: true,
-            account_type: 'locall'
-        }, setProcess, 'signup', setTimeout(() => toogle(), 1000))
+        state.cpassword.value === state.password.value ?
+            loginUser({
+                username: state.username.value,
+                password: state.password.value,
+                isAdmin: false,
+                isActive: true,
+                account_type: 'locall'
+            }, setProcess, 'signup', toggle) :
+            setProcess(s => ({ ...s, error: 'password confirmation error', success: '', process: '' }))
     }
     const googleResponse = res => {
         let user = GoogleSignin(res)
-        loginUser(user, setProcess, 'signup', setTimeout(() => toogle(), 1000))
+        loginUser(user, setProcess, 'signup', toggle)
     }
-    const signInwithFb = res => loginUser(FbLogin(res), setProcess, 'fb', 'signup', setTimeout(() => toogle(), 1000))
+    const signInwithFb = res => loginUser(FbLogin(res), setProcess, 'signup', toggle)
     const googleoOnFailure = (fail) => onFailure(setProcess, 'google')
     const signInFbFailure = fail => onFailure(setProcess, 'fb')
     const setUserAnonymous = () => {
-        localStorage.setItem('chatname', anonymous)
+        localStorage.setItem('chatname', 'anonymous')
         localStorage.setItem('user_id', id)
+        toggle()
     }
     return (
         <div>
@@ -62,9 +69,15 @@ function ModalSignup({ modal, setModal, setData, signIn }) {
                         Please signin or you can be anonymous
                     </ModalHeader>
                     <ModalBody>
+                        <button type='button'
+                            className="btn btn-dark my-2 text-whte form-control"
+                            onClick={() => setUserAnonymous()}>
+                            <FontAwesomeIcon icon={faUserSecret} className='mx-2 text-white' />
+                            Anonymous
+                        </button>
                         <GoogleLogin
                             clientId={GoogleClientId}
-                            onSuccess={googleResponses}
+                            onSuccess={googleResponse}
                             onFailure={googleoOnFailure}
                             cookiePolicy={'single_host_origin'}
                             render={renderProps => (
@@ -107,35 +120,37 @@ function ModalSignup({ modal, setModal, setData, signIn }) {
                                     <FontAwesomeIcon icon={faLock} className='mx-2' />
                                     password
                                 </label>
-                                <input type="text" className='form-control' id='password'
+                                <input type="password" className='form-control' id='password'
                                     required={true}
                                     onChange={handleChange}
                                     value={state.password.value}
                                 />
                             </div>
                         </div>
-                    </ModalBody>
-                    <ModalFooter>
-                        {save.process ?
-                            <div className="d-flex justify-content-center">
-                                <DotLoading />
-                                <p className='text-dark'>{save.process}</p>
-                            </div> :
-                            <p></p>
-                        }
-                        <p className="text-center text-success">
-                            {save.success}
-                        </p>
-                        <p className="text-center text-danger">
-                            {save.error}
-                        </p>
-                        <div className="" style={{ display: 'inline-flex' }}>
-                            <p className="text-center" onClick={signUp}>
-                                New to moct please <b>signup</b>
+                        {/***/}
+                        <div className="my-2">
+                            <div id="float-label">
+                                <label htmlFor="title" className={state.cpassword.active}>
+                                    <FontAwesomeIcon icon={faLock} className='mx-2' />
+                                    confirm password
+                                </label>
+                                <input type="password" className='form-control' id='cpassword'
+                                    required={true}
+                                    onChange={handleChange}
+                                    value={state.cpassword.value}
+                                />
+                            </div>
+                        </div>
+                        <SaveProcess Process={save} />
+                        <div onClick={signIn}>
+                            <p className="text-center text-dark">
+                                New to moct please <b>signIn</b>
                             </p>
                         </div>
-                        <button type='submit' className="btn btn-raise">
-                            signin
+                    </ModalBody>
+                    <ModalFooter>
+                        <button type='submit' className="btn btn-raise form-control">
+                            signup
                         </button>
                         {' '}
                     </ModalFooter>

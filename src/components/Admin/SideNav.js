@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FaList, FaNewspaper, FaPeopleCarry, FaRegHeart } from "react-icons/fa";
+import { FaArchive, FaList, FaNewspaper, FaPeopleCarry, FaRegHeart } from "react-icons/fa";
 import { FiHome, FiLogOut } from "react-icons/fi";
 import { RiPencilLine } from "react-icons/ri";
 import { BiCog, BiMessage, BiUser, BiUserVoice } from "react-icons/bi";
@@ -62,6 +62,12 @@ function SideNav({ handleToggle,
                             onClick={() => { setTabs('News'); collapse() }}
                             icon={<FaNewspaper />}>
                             News
+                        </MenuItem>
+                        <MenuItem
+                            active={tabs === 'Archives'}
+                            onClick={() => { setTabs('Archives'); collapse() }}
+                            icon={<FaArchive />}>
+                            Archives
                         </MenuItem>
                         <MenuItem
                             onClick={() => { setTabs('Vacancy'); collapse() }}

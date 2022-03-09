@@ -8,7 +8,7 @@ import { localTime } from '../utility/Date';
 import { createMessage } from '../../message/message';
 import { messageClass } from '../../message/messageClass';
 import $ from 'jquery'
-import { getTime } from './../../store/Actions/dataActions';
+import { getTime } from '../../store/Actions/dataActions';
 const id = randomID() + 'moct' + Date.now()
 
 function ChatBoat({ location }) {
@@ -44,6 +44,10 @@ function ChatBoat({ location }) {
     }, [servertime.data])
     const { t } = useContext(LanguageContext)
     /**socket io */
+    const checkHour = () => {
+        const hour = new Date(time).getHours()
+        return 17 > hour && 8 <= hour
+    }
     const { socket } = useContext(SocketContext)
     const [state, setState] = useState({
         chatname: '',
@@ -128,61 +132,63 @@ function ChatBoat({ location }) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        !state.chatname ? setName(state.message) : Donothing()
-        if (connection.status !== 'connected') {
-            socket ? socket.emit('call', {
-                user_name: !state.chatname ? state.message : state.chatname,
-                user_id: state.user_id,
-                admin_id: '',
-                admin_name: '',
-                message: state.message
-            }) : Donothing()
-            setMessage(s => ([
-                ...s,
-                createMessage(
-                    state.message,
-                    'user',
-                    'admin',
-                    connection.admin_id,
-                    state.user_id,
-                    connection.admin_id,
-                    state.chatname,
-                    true),
-                createMessage(
-                    'connecting to admin please wait',
-                    'admin',
-                    'user',
-                    connection.admin_id,
-                    state.user_id,
-                    connection.admin_id,
-                    state.chatname,
-                    true)
+        if (checkHour()) {
+            !state.chatname ? setName(state.message) : Donothing()
 
-            ]))
+            if (connection.status !== 'connected') {
+                socket ? socket.emit('call', {
+                    user_name: !state.chatname ? state.message : state.chatname,
+                    user_id: state.user_id,
+                    admin_id: '',
+                    admin_name: '',
+                    message: state.message
+                }) : Donothing()
+                setMessage(s => ([
+                    ...s,
+                    createMessage(
+                        state.message,
+                        'user',
+                        'admin',
+                        connection.admin_id,
+                        state.user_id,
+                        connection.admin_id,
+                        state.chatname,
+                        true),
+                    createMessage(
+                        'connecting to admin please wait',
+                        'admin',
+                        'user',
+                        connection.admin_id,
+                        state.user_id,
+                        connection.admin_id,
+                        state.chatname,
+                        true)
 
-            setState(s => ({
-                ...s,
-                inputField: false
-            }))
+                ]))
+
+                setState(s => ({
+                    ...s,
+                    inputField: false
+                }))
+            }
+            else if (connection.status === 'connected') {
+                socket ? socket.emit('saveMessage', [createMessage(state.message,
+                    'user', 'admin',
+                    connection.admin_id,
+                    connection.user_id,
+                    connection.admin_name,
+                    connection.user_name,
+                    false)]) : Donothing()
+            }
+            setState(s => ({ ...s, message: '' }))
         }
-        else if (connection.status === 'connected') {
-            socket ? socket.emit('saveMessage', [createMessage(state.message,
-                'user', 'admin',
-                connection.admin_id,
-                connection.user_id,
-                connection.admin_name,
-                connection.user_name,
-                false)]) : Donothing()
+        else {
+            setState(s => ({ ...s, inputField: false }))
         }
-        setState(s => ({ ...s, message: '' }))
     }
-    const checkHour = () => {
-        const hour = new Date(time).getHours()
-        return 17 > hour && 8 < hour
-    }
-    console.log(checkHour())
+
     return (
-        checkHour() ?
+        
             <div id="chat-bot">
 
                 <div className="messenger br10">
@@ -201,17 +207,25 @@ function ChatBoat({ location }) {
                                 <div className="msg msg-left">
                                     <div className="bubble">
                                         <h6 className="name">{t('Moct')}</h6>
-                                        {t('Hello, I am a  Moct chatbot')}, <br />
-                                        {t('can tell me your name')} ?
+                                        {t('Hello, I am a  Moct Admin')}, <br />
+                                        {t('Please leave your name')} ?
                                     </div>
                                 </div> :
-                                <div className="msg msg-left">
-                                    <div className="bubble">
-                                        <h6 className="name">{t('Moct')}</h6>
-                                        {t('Hello, I am a  Moct chat bot')}, <br />
-                                        what can i help you {state.chatname} ?
+                                checkHour() ?
+                                    <div className="msg msg-left">
+                                        <div className="bubble">
+                                            <h6 className="name">{t('Moct')}</h6>
+                                            {t('Hello, I am a  Moct chat bot')}, <br />
+                                            what can i help you {state.chatname} ?
+                                        </div>
+                                    </div> :
+                                    <div className="msg msg-left">
+                                        <div className="bubble">
+                                            <h6 className="name">{t('Moct')}</h6>
+                                            {t('Hello, I am a  Moct Admin')}, <br />
+                                            {t('we are offline at the moment please leave a message')}
+                                        </div>
                                     </div>
-                                </div>
                         }
                         {
                             Message.userMessage().map(m =>
@@ -244,7 +258,13 @@ function ChatBoat({ location }) {
                                         value={state.message}
                                         required={true}
                                         onChange={e => setState(s => ({ ...s, message: e.target.value }))}
-                                    /> : ''
+                                    /> :
+                                    !checkHour() ?
+                                    <div className="msg msg-left">
+                                        <p className="text-center">
+                                            Your Message has been sent!! we will back on working hours!
+                                        </p> 
+                                    </div>: ""
                             }
                         </form>
                         <span className="send">
@@ -259,17 +279,18 @@ function ChatBoat({ location }) {
                     </div>
                     <FontAwesomeIcon icon={faEnvelope} />
                 </div>
-            </div> :
-            <div id="chat-bot">
-                <div className="icon"  >
-                    <div className="user">
-                        <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
-                        {t('we are offline! ,you can come later on working hours')}
-                        <br />
-                    </div>
-                    <FontAwesomeIcon icon={faEnvelope} />
-                </div>
-            </div>
+            </div> 
+            // :
+            // <div id="chat-bot">
+            //     <div className="icon"  >
+            //         <div className="user">
+            //             <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
+            //             {t('we are offline! ,you can come later on working hours')}
+            //             <br />
+            //         </div>
+            //         <FontAwesomeIcon icon={faEnvelope} />
+            //     </div>
+            // </div>
     )
 }
 

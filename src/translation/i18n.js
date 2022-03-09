@@ -83,7 +83,7 @@ const resources = {
             "type and hit enter": "ይተይቡ እና አስገባን ይምቱ",
             "what can i help you?": "ምን ልረዳዎት?",
             "Hello, I am a  Moct chatbot": "ሰላም ፣ እኔ የ ኢ.ባ.ቱ.ሚ ቻት ቦት ነኝ",
-            "can tell me your name": "ስምዎን ሊነግሩኝ ይችላሉ",
+            "Please leave your name": "ስምዎን ሊነግሩ ይችላሉ",
             "Forums": "መድረኮች",
             "Archives": "ማህደር",
             'we are offline! ,you can come later on working hours': 'ለጊዜው ከመስመር ውጭ ነን! በኋላ በስራ ሰዓት መምጣት ትችላለህ'

@@ -6,7 +6,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 're
 import { host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
-import { dateFormat, DateNow } from './../../utility/Date';
+import { dateFormat, DateNow } from '../../utility/Date';
 
 
 const AddBids = ({ fetch }) => {

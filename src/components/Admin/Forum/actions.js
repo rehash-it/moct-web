@@ -1,11 +1,12 @@
 import axios from "axios"
 import { host } from "../../../config/config"
 import { getHeaders } from "../../../config/headers"
+import { removeDuplicates } from "../../../utility/array"
 export const getForums = async (setData, type) => {
     try {
         setData(s => ({ ...s, loading: true }))
         const req = await axios.get(host + 'forum', { headers: { status: type } })
-        setData(s => ({ ...s, loading: false, data: req.data }))
+        setData(s => ({ ...s, loading: false, data: req.data, catagory: removeDuplicates(req.data, 'type') }))
     }
     catch (err) {
         setData(s => ({ ...s, loading: false, data: [], erro: true }))
