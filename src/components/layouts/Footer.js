@@ -47,13 +47,13 @@ function Footer() {
                                 </p>
 
                                 <small className="rights"><span>&#174;
-                                </span> {t('Moct All Rights Reserved')}.</small>
+                                </span> {t('Mocs All Rights Reserved')}.</small>
                             </div>
                             <div className="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end ">
-                                <h6 className="mt-55 mt-2 text-muted bold-text"><b>Moct Admin</b></h6><small> <span><i className="fa fa-envelope" aria-hidden="true"></i></span> admin@moct.com</small>
+                                <h6 className="mt-55 mt-2 text-muted bold-text"><b>Mocs Admin</b></h6><small> <span><i className="fa fa-envelope" aria-hidden="true"></i></span> admin@mocs.com</small>
                             </div>
                             <div className="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 ">
-                                <h6 className="text-muted bold-text"><b>Moct Admin</b></h6><small><span><i className="fa fa-envelope" aria-hidden="true"></i></span> admin@moct.com</small>
+                                <h6 className="text-muted bold-text"><b>Mocs Admin</b></h6><small><span><i className="fa fa-envelope" aria-hidden="true"></i></span> admin@mocs.com</small>
                             </div>
                         </div>
                     </div>

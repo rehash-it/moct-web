@@ -10,7 +10,7 @@ const containerStyle = {
 
 function MyComponent({ center }) {
     const { isLoaded } = useJsApiLoader({
-        id: 'moct-map',
+        id: 'mocs-map',
         googleMapsApiKey: mapApi
     })
 

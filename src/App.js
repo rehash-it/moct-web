@@ -4,7 +4,7 @@ import About from './components/pages/About'
 import Home from './components/pages/Home'
 import News from './components/pages/News'
 import History from './components/pages/History'
-import MessageMoct from './components/pages/MessageMoct'
+import MessageMocs from './components/pages/MessageMoct'
 import Sites from './components/pages/Sites'
 import Vacancy from './components/pages/Vacancy'
 import NewDetail from './components/pages/NewDetail'
@@ -47,7 +47,7 @@ export default function App() {
               <Route path='/docs/:id'><ResearchDetails /></Route>
               <Route path='/sites'><Sites /></Route>
               <Route path='/docs'><Docs /></Route>
-              <Route path='/messageOfMoct'><MessageMoct /></Route>
+              <Route path='/messageOfMocs'><MessageMocs /></Route>
               <Route path='/vacancy'><Vacancy /></Route>
               <Route path='/admin'><Dashboard /></Route>
               <Route path='/bids'><Bids /></Route>

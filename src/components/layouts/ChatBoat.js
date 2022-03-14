@@ -9,7 +9,7 @@ import { createMessage } from '../../message/message';
 import { messageClass } from '../../message/messageClass';
 import $ from 'jquery'
 import { getTime } from '../../store/Actions/dataActions';
-const id = randomID() + 'moct' + Date.now()
+const id = randomID() + 'mocs' + Date.now()
 
 function ChatBoat({ location }) {
     let chat_bot = $("#chat-bot .icon")
@@ -206,23 +206,23 @@ function ChatBoat({ location }) {
 
                                 <div className="msg msg-left">
                                     <div className="bubble">
-                                        <h6 className="name">{t('Moct')}</h6>
-                                        {t('Hello, I am a  Moct Admin')}, <br />
+                                        <h6 className="name">{t('Mocs')}</h6>
+                                        {t('Hello, I am a  Mocs Admin')}, <br />
                                         {t('Please leave your name')} ?
                                     </div>
                                 </div> :
                                 checkHour() ?
                                     <div className="msg msg-left">
                                         <div className="bubble">
-                                            <h6 className="name">{t('Moct')}</h6>
-                                            {t('Hello, I am a  Moct chat bot')}, <br />
+                                            <h6 className="name">{t('Mocs')}</h6>
+                                            {t('Hello, I am a  Mocs chat bot')}, <br />
                                             what can i help you {state.chatname} ?
                                         </div>
                                     </div> :
                                     <div className="msg msg-left">
                                         <div className="bubble">
-                                            <h6 className="name">{t('Moct')}</h6>
-                                            {t('Hello, I am a  Moct Admin')}, <br />
+                                            <h6 className="name">{t('Mocs')}</h6>
+                                            {t('Hello, I am a  Mocs Admin')}, <br />
                                             {t('we are offline at the moment please leave a message')}
                                         </div>
                                     </div>
@@ -239,7 +239,7 @@ function ChatBoat({ location }) {
                                     m.sender === 'admin' ?
                                         <div className="msg msg-left" key={m._id ? m._id : m.id} id={m._id ? m._id : m.id}>
                                             <div className="bubble">
-                                                <h6 className="name">Moct</h6>
+                                                <h6 className="name">Mocs</h6>
                                                 {m.message}
                                             </div>
                                         </div> : ''

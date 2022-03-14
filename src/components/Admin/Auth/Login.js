@@ -66,7 +66,7 @@ function Login({ history, setToken }) {
                     <form onSubmit={handleSubmit}>
                         <div className="card-header text-center text-dark " style={{ display: 'flex' }}>
 
-                            <h1 className='my-auto'>MOCT ADMIN LOGIN</h1>
+                            <h1 className='my-auto'>MOCS ADMIN LOGIN</h1>
                             <ReactRoundedImage
                                 image={Logo}
                                 roundedColor="#66A5CC"

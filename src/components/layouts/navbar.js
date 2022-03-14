@@ -61,7 +61,7 @@ const NavBar = ({ match, history }) => {
     const lng = localStorage.getItem('lng')
     /**about change */
     const About = () => localStorage.getItem('about') &&
-        ((path === 'about') || (path === 'messageOfMoct') || (path === 'history') || (path === 'chart')) ? localStorage.getItem('about') : 'About'
+        ((path === 'about') || (path === 'messageOfMocs') || (path === 'history') || (path === 'chart')) ? localStorage.getItem('about') : 'About'
     const changeAbout = (about) => localStorage.setItem('about', about)
     /**site change */
     const site = () => localStorage.getItem('site') && (path === 'sites') ? localStorage.getItem('site') : 'Attraction sites'
@@ -214,9 +214,9 @@ const NavBar = ({ match, history }) => {
                                         {t('Historical Background')}
                                     </DropdownItem >
                                 </Link>
-                                <Link to='/messageOfMoct'>
-                                    <DropdownItem className='h5' onClick={() => changeAbout('Message of Moct')}>
-                                        {t('Message of Moct')}
+                                <Link to='/messageOfMocs'>
+                                    <DropdownItem className='h5' onClick={() => changeAbout('Message of Mocs')}>
+                                        {t('Message of Mocs')}
                                     </DropdownItem>
                                 </Link>
                                 <Link to='/chart'>

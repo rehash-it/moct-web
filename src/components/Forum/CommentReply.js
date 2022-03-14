@@ -5,7 +5,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { addComments } from '../Admin/comments/action';
 import { randomID } from '../utility/general'
 
-const id = randomID() + 'moct' + Date.now()
+const id = randomID() + 'mocs' + Date.now()
 
 function CommentReply({ modal, setModal, Forum, comment, socket, user_type }) {
     const toggle = () => setModal(s => ({ ...s, modal: false }));

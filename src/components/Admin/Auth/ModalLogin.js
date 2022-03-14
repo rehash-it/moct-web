@@ -11,7 +11,7 @@ import { FbLogin, GoogleSignin, loginUser, onFailure } from './social';
 import { DotLoading } from '../../layouts/Loading';
 import SaveProcess from '../../layouts/SaveProcess';
 
-const id = randomID() + 'moct' + Date.now()
+const id = randomID() + 'mocs' + Date.now()
 
 function ModalLogin({ modal, setModal, setData, signUp }) {
     const toggle = () => setModal(!modal);
@@ -124,7 +124,7 @@ function ModalLogin({ modal, setModal, setData, signUp }) {
                         <SaveProcess Process={save} />
                         <div onClick={signUp}>
                             <p className="text-center text-dark">
-                                New to moct please <b>signup</b>
+                                New to mocs please <b>signup</b>
                             </p>
                         </div>
                     </ModalBody>

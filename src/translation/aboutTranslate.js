@@ -30,7 +30,7 @@ Participations
 Mission
 To study, preserve, develop and promote the cultural wealth and the national tourism attractions of the nations, nationalities and peoples of Ethiopia and to build the positive images of Ethiopia with a view to adding a sustainable socio-economic and political values with popular and stakeholder’s participation.
 `
-export const messageMoct = () => getLanguage() === 'amh' ?
+export const messageMocs = () => getLanguage() === 'amh' ?
     `ከሁሉ አስቀድሜ አገራችንን ለምትጎበኙና በባህልና ቱሪዝም ዘርፍ  መዋዕለ ንዋያችሁን በማሰባሰብ ኢንቨስት ለምታደርጉ ሁሉ ከልብ የመነጨ ላቅ ያለ ምስጋናዬን ላቀርብ እወዳለሁ፡፡ ይህ ድረ-ገጽ የሚጠበቀውንና የምትፈልጉትን መረጃዎች ይሰጣል ብዬ ተስፋ እናደርጋለን፡፡
 
 ኢትዮጵያ በተፈጥሮ፣በባህልና ታሪክ ሀብቶቿ ዘመን የማይሽራቸው አንድነትን የፈጠረች፣ የተለያዩ ብሔሮች፣ብሔረሰቦችና ሕዝቦች የራሳቸው የሆነ ቋንቋ፣ እምነት፣ ወግ እና ስርዓት አቅፋ የያዘች ሕብረ-ብሔራዊት ሀገር ናት፡፡ በተባበሩት መንግስታት የትምህርት፣ የሳይንስና የባህል ድርጅት (ዩኔስኮ) በዓለምቅርሶች መዝገብ ከተመዘገቡ ዘጠኝ የማይቀሳቀሱ ቅርሶች አንዱ በሆነው የሰሜን ተራሮች ብሔራዊ ፓርክ ውስጥ ከሚከኘው ከራስ ዳሸን ተራራ ከፍታ አስከ ዳሎል ዲፕሬሽን ዝቅታ ድረስ  በአስደናቂ መልክዓ ምድራዊ አቀማመጥ እና የአየር ንብረት፣ የብርቅዬ የዱር እንስሳት መገኛ፣ የራሷ የዘመን አቆጣጠርናፊደል፣ የሚዳሰሱና የማይዳሰሱ ቅርሶች ባለቤት በመሆኑዋ  ኢትዮጵያ በእርግጠኝነት በአስገራሚ የቱሪዝም ሀብቶች መገኛ ምድር አድርጓታል፡፡

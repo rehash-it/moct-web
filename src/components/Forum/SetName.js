@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { randomID } from '../utility/general'
 
-const id = randomID() + 'moct' + Date.now()
+const id = randomID() + 'mocs' + Date.now()
 
 function SetName({ modal, setModal, setData }) {
     const toggle = () => setModal(!modal);

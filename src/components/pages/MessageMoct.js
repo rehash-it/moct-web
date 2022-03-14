@@ -4,8 +4,8 @@ import Footer from '../layouts/Footer'
 import { Link } from 'react-router-dom'
 import Logo from '../../images/Hirut.jpg'
 import { LanguageContext } from '../../context/context'
-import { messageMoct } from '../../translation/aboutTranslate'
-function MessageMoct() {
+import { messageMocs } from '../../translation/aboutTranslate'
+function MessageMocs() {
     const { t } = useContext(LanguageContext)
     return (
         <>
@@ -23,7 +23,7 @@ function MessageMoct() {
                                 <div class="main-header mb-4">
                                     <h6 class="sub-heading text-uppercase d-block mb-2"></h6>
                                     <h1 class="main-heading d-inline-block text-uppercase pb-3 border-bottom">
-                                        &lt; {t('Moct')} &gt;</h1>
+                                        &lt; {t('Mocs')} &gt;</h1>
                                 </div>
 
                                 <div class="row mb-5">
@@ -34,7 +34,7 @@ function MessageMoct() {
                                         <div class="about__text mb-5 mb-sm-4 mb-md-4">
                                             <h1>{t('Message of the minister')}</h1>
                                             <p class="my-2 h6 indent text-dark justify-content">
-                                                {messageMoct()}
+                                                {messageMocs()}
 
                                             </p>
                                         </div>
@@ -109,4 +109,4 @@ function MessageMoct() {
     )
 }
 
-export default MessageMoct
+export default MessageMocs

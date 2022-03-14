@@ -48,8 +48,8 @@ function OrganizationChart() {
                                             <div class="media">
                                                 <i class="fab fa-react icon-18 mr-3"></i>
                                                 <div class="media-body">
-                                                    <Link to='/messageOfMoct'>
-                                                        <h4 class="m-0 text-white">{t('Message of Moct')}</h4>
+                                                    <Link to='/messageOfMocs'>
+                                                        <h4 class="m-0 text-white">{t('Message of Mocs')}</h4>
                                                     </Link>
                                                     <p class="m-0">
                                                         {t('Read about our concerns and ideas')}

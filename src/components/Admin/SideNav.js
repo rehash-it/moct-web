@@ -43,7 +43,7 @@ function SideNav({ handleToggle,
                 <SidebarHeader>
                     <div className="logotext">
                         {/* small and big change using menucollapse state */}
-                        <p>{menuCollapse ? "Admin" : "Moct Admin"}</p>
+                        <p>{menuCollapse ? "Admin" : "Mocs Admin"}</p>
                     </div>
                     <div className="closemenu"
                         onClick={dimesion.width > 768 ? menuIconClick : handleToggle}>

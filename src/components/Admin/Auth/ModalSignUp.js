@@ -11,7 +11,7 @@ import { DotLoading } from '../../layouts/Loading';
 import { randomID } from '../../utility/general';
 import SaveProcess from '../../layouts/SaveProcess';
 
-const id = randomID() + 'moct' + Date.now()
+const id = randomID() + 'mocs' + Date.now()
 
 function ModalSignup({ modal, setModal, signIn }) {
     const toggle = () => setModal(!modal);
@@ -144,7 +144,7 @@ function ModalSignup({ modal, setModal, signIn }) {
                         <SaveProcess Process={save} />
                         <div onClick={signIn}>
                             <p className="text-center text-dark">
-                                New to moct please <b>signIn</b>
+                                New to mocs please <b>signIn</b>
                             </p>
                         </div>
                     </ModalBody>

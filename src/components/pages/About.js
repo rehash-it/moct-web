@@ -25,7 +25,7 @@ function About() {
                                 <div class="main-header mb-4">
                                     <h6 class="sub-heading text-uppercase d-block mb-2"></h6>
                                     <h1 class="main-heading d-inline-block text-uppercase pb-3 border-bottom">
-                                        &lt; {t('Moct')} &gt;</h1>
+                                        &lt; {t('Mocs')} &gt;</h1>
                                 </div>
 
                                 <div class="row mb-5">
@@ -58,8 +58,8 @@ function About() {
                                                     <div class="media">
                                                         <i class="fab fa-react icon-18 mr-3"></i>
                                                         <div class="media-body">
-                                                            <Link to='/messageOfMoct'>
-                                                                <h4 class="m-0 text-white">{t('Message of Moct')}</h4>
+                                                            <Link to='/messageOfMocs'>
+                                                                <h4 class="m-0 text-white">{t('Message of Mocs')}</h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('Read about our concerns and ideas')}
