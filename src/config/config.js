@@ -1,6 +1,6 @@
 module.exports = {
-    server: 'https://api.mocs.gov.et',
-    host: 'https://api.mocs.gov.et/api/',
+    server: 'https://www.api.mocs.gov.et',
+    host: 'https://www.api.mocs.gov.et/api/',
     // server : 'http://localhost:9000',
     // host: 'http://localhost:9000/api/',
     file: 'https://',
