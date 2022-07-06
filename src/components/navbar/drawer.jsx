@@ -14,7 +14,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@material-ui/core";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { LanguageContext } from "../../context/context";
 
@@ -42,7 +42,6 @@ export const AppDrawer = withRouter(({match, history, links }) => {
     <>
       <IconButton
         onClick={() => toggleDrawer(true)}
-        icon
         size={mobile ? "small" : "medium"}
       >
         <FontAwesomeIcon
@@ -55,12 +54,12 @@ export const AppDrawer = withRouter(({match, history, links }) => {
         <List sx={{ maxWidth: 360, width: 250, padding: "0 5px" }}>
           {links.map((link) =>
             !link.children ? (
-              <ListItem button>
+              <ListItem button key={link.text}>
                 <Typography component="span">{t(link.text)}</Typography>
               </ListItem>
             ) : (
-              <>
-                <ListItem button onClick={() => openDropdown(link.text)}>
+              <React.Fragment key={link.text}>
+                <ListItem button onClick={() => openDropdown(link.text)} >
                   <Box
                     sx={{
                       display: "flex",
@@ -81,10 +80,11 @@ export const AppDrawer = withRouter(({match, history, links }) => {
                   timeout="auto"
                   mountOnEnter
                   style={{ marginLeft: "10px" }}
+                  key={link.text}
                 >
                   <List>
                     {link.children.map((child) => (
-                      <ListItem button onClick={() => handleSelect(child, link)}>
+                      <ListItem button onClick={() => handleSelect(child, link)} key={child.text}>
                         <Typography component="span">
                           {t(child.text)}
                         </Typography>
@@ -92,7 +92,7 @@ export const AppDrawer = withRouter(({match, history, links }) => {
                     ))}
                   </List>
                 </Collapse>
-              </>
+              </React.Fragment>
             )
           )}
         </List>

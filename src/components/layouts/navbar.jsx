@@ -1,11 +1,12 @@
 import {
   AppBar,
-  Box, Container, Toolbar,
-  useMediaQuery
+  Box,
+  Container,
+  Toolbar,
+  useMediaQuery,
 } from "@material-ui/core";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, withRouter } from "react-router-dom";
-import "../../styles/navbar.module.css";
 import { AppDrawer } from "../navbar/drawer";
 import { LanguageSelect } from "../navbar/languageSelect";
 import { Logo } from "../navbar/logo";
@@ -14,7 +15,6 @@ import { SearchButton } from "../navbar/searchButton";
 
 export default withRouter(({ match, history }) => {
   const mobile = useMediaQuery("(max-width: 680px)");
-  const lgAndLess = useMediaQuery("(max-width: 1280px)");
   const links = [
     {
       text: "Home",
@@ -118,13 +118,13 @@ export default withRouter(({ match, history }) => {
     },
   ];
   return (
-    <AppBar color="transparent" position="relative">
-      <Container maxWidth className="pa-4">
+    <AppBar color="transparent" position="relative" id="top">
+      <Container className="pa-4" maxWidth="xl">
         <Toolbar
           style={{
             height: mobile ? "auto" : "15vh",
             padding: "1rem 5px",
-            justifyContent: lgAndLess ? "start" : "space-between",
+            justifyContent: mobile ? "start" : "space-between",
           }}
         >
           <Box
@@ -140,7 +140,7 @@ export default withRouter(({ match, history }) => {
             <AppDrawer links={links} />
           </Box>
           <Link to="/">
-            <Logo width={lgAndLess ? "20vh" : "30vh"} />
+            <Logo width={mobile ? "20vh" : "30vh"} />
           </Link>
           <Box
             justifyContent="space-evenly"
@@ -153,7 +153,7 @@ export default withRouter(({ match, history }) => {
             }}
           >
             {links.map((link) => (
-              <NavbarLink link={link} />
+              <NavbarLink link={link} key={link.text} />
             ))}
           </Box>
           <Box sx={{ flexGrow: 1 }} />

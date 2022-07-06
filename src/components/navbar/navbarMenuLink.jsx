@@ -4,6 +4,8 @@ import { Box, Menu, MenuItem, Typography } from "@material-ui/core";
 import { useContext, useRef, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { LanguageContext } from "../../context/context";
+import styles from "../../styles/navbar.module.css";
+
 
 export const NavbarMenuLink = withRouter(({match, history, link }) =>  {
   const [anchor, setAnchor] = useState(null);
@@ -20,8 +22,8 @@ export const NavbarMenuLink = withRouter(({match, history, link }) =>  {
   };
 
   const handleSelect = (child) => {
-    setAnchor(null);
     history.push(getRoute(child))
+    setAnchor(null);
   }
   
   const getRoute = (childLink) =>
@@ -35,9 +37,9 @@ export const NavbarMenuLink = withRouter(({match, history, link }) =>  {
   return (
     <Box
       component="a"
-      className="link"
       ref={linkRef}
       style={{ margin: "0 5px" }}
+      className={styles.link}
     >
       <Box display="flex" onClick={handleMenuClick} alignItems="center">
         <Typography
@@ -56,7 +58,7 @@ export const NavbarMenuLink = withRouter(({match, history, link }) =>  {
       <Menu anchorEl={anchor} open={open} onClick={handleClose} >
         {link.children.map((childLink) => (
           <MenuItem key={childLink.route} selected={childLink === selected} onClick={() => handleSelect(childLink)}>
-            <Link to={getRoute(childLink)} className="link">
+            <Link to={getRoute(childLink)} className={styles.link}>
               <Typography variant="button">{t(childLink.text)}</Typography>
             </Link>
           </MenuItem>
