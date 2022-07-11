@@ -9,7 +9,7 @@ import {
   Typography,
   useMediaQuery
 } from "@material-ui/core";
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import styles from "../../styles/newsCard.module.css";
 import { tellDate } from "../utility/Date";
@@ -18,17 +18,16 @@ export const NewsCard = withRouter(({ history, news }) => {
   const medium = useMediaQuery("(max-width: 1020px)");
   const [newsImage, setNewsImage] = useState("");
 
-  useCallback(() => {
+  useEffect(() => {
     if (news.images.length) {
       setNewsImage(news.images[0]);
-      console.log(newsImage);
     }
-  }, [news.images, newsImage]);
+  }, [news.images]);
 
   return (
     <Box mb={4} p={medium ? 2 : 4} sx={{ bgcolor: "#e5e5e5" }}>
       <Card
-        style={{ width: medium ? "80vw" : 400, background: "#e5e5e5" }}
+        style={{ width: medium ? "80vw" : 400, background: "#e5e5e5" , height: 400}}
         variant="outlined"
       >
         {newsImage && (

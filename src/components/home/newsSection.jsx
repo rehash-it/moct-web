@@ -18,7 +18,12 @@ export const NewsSection = withRouter(({ history }) => {
   useEffect(() => {
     newsDispatch(dispatchNews, page);
   }, [page, dispatchNews]);
-  const [news] = NewS;
+  const [news, setNews] = useState([]);
+  const [pageCount, setPageCount] = useState(1);
+  useEffect(() => {
+    setNews(NewS[0] ?? []);
+    setPageCount(Math.ceil((NewS[1] ?? 0) / 4));
+  }, [NewS]);
 
   const handlePageChange = (event, value) => {
     setPage(value);
@@ -44,7 +49,7 @@ export const NewsSection = withRouter(({ history }) => {
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
-              justifyContent: {xs: 'space-evenly', lg: "start"}
+              justifyContent: { xs: "space-evenly", lg: "start" },
             }}
           >
             {news.length ? (
@@ -61,7 +66,7 @@ export const NewsSection = withRouter(({ history }) => {
           </Box>
           <Box display="flex" justifyContent="end" p={2}>
             <Pagination
-              count={5}
+              count={pageCount}
               variant="rounded"
               color="primary"
               page={page}
