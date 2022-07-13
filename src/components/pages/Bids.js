@@ -13,13 +13,16 @@ import ErrorLoading from '../layouts/ErrorLoading'
 import Paginate from './Paginate'
 import { file } from '../../config/config'
 import { LanguageContext } from '../../context/context'
+import { Box } from '@material-ui/core'
+
+import styles from "../../styles/titlebar.module.css"
 function Bids({ location }) {
     const [state, setState] = useState({
         loading: true,
         error: false,
         data: [],
         length: 0
-    })
+    })  
     let Page = location.search
     const { loading, error, data, length } = state
     let page = pageCalculate(15, length)
@@ -31,10 +34,12 @@ function Bids({ location }) {
             {
                 loading ? <DataLoading /> :
                     error ? <ErrorLoading /> :
-
+                    <>
+                        <Box paddingX={10} paddingY={2} className={styles.titlebar} height={200} display="flex" alignItems="end">
+                            <h1 style={{color: '#fff'}}>{t('Bids')}</h1>
+                        </Box>
                         <div className="container my-3">
                             <div className="col-lg-12">
-                                <h1>{t('Bids')}</h1>
                                 <MDBTable className='my-3' responsive={true} bordered={true} >
                                     <MDBTableHead className='text-center' >
                                         <tr>
@@ -85,6 +90,7 @@ function Bids({ location }) {
                                 <Paginate link='' page={page} />
                             </div>
                         </div>
+                    </>
             }
             <Footer />
         </>

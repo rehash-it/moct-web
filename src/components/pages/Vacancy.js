@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faForward } from '@fortawesome/free-solid-svg-icons'
-import { pageCalculate, Scroll } from '../utility/general'
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact'
+import { useContext, useEffect, useState } from 'react'
+import { FaThermometerEmpty } from 'react-icons/fa'
+import { withRouter } from 'react-router-dom'
+import { LanguageContext } from '../../context/context'
 import { datasDispatch } from '../../store/Actions/dataActions'
-import Paginate from './Paginate';
-import { Link, withRouter } from 'react-router-dom'
 import { getPage } from '../../utility/route'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
+import Footer from '../layouts/Footer'
+import NavBar from '../layouts/navbar'
 import { tellDate } from '../utility/Date'
-import { FaThermometerEmpty } from 'react-icons/fa'
-import { LanguageContext } from '../../context/context'
+import { pageCalculate, Scroll } from '../utility/general'
+import Paginate from './Paginate'
+import styles from '../../styles/titlebar.module.css'
+import { Box } from '@material-ui/core'
+
 const Vacancy = ({ location }) => {
     const [state, setState] = useState({
         loading: true,
@@ -37,14 +39,12 @@ const Vacancy = ({ location }) => {
                 loading ?
                     <DataLoading /> :
                     error ? <ErrorLoading /> :
-
+                    <>
+                    <Box paddingX={10} paddingY={2} className={styles.titlebar} height={200} display="flex" alignItems="end">
+                            <h1 style={{color: '#fff'}}>{t('Vacancy')}</h1>
+                        </Box>
                         <div className="container my-4 ml-4" >
                             <div className="row">
-                                <div className="col-lg-12">
-                                    <h1 className="text-center ">
-                                        {t('Vacancies')}
-                                    </h1>
-                                </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
                                         <MDBTableHead >
@@ -94,6 +94,7 @@ const Vacancy = ({ location }) => {
                                 </div>
                             </div>
                         </div>
+                    </>
             }
             <Footer />
         </>
