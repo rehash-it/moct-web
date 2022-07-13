@@ -86,7 +86,10 @@ const resources = {
             "Please leave your name": "ስምዎን ሊነግሩ ይችላሉ",
             "Forums": "መድረኮች",
             "Archives": "ማህደር",
-            'we are offline! ,you can come later on working hours': 'ለጊዜው ከመስመር ውጭ ነን! በኋላ በስራ ሰዓት መምጣት ትችላለህ'
+            'we are offline! ,you can come later on working hours': 'ለጊዜው ከመስመር ውጭ ነን! በኋላ በስራ ሰዓት መምጣት ትችላለህ',
+            'Quick Links': "ፈጣን አገናኞች",
+            'Contact Us': 'አግኙን',
+            'Follow Us': 'ተከተሉን'
         }
     }
 };

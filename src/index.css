@@ -129,3 +129,10 @@ p {
 .active{
 color:#ffa260
 }
+.link {
+  color:rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+.link:hover {
+  color:rgba(0, 0, 0, 1);
+}
