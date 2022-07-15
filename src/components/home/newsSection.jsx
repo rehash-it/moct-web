@@ -49,7 +49,7 @@ export const NewsSection = withRouter(({ history }) => {
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
-              justifyContent: { xs: "space-evenly", lg: "start" },
+              justifyContent: "space-evenly",
             }}
           >
             {news.length ? (

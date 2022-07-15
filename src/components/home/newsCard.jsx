@@ -25,9 +25,9 @@ export const NewsCard = withRouter(({ history, news }) => {
   }, [news.images]);
 
   return (
-    <Box mb={4} p={medium ? 2 : 4} sx={{ bgcolor: "#e5e5e5" }}>
+    <Box mb={4} p={medium ? 1 : 2} sx={{ bgcolor: "#e5e5e5" }}>
       <Card
-        style={{ width: medium ? "80vw" : 400, background: "#e5e5e5" , height: 400}}
+        style={{ width: medium ? "80vw" : 350, background: "#e5e5e5" , height: 400}}
         variant="outlined"
       >
         {newsImage && (
