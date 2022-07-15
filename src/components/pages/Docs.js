@@ -11,6 +11,7 @@ import Paginate from './Paginate'
 import { CSSTransition } from 'react-transition-group';
 import { useContext } from 'react'
 import { LanguageContext } from '../../context/context'
+import { TitleBar } from '../layouts/titlebar'
 
 function Docs({ location }) {
     const [collapse, setCollapse] = useState([])
@@ -39,11 +40,10 @@ function Docs({ location }) {
                     <DataLoading /> :
                     error ?
                         <ErrorLoading /> :
-                        data.length ?
+                        <>
+                        <TitleBar text="Research and studies" />
+                       { data.length ?
                             <div className="container my-3">
-                                <h1 className="text-center">
-                                    {t('Research and studies')}
-                                </h1>
                                 <div className="col-lg-12 my-3">
                                     {
                                         data.map(d =>
@@ -91,8 +91,9 @@ function Docs({ location }) {
                                 <div className="col-lg-12 d-flex justify-content-center mt-5">
                                     <Paginate link='docs' page={page} />
                                 </div>
-                            </div> :
-                            <div className="container mt-4" style={{ minHeight: '100vh' }}>
+                            </div>
+                         :
+                            <div className="container mt-4">
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <h1 className="text-center">
@@ -102,7 +103,8 @@ function Docs({ location }) {
                                         </h1>
                                     </div>
                                 </div>
-                            </div>
+                            </div>}
+                            </>
     )
 }
 
