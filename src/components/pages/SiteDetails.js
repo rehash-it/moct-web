@@ -95,7 +95,7 @@ function SiteDetails({ match }) {
                                             {
                                                 sites.data.filter(s => s._id !== id).slice(0, 6).map(s =>
 
-                                                    <div div className="post" key={s._id}>
+                                                    <div className="post" key={s._id}>
                                                         <Link to={'/site/' + s._id}>
                                                             <img src={file + s.images[0]} alt=""
                                                                 className="post-img card-image top" height={300} style={{

@@ -39,7 +39,7 @@ function Sites({ location }) {
                             <div className="container-fluid">
                                 <div class="cont mt-3">
                                     {data.slice(0, 3).map(s =>
-                                        <sec class="programs" key={s._id}>
+                                        <section class="programs" key={s._id}>
                                             <Link to={'site/' + s._id}>
                                                 <div class="content">
                                                     <h2 >{`${s.region} region`}</h2>
@@ -53,7 +53,7 @@ function Sites({ location }) {
                                                 </div>
                                             </Link>
                                             <img src={file + s.images[0]} alt='' style={{ objectFit: 'cover' }} />
-                                        </sec>
+                                        </section>
                                     )
                                     }
 
