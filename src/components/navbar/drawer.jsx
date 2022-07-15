@@ -32,7 +32,7 @@ export const AppDrawer = withRouter(({match, history, links }) => {
     setOpen(value);
   };
 
-  const getRoute = (link, parent) => parent.nested? parent.route + link.route : link.route
+  const getRoute = (link, parent) => parent && parent.nested? parent.route + link.route : link.route
   const handleSelect = (link, parent) => {
     history.push(getRoute(link, parent))
   }
@@ -54,7 +54,7 @@ export const AppDrawer = withRouter(({match, history, links }) => {
         <List sx={{ maxWidth: 360, width: 250, padding: "0 5px" }}>
           {links.map((link) =>
             !link.children ? (
-              <ListItem button key={link.text}>
+              <ListItem button key={link.text} onClick={() => history.push(getRoute(link))}>
                 <Typography component="span">{t(link.text)}</Typography>
               </ListItem>
             ) : (
