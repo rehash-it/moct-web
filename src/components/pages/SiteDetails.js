@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import "react-multi-carousel/lib/styles.css"
 import { Link, withRouter } from 'react-router-dom'
 import { file } from '../../config/config'
+import { LanguageContext } from '../../context/context'
 import { dataDispatch } from '../../store/Actions/dataActions'
 import { sitesDispatch } from '../../store/Actions/fetchSites'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
-import { Scroll } from '../utility/general'
-import "react-multi-carousel/lib/styles.css";
 import Map from '../layouts/Map'
-import { LanguageContext } from '../../context/context'
+import { Scroll } from '../utility/general'
 function SiteDetails({ match }) {
     const { id } = match.params
     const [sites, setSites] = useState({
@@ -32,9 +30,6 @@ function SiteDetails({ match }) {
     }, [id])
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <NavBar />
-            {
                 site.loading ? <DataLoading /> :
                     site.error ? <ErrorLoading /> :
                         <div className="container mt-4">
@@ -124,9 +119,6 @@ function SiteDetails({ match }) {
                                 }
                             </div>
                         </div>
-            }
-            <Footer />
-        </>
     )
 }
 

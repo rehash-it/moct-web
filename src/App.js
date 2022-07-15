@@ -25,6 +25,7 @@ import Chat from './components/pages/Chat'
 import Forums from './components/pages/Forums'
 import ClosedUserForum from './components/Forum/ClosedUserForum'
 import UserForum from './components/Forum/UserForum'
+import { MainLayout } from './components/layouts/mainLayout'
 export default function App() {
   const { t, i18n } = useTranslation();
   const [news, dispatchNews] = useReducer(newsReducer, newsState)
@@ -38,28 +39,30 @@ export default function App() {
         <SocketContext.Provider value={{ socket, setSocket }}>
           <BrowserRouter>
             <Chat />
-            <Switch>
-              <Route exact path='/'><Home /></Route>
-              <Route path='/news/:id'><NewDetail /></Route>
-              <Route path='/news'><News /></Route>
-              <Route path='/about'><About /></Route>
-              <Route path='/history'><History /></Route>
-              <Route path='/docs/:id'><ResearchDetails /></Route>
-              <Route path='/sites'><Sites /></Route>
-              <Route path='/docs'><Docs /></Route>
-              <Route path='/messageOfMoct'><MessageMoct /></Route>
-              <Route path='/vacancy'><Vacancy /></Route>
-              <Route path='/admin'><Dashboard /></Route>
-              <Route path='/bids'><Bids /></Route>
-              <Route path='/login'><Login /></Route>
-              <Route path='/site/:id'><SiteDetails /></Route>
-              <Route path='/search/:index'><Search /> </Route>
-              <Route path='/chart'><OrganizationChart /></Route>
-              <Route path='/forum/:id'><UserForum /></Route>
-              <Route path='/forums'><Forums /> </Route>
-              <Route path='/closedForums'><ClosedUserForum /></Route>
-              <Route><NotFound /></Route>
-            </Switch>
+            <MainLayout>
+              <Switch>
+                <Route exact path='/'><Home /></Route>
+                <Route path='/news/:id'><NewDetail /></Route>
+                <Route path='/news'><News /></Route>
+                <Route path='/about'><About /></Route>
+                <Route path='/history'><History /></Route>
+                <Route path='/docs/:id'><ResearchDetails /></Route>
+                <Route path='/sites'><Sites /></Route>
+                <Route path='/docs'><Docs /></Route>
+                <Route path='/messageOfMoct'><MessageMoct /></Route>
+                <Route path='/vacancy'><Vacancy /></Route>
+                <Route path='/admin'><Dashboard /></Route>
+                <Route path='/bids'><Bids /></Route>
+                <Route path='/login'><Login /></Route>
+                <Route path='/site/:id'><SiteDetails /></Route>
+                <Route path='/search/:index'><Search /> </Route>
+                <Route path='/chart'><OrganizationChart /></Route>
+                <Route path='/forum/:id'><UserForum /></Route>
+                <Route path='/forums'><Forums /> </Route>
+                <Route path='/closedForums'><ClosedUserForum /></Route>
+                <Route><NotFound /></Route>
+              </Switch>
+            </MainLayout>
           </BrowserRouter>
         </SocketContext.Provider>
       </LanguageContext.Provider>

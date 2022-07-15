@@ -8,8 +8,6 @@ import "../../styles/home.css";
 import { NewsSection } from "../home/newsSection";
 import { SitesSection } from "../home/sitesSection";
 import CarouseL from "../layouts/carousel";
-import Footer from "../layouts/Footer";
-import NavBar from "../layouts/navbar";
 const items = [
   {
     src: Ertale,
@@ -36,7 +34,6 @@ function Home() {
   const { t } = useContext(LanguageContext);
   return (
     <>
-      <NavBar />
       <CarouseL items={items} />
       <NewsSection />
       <SitesSection />
@@ -88,7 +85,6 @@ t"
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

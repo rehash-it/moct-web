@@ -1,17 +1,13 @@
-import React, { useContext } from 'react'
-import '../../styles/about.css'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
-import Logo from '../../images/Hirut.jpg'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { LanguageContext } from '../../context/context'
-import { Vision } from '../../translation/aboutTranslate';
+import Logo from '../../images/Hirut.jpg'
+import '../../styles/about.css'
+import { Vision } from '../../translation/aboutTranslate'
 
 function About() {
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <NavBar />
             <section class="about-section">
                 <div class="container-fluid p-0">
                     <div class="row no-gutters position-relative">
@@ -104,8 +100,6 @@ function About() {
                 </div>
 
             </section>
-            <Footer />
-        </>
     )
 }
 

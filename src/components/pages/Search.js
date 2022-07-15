@@ -1,19 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
+import { faDownload, faFile, faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { useContext, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { file } from '../../config/config';
+import { LanguageContext } from '../../context/context';
 import { searchDispatch } from '../../store/Actions/searchAction';
 import DataLoading from '../layouts/DataLoading';
 import ErrorLoading from '../layouts/ErrorLoading';
-import { LanguageContext } from '../../context/context';
-import { file } from '../../config/config';
 import { tellDate } from '../utility/Date';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFile, faLocationArrow, faThermometerEmpty, faDownload } from '@fortawesome/free-solid-svg-icons';
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact';
-import { Scroll } from '../utility/general';
+import { pageCalculate, Scroll } from '../utility/general';
 import PaginateSearch from './PaginateSearch';
-import { pageCalculate } from '../utility/general';
 
 const Search = ({ match, location }) => {
     const { index } = match.params
@@ -42,9 +39,6 @@ const Search = ({ match, location }) => {
     }
 
     return (
-        <>
-            <NavBar />
-            {
                 loading ?
                     <DataLoading /> :
                     error ?
@@ -309,9 +303,6 @@ const Search = ({ match, location }) => {
                                 </div>
                             </div>
                         </div>
-            }
-            <Footer />
-        </>
     )
 }
 

@@ -1,6 +1,4 @@
 import React, { useContext } from 'react'
-import NavBar from '../layouts/navbar'
-import Footer from '../layouts/Footer'
 import Logo from '../../images/MOCT-አማርኛ-Org-struct-min.png'
 import { Link } from 'react-router-dom'
 import { BiFullscreen } from 'react-icons/bi'
@@ -8,8 +6,6 @@ import { LanguageContext } from '../../context/context'
 function OrganizationChart() {
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <NavBar />
             <section class="about-section">
                 <div class="container-fluid p-0">
                     <div class="row no-gutters position-relative">
@@ -91,8 +87,6 @@ function OrganizationChart() {
                 </div>
 
             </section>
-            <Footer />
-        </>
     )
 }
 

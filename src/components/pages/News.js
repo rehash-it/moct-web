@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
-import NavBar from '../layouts/navbar'
 import '../../styles/news.css'
 import { getWindowDimensions } from '../utility/screen'
-import Footer from '../layouts/Footer'
 import { Link, withRouter } from 'react-router-dom'
 import { getPage } from '../../utility/route'
 import { LanguageContext, StoreContext } from '../../context/context'
@@ -66,9 +64,6 @@ function News({ location }) {
     }
     const rssDismiss = () => showRssButton(true)
     return (
-        <>
-            <NavBar />
-            {
                 loading ?
                     <DataLoading /> :
                     error ? <ErrorLoading /> :
@@ -246,10 +241,6 @@ function News({ location }) {
                                     </div>
                                 </div>
                             </div>
-            }
-            <Footer />
-
-        </>
     )
 }
 

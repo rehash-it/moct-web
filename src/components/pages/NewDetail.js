@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import '../../styles/newDetails.css'
@@ -13,7 +11,7 @@ import ErrorLoading from '../layouts/ErrorLoading'
 import { LanguageContext, StoreContext } from '../../context/context'
 import { newsDispatch } from '../../store/Actions/newsActions'
 import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo'
-import { FacebookShareCount, FacebookShareButton, TwitterShareButton, TwitterShareCount } from "react-share";
+import { FacebookShareCount, FacebookShareButton, TwitterShareButton } from "react-share";
 import { faShare } from '@fortawesome/free-solid-svg-icons'
 import { tellDate } from '../utility/Date'
 import 'react-multi-carousel/lib/styles.css';
@@ -49,9 +47,6 @@ const NewDetail = ({ match }) => {
     const { t } = useContext(LanguageContext)
 
     return (
-        <>
-            <NavBar />
-            {
                 loading ?
                     <DataLoading /> :
                     error ?
@@ -171,9 +166,6 @@ const NewDetail = ({ match }) => {
                                 </div>
                             </div>
                         </div>
-            }
-            <Footer />
-        </>
     )
 }
 

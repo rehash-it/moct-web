@@ -1,15 +1,11 @@
-import React, { useContext } from 'react'
-import NavBar from '../layouts/navbar'
-import Footer from '../layouts/Footer'
-import Logo from '../../images/moct-logo-2.png'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { LanguageContext } from '../../context/context'
-import { aboutHistory } from '../../translation/aboutTranslate';
+import Logo from '../../images/moct-logo-2.png'
+import { aboutHistory } from '../../translation/aboutTranslate'
 const History = () => {
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <NavBar />
             <section class="about-section">
                 <div class="container-fluid p-0">
                     <div class="row no-gutters position-relative">
@@ -102,8 +98,6 @@ const History = () => {
                 </div>
 
             </section>
-            <Footer />
-        </>
     )
 }
 

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload, faFile } from '@fortawesome/free-solid-svg-icons'
 import { dataDispatch } from '../../store/Actions/dataActions'
@@ -8,7 +6,6 @@ import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
 import { withRouter } from 'react-router-dom'
 import { file } from '../../config/config'
-import { CSSTransition } from 'react-transition-group';
 
 const ResearchDetails = ({ match }) => {
     const { id } = match.params
@@ -21,9 +18,6 @@ const ResearchDetails = ({ match }) => {
 
     const { error, loading, data } = state
     return (
-        <>
-            <NavBar />
-            {
                 loading ? <DataLoading /> :
                     error ? <ErrorLoading /> :
                         <div className="container">
@@ -50,9 +44,6 @@ const ResearchDetails = ({ match }) => {
                                 </div>
                             </div>
                         </div>
-            }
-            <Footer />
-        </>
     )
 }
 

@@ -1,21 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Footer from '../layouts/Footer'
-import Navbar from '../layouts/navbar'
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload, faThermometerEmpty } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact'
+import { useContext, useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { pageCalculate } from '../utility/general'
-import { datasDispatch } from '../../store/Actions/dataActions'
-import { tellDate } from '../utility/Date'
-import DataLoading from '../layouts/DataLoading'
-import ErrorLoading from '../layouts/ErrorLoading'
-import Paginate from './Paginate'
 import { file } from '../../config/config'
 import { LanguageContext } from '../../context/context'
-import { Box } from '@material-ui/core'
-
-import styles from "../../styles/titlebar.module.css"
+import { datasDispatch } from '../../store/Actions/dataActions'
+import DataLoading from '../layouts/DataLoading'
+import ErrorLoading from '../layouts/ErrorLoading'
+import { TitleBar } from '../layouts/titlebar'
+import { tellDate } from '../utility/Date'
+import { pageCalculate } from '../utility/general'
+import Paginate from './Paginate'
 function Bids({ location }) {
     const [state, setState] = useState({
         loading: true,
@@ -29,15 +25,10 @@ function Bids({ location }) {
     useEffect(() => datasDispatch(setState, { page, limit: 15, url: 'bid', admin: false }), [page])
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <Navbar />
-            {
                 loading ? <DataLoading /> :
                     error ? <ErrorLoading /> :
                     <>
-                        <Box paddingX={10} paddingY={2} className={styles.titlebar} height={200} display="flex" alignItems="end">
-                            <h1 style={{color: '#fff'}}>{t('Bids')}</h1>
-                        </Box>
+                        <TitleBar text="Bids" />
                         <div className="container my-3">
                             <div className="col-lg-12">
                                 <MDBTable className='my-3' responsive={true} bordered={true} >
@@ -91,9 +82,6 @@ function Bids({ location }) {
                             </div>
                         </div>
                     </>
-            }
-            <Footer />
-        </>
     )
 }
 

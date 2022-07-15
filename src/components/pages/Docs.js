@@ -4,8 +4,6 @@ import { datasDispatch } from '../../store/Actions/dataActions'
 import { getPage } from '../../utility/route'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
-import Footer from '../layouts/Footer'
-import Navbar from '../layouts/navbar'
 import { pageCalculate, Scroll } from '../utility/general'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -37,9 +35,6 @@ function Docs({ location }) {
     const [inProp, setInProp] = useState(false);
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <Navbar />
-            {
                 loading ?
                     <DataLoading /> :
                     error ?
@@ -108,10 +103,6 @@ function Docs({ location }) {
                                     </div>
                                 </div>
                             </div>
-            }
-
-            <Footer />
-        </>
     )
 }
 

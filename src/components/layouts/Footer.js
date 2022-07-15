@@ -14,7 +14,7 @@ import { Logo } from "../navbar/logo";
 function Footer() {
   const { t } = useContext(LanguageContext);
   return (
-    <footer style={{ position: "absolute", marginTop: 'auto', bottom: 0, width: "100%" , backgroundColor: '#e5e5e5'}}>
+    <footer style={{  marginTop: 'auto', width: "100%" , backgroundColor: '#e5e5e5'}}>
       <Container maxWidth="xl">
         <Box
           sx={{

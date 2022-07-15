@@ -1,6 +1,4 @@
 import React, { useContext } from 'react'
-import NavBar from '../layouts/navbar'
-import Footer from '../layouts/Footer'
 import { Link } from 'react-router-dom'
 import Logo from '../../images/Hirut.jpg'
 import { LanguageContext } from '../../context/context'
@@ -8,8 +6,6 @@ import { messageMoct } from '../../translation/aboutTranslate'
 function MessageMoct() {
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <NavBar />
             <section class="about-section">
                 <div class="container-fluid p-0">
                     <div class="row no-gutters position-relative">
@@ -103,8 +99,6 @@ function MessageMoct() {
                 </div>
 
             </section>
-            <Footer />
-        </>
 
     )
 }

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
 import { Link, withRouter } from 'react-router-dom'
 import '../../styles/sites.css'
 import { sitesDispatch } from '../../store/Actions/fetchSites'
@@ -13,6 +11,7 @@ import { file } from '../../config/config'
 import PaginateSites from './PaginateSites';
 import { useContext } from 'react'
 import { LanguageContext } from '../../context/context'
+import { TitleBar } from '../layouts/titlebar'
 function Sites({ location }) {
     const [state, setState] = useState({
         loading: true,
@@ -32,25 +31,18 @@ function Sites({ location }) {
     }, [Page, region])
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <NavBar />
-            {
                 loading ? <DataLoading /> :
                     error ? <ErrorLoading /> :
                         length ?
+                        <>
+                            <TitleBar text='Know about land of origins' />
                             <div className="container-fluid">
-                                <div className="row my-3">
-
-                                    <h1 className="text-center text-white">
-                                        {t('Know about land of origins')}
-                                    </h1>
-                                </div>
                                 <div class="cont mt-3">
                                     {data.slice(0, 3).map(s =>
                                         <sec class="programs" key={s._id}>
                                             <Link to={'site/' + s._id}>
                                                 <div class="content">
-                                                    <h2 >{region === 'All' ? (s.region + ' region') : ''}</h2>
+                                                    <h2 >{`${s.region} region`}</h2>
                                                     <h3>{s.title}</h3>
                                                     <p>{s.description.slice(0, 300) + '...'}</p>
                                                     <ul>
@@ -66,7 +58,7 @@ function Sites({ location }) {
                                     }
 
                                 </div >
-                                <div className="cont">
+                                {data.length > 3 && <div className="cont" >
                                     {data.slice(3, 5).map(s =>
                                         <sec class="programs" key={s._id}>
                                             <Link to={'site/' + s._id}>
@@ -86,7 +78,7 @@ function Sites({ location }) {
                                     )
                                     }
 
-                                </div>
+                                </div>}
                                 <div className="ml">
                                     {data.slice(6, 12).map(s =>
                                         <Link to={'site/' + s._id} key={s._id}>
@@ -113,16 +105,13 @@ function Sites({ location }) {
                                     <PaginateSites region={region} page={page} />
                                 </div>
                             </div>
+                            </>
                             :
                             <div className="col-lg-12 text-center mt-4" style={{ minHeight: '100vh' }}>
                                 <h1 className="text-danger">
                                     {t('No Attraction site registered yet')}
                                 </h1>
                             </div>
-            }
-            <Footer />
-
-        </>
     )
 }
 
