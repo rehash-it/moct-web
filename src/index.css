@@ -35,11 +35,11 @@ a:hover {
   text-decoration: underline !important;
 }
 .btn-raise {
-  background-color: #ffa260 !important;
+  background-color: #0053af !important;
   color: #fff !important;
 }
 .bg-raise {
-  background-color: #ffa260;
+  background-color: #0053af;
 }
 .indent {
   text-indent: 30px;
@@ -132,7 +132,7 @@ p {
   background-color: black;
 }
 .active{
-color:#ffa260
+color:#0053af
 }
 .link {
   color:rgba(0, 0, 0, 0.8);

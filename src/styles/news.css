@@ -160,7 +160,7 @@ figure.snip1208 figcaption {
 }
 figure.snip1208 .date,
 figure.snip1208 i {
-  background-color: #ffa260;
+  background-color: #0053af;
   top: 25px;
   color: #fff;
   left: 25px;
@@ -212,7 +212,7 @@ figure.snip1208 p {
 figure.snip1208 button {
   border: medium none;
   padding: 10px 20px;
-  background-color: #ffa260;
+  background-color: #0053af;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: 2px;

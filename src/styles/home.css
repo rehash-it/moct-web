@@ -584,7 +584,7 @@ a:hover {
   color: black;
 }
 .text-raise {
-  color: #ffa260;
+  color: #0053af;
 }
 img {
   max-height: 300px;
@@ -674,7 +674,7 @@ img {
   --hover: #ffdc7f;
 } */
 .raise {
-  --color: #ffa260;
+  --color: #0053af;
   --hover: #e5ff60;
 }
 .up {

@@ -167,9 +167,6 @@ div.content h3 {
 }
 
 @media screen and (min-width: 40.5em) {
-  p {
-    display: none;
-  }
 
   sec.programs {
     width: 33.33%;

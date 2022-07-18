@@ -118,7 +118,7 @@ export default withRouter(({ match, history }) => {
     },
   ];
   return (
-    <AppBar color="transparent" position="relative" id="top">
+    <AppBar color="transparent" position="relative" id="top" style={{zIndex: 1000}}>
       <Container className="pa-4" maxWidth="xl">
         <Toolbar
           style={{
