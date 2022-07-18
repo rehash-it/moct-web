@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import SideNav from './SideNav';
-import { getWindowDimensions } from '../utility/screen';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import AdminVacancy from './AdminVacancy';
@@ -20,6 +19,7 @@ import { messageClass } from '../../message/messageClass';
 import OtherMessages from './chat/OtherMessages';
 import AdminForum from './AdminForum';
 import Adminarchives from './AdminArchives';
+import { Box, Button, Typography, useMediaQuery } from '@material-ui/core';
 
 function Dashboard(props) {
     const Donothing = () => { }
@@ -27,10 +27,7 @@ function Dashboard(props) {
     const [notifcation, showNotification] = useState(false)
     const { socket } = useContext(SocketContext)
     const [token, setToken] = useState(false)
-    const [dimesion, setWindowDimensions] = useState(getWindowDimensions());
     const [message, setMessage] = useState([])
-    //create initial menuCollapse state using useState hook
-    const [menuCollapse, setMenuCollapse] = useState(true)
     const [tabs, setTabs] = useState('News')
     /** */
     const [connection, setConnection] = useState({
@@ -51,19 +48,11 @@ function Dashboard(props) {
     const [otherMessageNotification, showOtherMessageNotification] = useState(false)
     const [otherMessages, setOtherMessage] = useState({})
     const [forum, setForum] = useState({})
-    const menuIconClick = () => menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     const [comments, setComments] = useState([])
     useEffect(() => {
         checkToken(setToken)
     }, [setToken])
-    useEffect(() => {
-        function handleResize() {
-            setWindowDimensions(getWindowDimensions());
-        }
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const mobile = useMediaQuery('(max-width: 768px)')
 
     /**socket chat */
     useEffect(() => {
@@ -131,20 +120,16 @@ function Dashboard(props) {
 
     }, [socket])
 
-    const handleToggle = () => toggle ? setToggle(false) : setToggle(true)
-    const collapse = () => setMenuCollapse(true)
+    const handleToggle = () => setToggle(!toggle)
 
     return (
         token ?
-            <div>
+            <Box style={{display: 'flex'}}>
                 <SideNav
                     handleToggle={handleToggle}
                     toggle={toggle}
-                    menuCollapse={menuCollapse}
-                    menuIconClick={menuIconClick}
                     tabs={tabs}
                     setTabs={setTabs}
-                    collapse={collapse}
                 />
                 <ChatNotification
                     tabs={tabs}
@@ -164,10 +149,13 @@ function Dashboard(props) {
                     connection={connection}
                 />
                 {
-                    dimesion.width >= 768 ? <p></p> :
-                        <button className="btn btn-primary" onClick={handleToggle}>
-                            <FontAwesomeIcon icon={faBars} />
-                        </button>
+                    mobile && <Box px={2} py={4} flexGrow={1}>
+                        <div>
+                            <Button color="primary" onClick={handleToggle} startIcon={<FontAwesomeIcon icon={faBars} />}>
+                                <Typography variant='h6'>Menu</Typography>
+                            </Button>
+                        </div>
+                    </Box>
                 }
                 {
                     tabs === 'Vacancy' ?
@@ -188,7 +176,7 @@ function Dashboard(props) {
                                                     socket={socket}
                                                     message={message}
                                                 /> :
-                                                tabs === 'chats' ?
+                                                tabs === 'Chats' ?
                                                     <AdminChat
                                                         connection={connection}
                                                         setTabs={setTabs}
@@ -207,7 +195,7 @@ function Dashboard(props) {
                                                             : <p></p>
                 }
 
-            </div> :
+            </Box> :
             <Login setToken={setToken} />
     );
 }
