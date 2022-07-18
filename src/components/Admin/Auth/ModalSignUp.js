@@ -144,7 +144,7 @@ function ModalSignup({ modal, setModal, signIn }) {
                         <SaveProcess Process={save} />
                         <div onClick={signIn}>
                             <p className="text-center text-dark">
-                                New to moct please <b>signIn</b>
+                                New to moct please <b className='link'>signIn</b>
                             </p>
                         </div>
                     </ModalBody>

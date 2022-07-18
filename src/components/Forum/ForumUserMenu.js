@@ -1,25 +1,28 @@
+import { Box, Button } from '@material-ui/core'
 import React from 'react'
 
 function ForumUserMenu({ push, tab }) {
     return (
-        <div className="row">
+        <Box style={{display: 'flex', justifyContent: 'space-evenly', marginBottom: 8}}>
             <div className="col-sm-4 col-md-6 col-lg-6">
-                <button
-                    className={tab === '/forums' ? 'btn btn-raise' : ''}
+                <Button
+                    color="primary"
+                    variant={tab=== '/forums' ? 'contained' : 'outlined'}
                     onClick={e => push('/forums')}>
                     Live forum
-                </button>
+                </Button>
 
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6">
-                <button
-                    className={tab === '/closedForums' ? 'btn btn-raise' : ''}
+                <Button
+                    color="primary"
+                    variant={tab=== '/closedForums' ? 'contained' : 'outlined'}
                     onClick={e => push('/closedForums')}>
                     closed forums
-                </button>
+                </Button>
             </div>
 
-        </div>
+        </Box>
     )
 }
 
