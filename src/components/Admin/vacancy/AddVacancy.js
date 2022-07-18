@@ -6,7 +6,6 @@ import { getData, getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { DateNow } from '../../utility/Date';
 import { Button } from '@material-ui/core';
-import styles from '../../../styles/modal.module.scss'
 
 function AddVacancy({ fetch }) {
     const [state, setState] = useState({
@@ -58,7 +57,7 @@ function AddVacancy({ fetch }) {
                 Add new Vacacancy
             </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='lg'>
-                <ModalHeader toggle={toggle} className={styles.modalHeader}>
+                <ModalHeader toggle={toggle}>
                     Add new Vacacancy
                 </ModalHeader>
                 <form onSubmit={handleSubmit}>
