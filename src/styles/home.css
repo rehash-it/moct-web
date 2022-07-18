@@ -641,10 +641,6 @@ img {
     box-shadow: 0 0 0 0 var(--hover);
   }
 }
-.close:hover,
-.close:focus {
-  box-shadow: inset -3.5em 0 0 0 var(--hover), inset 3.5em 0 0 0 var(--hover);
-}
 .raise:hover,
 .raise:focus {
   box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
@@ -673,10 +669,10 @@ img {
   --color: #ef6eae;
   --hover: #ef8f6e;
 }
-.close {
+/* .close {
   --color: #ff7f82;
   --hover: #ffdc7f;
-}
+} */
 .raise {
   --color: #ffa260;
   --hover: #e5ff60;

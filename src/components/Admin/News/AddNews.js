@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import { host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { faCalendar, faNewspaper, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { DateNow } from '../../utility/Date';
 import { randomID } from '../../utility/general';
+import { Button } from '@material-ui/core';
 
 function AddNews({ fetch }) {
 
@@ -85,12 +86,11 @@ function AddNews({ fetch }) {
     console.log(state)
     return (
         <div>
-            <Button color='primary' onClick={toggle}>
+            <Button variant='contained' color='primary' onClick={toggle} style={{margin: 4 }}>
                 Add new News
             </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='xl'>
-
-                <ModalHeader toggle={toggle} className='text-dark'>
+                <ModalHeader toggle={toggle}>
                     Add new News
                 </ModalHeader>
                 <form onSubmit={handleSubmit}>
@@ -204,8 +204,7 @@ function AddNews({ fetch }) {
                         <p className="text-center text-danger">
                             {save.error}
                         </p>
-
-                        <Button color="primary" type='submit' >Submit</Button>
+                        <Button color="primary" type='submit' size="large" variant="contained" >Submit</Button>
                     </ModalFooter>
                 </form>
             </Modal>

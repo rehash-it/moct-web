@@ -1,15 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import { file, host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
-import { faCalendar, faNewspaper, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faNewspaper, faPencilAlt, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { blobCreationFromURL, getFileName } from '../../utility/file';
 import { Disperse } from '../Controller';
 import { dateFormat, DateNow } from '../../utility/Date';
 import { randomID } from '../../utility/general';
+import { Button } from '@material-ui/core';
 
 function EditNews({ fetch, news }) {
     const [modal, setModal] = useState(false);
@@ -108,17 +109,15 @@ function EditNews({ fetch, news }) {
     }
     return (
         <div>
-            <Button color='primary' onClick={toggle}>
-                Edit News
+            <Button variant='contained' color='primary' onClick={toggle} style={{margin: 4 }} startIcon={<FontAwesomeIcon icon={faPencilAlt}/>}>
+                Edit
             </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='xl'>
-
-                <ModalHeader toggle={toggle} className='text-dark'>
+                <ModalHeader toggle={toggle}>
                     Edit news
                 </ModalHeader>
                 <form onSubmit={handleSubmit}>
                     <ModalBody>
-
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-6 text-dark">
@@ -228,7 +227,7 @@ function EditNews({ fetch, news }) {
                             {save.error}
                         </p>
 
-                        <Button color="primary" type='submit' >Submit</Button>
+                        <Button color="primary" type='submit' size="large" variant="contained" >Submit</Button>
                     </ModalFooter>
                 </form>
             </Modal>

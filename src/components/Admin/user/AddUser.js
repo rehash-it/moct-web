@@ -1,12 +1,14 @@
-import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faPlus, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
 import { removeItem } from '../Controller';
 import { host } from '../../../config/config';
 import { getData, getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
+import { Button } from '@material-ui/core';
+
 function AddUser({ fetch }) {
 
     const [state, setState] = useState({
@@ -59,8 +61,8 @@ function AddUser({ fetch }) {
     const toggle = () => setModal(!modal);
     return (
         <div>
-            <Button color='primary' onClick={toggle}>
-                Add new users
+            <Button color="primary" variant="contained" onClick={toggle} style={{margin: 4}} startIcon={<FontAwesomeIcon icon={faPlus}/>}>
+                Add New Users
             </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='md'>
 
@@ -140,7 +142,7 @@ function AddUser({ fetch }) {
                             {save.error}
                         </p>
 
-                        <Button color="primary" type='submit' >Submit</Button>
+                        <Button color="primary" type='submit' variant='contained'>Submit</Button>
                     </ModalFooter>
                 </form>
             </Modal>

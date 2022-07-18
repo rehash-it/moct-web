@@ -88,7 +88,7 @@ function ModalLogin({ modal, setModal, setData, signUp }) {
                             callback={signInwithFb}
                             onFailure={signInFbFailure}
                             render={renderProps => (
-                                <button type='button' class='btn btn-primary my-2  form-control'
+                                <button type='button' className='btn btn-primary my-2  form-control'
                                     onClick={renderProps.onClick} disabled={renderProps.disabled}>
                                     <FontAwesomeIcon icon={faFacebook} className='mx-2 text-white' />
                                     Login with googe

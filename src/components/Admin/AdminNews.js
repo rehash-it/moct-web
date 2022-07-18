@@ -41,7 +41,6 @@ function AdminNews() {
                                 <div className="col-lg-1"></div>
                                 <div className="col-lg-5  my-auto">
                                     <AddNews fetch={fetchDispath} />
-
                                 </div>
 
                                 <div className="col-sm-6 col-md-4 col-lg-5 my-auto">

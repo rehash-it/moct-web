@@ -2,13 +2,16 @@ import { faMap, faNewspaper, faPencilAlt, faWindowClose } from '@fortawesome/fre
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import { file, host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { blobCreationFromURL, getFileName } from '../../utility/file';
 import { randomID } from '../../utility/general';
 import { Disperse, removeItem } from '../Controller';
+import { Button } from '@material-ui/core';
+
+
 function EditSites({ fetch, site }) {
     const [modal, setModal] = useState(false);
     const [state, setState] = useState({
@@ -108,10 +111,9 @@ function EditSites({ fetch, site }) {
     }
     return (
         <div>
-            <button className="btn btn-info mx-2" onClick={toggle}>
-                <FontAwesomeIcon icon={faPencilAlt} className='mx-2' />
+            <Button color='primary' variant="contained" onClick={toggle} style={{margin: 4}} startIcon={<FontAwesomeIcon icon={faPencilAlt}/>}>
                 Edit
-            </button>
+            </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='xl'>
 
                 <ModalHeader toggle={toggle} className='text-dark'>
@@ -263,8 +265,7 @@ function EditSites({ fetch, site }) {
                         <p className="text-center text-danger">
                             {save.error}
                         </p>
-
-                        <Button color="primary" type='submit' >Submit</Button>
+                        <Button color="primary" type='submit' variant="contained" >Submit</Button>
                     </ModalFooter>
                 </form>
             </Modal>

@@ -2,10 +2,12 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {    Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
+import { Button } from '@material-ui/core';
+
 function DeleteSites({ fetch, site }) {
     const [modal, setModal] = useState(false);
     const [save, setSave] = useState({
@@ -37,10 +39,9 @@ function DeleteSites({ fetch, site }) {
     }
     return (
         <div>
-            <button className="btn btn-danger mx-2" onClick={toggle}>
-                <FontAwesomeIcon icon={faTrash} className='mx-2' />
+           <Button color="secondary" variant="contained" style={{margin: 4}} onClick={toggle} startIcon={<FontAwesomeIcon icon={faTrash}/>}>
                 Delete
-            </button>
+            </Button>
             <Modal isOpen={modal} toggle={toggle} size='md' style={{ paddingTop: 200 }}>
                 <ModalHeader toggle={toggle} className='text-dark'>
                     Delete this attraction sites
@@ -67,8 +68,8 @@ function DeleteSites({ fetch, site }) {
                     </p>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={deleteVacancy}>
-                        Delete news
+                    <Button color="primary" onClick={deleteVacancy} variant="contained">
+                        Delete site
                     </Button>{' '}
                 </ModalFooter>
             </Modal>

@@ -149,7 +149,7 @@ function Dashboard(props) {
                     connection={connection}
                 />
                 {
-                    mobile && <Box px={2} py={4} flexGrow={1}>
+                    mobile && <Box px={2} py={4} >
                         <div>
                             <Button color="primary" onClick={handleToggle} startIcon={<FontAwesomeIcon icon={faBars} />}>
                                 <Typography variant='h6'>Menu</Typography>
