@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-
-import NavBar from '../layouts/navbar';
 import SideNav from './SideNav';
 import { getWindowDimensions } from '../utility/screen';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -139,7 +137,6 @@ function Dashboard(props) {
     return (
         token ?
             <div>
-                <NavBar />
                 <SideNav
                     handleToggle={handleToggle}
                     toggle={toggle}

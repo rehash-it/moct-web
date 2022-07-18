@@ -1,14 +1,11 @@
 import { faBroadcastTower, faComment, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router'
-import { removeDuplicates } from '../../utility/array'
 import { getComments, getForums } from '../Admin/Forum/actions'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
-import Footer from '../layouts/Footer'
 import { SpinnerLoading } from '../layouts/Loading'
-import NavBar from '../layouts/navbar'
 import ForumUserMenu from './ForumUserMenu'
 
 function ClosedUserForum({ location, history }) {
@@ -52,7 +49,6 @@ function ClosedUserForum({ location, history }) {
     const handleCatagory = type => setState(s => ({ ...s, data: type === 'All' ? s.data : chageCatagory(type) }))
     return (
         <>
-            <NavBar />
             {state.loading ?
                 <DataLoading /> :
                 state.error ?
@@ -111,7 +107,6 @@ function ClosedUserForum({ location, history }) {
                         </div>
                     </div>
             }
-            <Footer />
         </>
     )
 }
