@@ -13,8 +13,44 @@ import { LanguageContext } from "../../context/context";
 import { Logo } from "../navbar/logo";
 function Footer() {
   const { t } = useContext(LanguageContext);
+  const quickLinks = [
+    {
+      to: "/",
+      text: "Home",
+    },
+    {
+      to: "/about",
+      text: "About",
+    },
+    {
+      to: "/news",
+      text: "News",
+    },
+    {
+      to: "/sites?region=All",
+      text: "Attraction sites",
+    },
+    {
+      to: "/vacancy",
+      text: "Vacancy",
+    },
+    {
+      to: "/bids",
+      text: "Bids",
+    },
+    {
+      to: "/forums",
+      text: "Forums",
+    },
+    {
+      to: "/docs",
+      text: "Research",
+    },
+  ];
   return (
-    <footer style={{  marginTop: 'auto', width: "100%" , backgroundColor: '#e5e5e5'}}>
+    <footer
+      style={{ marginTop: "auto", width: "100%", backgroundColor: "#e5e5e5" }}
+    >
       <Container maxWidth="xl">
         <Box
           sx={{
@@ -31,21 +67,17 @@ function Footer() {
           <Box>
             <Logo />
           </Box>
-          <Box display="flex" flexDirection="column" alignItems="center">
+          <Box display="flex" flexDirection="column" alignItems="center" mt={2}>
             <Typography variant="h6" paragraph>
               {t("Quick Links")}
             </Typography>
-            <Link to="/" className="link">
-              <h6>{t("Home")}</h6>
-            </Link>
-            <Link to="/about" className="link">
-              <h6>{t("About")}</h6>
-            </Link>
-            <Link to="/docs" className="link">
-              <h6>{t("Research and studies")}</h6>
-            </Link>
+            {quickLinks.map((link) => (
+              <Link key={link.to} to={link.to} className="link">
+                <h6>{t(link.text)}</h6>
+              </Link>
+            ))}
           </Box>
-          <Box display="flex" flexDirection="column" alignItems="center">
+          <Box display="flex" flexDirection="column" alignItems="center" mt={2}>
             <Typography variant="h6" paragraph>
               {t("Contact Us")}
             </Typography>
@@ -61,7 +93,7 @@ function Footer() {
               </Typography>
             </Box>
           </Box>
-          <Box display="flex" flexDirection="column" alignItems="center">
+          <Box display="flex" flexDirection="column" alignItems="center" mt={2}>
             <Typography variant="h6" paragraph>
               {t("Follow Us")}
             </Typography>
@@ -73,10 +105,7 @@ function Footer() {
                 }}
                 target="_blank"
               >
-                <FontAwesomeIcon
-                  icon={faFacebook}
-                  className="fa-3x link"
-                />
+                <FontAwesomeIcon icon={faFacebook} className="fa-3x link" />
               </Link>
               <Link
                 style={{ padding: 4 }}
@@ -85,10 +114,7 @@ function Footer() {
                 }}
                 target="_blank"
               >
-                <FontAwesomeIcon
-                  icon={faWhatsapp}
-                  className="fa-3x link"
-                />
+                <FontAwesomeIcon icon={faWhatsapp} className="fa-3x link" />
               </Link>
               <Link
                 style={{ padding: 4 }}
@@ -97,10 +123,7 @@ function Footer() {
                 }}
                 target="_blank"
               >
-                <FontAwesomeIcon
-                  icon={faTelegram}
-                  className="fa-3x link"
-                />
+                <FontAwesomeIcon icon={faTelegram} className="fa-3x link" />
               </Link>
               <Link
                 style={{ padding: 4 }}
@@ -109,10 +132,7 @@ function Footer() {
                 }}
                 target="_blank"
               >
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  className="fa-3x link"
-                />
+                <FontAwesomeIcon icon={faTwitter} className="fa-3x link" />
               </Link>
             </Box>
           </Box>
@@ -124,7 +144,7 @@ function Footer() {
         />
         <Box>
           <Typography variant="subtitle1">
-            <FontAwesomeIcon icon={faCopyright} style={{marginRight: 4}}/>
+            <FontAwesomeIcon icon={faCopyright} style={{ marginRight: 4 }} />
             {t("Moct All Rights Reserved")}.
           </Typography>
         </Box>
