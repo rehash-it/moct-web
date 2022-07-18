@@ -1,3 +1,4 @@
+import { Container } from '@material-ui/core';
 import React, { useState } from 'react'
 import CreateForum from './Forum/CreateForum';
 import Forum from './Forum/Forum';
@@ -8,7 +9,7 @@ import PastForum from './Forum/PastForum';
 function AdminForum({ socket, comments, setForum, forum }) {
     const [tab, setTab] = useState('past')
     return (
-        <div className="container my-4 ml-4">
+        <Container maxWidth="lg" style={{margin: "1rem auto" }}>
             <ForumMenu tab={tab} setTab={setTab} />
             {
                 tab === 'live' ?
@@ -34,9 +35,9 @@ function AdminForum({ socket, comments, setForum, forum }) {
                                     setTab={setTab}
                                     Tab={tab}
                                 /> :
-                                <p></p>
+                                ''
             }
-        </div>
+        </Container>
     )
 }
 
