@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import Logo from '../../../images/moct-logo-2.png'
-import ReactRoundedImage from "react-rounded-image";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
-import { DotLoading } from '../../layouts/Loading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, Container, Paper } from '@material-ui/core';
 import axios from 'axios';
+import React, { useState } from 'react';
+import ReactRoundedImage from "react-rounded-image";
+import { withRouter } from 'react-router-dom';
 import { host } from '../../../config/config';
 import { getData } from '../../../config/headers';
-import { withRouter } from 'react-router-dom';
+import Logo from '../../../images/moct-logo-2.png';
+import { DotLoading } from '../../layouts/Loading';
 function Login({ history, setToken }) {
 
     const [state, setState] = useState({
@@ -58,81 +59,72 @@ function Login({ history, setToken }) {
         }
     }
     return (
-        <div className="container-fluid login" >
-            <div className="row">
-                <div className="col-lg-4">
-                </div>
-                <div className="col-lg-4 bg-white mt-5">
+        <div className='login'>
+            <Container maxWidth="sm" className='my-4'>
+                <Paper className="p-4">
                     <form onSubmit={handleSubmit}>
-                        <div className="card-header text-center text-dark " style={{ display: 'flex' }}>
-
-                            <h1 className='my-auto'>MOCT ADMIN LOGIN</h1>
+                        <div  className="d-flex justify-content-between align-items-center mb-4">
+                            <h1 className='h4'>MOCT ADMIN LOGIN</h1>
                             <ReactRoundedImage
-                                image={Logo}
-                                roundedColor="#66A5CC"
-                                imageWidth={150}
-                                imageHeight={120}
-                                roundedSize={8}
-                                borderRadius={15}
-                                style={{ color: '#fff' }}
-                            />
+                            image={Logo}
+                            roundedColor="#66A5CC"
+                            imageWidth={50}
+                            imageHeight={50}
+                            roundedSize={5}
+                            borderRadius={3}
+                            style={{ color: '#fff' }}
+                        />
                         </div>
-                        <div className="card body ">
-
-                            <div className="my-3">
-                                <div id="float-label">
-                                    <label htmlFor="title" className={state.username.active}>
-                                        <FontAwesomeIcon icon={faUser} className='mx-2' />
-                                        username
-                                    </label>
-                                    <input type="text" className='form-control' id='username'
-                                        required='true'
-                                        minLength={5}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-                            <div className="my-3">
-                                <div id="float-label">
-                                    <label htmlFor="title" className={state.password.active}>
-                                        <FontAwesomeIcon icon={faLock} className='mx-2' />
-                                        password
-                                    </label>
-                                    <input type="password" className='form-control' id='password'
-                                        required='true'
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-                            <div className="text-center text-dark">
-                                {
-                                    save.process ?
-                                        <DotLoading /> :
-                                        ''
-                                }
-                                <p className="text-danger">{save.error}</p>
-
-                                <p className="text-success"></p>
-                                {
-                                    save.success ?
-                                        <p className="text-success">
-                                            <FontAwesomeIcon icon={faCheck} className='mx-2' />
-                                            {save.success}
-                                        </p> :
-                                        <p></p>
-                                }
-
+                        <div className="my-3">
+                            <div id="float-label">
+                                <label htmlFor="title" className={state.username.active}>
+                                    <FontAwesomeIcon icon={faUser} className='mx-2' />
+                                    username
+                                </label>
+                                <input type="text" className='form-control' id='username'
+                                    required='true'
+                                    minLength={5}
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
-                        <div className="card-footer">
-                            <button type="submit" className='btn btn-danger'>
+                        <div className="my-3">
+                            <div id="float-label">
+                                <label htmlFor="title" className={state.password.active}>
+                                    <FontAwesomeIcon icon={faLock} className='mx-2' />
+                                    password
+                                </label>
+                                <input type="password" className='form-control' id='password'
+                                    required='true'
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+                        <div className="text-center text-dark">
+                            {
+                                save.process ?
+                                    <DotLoading /> :
+                                    ''
+                            }
+                            <p className="text-danger">{save.error}</p>
+                            <p className="text-success"></p>
+                            {
+                                save.success ?
+                                    <p className="text-success">
+                                        <FontAwesomeIcon icon={faCheck} className='mx-2' />
+                                        {save.success}
+                                    </p> :
+                                    <p></p>
+                            }
+                        </div>
+                        <div className="my-2">
+                            <Button type="submit" color="primary" variant="contained" size='large'>
                                 Login
-                            </button>
+                            </Button>
                         </div>
                     </form>
-                </div>
-                <div className="col-lg-4"></div>
-            </div>
+                </Paper>
+            </Container>
         </div>
     )
 }
