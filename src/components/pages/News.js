@@ -69,7 +69,7 @@ function News({ location }) {
                     error ? <ErrorLoading /> :
                         news.length ?
                             <div className="container">
-                                <div className="row">
+                                <div className="row justify-content-around">
                                     <div className="col-lg-12 d-flex justify-content-center">
                                         <button className="btn btn-raise my-2" onClick={rss}>
                                             {
@@ -93,7 +93,7 @@ function News({ location }) {
                                                             dismiss
                                                         </button>
                                                     </div> :
-                                                    <div className="row">
+                                                    <div className="row justify-content-center">
 
                                                         <Carousel responsive={responsive} infinite={true}>
                                                             {
@@ -148,42 +148,37 @@ function News({ location }) {
                                             : ''
                                     }
                                     {
-                                        dimesion.width > 680 ?
-
                                             <div className="col-lg-12">
                                                 <div className="news-container">
-                                                    <div className="wrapper">
+                                                    <div className="row">
                                                         {/**display news */}
                                                         {
-                                                            news.slice(0, 2).map(n => {
+                                                            news.slice(0,2).map(n => {
                                                                 return (
-                                                                    <Link to={'/news/' + n._id} key={n._id}>
-                                                                        <div className="news-list">
-                                                                            <div className="news-item">
-                                                                                {
-                                                                                    n.images.length ?
-
-                                                                                        <div className="news-image">
-
-                                                                                            <img src={file + n.images[0]} alt={n.title} width={dimesion.width > 680 ? 750 : 700}
-                                                                                                style={{ height: 260, objectFit: 'cover' }} />
-                                                                                        </div> : ''
-                                                                                }
-                                                                                <div className="news-content">
-                                                                                    <h3 className="news-title">{n.title}</h3>
-                                                                                    <p className="news-description h6">
-                                                                                        {n.content.slice(0, 50) + '...'}
-                                                                                    </p>
-
-                                                                                    <a className="news-button text-dark h6">
-                                                                                        {t('Read more')}
-                                                                                    </a>
+                                                                    <div className='col-12 col-lg-6'>
+                                                                        <Link to={'/news/' + n._id} key={n._id}>
+                                                                            <div className="news-list">
+                                                                                <div className="news-item">
+                                                                                    {
+                                                                                        n.images.length ?
+                                                                                            <div className="news-image">
+                                                                                                <img src={file + n.images[0]} alt={n.title} width={dimesion.width > 680 ? 750 : 700}
+                                                                                                    style={{ height: 260, objectFit: 'cover' }} />
+                                                                                            </div> : ''
+                                                                                    }
+                                                                                    <div className="news-content">
+                                                                                        <h3 className="news-title">{n.title}</h3>
+                                                                                        <p className="news-description h6">
+                                                                                            {n.content.slice(0, 50) + '...'}
+                                                                                        </p>
+                                                                                        <a className="news-button text-dark h6">
+                                                                                            {t('Read more')}
+                                                                                        </a>
+                                                                                    </div>
                                                                                 </div>
-
-
                                                                             </div>
-                                                                        </div>
-                                                                    </Link>
+                                                                        </Link>
+                                                                    </div>
                                                                 )
                                                             }
                                                             )
@@ -192,32 +187,34 @@ function News({ location }) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            : ''
                                     }
                                     {
                                         news.slice(2, 8).map(n =>
-                                            <div className="col-lg-4">
-                                                <Link to={'/news/' + n._id} key={n._id}>
-
-                                                    <figure className="snip1208">
-                                                        {n.images.length ? <img src={file + n.images[0]} alt="sample66" /> : ''}
-                                                        {n.images.length ?
-                                                            <div className="date">
-                                                                <span className="day">
-                                                                    {tellDay(n.createdAt).date}
-                                                                </span><span className="month">{
-                                                                    tellDay(n.createdAt).month
-                                                                }</span>
-                                                            </div> : ''
-                                                        }
-                                                        <i className="ion-film-marker"></i>
-                                                        <figcaption>
-                                                            <h5>{n.title}</h5>
-                                                            <p>
-                                                                {n.content.slice(0, 50) + '...'}
-                                                            </p>
-                                                            <button> {t('Read more')}</button>
-                                                        </figcaption>
+                                            <div className="col-12 col-md-6 col-lg-4 my-2">
+                                                <Link to={'/news/' + n._id} key={n._id} style={{display: 'inline-block', width: '100%'}}>
+                                                    <figure className="snip1208" style={{width: "100%", margin: 'auto'}}>
+                                                        <div className='row'>
+                                                            <div className="col-6">{n.images.length ? <img src={file + n.images[0]} alt="sample66" /> : ''}</div>
+                                                            <div className='col-6'>
+                                                                {n.images.length ?
+                                                                    <div className="date">
+                                                                        <span className="day">
+                                                                            {tellDay(n.createdAt).date}
+                                                                        </span><span className="month">{
+                                                                            tellDay(n.createdAt).month
+                                                                        }</span>
+                                                                    </div> : ''
+                                                                }
+                                                                <i className="ion-film-marker"></i>
+                                                                <figcaption className='mx-auto'>
+                                                                    <h5>{n.title}</h5>
+                                                                    <p>
+                                                                        {n.content.slice(0, 50) + '...'}
+                                                                    </p>
+                                                                    <button> {t('Read more')}</button>
+                                                                </figcaption>
+                                                            </div>
+                                                        </div>
                                                     </figure>
                                                 </Link>
                                             </div>

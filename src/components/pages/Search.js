@@ -43,7 +43,7 @@ const Search = ({ match, location }) => {
                     <DataLoading /> :
                     error ?
                         <ErrorLoading /> :
-                        <div className="container mt-4" style={{ minHeight: '100vh' }}>
+                        <div className="container mt-4">
                             {
                                 (news.length + sites.length + bids.length + vacancy.length + docs.length) ?
                                     <div className="row">
@@ -65,33 +65,34 @@ const Search = ({ match, location }) => {
 
                             {
                                 news.data.length ?
+                                <>
+                                    <div>
+                                        <h2 className="text-center">{t('News')} ({news.length})</h2>
+                                    </div>
                                     <div className="row">
-                                        <div className="col-lg-12">
-                                            <h2 className="text-center">{t('News')} ({news.length})</h2>
-                                        </div>
-
-                                        {news.data.map(n =>
-                                            <div className="post" key={n._id}>
-                                                <Link to={'/news/' + n._id}>
-                                                    {
-                                                        n.images.length ?
-                                                            <img src={file + n.images[0]} alt=""
-                                                                className="post-img" height={300} style={{ objectFit: 'cover' }} /> :
-                                                            <p className="post-img">{n.content.slice(0, 700)}</p>
-                                                    }
-                                                    <div className="post-content">
-                                                        <h5 className='text-dark'>
-                                                            {n.title}
-                                                        </h5>
-                                                        <span className="date h6">
-                                                            {tellDate(n.createdAt)}
-                                                        </span>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        )}
-
-                                    </div> : ''
+                                        <div className="col-lg-12" style={{maxHeight: '75vh', overflowY: 'auto'}}>
+                                            {news.data.map(n =>
+                                                <div key={n._id} className="post" style={{width: '100%'}}>
+                                                    <Link to={'/news/' + n._id}>
+                                                        {
+                                                            !!n.images.length &&
+                                                                <img src={file + n.images[0]} alt=""
+                                                                    className="post-img" height={300} style={{ objectFit: 'cover' }} />
+                                                        }
+                                                        <div className="post-content">
+                                                            <h5 className='text-dark'>
+                                                                {n.title}
+                                                            </h5>
+                                                            <span className="date h6">
+                                                                {tellDate(n.createdAt)}
+                                                            </span>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </div> 
+                                    </div> 
+                                    </> : ''
                             }
                             {
                                 archives.data.length ?
@@ -252,7 +253,7 @@ const Search = ({ match, location }) => {
                                                     {t('Attraction sites')} ({sites.length})
                                                 </h2>
                                             </div>
-                                            <div className='row '>
+                                            <div className='row' style={{maxHeight: '75vh', overflowY: 'auto'}}>
                                                 {sites.data.map(s =>
                                                     <div className="col-12 col-md-4" key={s._id}>
                                                         <div>
