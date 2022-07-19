@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import '../../styles/sites.css'
+// import '../../styles/sites.css'
 import { sitesDispatch } from '../../store/Actions/fetchSites'
 import { pageCalculate, Scroll } from '../utility/general'
 import DataLoading from '../layouts/DataLoading'
@@ -37,48 +37,26 @@ function Sites({ location }) {
                         <>
                             <TitleBar text='Know about land of origins' />
                             <div className="container-fluid">
-                                <div class="cont mt-3">
-                                    {data.slice(0, 3).map(s =>
-                                        <section class="programs" key={s._id}>
-                                            <Link to={'site/' + s._id}>
-                                                <div class="content">
-                                                    <h2 >{`${s.region} region`}</h2>
-                                                    <h3>{s.title}</h3>
-                                                    <p>{s.description.slice(0, 300) + '...'}</p>
-                                                    <ul>
+                                <div class="row justify-content-evenly mt-3">
+                                    {data.slice(0, 5).map(s =>
+                                        <div class="col-12 col-md-6 col-lg-3 border" key={s._id}>
+                                                <div>
+                                                    <Link to={'site/' + s._id}>
+                                                        <h2 >{`${s.region} region`}</h2>
+                                                        <h3>{s.title}</h3>
+                                                        <p>{s.description.slice(0, 300) + '...'}</p>
+                                                    </Link>
+                                                    {!!s.lat && !!s.lng && <ul>
                                                         <li >
                                                             <FontAwesomeIcon icon={faLocationArrow} />
-                                                            <span>Location={s.location}</span></li>
-                                                    </ul>
+                                                            <span>Location={s.lat.slice(0, 5)}, {s.lng.slice(0,5)}</span></li>
+                                                    </ul>}
                                                 </div>
-                                            </Link>
-                                            <img src={file + s.images[0]} alt='' style={{ objectFit: 'cover' }} />
-                                        </section>
+                                            <img src={file + s.images[0]} alt={s.title} style={{ objectFit: 'cover' }} />
+                                        </div>
                                     )
                                     }
-
                                 </div >
-                                {data.length > 3 && <div className="cont" >
-                                    {data.slice(3, 5).map(s =>
-                                        <sec class="programs" key={s._id}>
-                                            <Link to={'site/' + s._id}>
-                                                <div class="content">
-                                                    <h2 >{region === 'All' ? (s.region + ' region') : ''}</h2>
-                                                    <h3>{s.title}</h3>
-                                                    <p>{s.description.slice(0, 300) + '...'}</p>
-                                                    <ul>
-                                                        <li >
-                                                            <FontAwesomeIcon icon={faLocationArrow} />
-                                                            <span>Location = {'lng: ' + s.lng + '  lat: ' + s.lat}</span></li>
-                                                    </ul>
-                                                </div>
-                                            </Link>
-                                            <img src={file + s.images[0]} alt='' style={{ objectFit: 'cover' }} />
-                                        </sec>
-                                    )
-                                    }
-
-                                </div>}
                                 <div className="ml">
                                     {data.slice(6, 12).map(s =>
                                         <Link to={'site/' + s._id} key={s._id}>

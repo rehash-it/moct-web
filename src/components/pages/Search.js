@@ -252,47 +252,25 @@ const Search = ({ match, location }) => {
                                                     {t('Attraction sites')} ({sites.length})
                                                 </h2>
                                             </div>
-                                            {/* <div className="cont mt-3">
-                                                {sites.data.slice(0, 3).map(s =>
-                                                    <sec className="programs" key={s._id}>
-                                                        <Link component='span' to={'/site/' + s._id}>
-                                                            <div className="content">
+                                            <div className='row '>
+                                                {sites.data.map(s =>
+                                                    <div className="col-12 col-md-4" key={s._id}>
+                                                        <div>
+                                                            <Link style={{display: 'inline-block'}} to={'/site/' + s._id}>
                                                                 <h2 >{s.region}</h2>
                                                                 <h3>{s.title}</h3>
-                                                                <p>{s.description.slice(0, 300) + '...'}</p>
-                                                                <ul>
-                                                                    <li >
-                                                                        <FontAwesomeIcon icon={faLocationArrow} />
-                                                                        <span>Location={s.location}</span></li>
-                                                                </ul>
-                                                            </div>
-                                                        </Link>
+                                                            </Link>
+                                                            <p>{s.description.slice(0, 300) + '...'}</p>
+                                                            { !!s.lat && !!s.lng && <ul>
+                                                                <li >
+                                                                    <FontAwesomeIcon icon={faLocationArrow} />
+                                                                    <span>Location={s.lat.slice(0,5)}, {s.lng.slice(0,5)} </span></li>
+                                                            </ul>}
+                                                        </div>
                                                         <img src={file + s.images[0]} alt='' style={{ objectFit: 'cover' }} />
-                                                    </sec>
-                                                )
-                                                }
-
-                                            </div > */}
-                                                <div className='row '>
-                                                    {sites.data.map(s =>
-                                                        <div className="col-12 col-md-4" key={s._id}>
-                                                            <div>
-                                                                <Link style={{display: 'inline-block'}} to={'/site/' + s._id}>
-                                                                    <h2 >{s.region}</h2>
-                                                                    <h3>{s.title}</h3>
-                                                                </Link>
-                                                                <p>{s.description.slice(0, 300) + '...'}</p>
-                                                               { !!s.location && <ul>
-                                                                    <li >
-                                                                        <FontAwesomeIcon icon={faLocationArrow} />
-                                                                        <span>Location={s.location}</span></li>
-                                                                </ul>}
-                                                            </div>
-                                                            <img src={file + s.images[0]} alt='' style={{ objectFit: 'cover' }} />
-                                                        </div >
-                                                    )
-                                                    }
-                                                </div>
+                                                    </div >
+                                                )}
+                                            </div>
 
                                         </div>
                                     </div> : ""
