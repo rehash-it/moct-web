@@ -14,16 +14,16 @@ function OrganizationChart() {
                                 <h2 class="mb-0">{t('About')}</h2>
                             </div>
                         </div>
-                        <div class="col-lg-9 col-xl-8 text-center">
+                        <div class="col-lg-9 col-xl-8 text-center mx-lg-4">
                             <div class="main-content p-5">
                                 <a href={Logo} target="_blank" rel="noreferrer">
                                     <img src={Logo} alt="" className='img-fluid' style={{ backgroundColor: '#17181c', objectFit: 'cover' }} />
                                 </a>
+                                <p className="text-center d-flex align-items-center justify-content-center">
+                                    < BiFullscreen />
+                                    {t('click the image for fullscreen')}
+                                </p>
                             </div>
-                            <p className="text-center">
-                                < BiFullscreen />
-                                {t('click the image for fullscreen')}
-                            </p>
                             <div className="text-center">
                                 <div class="about__skills">
                                     <div class="row no-gutters mb-0 mb-sm-4">
@@ -32,7 +32,7 @@ function OrganizationChart() {
                                                 <i class="fab fa-js-square icon-18 mr-3"></i>
                                                 <div class="media-body">
                                                     <Link to='/history'>
-                                                        <h4 class="m-0 text-white">{t('History')}</h4>
+                                                        <h4 class="m-0">{t('History')}</h4>
                                                     </Link>
                                                     <p class="m-0">
                                                         {t('Know About history and formulation of this organization')}
@@ -45,7 +45,7 @@ function OrganizationChart() {
                                                 <i class="fab fa-react icon-18 mr-3"></i>
                                                 <div class="media-body">
                                                     <Link to='/messageOfMoct'>
-                                                        <h4 class="m-0 text-white">{t('Message of Moct')}</h4>
+                                                        <h4 class="m-0">{t('Message of Moct')}</h4>
                                                     </Link>
                                                     <p class="m-0">
                                                         {t('Read about our concerns and ideas')}
@@ -58,25 +58,12 @@ function OrganizationChart() {
                                                 <i class="fab fa-js-square icon-18 mr-3"></i>
                                                 <div class="media-body">
                                                     <Link to='/about'>
-                                                        <h4 class="m-0 text-white">{t('Vision')} </h4>
+                                                        <h4 class="m-0">{t('Vision')} </h4>
                                                     </Link>
                                                     <p class="m-0">
                                                         {t('Know About our vision and mission')}
                                                     </p>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row no-gutters mb-0 mb-sm-4">
-
-                                        <div class="about-data">
-                                            <div class="row no-gutters pt-5 border-top">
-                                                <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3 text-center">
-
-                                                </div>
-
-
                                             </div>
                                         </div>
                                     </div>

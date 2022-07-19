@@ -67,23 +67,23 @@ const Search = ({ match, location }) => {
                                 news.data.length ?
                                     <div className="row">
                                         <div className="col-lg-12">
-                                            <h2 className="text-center text-white">{t('News')} ({news.length})</h2>
+                                            <h2 className="text-center">{t('News')} ({news.length})</h2>
                                         </div>
 
                                         {news.data.map(n =>
-                                            <div class="post" key={n._id}>
+                                            <div className="post" key={n._id}>
                                                 <Link to={'/news/' + n._id}>
                                                     {
                                                         n.images.length ?
                                                             <img src={file + n.images[0]} alt=""
-                                                                class="post-img" height={300} style={{ objectFit: 'cover' }} /> :
+                                                                className="post-img" height={300} style={{ objectFit: 'cover' }} /> :
                                                             <p className="post-img">{n.content.slice(0, 700)}</p>
                                                     }
-                                                    <div class="post-content">
+                                                    <div className="post-content">
                                                         <h5 className='text-dark'>
                                                             {n.title}
                                                         </h5>
-                                                        <span class="date h6">
+                                                        <span className="date h6">
                                                             {tellDate(n.createdAt)}
                                                         </span>
                                                     </div>
@@ -97,23 +97,23 @@ const Search = ({ match, location }) => {
                                 archives.data.length ?
                                     <div className="row">
                                         <div className="col-lg-12">
-                                            <h2 className="text-center text-white">{t('Archives')} ({archives.length})</h2>
+                                            <h2 className="text-center">{t('Archives')} ({archives.length})</h2>
                                         </div>
 
                                         {archives.data.map(n =>
-                                            <div class="post" key={n._id}>
+                                            <div className="post" key={n._id}>
                                                 <a href={n.link} target='_blank' rel="noreferrer">
                                                     {
                                                         n.image ?
                                                             <img src={file + n.image} alt=""
-                                                                class="post-img" height={300} style={{ objectFit: 'cover' }} /> :
+                                                                className="post-img" height={300} style={{ objectFit: 'cover' }} /> :
                                                             <p className="post-img">{n.title(0, 700)}</p>
                                                     }
-                                                    <div class="post-content">
+                                                    <div className="post-content">
                                                         <h5 className='text-dark'>
                                                             {n.title}
                                                         </h5>
-                                                        <span class="date h6">
+                                                        <span className="date h6">
                                                             {tellDate(n.createdAt)}
                                                         </span>
                                                     </div>
@@ -160,7 +160,7 @@ const Search = ({ match, location }) => {
                                         </div>
                                         <div className="col-lg-12">
                                             <MDBTable className='my-3' responsive={true} bordered={true} >
-                                                <MDBTableHead className='text-center' textWhite>
+                                                <MDBTableHead className='text-center'>
                                                     <tr>
                                                         <th>#</th>
                                                         <th>{t('Title')}</th>
@@ -170,7 +170,7 @@ const Search = ({ match, location }) => {
 
                                                     </tr>
                                                 </MDBTableHead>
-                                                <MDBTableBody textWhite={true}>
+                                                <MDBTableBody>
                                                     {
                                                         bids.data.map((b, i = 0) => {
                                                             i++
@@ -208,7 +208,7 @@ const Search = ({ match, location }) => {
                                         </div>
                                         <div className="col-lg-12">
                                             <MDBTable responsive bordered>
-                                                <MDBTableHead textWhite>
+                                                <MDBTableHead>
                                                     <tr>
                                                         <th>#</th>
                                                         <th>{t('Job title')}</th>
@@ -224,7 +224,7 @@ const Search = ({ match, location }) => {
                                                         vacancy.data.map((v, i = 0) => {
                                                             i++
                                                             return (
-                                                                <tr key={v._id} className='text-white'>
+                                                                <tr key={v._id}>
                                                                     <td>{i}</td>
                                                                     <td>{v.title}</td>
                                                                     <td>{v.description}</td>
@@ -252,11 +252,11 @@ const Search = ({ match, location }) => {
                                                     {t('Attraction sites')} ({sites.length})
                                                 </h2>
                                             </div>
-                                            <div class="cont mt-3">
+                                            {/* <div className="cont mt-3">
                                                 {sites.data.slice(0, 3).map(s =>
-                                                    <sec class="programs" key={s._id}>
-                                                        <Link to={'/site/' + s._id}>
-                                                            <div class="content">
+                                                    <sec className="programs" key={s._id}>
+                                                        <Link component='span' to={'/site/' + s._id}>
+                                                            <div className="content">
                                                                 <h2 >{s.region}</h2>
                                                                 <h3>{s.title}</h3>
                                                                 <p>{s.description.slice(0, 300) + '...'}</p>
@@ -272,28 +272,28 @@ const Search = ({ match, location }) => {
                                                 )
                                                 }
 
-                                            </div >
-                                            <div class="cont">
-                                                {sites.data.slice(3, 6).map(s =>
-                                                    <sec class="programs" key={s._id}>
-                                                        <Link to={'/site/' + s._id}>
-                                                            <div class="content">
-                                                                <h2 >{s.region}</h2>
-                                                                <h3>{s.title}</h3>
+                                            </div > */}
+                                                <div className='row '>
+                                                    {sites.data.map(s =>
+                                                        <div className="col-12 col-md-4" key={s._id}>
+                                                            <div>
+                                                                <Link style={{display: 'inline-block'}} to={'/site/' + s._id}>
+                                                                    <h2 >{s.region}</h2>
+                                                                    <h3>{s.title}</h3>
+                                                                </Link>
                                                                 <p>{s.description.slice(0, 300) + '...'}</p>
-                                                                <ul>
+                                                               { !!s.location && <ul>
                                                                     <li >
                                                                         <FontAwesomeIcon icon={faLocationArrow} />
                                                                         <span>Location={s.location}</span></li>
-                                                                </ul>
+                                                                </ul>}
                                                             </div>
-                                                        </Link>
-                                                        <img src={file + s.images[0]} alt='' style={{ objectFit: 'cover' }} />
-                                                    </sec>
-                                                )
-                                                }
+                                                            <img src={file + s.images[0]} alt='' style={{ objectFit: 'cover' }} />
+                                                        </div >
+                                                    )
+                                                    }
+                                                </div>
 
-                                            </div >
                                         </div>
                                     </div> : ""
                             }

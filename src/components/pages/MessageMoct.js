@@ -19,7 +19,7 @@ function MessageMoct() {
                                 <div class="main-header mb-4">
                                     <h6 class="sub-heading text-uppercase d-block mb-2"></h6>
                                     <h1 class="main-heading d-inline-block text-uppercase pb-3 border-bottom">
-                                        &lt; {t('Moct')} &gt;</h1>
+                                         {t('Moct')} </h1>
                                 </div>
 
                                 <div class="row mb-5">
@@ -41,7 +41,7 @@ function MessageMoct() {
                                                         <i class="fab fa-js-square icon-18 mr-3"></i>
                                                         <div class="media-body">
                                                             <Link to='/history'>
-                                                                <h4 class="m-0 text-white">{t('History')}</h4>
+                                                                <h4 class="m-0">{t('History')}</h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('Know About history and formulation of this organization')}
@@ -54,7 +54,7 @@ function MessageMoct() {
                                                         <i class="fab fa-js-square icon-18 mr-3"></i>
                                                         <div class="media-body">
                                                             <Link to='/about'>
-                                                                <h4 class="m-0 text-white">{t('Vision')} </h4>
+                                                                <h4 class="m-0">{t('Vision')} </h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('Know About our vision and mission')}
@@ -67,7 +67,7 @@ function MessageMoct() {
                                                         <i class="fab fa-react icon-18 mr-3"></i>
                                                         <div class="media-body">
                                                             <Link to='/chart'>
-                                                                <h4 class="m-0 text-white">{t('Organization Chart')}</h4>
+                                                                <h4 class="m-0">{t('Organization Chart')}</h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('see about our organization structure')}
@@ -76,19 +76,6 @@ function MessageMoct() {
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <div class="row no-gutters mb-0 mb-sm-4">
-
-                                                <div class="about-data">
-                                                    <div class="row no-gutters pt-5 border-top">
-                                                        <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3">
-
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

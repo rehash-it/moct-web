@@ -229,7 +229,7 @@ function Comments({ Forum }) {
                             />
                             :
                             <div className="my-2">
-                                <h4 className="tex-center text-white">
+                                <h4 className="text-center">
                                     No comments yet!
                                 </h4>
                             </div>
