@@ -1,0 +1,11 @@
+.titlebar {
+    background-color: #0053af; 
+    line-height: 1rem;  
+    text-underline-offset: 8px;
+    & h1 {
+        color: #fff;   
+    }
+    & h1::first-letter {
+        text-decoration: underline;
+    }
+}

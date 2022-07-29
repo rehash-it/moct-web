@@ -2,13 +2,15 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import { file, host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { dateFormat, DateNow } from '../../utility/Date';
 import { Disperse } from '../Controller';
 import { blobCreationFromURL, getFileName } from '../../utility/file';
+import { Button } from '@material-ui/core';
+
 
 const EditBids = ({ fetch, bid }) => {
     const [state, setState] = useState({
@@ -74,10 +76,9 @@ const EditBids = ({ fetch, bid }) => {
     const toggle = () => setModal(!modal);
     return (
         <div>
-            <button className="btn btn-info mx-2" onClick={toggle}>
-                <FontAwesomeIcon icon={faPencilAlt} className='mx-2' />
+            <Button color='primary' variant="contained" onClick={toggle} style={{margin: 4}} startIcon={<FontAwesomeIcon icon={faPencilAlt}/>}>
                 Edit
-            </button>
+            </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='lg'>
 
                 <ModalHeader toggle={toggle} className='text-dark'>
@@ -170,7 +171,7 @@ const EditBids = ({ fetch, bid }) => {
                             {save.error}
                         </p>
 
-                        <Button color="primary" type='submit' >Submit</Button>
+                        <Button color="primary" type='submit' variant="contained" >Submit</Button>
                     </ModalFooter>
                 </form>
             </Modal>

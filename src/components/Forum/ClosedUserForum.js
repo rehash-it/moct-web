@@ -1,14 +1,14 @@
 import { faBroadcastTower, faComment, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState, useEffect } from 'react'
+import { Button, Container } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
+import LazyLoad from 'react-lazyload'
 import { withRouter } from 'react-router'
-import { removeDuplicates } from '../../utility/array'
 import { getComments, getForums } from '../Admin/Forum/actions'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
-import Footer from '../layouts/Footer'
 import { SpinnerLoading } from '../layouts/Loading'
-import NavBar from '../layouts/navbar'
+import { TitleBar } from '../layouts/titlebar'
 import ForumUserMenu from './ForumUserMenu'
 
 function ClosedUserForum({ location, history }) {
@@ -52,13 +52,14 @@ function ClosedUserForum({ location, history }) {
     const handleCatagory = type => setState(s => ({ ...s, data: type === 'All' ? s.data : chageCatagory(type) }))
     return (
         <>
-            <NavBar />
+            <TitleBar text="Forums" />
+            <Container maxWidth="lg" style={{margin : "1rem auto"}}>
+                <ForumUserMenu tab={location.pathname} push={history.push} />
             {state.loading ?
                 <DataLoading /> :
                 state.error ?
                     <ErrorLoading /> :
-                    <div className="container" style={{ minHeight: '100vh' }}>
-                        <ForumUserMenu tab={location.pathname} push={history.push} />
+                <>
                         <div className="row" >
 
                             {
@@ -78,7 +79,7 @@ function ClosedUserForum({ location, history }) {
                                 state.data.length ?
                                     state.data.map(l =>
                                         <div className="col-lg-6 my-3" key={l._id}>
-                                            <lazyload height={200} placeholder={<SpinnerLoading />}>
+                                            <LazyLoad height={200} placeholder={<SpinnerLoading />}>
                                                 <div className="card">
                                                     <div className="card-header text-dark">
                                                         <FontAwesomeIcon icon={faUsers} className='mx-2 text-success' />
@@ -89,15 +90,15 @@ function ClosedUserForum({ location, history }) {
                                                         <FontAwesomeIcon icon={faBroadcastTower} className='mx-2' />
                                                         {l.description.length < 200 ? l.description : l.description.slice(0, 200) + '...'}
                                                     </div>
-                                                    <div className="card-footer text-dark" style={{ display: 'inline-flex' }}>
+                                                    <div className="card-footer text-dark" style={{ display: 'inline-flex', alignItems: 'center'}}>
                                                         <FontAwesomeIcon icon={faComment} className='mx-2' />
                                                         {getComment(l._id)} comments
-                                                        <button className="btn btn-raise float-right" onClick={() => Forum(l)}>
+                                                        <Button style={{margin: 'auto 8px'}} color="primary" variant='contained' onClick={() => Forum(l)}>
                                                             show forum
-                                                        </button>
+                                                        </Button>
                                                     </div>
                                                 </div>
-                                            </lazyload>
+                                            </LazyLoad>
                                         </div>
                                     )
                                     :
@@ -109,9 +110,9 @@ function ClosedUserForum({ location, history }) {
 
                             }
                         </div>
-                    </div>
+                </>
             }
-            <Footer />
+            </Container>
         </>
     )
 }

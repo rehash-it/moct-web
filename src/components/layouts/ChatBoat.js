@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../../styles/chatBoat.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faComments, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { LanguageContext, SocketContext } from '../../context/context';
 import { randomID } from '../utility/general';
 import { localTime } from '../utility/Date';
@@ -274,23 +274,12 @@ function ChatBoat({ location }) {
                 </div>
                 <div className="icon">
                     <div className="user">
-                        <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
+                        <FontAwesomeIcon icon={faUserCircle} style={{marginRight: 5}} />
                         {t('what can i help you?')}
                     </div>
-                    <FontAwesomeIcon icon={faEnvelope} />
+                    <FontAwesomeIcon icon={faComments} />
                 </div>
             </div> 
-            // :
-            // <div id="chat-bot">
-            //     <div className="icon"  >
-            //         <div className="user">
-            //             <FontAwesomeIcon icon={faUserCircle} className='mr-2' />
-            //             {t('we are offline! ,you can come later on working hours')}
-            //             <br />
-            //         </div>
-            //         <FontAwesomeIcon icon={faEnvelope} />
-            //     </div>
-            // </div>
     )
 }
 

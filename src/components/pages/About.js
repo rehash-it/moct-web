@@ -1,17 +1,13 @@
-import React, { useContext } from 'react'
-import '../../styles/about.css'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
-import Logo from '../../images/Hirut.jpg'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { LanguageContext } from '../../context/context'
-import { Vision } from '../../translation/aboutTranslate';
+import Logo from '../../images/Hirut.jpg'
+import '../../styles/about.css'
+import { Vision } from '../../translation/aboutTranslate'
 
 function About() {
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <NavBar />
             <section class="about-section">
                 <div class="container-fluid p-0">
                     <div class="row no-gutters position-relative">
@@ -23,9 +19,7 @@ function About() {
                         <div class="col-lg-9 col-xl-8">
                             <div class="main-content p-5">
                                 <div class="main-header mb-4">
-                                    <h6 class="sub-heading text-uppercase d-block mb-2"></h6>
-                                    <h1 class="main-heading d-inline-block text-uppercase pb-3 border-bottom">
-                                        &lt; {t('Mocs')} &gt;</h1>
+                                    <h1 class="main-heading d-inline-block text-uppercase pb-3 border-bottom">{t('Moct')}</h1>
                                 </div>
 
                                 <div class="row mb-5">
@@ -46,7 +40,7 @@ function About() {
                                                         <i class="fab fa-js-square icon-18 mr-3"></i>
                                                         <div class="media-body">
                                                             <Link to='/history'>
-                                                                <h4 class="m-0 text-white">{t('History')}</h4>
+                                                                <h4 class="m-0">{t('History')}</h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('Know About history and formulation of this organization')}
@@ -58,8 +52,8 @@ function About() {
                                                     <div class="media">
                                                         <i class="fab fa-react icon-18 mr-3"></i>
                                                         <div class="media-body">
-                                                            <Link to='/messageOfMocs'>
-                                                                <h4 class="m-0 text-white">{t('Message of Mocs')}</h4>
+                                                            <Link to='/messageOfMoct'>
+                                                                <h4 class="m-0">{t('Message of Mocs')}</h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('Read about our concerns and ideas')}
@@ -72,7 +66,7 @@ function About() {
                                                         <i class="fab fa-react icon-18 mr-3"></i>
                                                         <div class="media-body">
                                                             <Link to='/chart'>
-                                                                <h4 class="m-0 text-white">{t('Organization Chart')}</h4>
+                                                                <h4 class="m-0">{t('Organization Chart')}</h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('see about our organization structure')}
@@ -81,19 +75,6 @@ function About() {
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <div class="row no-gutters mb-0 mb-sm-4">
-
-                                                <div class="about-data">
-                                                    <div class="row no-gutters pt-5 border-top">
-                                                        <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3">
-
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -104,8 +85,6 @@ function About() {
                 </div>
 
             </section>
-            <Footer />
-        </>
     )
 }
 

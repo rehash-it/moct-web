@@ -27,11 +27,12 @@ a:hover {
 
 .news-list {
   padding-top: 20px;
+  margin: 1rem auto;;
 }
 .news-list .news-item {
   overflow: hidden;
+  height: 200px;
   cursor: pointer;
-  color: #fff;
   display: flex;
   border-radius: 4px;
   background: black;
@@ -45,6 +46,7 @@ a:hover {
   transition: background 0.5s ease;
 }
 .news-list .news-item .news-content {
+  color: #fff;
   position: relative;
   padding: 2.5em;
   transition: color 0.2s ease;
@@ -133,7 +135,6 @@ figure.snip1208 {
   overflow: hidden;
   margin: 10px;
   min-width: 220px;
-  max-width: 310px;
   width: 100%;
   background-color: #f5f5f5;
   color: #000000;
@@ -160,7 +161,7 @@ figure.snip1208 figcaption {
 }
 figure.snip1208 .date,
 figure.snip1208 i {
-  background-color: #ffa260;
+  background-color: #0053af;
   top: 25px;
   color: #fff;
   left: 25px;
@@ -212,7 +213,7 @@ figure.snip1208 p {
 figure.snip1208 button {
   border: medium none;
   padding: 10px 20px;
-  background-color: #ffa260;
+  background-color: #0053af;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: 2px;

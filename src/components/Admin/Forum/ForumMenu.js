@@ -1,33 +1,34 @@
-import React from 'react'
+import React from "react";
+import { Box, Button } from "@material-ui/core";
 
 function ForumMenu({ setTab, tab }) {
-    return (
-        <div className="row">
-            <div className="col-lg-4">
-                <button
-                    className={tab === 'past' ? 'btn btn-raise' : ''}
-                    onClick={e => setTab('past')}>
-                    closed forums
-                </button>
-            </div>
-            <div className="col-lg-4">
-                <button
-                    className={tab === 'live' ? 'btn btn-raise' : ''}
-                    onClick={e => setTab('live')}>
-                    Live forum
-                </button>
-
-            </div>
-            <div className="col-lg-4">
-                <button
-                    className={tab === 'new' ? 'btn btn-raise' : ''}
-                    onClick={e => setTab('new')}>
-                    Create Forum
-                </button>
-
-            </div>
-        </div>
-    )
+  const tabs = [
+    {
+      name: "past",
+      text: "Closed Forums",
+    },
+    {
+      name: "live",
+      text: "Live Forum",
+    },
+    {
+      name: "new",
+      text: "Create Forum",
+    },
+  ];
+  return (
+    <Box style={{display: 'flex', justifyContent: 'space-evenly'}}>
+      {tabs.map((tabItem) => (
+        <Button
+          color="primary"
+          variant={tabItem.name === tab ? "contained" : "outlined"}
+          onClick={(e) => setTab(tabItem.name)}
+        >
+          {tabItem.text}
+        </Button>
+      ))}
+    </Box>
+  );
 }
 
-export default ForumMenu
+export default ForumMenu;

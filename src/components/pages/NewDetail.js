@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import '../../styles/newDetails.css'
@@ -13,7 +11,7 @@ import ErrorLoading from '../layouts/ErrorLoading'
 import { LanguageContext, StoreContext } from '../../context/context'
 import { newsDispatch } from '../../store/Actions/newsActions'
 import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo'
-import { FacebookShareCount, FacebookShareButton, TwitterShareButton, TwitterShareCount } from "react-share";
+import { FacebookShareCount, FacebookShareButton, TwitterShareButton } from "react-share";
 import { faShare } from '@fortawesome/free-solid-svg-icons'
 import { tellDate } from '../utility/Date'
 import 'react-multi-carousel/lib/styles.css';
@@ -49,17 +47,14 @@ const NewDetail = ({ match }) => {
     const { t } = useContext(LanguageContext)
 
     return (
-        <>
-            <NavBar />
-            {
                 loading ?
                     <DataLoading /> :
                     error ?
                         <ErrorLoading /> :
 
                         <div className="container my-4">
-                            <div className="row g-0">
-                                <div className="col-lg-12 my-2">
+                            <div className="row g-0 justify-content-center">
+                                <div className="col-lg-12 text-center my-2">
                                     <h1>{news.title}</h1>
                                 </div>
                                 {news.images.length ?
@@ -93,13 +88,13 @@ const NewDetail = ({ match }) => {
                                 {
                                     news.images.length ?
 
-                                        <div className="col-lg-5">
+                                        <div className="col-lg-8 col-md-12">
                                             <p className="indent text-dark h5" style={{ textAlign: 'justify' }}>
                                                 {news.content}
                                             </p>
                                         </div> :
                                         <div className="col-lg-12">
-                                            <p className="indent text-white h5" style={{ textAlign: 'justify' }}>
+                                            <p className="indent h5" style={{ textAlign: 'justify' }}>
                                                 {news.content}
                                             </p>
                                             <div className="d-flex justify-content-center mb-3" >
@@ -125,7 +120,6 @@ const NewDetail = ({ match }) => {
                                             <div className="col-md-11 col-lg-11 col-sm-12" key={i} >
                                                 <div className="card">
                                                     <img src={file + i} alt="" className="img-fluid" style={{ height: 400, objectFit: 'cover' }} />
-
                                                 </div>
                                             </div>)
                                     }
@@ -171,9 +165,6 @@ const NewDetail = ({ match }) => {
                                 </div>
                             </div>
                         </div>
-            }
-            <Footer />
-        </>
     )
 }
 

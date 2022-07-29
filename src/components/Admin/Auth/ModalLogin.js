@@ -8,7 +8,6 @@ import GoogleLogin from 'react-google-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { GoogleClientId, FacebookClientId } from '../../../config/config';
 import { FbLogin, GoogleSignin, loginUser, onFailure } from './social';
-import { DotLoading } from '../../layouts/Loading';
 import SaveProcess from '../../layouts/SaveProcess';
 
 const id = randomID() + 'mocs' + Date.now()
@@ -88,7 +87,7 @@ function ModalLogin({ modal, setModal, setData, signUp }) {
                             callback={signInwithFb}
                             onFailure={signInFbFailure}
                             render={renderProps => (
-                                <button type='button' class='btn btn-primary my-2  form-control'
+                                <button type='button' className='btn btn-primary my-2  form-control'
                                     onClick={renderProps.onClick} disabled={renderProps.disabled}>
                                     <FontAwesomeIcon icon={faFacebook} className='mx-2 text-white' />
                                     Login with googe
@@ -124,7 +123,7 @@ function ModalLogin({ modal, setModal, setData, signUp }) {
                         <SaveProcess Process={save} />
                         <div onClick={signUp}>
                             <p className="text-center text-dark">
-                                New to mocs please <b>signup</b>
+                                New to moct please <b className='link'>signup</b>
                             </p>
                         </div>
                     </ModalBody>

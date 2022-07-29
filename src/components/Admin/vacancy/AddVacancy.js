@@ -1,10 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import React, { useState } from 'react'
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { host } from '../../../config/config';
 import { getData, getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { DateNow } from '../../utility/Date';
+import { Button } from '@material-ui/core';
+
 function AddVacancy({ fetch }) {
     const [state, setState] = useState({
         title: { value: '', active: false },
@@ -51,12 +53,11 @@ function AddVacancy({ fetch }) {
     const toggle = () => setModal(!modal);
     return (
         <div>
-            <Button color='primary' onClick={toggle}>
+            <Button variant='contained' color='primary' onClick={toggle} style={{margin: 4 }}>
                 Add new Vacacancy
             </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='lg'>
-
-                <ModalHeader toggle={toggle} className='text-dark'>
+                <ModalHeader toggle={toggle}>
                     Add new Vacacancy
                 </ModalHeader>
                 <form onSubmit={handleSubmit}>
@@ -163,7 +164,7 @@ function AddVacancy({ fetch }) {
                         <p className="text-center text-danger">
                             {save.error}
                         </p>
-                        <Button color="primary" type='submit' >Submit</Button>
+                        <Button color="primary" type='submit' size="large" variant="contained" >Submit</Button>
                     </ModalFooter>
                 </form>
             </Modal>

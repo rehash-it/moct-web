@@ -10,10 +10,13 @@
 .post {
   width: calc(33% - 10px);
   overflow: hidden;
+  min-height: 350px;
 }
 
 .post-img {
   width: 100%;
+  height: 300px;
+  border: 1px solid #000;
   border-radius: 6px;
   transition: 0.3s linear;
 }

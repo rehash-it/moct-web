@@ -1,12 +1,14 @@
-import { faLock, faPen, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faPen, faPencilAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
 import { removeItem } from '../Controller';
 import { host } from '../../../config/config';
 import { getData, getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
+import { Button } from '@material-ui/core';
+
 function EditUser({ fetch, user }) {
 
     const [state, setState] = useState({
@@ -70,9 +72,9 @@ function EditUser({ fetch, user }) {
     const toggle = () => setModal(!modal);
     return (
         <div>
-            <button className="btn btn-info" onClick={toggle}>
-                <FontAwesomeIcon icon={faPen} />
-            </button>
+            <Button color="primary" variant="contained" onClick={toggle} style={{margin: 4, padding: 10}} >
+            <FontAwesomeIcon icon={faPencilAlt}/>
+            </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='md'>
 
                 <ModalHeader toggle={toggle} className='text-dark'>
@@ -167,7 +169,7 @@ function EditUser({ fetch, user }) {
                             {save.error}
                         </p>
 
-                        <Button color="primary" type='submit' >Submit</Button>
+                        <Button color="primary" type='submit' variant='contained' >Submit</Button>
                     </ModalFooter>
                 </form>
             </Modal>

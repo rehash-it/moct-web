@@ -2,11 +2,13 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import { host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { dateFormat, DateNow } from '../../utility/Date';
+import { Button } from '@material-ui/core';
+
 
 
 const AddBids = ({ fetch }) => {
@@ -66,12 +68,10 @@ const AddBids = ({ fetch }) => {
     const toggle = () => setModal(!modal);
     return (
         <>
-            <button className="btn btn-primary mx-2" onClick={toggle}>
-                <FontAwesomeIcon icon={faPlus} className='mx-2' />
-                Add new bids
-            </button>
+            <Button color="primary" variant="contained" onClick={toggle} style={{margin: 4}} startIcon={<FontAwesomeIcon icon={faPlus} className='mx-2' />}>
+                Add bids
+            </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='lg'>
-
                 <ModalHeader toggle={toggle} className='text-dark'>
                     Add new Bids
                 </ModalHeader>
@@ -158,7 +158,7 @@ const AddBids = ({ fetch }) => {
                             {save.error}
                         </p>
 
-                        <Button color="primary" type='submit' >Submit</Button>
+                        <Button color="primary" type='submit' variant="contained" >Submit</Button>
                     </ModalFooter>
                 </form>
             </Modal>

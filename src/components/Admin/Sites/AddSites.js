@@ -1,12 +1,14 @@
-import { faMap, faNewspaper, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faMap, faNewspaper, faPlus, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import { file, host } from '../../../config/config';
 import { getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
 import { randomID } from '../../utility/general';
+import { Button } from '@material-ui/core';
+
 
 function AddSites({ fetch }) {
 
@@ -88,11 +90,10 @@ function AddSites({ fetch }) {
     }
     return (
         <div>
-            <Button color='primary' onClick={toggle}>
+            <Button color='primary' variant="contained" style={{margin: 4}} startIcon={<FontAwesomeIcon icon={faPlus} />} onClick={toggle}>
                 Add new Sites
             </Button>
-            <Modal isOpen={modal} toggle={toggle} className='' size='xl'>
-
+            <Modal isOpen={modal} toggle={toggle} size='xl'>
                 <ModalHeader toggle={toggle} className='text-dark'>
                     Add new sites
                 </ModalHeader>
@@ -241,7 +242,7 @@ function AddSites({ fetch }) {
                             {save.error}
                         </p>
 
-                        <Button color="primary" type='submit' >Submit</Button>
+                        <Button color="primary" type='submit' variant="contained">Submit</Button>
                     </ModalFooter>
                 </form>
             </Modal>

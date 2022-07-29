@@ -12,6 +12,7 @@ import { Progress } from 'reactstrap'
 import { getHeaders } from '../../config/headers'
 import ModalSignup from '../Admin/Auth/ModalSignUp'
 import ModalLogin from '../Admin/Auth/ModalLogin'
+import { Button } from '@material-ui/core'
 
 function Comments({ Forum }) {
     const { socket } = useContext(SocketContext)
@@ -158,7 +159,6 @@ function Comments({ Forum }) {
                 <div className="card-header text-dark">
                     <FontAwesomeIcon icon={faComment} className='mx-2 text-dark' />
                     {comments.length} comments
-                    <hr />
                 </div>
                 <div className="card-body" id='comment_box'
                     style={{ height: '60vh', overflow: 'scroll', msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
@@ -184,10 +184,10 @@ function Comments({ Forum }) {
                                                             : ''
                                                     }
                                                 </p>
-                                                <p className='indent text-dark my-auto ' style={{ display: 'inline-flex' }}>
+                                                <p className='indent text-dark my-auto py-2' style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                                     {c.comment}
                                                     <button className="btn" onClick={() => replyComment(c)}>
-                                                        <FontAwesomeIcon icon={faPencilAlt} />
+                                                        <FontAwesomeIcon icon={faPencilAlt} className="mx-2" />
                                                         Reply
 
                                                     </button>
@@ -229,7 +229,7 @@ function Comments({ Forum }) {
                             />
                             :
                             <div className="my-2">
-                                <h4 className="tex-center text-white">
+                                <h4 className="text-center">
                                     No comments yet!
                                 </h4>
                             </div>
@@ -242,10 +242,10 @@ function Comments({ Forum }) {
                                 <div id="float-labe">
                                     <label htmlFor="title" >
                                         <FontAwesomeIcon icon={faComment} className='mx-2' />
-                                        comment
+                                        Add Comment
                                     </label>
-                                    <textarea cols="30" rows="10" className='form-control' id='comment'
-                                        required='true'
+                                    <textarea cols="30" rows="5" className='form-control' id='comment'
+                                        required
                                         onChange={handleChange}
                                         value={state.comment.value}>
                                     </textarea>
@@ -291,10 +291,10 @@ function Comments({ Forum }) {
                                             </div> : ''
                                     }
                                 </div>
-                                <div style={{ display: 'inline-flex', justifyContent: 'end' }}>
-                                    <button type='submit' className="d-flex align-items-end btn btn-raise float-right">
+                                <div style={{ display: 'inline-flex', justifyContent: 'end' , margin: '1rem auto'}}>
+                                    <Button color="primary" variant="contained" type='submit' style={{marginRight: 8}}>
                                         comment
-                                    </button>
+                                    </Button>
                                     <React.Fragment>
                                         <input
                                             ref={fileBtn}
@@ -303,13 +303,11 @@ function Comments({ Forum }) {
                                             style={{ display: "none" }}
                                             multiple={true}
                                         />
-                                        <button type='button' className='btn btn-raise' onClick={() => fileBtn.current.click()}>
-                                            <FontAwesomeIcon icon={faPaperclip} />
-                                            Attach files on comment
-                                        </button>
+                                        <Button color="primary" variant="contained" startIcon={<FontAwesomeIcon icon={faPaperclip} />} onClick={() => fileBtn.current.click()}>
+                                            Attach files
+                                        </Button>
                                     </React.Fragment>
                                 </div>
-
                             </form>
                         </div> :
                         ''}

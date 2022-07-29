@@ -1,12 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
 import '../../styles/404.css'
 function NotFound() {
     return (
-        <>
-            <NavBar />
             <section className="page_404">
                 <div className="container">
                     <div className="row">
@@ -32,8 +28,6 @@ function NotFound() {
                     </div>
                 </div>
             </section>
-            <Footer />
-        </>
     )
 }
 

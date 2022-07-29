@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { host } from '../../../config/config';
 import { getData, getHeaders } from '../../../config/headers';
 import { DotLoading } from '../../layouts/Loading';
@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { Disperse, removeItem } from '../Controller';
 import { dateFormat, DateNow } from '../../utility/Date';
+import { Button } from '@material-ui/core';
+
 
 function EditVacancy({ vacancy, fetch }) {
     const [state, setState] = useState({
@@ -57,10 +59,9 @@ function EditVacancy({ vacancy, fetch }) {
     const toggle = () => setModal(!modal);
     return (
         <div>
-            <button className="btn btn-info mx-2" onClick={toggle}>
-                <FontAwesomeIcon icon={faPencilAlt} className='mx-2' />
+            <Button color='primary' variant="contained" onClick={toggle} style={{margin: 4}} startIcon={<FontAwesomeIcon icon={faPencilAlt}/>}>
                 Edit
-            </button>
+            </Button>
             <Modal isOpen={modal} toggle={toggle} className='' size='lg'>
 
                 <ModalHeader toggle={toggle} className='text-dark'>
@@ -179,7 +180,7 @@ function EditVacancy({ vacancy, fetch }) {
                         <p className="text-center text-danger">
                             {save.error}
                         </p>
-                        <Button color="primary" type='submit' >Update change</Button>
+                        <Button color="primary" type='submit' variant="contained" >Update change</Button>
                     </ModalFooter>
                 </form>
             </Modal>

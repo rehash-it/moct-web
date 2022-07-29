@@ -1,5 +1,6 @@
 import { faBroadcastTower, faCircle, faComment } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Button } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import Lazyload from 'react-lazyload'
 import { getComments, getForums } from '../Admin/Forum/actions'
@@ -58,7 +59,7 @@ function LiveUserForum({ push }) {
                                 <select name="" id="" className='mx-3' onChange={e => handleCatagory(e.target.value)}>
                                     <option value="All" className='mx-2'>All</option>
                                     {state.catagory.map(c =>
-                                        <option value={c.type} className='mx-2'>{c.type}</option>
+                                        <option value={c.type} className='mx-2' key={c.type}>{c.type}</option>
                                     )}
                                 </select>
                             </div> :
@@ -80,11 +81,13 @@ function LiveUserForum({ push }) {
                                                 {l.description.length < 200 ? l.description : l.description.slice(0, 200) + '...'}
                                             </div>
                                             <div className="card-footer text-dark" style={{ display: 'inline-flex' }}>
-                                                <FontAwesomeIcon icon={faComment} className='mx-2' />
-                                                {getComment(l._id)} comments
-                                                <button className="btn btn-raise float-right" onClick={() => Forum(l)}>
-                                                    show forum
-                                                </button>
+                                            <div className="card-footer text-dark" style={{ display: 'inline-flex', alignItems: 'center'}}>
+                                                        <FontAwesomeIcon icon={faComment} className='mx-2' />
+                                                        {getComment(l._id)} comments
+                                                        <Button style={{margin: 'auto 8px'}} color="primary" variant='contained' onClick={() => Forum(l)}>
+                                                            show forum
+                                                        </Button>
+                                                    </div>
                                             </div>
                                         </div>
                                     </Lazyload>

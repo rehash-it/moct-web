@@ -1,15 +1,11 @@
-import React, { useContext } from 'react'
-import NavBar from '../layouts/navbar'
-import Footer from '../layouts/Footer'
-import Logo from '../../images/moct-logo-2.png'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { LanguageContext } from '../../context/context'
-import { aboutHistory } from '../../translation/aboutTranslate';
+import Logo from '../../images/moct-logo-2.png'
+import { aboutHistory } from '../../translation/aboutTranslate'
 const History = () => {
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <NavBar />
             <section class="about-section">
                 <div class="container-fluid p-0">
                     <div class="row no-gutters position-relative">
@@ -23,7 +19,7 @@ const History = () => {
                                 <div class="main-header mb-4">
                                     <h6 class="sub-heading text-uppercase d-block mb-2"></h6>
                                     <h1 class="main-heading d-inline-block text-uppercase pb-3 border-bottom">
-                                        &lt; {t('Mocs')} &gt;</h1>
+                                         {t('Moct')} </h1>
                                 </div>
 
                                 <div class="row mb-5">
@@ -44,7 +40,7 @@ const History = () => {
                                                         <i class="fab fa-js-square icon-18 mr-3"></i>
                                                         <div class="media-body">
                                                             <Link to='/about'>
-                                                                <h4 class="m-0 text-white">{t('Vision')} </h4>
+                                                                <h4 class="m-0">{t('Vision')} </h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('Know About our vision and mission')}
@@ -56,8 +52,8 @@ const History = () => {
                                                     <div class="media">
                                                         <i class="fab fa-react icon-18 mr-3"></i>
                                                         <div class="media-body">
-                                                            <Link to='/messageOfMocs'>
-                                                                <h4 class="m-0 text-white">{t('Message of Mocs')}</h4>
+                                                            <Link to='/messageOfMoct'>
+                                                                <h4 class="m-0">{t('Message of Mocs')}</h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('Read about our concerns and ideas')}
@@ -70,7 +66,7 @@ const History = () => {
                                                         <i class="fab fa-react icon-18 mr-3"></i>
                                                         <div class="media-body">
                                                             <Link to='/chart'>
-                                                                <h4 class="m-0 text-white">{t('Organization Chart')}</h4>
+                                                                <h4 class="m-0">{t('Organization Chart')}</h4>
                                                             </Link>
                                                             <p class="m-0">
                                                                 {t('see about our organization structure')}
@@ -79,19 +75,6 @@ const History = () => {
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <div class="row no-gutters mb-0 mb-sm-4">
-
-                                                <div class="about-data">
-                                                    <div class="row no-gutters pt-5 border-top">
-                                                        <div class="mb-4 mb-md-0 pr-sm-3 p-md-0 col-sm-6 col-md-3">
-
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -102,8 +85,6 @@ const History = () => {
                 </div>
 
             </section>
-            <Footer />
-        </>
     )
 }
 

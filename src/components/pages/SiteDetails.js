@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import "react-multi-carousel/lib/styles.css"
 import { Link, withRouter } from 'react-router-dom'
 import { file } from '../../config/config'
+import { LanguageContext } from '../../context/context'
 import { dataDispatch } from '../../store/Actions/dataActions'
 import { sitesDispatch } from '../../store/Actions/fetchSites'
 import DataLoading from '../layouts/DataLoading'
 import ErrorLoading from '../layouts/ErrorLoading'
-import Footer from '../layouts/Footer'
-import NavBar from '../layouts/navbar'
-import { Scroll } from '../utility/general'
-import "react-multi-carousel/lib/styles.css";
 import Map from '../layouts/Map'
-import { LanguageContext } from '../../context/context'
+import { Scroll } from '../utility/general'
 function SiteDetails({ match }) {
     const { id } = match.params
     const [sites, setSites] = useState({
@@ -32,35 +30,28 @@ function SiteDetails({ match }) {
     }, [id])
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <NavBar />
-            {
                 site.loading ? <DataLoading /> :
                     site.error ? <ErrorLoading /> :
                         <div className="container mt-4">
-                            <div className="row">
+                            <div className="row justify-content-center">
                                 <div className="col-lg-12">
                                     <h1 className="text-center">
                                         {site.data.title}
                                     </h1>
                                 </div>
-                                <div className="col-lg-5">
-                                    <a href={file + site.data.images[0]} download={true} target="_blank" rel="noreferrer">
-
-                                        <img src={file + site.data.images[0]} alt="" className="img-fluid" />
-                                    </a>
-                                </div>
-                                <div className="col-lg-6" >
-
+                                <div className="col-12 text-center col-lg-6" >
                                     <p className="indent">
-                                        {site.data.description.slice(0, 726)}
+                                        {site.data.description}
                                     </p>
                                 </div>
-                                <div className="col-lg-12">
-                                    <p className="indent">
-                                        {site.data.description.slice(726, site.data.description.length)}
-
-                                    </p>
+                                <div className="col-12">
+                                    <div className="row justify-content-center">
+                                        <div className="col-12 col-md-6">
+                                            <a href={file + site.data.images[0]} download={true} target="_blank" rel="noreferrer">
+                                                <img src={file + site.data.images[0]} alt={site.title   } className="img-fluid" />
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <div className="gallery my-2" id="gallery" >
@@ -81,10 +72,10 @@ function SiteDetails({ match }) {
                                     </div>
 
                                 </div>
-                                <div className="col-lg-12 d-flex justify-content-center mt-5">
+                                <div className="col-lg-12 d-flex flex-column align-items-center mt-5">
                                     {site.data.lat && site.data.lng ?
                                         <>
-                                            <h1 className="text-center">{t('See on google map')}</h1>
+                                            <h1 className="d-block text-center">{t('See on google map')}</h1>
                                             <Map center={{ lat: site.data.lat, lng: site.data.lng }} />
                                         </>
                                         :
@@ -96,37 +87,29 @@ function SiteDetails({ match }) {
                                         <h3 className="text-center">
                                             {t('Other attraction sites')}
                                         </h3>
-                                        <div class="blog-posts">
+                                        <div class="row justify-content-evenly mb-4">
                                             {
                                                 sites.data.filter(s => s._id !== id).slice(0, 6).map(s =>
-
-                                                    <div div className="post" key={s._id}>
+                                                    <div className="col-12 col-md-4 border"  key={s._id}>
                                                         <Link to={'/site/' + s._id}>
-                                                            <img src={file + s.images[0]} alt=""
+                                                            <img src={file + s.images[0]} alt={s.title}
                                                                 className="post-img card-image top" height={300} style={{
                                                                     objectFit: 'cover',
                                                                     height: ' inherit !important',
                                                                     width: 'auto'
                                                                 }} />
-                                                            <div className="post-content">
-                                                                <h5 className='text-dark'>
-                                                                    {s.title}
-                                                                </h5>
-
-                                                            </div>
+                                                            <h5 className='my-2'>
+                                                                {s.title}
+                                                            </h5>
                                                         </Link>
                                                     </div>
                                                 )}
-
                                         </div>
                                     </div> :
                                     <p></p>
                                 }
                             </div>
                         </div>
-            }
-            <Footer />
-        </>
     )
 }
 

@@ -80,8 +80,7 @@ function CreateForum({ setTab, setForum, socket, Forum }) {
     }
     const removeFile = File => setState(s => ({ ...s, files: s.files.filter(f => f.id !== File.id) }))
     return (
-        <div className="row">
-            <div className="col-lg-2"></div>
+        <div className="row justify-content-center">
             <div className="col-lg-5">
                 <form onSubmit={handleSubmit}>
                     <div className="my-3">
@@ -170,7 +169,7 @@ function CreateForum({ setTab, setForum, socket, Forum }) {
                     </div>
                 </form>
             </div>
-            <div className="col-lg-5">
+            { !!state.files.length && <div className="col-lg-5">
                 <div className="row">
                     {
                         state.files.map(im =>
@@ -203,7 +202,7 @@ function CreateForum({ setTab, setForum, socket, Forum }) {
                             </div>
                         )}
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }

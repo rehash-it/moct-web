@@ -584,11 +584,11 @@ a:hover {
   color: black;
 }
 .text-raise {
-  color: #ffa260;
+  color: #0053af;
 }
 img {
   max-height: 300px;
-  background-color: #f93;
+  /* background-color: #f93; */
 }
 .gallery {
   -webkit-column-count: 3;
@@ -641,10 +641,6 @@ img {
     box-shadow: 0 0 0 0 var(--hover);
   }
 }
-.close:hover,
-.close:focus {
-  box-shadow: inset -3.5em 0 0 0 var(--hover), inset 3.5em 0 0 0 var(--hover);
-}
 .raise:hover,
 .raise:focus {
   box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
@@ -673,12 +669,12 @@ img {
   --color: #ef6eae;
   --hover: #ef8f6e;
 }
-.close {
+/* .close {
   --color: #ff7f82;
   --hover: #ffdc7f;
-}
+} */
 .raise {
-  --color: #ffa260;
+  --color: #0053af;
   --hover: #e5ff60;
 }
 .up {

@@ -1,40 +1,36 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Footer from '../layouts/Footer'
-import Navbar from '../layouts/navbar'
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdbreact'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload, faThermometerEmpty } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact'
+import { useContext, useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { pageCalculate } from '../utility/general'
-import { datasDispatch } from '../../store/Actions/dataActions'
-import { tellDate } from '../utility/Date'
-import DataLoading from '../layouts/DataLoading'
-import ErrorLoading from '../layouts/ErrorLoading'
-import Paginate from './Paginate'
 import { file } from '../../config/config'
 import { LanguageContext } from '../../context/context'
+import { datasDispatch } from '../../store/Actions/dataActions'
+import DataLoading from '../layouts/DataLoading'
+import ErrorLoading from '../layouts/ErrorLoading'
+import { TitleBar } from '../layouts/titlebar'
+import { tellDate } from '../utility/Date'
+import { pageCalculate } from '../utility/general'
+import Paginate from './Paginate'
 function Bids({ location }) {
     const [state, setState] = useState({
         loading: true,
         error: false,
         data: [],
         length: 0
-    })
+    })  
     let Page = location.search
     const { loading, error, data, length } = state
     let page = pageCalculate(15, length)
     useEffect(() => datasDispatch(setState, { page, limit: 15, url: 'bid', admin: false }), [page])
     const { t } = useContext(LanguageContext)
     return (
-        <>
-            <Navbar />
-            {
                 loading ? <DataLoading /> :
                     error ? <ErrorLoading /> :
-
+                    <>
+                        <TitleBar text="Bids" />
                         <div className="container my-3">
                             <div className="col-lg-12">
-                                <h1>{t('Bids')}</h1>
                                 <MDBTable className='my-3' responsive={true} bordered={true} >
                                     <MDBTableHead className='text-center' >
                                         <tr>
@@ -85,9 +81,7 @@ function Bids({ location }) {
                                 <Paginate link='' page={page} />
                             </div>
                         </div>
-            }
-            <Footer />
-        </>
+                    </>
     )
 }
 
