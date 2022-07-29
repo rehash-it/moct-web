@@ -1,7 +1,9 @@
 module.exports = {
-    server: 'http://api.mocs.gov.et',
-    host: 'http://api.mocs.gov.et/api/',
-    file: 'http://',
+    server: 'https://api.mocs.gov.et',
+    host: 'https://api.mocs.gov.et/api/',
+    // server : 'http://localhost:9000',
+    // host: 'http://localhost:9000/api/',
+    file: 'https://',
     mapApi: 'AIzaSyA9KpdQqHo-73vCPqEuGAMfdP38KM-7Eac',
     fb_Rss: 'https://rss.app/feeds/8wmepjtuzAugFZVs.json',
     twitter_Rss: 'https://rss.app/feeds/eKmGNCeX2Sd2HeIz.json',
