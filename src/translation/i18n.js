@@ -89,7 +89,9 @@ const resources = {
             'we are offline! ,you can come later on working hours': 'ለጊዜው ከመስመር ውጭ ነን! በኋላ በስራ ሰዓት መምጣት ትችላለህ',
             'Quick Links': "ፈጣን አገናኞች",
             'Contact Us': 'አግኙን',
-            'Follow Us': 'ተከተሉን'
+            'Follow Us': 'ተከተሉን',
+            'Values': 'ዕሴቶች',
+            'Mission': 'ተልዕኮ'
         }
     }
 };

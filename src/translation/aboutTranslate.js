@@ -1,37 +1,38 @@
 import { getLanguage } from "./i18n";
 
-export const Vision = () => getLanguage() === 'amh' ?
-    `ኢትዮጵያ በ2012 ባህላዊ ሀብቶቿና የተፈጥሮ መስህቦቿ ለምተው በቱሪዝም መዳረሻነት ከመጀመሪያዎቹ 5 የአፍሪካ አገራት አንዷ እንድትሆን ማድረግ፡፡
+export const Vision = () =>
+  getLanguage() === "amh"
+    ? "ኢትዮጵያ በ2012 ባህላዊ ሀብቶቿና የተፈጥሮ መስህቦቿ ለምተው በቱሪዝም መዳረሻነት ከመጀመሪያዎቹ 5 የአፍሪካ አገራት አንዷ እንድትሆን ማድረግ፡፡"
+    : "To make Ethiopia one of the top five tourist destinations of Africa in 2020 through the development of its cultural wealth and natural attraction";
 
-ዕሴቶች          
+export const Values = () =>
+  getLanguage() === "amh"
+    ? [
+        "ብዝሀነትን ማክበር",
+        "እንግዳ ተቀባይነት",
+        "ግልጽነት",
+        "ተጠያቂነት",
+        "ለለውጥ ዝግጁነት",
+        "የላቀ አገልግሎት",
+      ]
+    : [
+        "Respect diversity",
+        "Hospitality",
+        "Transparency",
+        "Accountability",
+        "Commitment to change",
+        "Excellent Service",
+        "Participations",
+      ];
 
-ብዝሀነትን ማክበር
-እንግዳ ተቀባይነት
-ግልጽነት
-ተጠያቂነት       
-ለለውጥ ዝግጁነት
-የላቀ አገልግሎት
+export const Mission = () =>
+  getLanguage() === "amh"
+    ? "የኢትዮጵያ ብሔር ብሔረሰቦችና ህዝቦች ባህላዊ ሀብቶችና ተፈጥሯዊ መስህቦች በህብረተሰቡ እና በባለድርሻ አካላት ተሳትፎ በማጥናት፣ በመጠበቅ፣ በማልማት፣ በማስተዋወቅ እና የአገሪቷን መልካም ገጽታ በመገንባት  ዘላቂ ማህበራዊ፣ ኢኮኖሚያዊና ፖለቲካዊ ጥቅም እንዲሰጡ ማድረግ፡:"
+    : "To study, preserve, develop and promote the cultural wealth and the national tourism attractions of the nations, nationalities and peoples of Ethiopia and to build the positive images of Ethiopia with a view to adding a sustainable socio-economic and political values with popular and stakeholder’s participation.";
 
-ተልዕኮ
-
- የኢትዮጵያ ብሔር ብሔረሰቦችና ህዝቦች ባህላዊ ሀብቶችና ተፈጥሯዊ መስህቦች በህብረተሰቡ እና በባለድርሻ አካላት ተሳትፎ በማጥናት፣ በመጠበቅ፣ በማልማት፣ በማስተዋወቅ እና የአገሪቷን መልካም ገጽታ በመገንባት  ዘላቂ ማህበራዊ፣ ኢኮኖሚያዊና ፖለቲካዊ ጥቅም እንዲሰጡ ማድረግ፡:
-
-`: `To make Ethiopia one of the top five tourist destinations of Africa in 2020 through the development of its cultural wealth and natural attraction
-
-Values
-Respect diversity
-Hospitality
-Transparency
-Accountability
-Commitment to change
-Excellent Service
-Participations
-
-Mission
-To study, preserve, develop and promote the cultural wealth and the national tourism attractions of the nations, nationalities and peoples of Ethiopia and to build the positive images of Ethiopia with a view to adding a sustainable socio-economic and political values with popular and stakeholder’s participation.
-`
-export const messageMocs = () => getLanguage() === 'amh' ?
-    `ከሁሉ አስቀድሜ አገራችንን ለምትጎበኙና በባህልና ቱሪዝም ዘርፍ  መዋዕለ ንዋያችሁን በማሰባሰብ ኢንቨስት ለምታደርጉ ሁሉ ከልብ የመነጨ ላቅ ያለ ምስጋናዬን ላቀርብ እወዳለሁ፡፡ ይህ ድረ-ገጽ የሚጠበቀውንና የምትፈልጉትን መረጃዎች ይሰጣል ብዬ ተስፋ እናደርጋለን፡፡
+export const messageMocs = () =>
+  getLanguage() === "amh"
+    ? `ከሁሉ አስቀድሜ አገራችንን ለምትጎበኙና በባህልና ቱሪዝም ዘርፍ  መዋዕለ ንዋያችሁን በማሰባሰብ ኢንቨስት ለምታደርጉ ሁሉ ከልብ የመነጨ ላቅ ያለ ምስጋናዬን ላቀርብ እወዳለሁ፡፡ ይህ ድረ-ገጽ የሚጠበቀውንና የምትፈልጉትን መረጃዎች ይሰጣል ብዬ ተስፋ እናደርጋለን፡፡
 
 ኢትዮጵያ በተፈጥሮ፣በባህልና ታሪክ ሀብቶቿ ዘመን የማይሽራቸው አንድነትን የፈጠረች፣ የተለያዩ ብሔሮች፣ብሔረሰቦችና ሕዝቦች የራሳቸው የሆነ ቋንቋ፣ እምነት፣ ወግ እና ስርዓት አቅፋ የያዘች ሕብረ-ብሔራዊት ሀገር ናት፡፡ በተባበሩት መንግስታት የትምህርት፣ የሳይንስና የባህል ድርጅት (ዩኔስኮ) በዓለምቅርሶች መዝገብ ከተመዘገቡ ዘጠኝ የማይቀሳቀሱ ቅርሶች አንዱ በሆነው የሰሜን ተራሮች ብሔራዊ ፓርክ ውስጥ ከሚከኘው ከራስ ዳሸን ተራራ ከፍታ አስከ ዳሎል ዲፕሬሽን ዝቅታ ድረስ  በአስደናቂ መልክዓ ምድራዊ አቀማመጥ እና የአየር ንብረት፣ የብርቅዬ የዱር እንስሳት መገኛ፣ የራሷ የዘመን አቆጣጠርናፊደል፣ የሚዳሰሱና የማይዳሰሱ ቅርሶች ባለቤት በመሆኑዋ  ኢትዮጵያ በእርግጠኝነት በአስገራሚ የቱሪዝም ሀብቶች መገኛ ምድር አድርጓታል፡፡
 
@@ -53,7 +54,8 @@ export const messageMocs = () => getLanguage() === 'amh' ?
 
 ክብርት ዶክተር ሂሩት ካሳው
 የኢ.ፌ.ዲ.ሪ ባህልና ቱሪዝም ሚኒስትር
-`: `At the outset allow me to earnestly express my gratitude for your interest to visit Ethiopia and invest in the sector of culture and tourism. It is our hope that this website would meet your satisfactions and expectations.
+`
+    : `At the outset allow me to earnestly express my gratitude for your interest to visit Ethiopia and invest in the sector of culture and tourism. It is our hope that this website would meet your satisfactions and expectations.
 
 In Ethiopia, nature, culture and history merge to form a timeless appeal. Ethiopia, with its impressive tourism potentials, is truly a land of contrasts and extremes, a land of remote and wild places, and of spectacular alpine terrain - including the Semien Mountains National Park with its 4261 meters peak at Ras Dashen one of the nine UNESCO world heritage sites; and at the other end of the spectrum, the Danakil depression 121 meters below sea level is among the lowest places on earth and extremely hot. The latter depicts a fascinating sulphur fumaroles and a lunar like landscape.
 
@@ -74,9 +76,10 @@ Welcome to Ethiopia, The Cradle of Humankind, The Origin of Coffee, The Origin o
 H.E Dr. Hirut Kassaw
 
 Ministry of Culture and Tourism
-`
-export const aboutHistory = () => getLanguage() === 'amh' ?
-    `ከ1900ዎቹ መጀመሪያ ዓመታት አንስቶ በኢትዮጵያ የማዕከላዊ መንግስት በተጠናከረና በተንሰራፋበት' የአውሮፓ ዘመናዊ ሥልጣኔ በሀገራችን ቀስ በቀስ ሥር መስደድና ተግባራዊ እየሆነ በመጣበት' ከፋሺስት ኢጣሊያ ወረራ በፊትና በኋላ በተለይም ከነፃነት ድል በኋላ ዘመናዊ የባህል አመራር በተለያዩ የሚኒስቴርና የድርጅት መሥሪያ ቤቶች ሥር በተዘዋዋሪ አመራር ማግኘት ጀመረ፡፡
+`;
+export const aboutHistory = () =>
+  getLanguage() === "amh"
+    ? `ከ1900ዎቹ መጀመሪያ ዓመታት አንስቶ በኢትዮጵያ የማዕከላዊ መንግስት በተጠናከረና በተንሰራፋበት' የአውሮፓ ዘመናዊ ሥልጣኔ በሀገራችን ቀስ በቀስ ሥር መስደድና ተግባራዊ እየሆነ በመጣበት' ከፋሺስት ኢጣሊያ ወረራ በፊትና በኋላ በተለይም ከነፃነት ድል በኋላ ዘመናዊ የባህል አመራር በተለያዩ የሚኒስቴርና የድርጅት መሥሪያ ቤቶች ሥር በተዘዋዋሪ አመራር ማግኘት ጀመረ፡፡
 
     ዘርፈ-ብዙው የባህል እንቅስቃሴ ከነባሩ ትውፊታዊና ልማዳዊ የባህል አመራር ተላቆ ዘመናዊው የባህል አመራር ሂደት አስከ ቀዳማዊ ኃይለሥላሴ ዘመነ መንግስት ፍፃሜ ድረስ በተናጠልና በተበታተነ ሁኔታ ነበር፡፡ በዚሁ መሠረት ለቅርስ ጥናትና ጥበቃ መሠረት የሆነውና የኢትዮጲያ ጥናታዊ ቅርሶች አስተዳደርን አካቶ በመያዝ “የህዝብ ቤተመጻህፍ ወመዘክር”በሚል ስያሜ በ1936 ዓ.ም የተቋቋመው የዛሬው የብሄራዊ ቤተመዛግብትና ቤተመጻህፍት ኤጀንሲ ፋና ወጊ ሲሆን በመቀጠልም "የትምህርትና ሥነ ጥበብ ሚኒስቴር" ከመደበኛ የትምህርት ፕሮግራሙ ጎን'የአዲስ አበባ ሥነ ጥበብ ት/ቤትን ' የእቴጌ እጅ ሥራ / እደ ጥበብ / ት/ቤትን ' የተግባረ እድ ት/ቤትን'የያሬድ ሙዚቃ ት/ቤትን ' የአማርኛ መርሐ ልሣንን በመመስረትና በመምራት እንዲቋቋም ተድርጎ እንደነበር ከሰነዶች መገንዘብ ይቻላል፡፡
     
@@ -110,7 +113,8 @@ export const aboutHistory = () => getLanguage() === 'amh' ?
     አሁን ላይ የዚሁ አደረጃጀትና የአሠራር ለውጥ በሀገሪቱ የቱሪዝም ኢንደስትሪ ታሪክ የመጀመሪያ የሆነውንና ዕድገቱን በአግባቡ ለመምራት በአቅጣጫ አመላካእነት የሚያገለግለው ፖሊሲ ተቀርፆ የፀደቀ ሲሆን ቀደም ሲል ፤ በነበሩት አምስት ዓመታት መንግስት ይከተለው በነበረው ፈጣንና ዘላቂ ልማት ዕቅድ // እንዲሁም ለያዝነው አምስት ዓመት በቀጣይነት እንዲያገለግል በተቀረፀው የዕድገትና የትራንስፎርሜሽን ዕቅድ // ውስጥ ዘርፉ እንዲካተት መደረጉ የተሰጠውን ከፍተኛ ትኩረት ያመለክታል:፡
     
     በአጠቃላይ ሚኒስተር መስሪያ ቤቱ የአደረጃጀትና የመዋቅር ለውጥ ያልተደረገበት ቢሆንም ቀደም ሲል የነበሩ አመራር አካላት በአዳዲሶቹና ለውጡና አንድ እርምጃ ወደፊት ሊያራምዱ በሚችሉ ወጣት የበላይ አመራሮች በመተካቱ በሚኒስተር መ/ቤቱ ተዘጋጅተው የነበሩ ዕቅዶችን ከአዲሱ አመራር ተልዕኮ ጋር አጣጥሞ በማዘጋጀት የሴክተሩን ነባራዊ ሁኔታ በጥልቀት ገምግሞ በሙሉ ሀይል ወደ ስራ የሚገባበት ሁኔታ ተፈጥሯል::የሚኒስቴሩ መገለጫየሚኒስቴሩ መገለጫ
-    ` : `
+    `
+    : `
     Beginning from the dawn of the 19th century, ‘modern European civilization gradually started taking momentum and grip in Ethiopia under the circumstances where power centralization of the central government was dominantly rampant in the country’, in which case modern management of culture has been addressed through the indirect management or administration of various Ministries and any other government agencies during the pre-and post-Fascist Italian Occupation, particularly in the post-independence/victory period.
     
     The disentanglement of multifaceted cultural activities from the existing traditional and customary cultural management patterns as well as the association of such cultural activities with the modern cultural management processes were unsystematic and disorganized until the end of the Hailesellasie/Imperial Regime. Accordingly, the current National Archives and Libraries Agency, which was established in 1943 under the official name of “Public Library-Wemzeker”, was proven to have been a pioneer in this respect; this Agency, which underlies the initiatives to undertake contemporary heritage research and preservation activities, includes the Ethiopian Ancient Heritages Administration. The relevant historical accounts reveal that the “Ministry of Education and Arts” was subsequently established to have comprised ‘Addis Ababa Art School’, ‘Etege Handcrafts School’, ‘Tegbared School’ and ‘Yared Musical School’ thereby establishing and managing Amharic Linguistics/ Yeamargna Merhalisan/ apart from carrying out its formal education programs.
@@ -144,4 +148,4 @@ export const aboutHistory = () => getLanguage() === 'amh' ?
     Currently, the newly introduced policy for such organizational and process/working change or transformation, which is reported to have been the first initiative in the history of the country’s tourism industry, has been ratified.  The incorporation of such sector into the previous Rapid and Sustainable Development Plan (PASDEP) pursued by the government for the past five years and into the upcoming five years Growth and Transformation Plan (GTP) indicates the sensitive attention given to the sector.
     
     Even if there are no organizational and structural adjustments undertaken by the Office of the Prime Minister, the former management bodies have been replaced by the newly appointed youth top-level-management bodies, who are entrusted with pursuing the transformation/change one step forward. As such, we have come up with favorable conditions for matching the previous plans developed by the Ministry to the missions of the new management as well as for an insight assessment of the existing realities surrounding the sector to subsequently get geared into operations with the required human resources. 
-    `
+    `;
