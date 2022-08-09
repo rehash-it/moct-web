@@ -14,6 +14,7 @@ import AddDocs from './Docs/AddDocs'
 import EditDocs from './Docs/EditDocs'
 import DeleteDocs from './Docs/DeleteDocs'
 import { getFileName } from '../utility/file'
+import TotalCount from './TotalCount'
 function AdminResearch() {
     const [state, setState] = useState({
         loading: true,
@@ -47,9 +48,7 @@ function AdminResearch() {
                                 </div>
 
                                 <div className="col-sm-6 col-md-4 col-lg-5 my-auto">
-                                    <div className="card bg-dark">
-                                        <h2 className='text-white text-center'>Totall registered {length}</h2>
-                                    </div>
+                                    <TotalCount count={length} />
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>

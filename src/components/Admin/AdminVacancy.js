@@ -11,6 +11,7 @@ import AddVacancy from './vacancy/AddVacancy';
 import AdminPaginate from './AdminPaginate';
 import EditVacancy from './vacancy/EditVacancy';
 import DeleteVacancy from './vacancy/DeleteVacancy';
+import TotalCount from './TotalCount';
 function AdminVacancy() {
     const [state, setState] = useState({
         loading: true,
@@ -45,9 +46,7 @@ function AdminVacancy() {
                                 </div>
 
                                 <div className="col-sm-6 col-md-4 col-lg-5 my-auto">
-                                    <div className="card bg-dark">
-                                        <h2 className='text-white text-center'>Totall registered {length}</h2>
-                                    </div>
+                                    <TotalCount count={length}/>
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>

@@ -14,6 +14,7 @@ import DeleteUser from './user/DeleteUser'
 import Switch from "react-switch";
 import { submitUser } from './user/submitUser';
 import { SpinnerLoading } from '../layouts/Loading'
+import TotalCount from './TotalCount'
 function AdminUser() {
     const [state, setState] = useState({
         loading: true,
@@ -85,9 +86,7 @@ function AdminUser() {
 
                             </div>
                             <div className="col-sm-3 col-md-3 col-lg-3 my-auto">
-                                <div className="card bg-dark">
-                                    <h2 className='text-center'>Totall registered {length}</h2>
-                                </div>
+                                <TotalCount count={length}/>
                             </div>
                             <div className="col-lg-12 mt-3">
                                 <MDBTable responsive bordered>

@@ -73,7 +73,7 @@ function Forum({ socket, Forum, comments, setTab }) {
 
                             </div> :
                             <div className="card-footer float-left text-dark">
-                                totall {comments.length} comments
+                                total {comments.length} comments
                             </div>
                     }
 

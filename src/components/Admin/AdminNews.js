@@ -12,6 +12,7 @@ import { tellDate } from '../utility/Date'
 import EditNews from './News/EditNews';
 import DeleteNews from './News/DeleteNews'
 import AdminPaginate from './AdminPaginate'
+import TotalCount from './TotalCount'
 function AdminNews() {
     const [state, setState] = useState({
         loading: true,
@@ -44,9 +45,7 @@ function AdminNews() {
                                 </div>
 
                                 <div className="col-sm-6 col-md-4 col-lg-5 my-auto">
-                                    <div className="card bg-dark">
-                                        <h2 className='text-white text-center'>Totall registered {length}</h2>
-                                    </div>
+                                    <TotalCount count={length}/>
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>

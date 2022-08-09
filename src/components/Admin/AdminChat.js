@@ -5,6 +5,7 @@ import ErrorLoading from '../layouts/ErrorLoading';
 import { fetchChats } from './chat/chat';
 import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo'
 import { tellDate } from '../utility/Date';
+import TotalCount from './TotalCount';
 
 function AdminChat({ socket, setTabs, connection }) {
     const [state, setState] = useState({
@@ -45,12 +46,10 @@ function AdminChat({ socket, setTabs, connection }) {
                                 </div>
 
                                 <div className="col-sm-6 col-md-4 col-lg-5 my-auto">
-                                    <div className="card bg-dark">
-                                        <h2 className='text-white text-center'>Totall contacted {state.data.length}</h2>
-                                    </div>
+                                    <TotalCount count={state.data.length} text='contacted'/>
                                 </div>
                                 <div className="col-lg-12">
-                                    <MDBTable responive bordered>
+                                    <MDBTable responsive bordered>
                                         <MDBTableHead>
                                             <th>#</th>
                                             <th>username</th>
