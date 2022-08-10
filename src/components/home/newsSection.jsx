@@ -1,8 +1,7 @@
-import { Box, Typography, useMediaQuery } from "@material-ui/core";
+import { Box, Container, Typography, useMediaQuery } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import { useContext, useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
-import { Container } from "reactstrap";
 import { LanguageContext, StoreContext } from "../../context/context";
 import { newsDispatch } from "../../store/Actions/newsActions";
 import ErrorLoading from "../layouts/ErrorLoading";
