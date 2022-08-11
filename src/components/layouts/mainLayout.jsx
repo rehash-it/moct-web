@@ -1,11 +1,14 @@
 import { Box } from "@material-ui/core";
+import { withRouter } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./navbar";
 
-export const MainLayout = ({ children }) => (
+const MainLayout = ({ location,children }) => (
   <Box minHeight="100vh" display="flex" flexDirection="column">
-    <Navbar />
+    {location.pathname !== '/login'&& <Navbar />}
     <Box flexGrow={1}>{children}</Box>
-    <Footer />
+    {location.pathname !== '/login'&& <Footer />}
   </Box>
 );
+
+export default withRouter(MainLayout)

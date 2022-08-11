@@ -25,7 +25,7 @@ import Chat from './components/pages/Chat'
 import Forums from './components/pages/Forums'
 import ClosedUserForum from './components/Forum/ClosedUserForum'
 import UserForum from './components/Forum/UserForum'
-import { MainLayout } from './components/layouts/mainLayout'
+import MainLayout from './components/layouts/mainLayout'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 export default function App() {
   const { t, i18n } = useTranslation();
