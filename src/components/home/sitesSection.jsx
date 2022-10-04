@@ -4,6 +4,7 @@ import {
   ImageList,
   ImageListItem,
   Typography,
+  useMediaQuery,
 } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import { useContext, useEffect, useState } from "react";
@@ -22,6 +23,7 @@ export const SitesSection = withRouter(({ history }) => {
   });
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
+  const mobile = useMediaQuery("(max-width: 680px)");
 
   useEffect(() => {
     sitesDispatch(setSite, { region: "All", page: page, limit: 6 });
@@ -38,18 +40,28 @@ export const SitesSection = withRouter(({ history }) => {
   ) : sites.error ? (
     <ErrorLoading />
   ) : (
-    <Container maxWidth="md">
+    <Box paddingX={mobile ? 4 : 8} py={2}>
       <Box display="flex" flexDirection="column">
         <Box p={2}>
-          <Typography variant="h2">{t("Attraction Sites")}</Typography>
+          <Typography variant="h2">{t("Attraction sites")}</Typography>
         </Box>
-        <ImageList gap={5} style={{ alignSelf: "center" }}>
-          {sites.data.map((site) => (
-            <ImageListItem key={site._id}>
-              <img src={site.images[0]} alt={site.title} />
-            </ImageListItem>
-          ))}
-        </ImageList>
+        <Box>
+          {sites.length ? (
+            <ImageList gap={5} style={{ alignSelf: "center" }}>
+              {sites.data.map((site) => (
+                <ImageListItem key={site._id}>
+                  <img src={site.images[0]} alt={site.title} />
+                </ImageListItem>
+              ))}
+            </ImageList>
+          ) : (
+            <Container>
+              <Typography variant="h4" style={{ fontWeight: 100}}>
+                {t("No Attraction site registered yet")}
+              </Typography>
+            </Container>
+          )}
+        </Box>
       </Box>
       <Box display="flex" justifyContent="end" px={4} py={2}>
         <Pagination
@@ -59,6 +71,6 @@ export const SitesSection = withRouter(({ history }) => {
           variant="rounded"
         ></Pagination>
       </Box>
-    </Container>
+    </Box>
   );
 });

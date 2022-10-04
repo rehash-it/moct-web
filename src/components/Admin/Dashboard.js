@@ -26,7 +26,6 @@ function Dashboard(props) {
     const [toggle, setToggle] = useState(false)
     const [notifcation, showNotification] = useState(false)
     const { socket } = useContext(SocketContext)
-    const [token, setToken] = useState(false)
     const [message, setMessage] = useState([])
     const [tabs, setTabs] = useState('News')
     /** */
@@ -50,8 +49,8 @@ function Dashboard(props) {
     const [forum, setForum] = useState({})
     const [comments, setComments] = useState([])
     useEffect(() => {
-        checkToken(setToken)
-    }, [setToken])
+        checkToken().then(hasToken => !hasToken && props.history.push('/login'))
+    }, [props.history])
     const mobile = useMediaQuery('(max-width: 768px)')
 
     /**socket chat */
@@ -123,7 +122,6 @@ function Dashboard(props) {
     const handleToggle = () => setToggle(!toggle)
 
     return (
-        token ?
             <Box style={{display: 'flex'}}>
                 <SideNav
                     handleToggle={handleToggle}
@@ -195,8 +193,7 @@ function Dashboard(props) {
                                                             : <p></p>
                 }
 
-            </Box> :
-            <Login setToken={setToken} />
+            </Box>
     );
 }
 

@@ -29,7 +29,7 @@ export const SearchButton = withRouter(({ match, history }) => {
   };
   const mobile = useMediaQuery("(max-width: 680px)");
   return (
-    <Box display="flex" justifyContent="end" maxWidth={200}>
+    <Box display="flex" justifyContent="end" maxWidth={200} style={{marginLeft: 'auto'}}>
       <form onSubmit={handleSearch}>
         {search && (
           <input
@@ -47,7 +47,7 @@ export const SearchButton = withRouter(({ match, history }) => {
       </form>
       <IconButton
         className=" my-2"
-        color="secondary"
+        color="primary"
         size="small"
         onClick={handleSearch}
         style={{

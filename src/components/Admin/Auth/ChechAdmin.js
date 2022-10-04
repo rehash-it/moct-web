@@ -10,20 +10,13 @@ export const checkAdmin = async (push) => {
         push('/login')
     }
 }
-export const checkToken = async (setToken) => {
+export const checkToken = async () => {
     try {
         const token = sessionStorage.getItem('x-auth-token') ? true : false
-        if (token) {
-            const res = await axios.post(host + 'checkAdmin', {}, getHeaders())
-            if (res.status === 200) { setToken(true) }
-            else { setToken(false) }
-        }
-        else {
-            setToken(false)
-        }
+        return token && await (await axios.post(host + 'checkAdmin', {}, getHeaders())).status === 200
     }
     catch (err) {
         console.log(err)
-        setToken(false)
+        return false
     }
 }

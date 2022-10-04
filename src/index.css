@@ -127,7 +127,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 50vh;
+  height: 100vh;
 }
 .active{
 color:#0053af
@@ -158,4 +158,8 @@ color:#0053af
   font-size: 2rem;
   line-height: 0.95em;
   text-transform: uppercase;
+}
+
+p {
+  text-align: justify;
 }

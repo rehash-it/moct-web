@@ -13,6 +13,7 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { file } from '../../config/config'
 import { FaThermometerEmpty } from 'react-icons/fa'
 import AdminPaginate from './AdminPaginate'
+import TotalCount from './TotalCount'
 
 function AdminBids() {
     const [state, setState] = useState({
@@ -47,9 +48,7 @@ function AdminBids() {
                                 </div>
 
                                 <div className="col-sm-6 col-md-4 col-lg-5 my-auto">
-                                    <div className="card bg-dark">
-                                        <h2 className='text-white text-center'>Totall registered {length}</h2>
-                                    </div>
+                                    <TotalCount count={length}/>
                                 </div>
                                 <div className="col-lg-12 mt-3">
                                     <MDBTable responsive bordered>
